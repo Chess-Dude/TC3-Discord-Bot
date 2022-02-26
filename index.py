@@ -10,7 +10,8 @@ def initialiseCogs():
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
             bot.load_extension(f'cogs.{filename[:-3]}')
-
+            print(f'cogs.{filename[:-3]}')
+            
 @bot.command()
 @commands.has_role("Head Match Staff")
 async def role(ctx, member:discord.Member, role:discord.Role):
