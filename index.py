@@ -6,6 +6,7 @@ token = 'ODY5OTc0MTA4MzEyNTY3ODE4.YQGAhg.VMq38SL5ltLLe2OkgyZXRyF1FAg'
 bot = commands.Bot(command_prefix='!', case_insensitive=True, intents = discord.Intents.all())
 bot.remove_command('help')
 
+        
 def initialiseCogs():
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):

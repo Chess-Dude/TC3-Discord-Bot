@@ -7,7 +7,7 @@ def botsOrWorkChannel(ctx):
 
 isBotsOrWorkChannel = commands.check(botsOrWorkChannel)
 
-matchStaffPing = '<@&371840164672045067> <@&896440653406433310>'
+matchStaffPing = '<@&935698898251567124> <@&896440653406433310>'
 thumbsUp = '\U0001F44D'
 thumbsDown = '\U0001f44e'
 
