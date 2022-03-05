@@ -4,7 +4,6 @@ from discord.ext import commands
 from discord.utils import get
 import time
 
-from psutil import users
 
 def tcg_bots(ctx):
     return ctx.channel.id == 408820459279220736 or ctx.channel.id == 941567353672589322
@@ -12,6 +11,16 @@ def tcg_bots(ctx):
 is_tcg_bots = commands.check(tcg_bots)
 
 hms_ping = '<@&665951855888826369>'
+
+STEP_STATUS = {
+                "STEP_1": 0,
+                "STEP_2": 1,
+                "STEP_3": 2,
+                "STEP_4": 3, 
+                "ADDITIONAL_NOTES": 4
+              }
+
+step_progress = 0
 
 def createInfoEmbed(infoMessage : discord.Message):
 
@@ -22,6 +31,25 @@ def createInfoEmbed(infoMessage : discord.Message):
     embed.set_author(name = infoMessage.author.display_name, icon_url = infoMessage.author.avatar_url)
     return embed
 
+def steps():
+    """
+    creates steps
+    """
+    
+    if step_progress == STEP_STATUS["STEP_1"]:
+        pass
+
+    elif step_progress == STEP_STATUS["STEP_2"]:
+        pass
+
+    elif step_progress == STEP_STATUS["STEP_3"]:
+        pass
+    
+    elif step_progress == STEP_STATUS["STEP_4"]:
+        pass
+    
+    elif step_progress == STEP_STATUS["ADDITIONAL_NOTES"]:
+        pass
 
 class PrizeDistribution(commands.Cog):
 
@@ -65,9 +93,9 @@ class PrizeDistribution(commands.Cog):
         
         reaction, user = await self.bot.wait_for("reaction_add", check=check, timeout=None)
         
-        for guild in self.bot.guilds:
+        """ for guild in self.bot.guilds:
             for channel in guild.channels:
-                print(channel)
+                print(channel) """
         
         if str(reaction.emoji) == '✅':
             coins_approved_embed = discord.Embed(title='Your Coins Are Now Validated!', description=f"{ctx.author.mention} Direct message the <@!731872828474916934> to recieve your prize!", color=0xff0000)

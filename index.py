@@ -1,4 +1,5 @@
-import discord, os
+import os
+import discord
 from discord.ext import commands
 
 token = 'ODY5OTc0MTA4MzEyNTY3ODE4.YQGAhg.VMq38SL5ltLLe2OkgyZXRyF1FAg'
