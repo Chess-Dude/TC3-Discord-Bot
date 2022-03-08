@@ -12,7 +12,7 @@ def initialiseCogs():
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
             bot.load_extension(f'cogs.{filename[:-3]}')
-            print(f'cogs.{filename[:-3]}')
+            print(f'cogs.{filename[:-3]} loaded')
             
 @bot.command()
 @commands.has_role("Head Match Staff")
@@ -33,13 +33,13 @@ async def enable(ctx, extension):
 @commands.has_role("Head Match Staff")
 async def echo(ctx, *, args): 
     await ctx.send(args)
-
+        
 @bot.command(aliases = ["unload"])
 @commands.has_role("Head Match Staff")
 async def disable(ctx, extension):
     bot.unload_extension(f'cogs.{extension}') 
     await ctx.send('done')
-
+ 
 @bot.command()
 @commands.has_role("Head Match Staff")
 async def rerun(ctx):

@@ -1,6 +1,7 @@
 import discord, datetime
 import discord.reaction
 from discord.ext import commands
+#from discord.ui import Button
 from discord.utils import get
 import time
 
@@ -28,7 +29,7 @@ def createInfoEmbed(infoMessage : discord.Message):
     embed.add_field(name = '**Jump**', value = f'[Go to message!]({infoMessage.jump_url})')
     embed.set_footer(text = f'#{infoMessage.channel.name}')
     embed.timestamp = infoMessage.created_at
-    embed.set_author(name = infoMessage.author.display_name, icon_url = infoMessage.author.avatar_url)
+    embed.set_author(name = infoMessage.author.display_name, icon_url = infoMessage.author.avatar.url)
     return embed
 
 def steps():

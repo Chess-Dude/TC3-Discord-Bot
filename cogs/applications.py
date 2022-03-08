@@ -3,7 +3,7 @@ import discord, datetime
 from discord.ext import commands
 
 def botsOrWorkChannel(ctx):
-    return ctx.channel.id == 408820459279220736 or ctx.channel.id == 896440473659519057
+    return ctx.channel.id == 408820459279220736 or ctx.channel.id == 896440473659519057 or ctx.channel.id == 941567353672589322
 
 isBotsOrWorkChannel = commands.check(botsOrWorkChannel)
 
@@ -17,7 +17,7 @@ def createInfoEmbed(infoMessage : discord.Message):
     embed.add_field(name = '**Jump**', value = f'[Go to message!]({infoMessage.jump_url})')
     embed.set_footer(text = f'#{infoMessage.channel.name}')
     embed.timestamp = infoMessage.created_at
-    embed.set_author(name = infoMessage.author.display_name, icon_url = infoMessage.author.avatar_url)
+    embed.set_author(name = infoMessage.author.display_name, icon_url = infoMessage.author.avatar.url) 
     return embed
 
 
