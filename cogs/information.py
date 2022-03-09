@@ -22,7 +22,7 @@ class Information(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.is_owner()
+    @commands.has_role("Head Match Staff")
     @commands.command()
     async def test(self, ctx):
         mapEmbed=discord.Embed(title="Desert Vs Grass", description="Map Info for Desert vs Grass", color=0xff0000)
