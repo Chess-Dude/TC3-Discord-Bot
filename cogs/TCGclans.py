@@ -99,7 +99,7 @@ class TCGClans(commands.Cog):
         successEmbed = discord.Embed(title='Match Staff Notified!', description=f"{ctx.author.mention} Thanks for submitting your clan application!", color=0xff0000)
         await ctx.message.reply(embed = successEmbed, mention_author = True)
 
-    @isWorkChannel
+    @isBotsChannel
     @commands.command()
     async def clanchange(self, ctx, *, args = None):
         

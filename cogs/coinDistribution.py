@@ -1,9 +1,11 @@
+from tkinter import Button
 import discord, datetime
 import discord.reaction
 from discord.ext import commands
-#from discord.ui import Button
+from discord import Interaction, ui
+from discord import Button
+from discord import Embed
 from discord.utils import get
-import time
 
 class PrizeDistribution(commands.Cog):
 
@@ -12,8 +14,8 @@ class PrizeDistribution(commands.Cog):
         self.bot = bot
         self.hmsPing = '<@&665951855888826369>'
 
-    def tcgBots(self, ctx):
-        return ctx.channel.id == 408820459279220736 or ctx.channel.id == 941567353672589322
+    def bots(ctx):
+        return ctx.channel.id == 941567353672589322 or ctx.channel.id == 408820459279220736 or ctx.channel.id == 896440473659519057 
 
     def createInfoEmbed(self, infoMessage : discord.Message):
 
@@ -24,7 +26,7 @@ class PrizeDistribution(commands.Cog):
         embed.set_author(name = infoMessage.author.display_name, icon_url = infoMessage.author.avatar.url)
         return embed
 
-    isTcgBots = commands.check(tcgBots)
+    isTcgBots = commands.check(bots)
 
     @isTcgBots
     @commands.has_any_role(896542577296306217, 896550746475077672, 716290546519244850, 649683977241886730)
@@ -42,12 +44,26 @@ class PrizeDistribution(commands.Cog):
         successEmbed = discord.Embed(title='Head Match Staff Notified!', description=f"{ctx.author.mention} Thanks for submitting your coin distribution!", color=0xff0000)
         await ctx.message.reply(embed = successEmbed, mention_author = True)
         
-        coin_distribtuion_channel = discord.utils.get(ctx.guild.channels, id = 945447870243422299)
+        coinDistribtuionChannel = discord.utils.get(ctx.guild.channels, id = 945447870243422299)
+        
+        # approveButton = discord.ui.Button(label="Approve", style=discord.ButtonStyle.green)
+        # rejectButton = discord.ui.Button(label="Reject", style=discord.ButtonStyle.red);
+
+        # view = ui.View()
+        # view.add_item(approveButton)
+        # view.add_item(rejectButton)
         
         logEmbed = discord.Embed(title = f"The Conquering Games Coin Distribution",description=f"**Distribution**\n{args}\n\n**Submitted by**\n{ctx.author.mention}", color=0xff0000)
         logEmbed.timestamp = datetime.datetime.utcnow()
-        msg = await coin_distribtuion_channel.send(self.hmsPing, embed = logEmbed)
+        msg = await coinDistribtuionChannel.send(self.hmsPing, embed = logEmbed) #, view=view)
 
+        # interaction = await self.bot.wait_for("button_click", check = lambda i: i.custom_id == "button1")
+        # if approveButton.callback:
+        #     print("approve message")
+        
+        # if rejectButton.callback:
+        #     print("reject message")
+        
         # await msg.add_reaction('✅')
         # await msg.add_reaction('❌')
 
