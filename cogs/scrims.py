@@ -41,6 +41,5 @@ class Scrims(commands.Cog):
     async def teamscrim(self, ctx):        
         await ctx.message.reply(content = f'{ctx.author.mention} and their team want to <@&935635762987298836>!', mention_author = False)
 
-
 def setup(bot):
     bot.add_cog(Scrims(bot))

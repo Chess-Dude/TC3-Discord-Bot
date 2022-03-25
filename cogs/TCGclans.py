@@ -51,7 +51,7 @@ class TCGClans(commands.Cog):
         # await clanLeaderboardChannel.send(embed = oldAllTimeEmbed)
         
         clanAllTimeLeaderboard = await clanLeaderboardChannel.fetch_message(950978987285418014)
-        newAllTimeLB = discord.Embed(title = "Weekly Clan Leaderboard", description = args, color=0xff0000)
+        newAllTimeLB = discord.Embed(title = "All Time Clan Leaderboard", description = args, color=0xff0000)
         newAllTimeLB.timestamp = datetime.datetime.utcnow()
         newAllTimeLB.set_thumbnail(url="https://cdn.discordapp.com/icons/371817692199518240/a_e004ffa8a16aa25643914ca5d4436694.gif?size=4096")
         await ctx.message.reply("updated: https://discord.com/channels/371817692199518240/707218944217579541/950978987285418014")

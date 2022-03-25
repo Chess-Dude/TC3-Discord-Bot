@@ -22,7 +22,7 @@ class Information(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.has_role("Head Match Staff")
+    @commands.is_owner()
     @commands.command()
     async def test(self, ctx):
         mapEmbed=discord.Embed(title="Desert Vs Grass", description="Map Info for Desert vs Grass", color=0xff0000)
@@ -96,7 +96,6 @@ class Information(commands.Cog):
     @info.command()
     async def tcg(self, ctx):
         await ctx.message.reply('https://www.roblox.com/My/Groups.aspx?gid=3559196\nhttps://discord.gg/vcAzC5f')
-
 
 def setup(bot):
     bot.add_cog(Information(bot))

@@ -30,7 +30,7 @@ class MapSelection(commands.Cog):
     @commands.command(aliases = ["1v1map"])
     async def _1v1map(self, ctx):
 
-        maps = ["British Isles", "Cave Map", "Cavern", "City vs. Nature", "Continent", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 4", "Desert Vs. Grass Spiral", "Double Mansion", "Eygptian Expedition",  "Fantasy", "Fantasy 2", "France", "Gem Mine", "Germany Map", "Golf Course", "Golf Course 2", "Korea", "Last Red City", "Long Islands", "Mansion", "", "Mars", "Medieval Grounds", "Mesa", "Mexico", "Passage", "RETRO: Four Seasons", "Ryry's Oil Map", "Sand Bottom Forest", "Six Small Islands", "Three Corner Cave", "Two Islands Map", "USA vs. Russia", "Void Map"]
+        maps = ["British Isles", "Cave Map", "Cavern", "City vs. Nature", "Continent", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 4", "Desert Vs. Grass Spiral", "Double Mansion", "Eygptian Expedition",  "Fantasy", "Fantasy 2", "France", "Gem Mine", "Germany Map", "Golf Course", "Golf Course 2", "Korea", "Last Red City", "Long Islands", "Mansion", "Mars", "Medieval Grounds", "Mesa", "Mexico", "Passage", "RETRO: Four Seasons", "Ryry's Oil Map", "Sand Bottom Forest", "Six Small Islands", "Three Corner Cave", "Two Islands Map", "USA vs. Russia", "Void Map"]
 
         selectedMap = random.choice(maps)
 
@@ -42,10 +42,9 @@ class MapSelection(commands.Cog):
     @commands.command(aliases = ["2v2map"])
     async def _2v2map(self, ctx):
 
-        maps = ["Arctic Canal Map", "Basalt Peninsula", "British Isles", "Cavern", "Continent", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 3", "Desert vs. Grass Spiral", "Europe", "Fantasy", "Fantasy 2", "France", "Germany Map", "Golf Course", "Ice Catalyst", "Korea", "Lakebed", "Lasers", "Mainland", "Mansion: Flooded", "Mesa", "Mexico", "Passage", "River Banks", "Sandy Floors", "Six Small Islands", "Snow Battlefield", "Soviet Union", "USA vs. Russia", "Void Map", "World", "", "", "", "",]
-        
+        maps = ["Arctic Canal Map", "Basalt Peninsula", "British Isles", "Cavern", "Continent", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 3", "Desert vs. Grass Spiral", "Europe", "Fantasy", "Fantasy 2", "France", "Germany Map", "Golf Course", "Ice Catalyst", "Korea", "Lakebed", "Lasers", "Mainland", "Mansion: Flooded", "Mesa", "Mexico", "Passage", "River Banks", "Sandy Floors", "Six Small Islands", "Snow Battlefield", "Soviet Union", "USA vs. Russia", "Void Map", "World"]
+
         selectedMap = random.choice(maps)
-        print(selectedMap, datetime.datetime.utcnow)
         mapEmbed=discord.Embed(title="Randomized 2v2 Map:", description=f"{ctx.author.mention} Your randomized map is: {selectedMap}!", color=0xff0000)
         mapEmbed.set_image(url = self.mapImages[selectedMap])
         await ctx.message.reply(embed = mapEmbed, mention_author = True)
@@ -66,7 +65,7 @@ class MapSelection(commands.Cog):
     @commands.command(aliases = ["4v4map"])
     async def _4v4map(self, ctx):
         
-        maps = ["Archipelago", "Arctic Canal Map", "Arctic Circle", "Basalt Peninsula", "British Isles", "Cave Map", "Cavern" "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 3", "Desert vs. Grass 4", "Double Mansion", "Europe", "Fantasy", "Fantasy 2", "France", "Frozen River", "Gem Mine", "Germany Map", "Germany vs. France", "Golf Course", "Golf Course 2", "Ice Catalyst", "Igneous Islands/Magma", "Korea", "Lakebed", "Lasers", "Long Islands", "Mainland", "Mansion", "Mars 4", "Mars Canyons", "Maze", "Mesa", "Mexico", "Middle East", "Obsidian Atoll", "Passage", "Point blank", "River Banks", "Sand Bottom Forest", "Sandy Floors", "Six Small Islands", "Snow Battlefield", "Soviet Union", "States", "USA vs. Russia", "World"]
+        maps = ["Archipelago", "Arctic Canal Map", "Arctic Circle", "Basalt Peninsula", "British Isles", "Cave Map", "Cavern", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 3", "Desert vs. Grass 4", "Double Mansion", "Europe", "Fantasy", "Fantasy 2", "France", "Frozen River", "Gem Mine", "Germany Map", "Germany vs. France", "Golf Course", "Golf Course 2", "Ice Catalyst", "Igneous Islands/Magma", "Korea", "Lakebed", "Lasers", "Long Islands", "Mainland", "Mansion", "Mars 4", "Mars Canyons", "Maze", "Mesa", "Mexico", "Middle East", "Obsidian Atoll", "Passage", "Point blank", "River Banks", "Sand Bottom Forest", "Sandy Floors", "Six Small Islands", "Snow Battlefield", "Soviet Union", "States", "USA vs. Russia", "World"]
 
         selectedMap = random.choice(maps)
 
@@ -78,7 +77,7 @@ class MapSelection(commands.Cog):
     @commands.command(aliases = ["5v5map"])
     async def _5v5map(self, ctx):
         
-        maps = ["Archipelago", "Desert vs. Grass", "Desert vs. Grass 2", "Double Mansion", "Gem Mine", "Mediterranean", "Soviet Union", "States", "World"]
+        maps = ["Archipelago", "Desert vs. Grass", "Desert vs. Grass 2", "Double Mansion", "Gem Mine", "Mediterranean", "Snow Battlefield", "Soviet Union", "States", "World"]
 
         selectedMap = random.choice(maps)
 
