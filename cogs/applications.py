@@ -1,106 +1,90 @@
-from email.mime import application
 import discord, datetime
-
 from discord.ext import commands
 
 class Applications(commands.Cog):
 
-
     def __init__(self, bot):
         self.bot = bot        
-        self.matchStaffPing = '<@&935698898251567124> <@&896440653406433310>'
-        self.thumbsUp = '\U0001F44D'
-        self.thumbsDown = '\U0001f44e'
-
     
     def botsOrWorkChannel(ctx):
-        return ctx.channel.id == 408820459279220736 or ctx.channel.id == 896440473659519057
+        return ctx.channel.id == 408820459279220736 or ctx.channel.id == 896440473659519057 or ctx.channel.id == 941567353672589322
+
+    def createInfoEmbed(self, infoMessage : discord.Message):
+        infoEmbed = discord.Embed(description = infoMessage.content, color = 0xff0000)
+        infoEmbed.add_field(name = '**Jump**', value = f'[Go to message!]({infoMessage.jump_url})')
+        infoEmbed.set_footer(text = f'#{infoMessage.channel.name}')
+        infoEmbed.timestamp = infoMessage.created_at
+        infoEmbed.set_author(name = infoMessage.author.display_name, icon_url = infoMessage.author.avatar.url) 
+        return infoEmbed
+    
+    async def sendMessage(self, ctx, args, activityType, infoChannelID, infoMessageID, logChannelID, appType):                
+        if args == None:
+            infoChannel = discord.utils.get(ctx.guild.channels, id = infoChannelID)
+            infoMessage = await infoChannel.fetch_message(infoMessageID)
+
+            embed = self.createInfoEmbed(infoMessage)
+            await ctx.message.reply(content = "Missing information, please read:", embed = embed, mention_author = True)
+            return
+
+        logChannel = discord.utils.get(ctx.guild.channels, id = logChannelID)
+        matchStaffPing = '<@&935698898251567124> <@&896440653406433310>'
+        thumbsUp = '\U0001F44D'
+        thumbsDown = '\U0001f44e'
+        
+        logEmbed = discord.Embed(title = f"The Conquering Games {activityType} {appType}",description=f"**{appType}**\n{args}\n\n**Submitted by**\n{ctx.author.mention}", color=0xff0000)
+        logEmbed.timestamp = datetime.datetime.utcnow()
+        successEmbed = discord.Embed(title='Match Staff Notified!', description=f"{ctx.author.mention} Thanks For Submitting Your {activityType} {appType}!", color=0xff0000)
+        
+        msg = await logChannel.send(matchStaffPing, embed = logEmbed)
+        
+        await msg.add_reaction(thumbsUp)
+        await msg.add_reaction(thumbsDown)
+
+        await ctx.message.reply(embed = successEmbed, mention_author = True)
 
     isBotsOrWorkChannel = commands.check(botsOrWorkChannel)
-
-    def createInfoEmbed(infoMessage : discord.Message):
-
-        embed = discord.Embed(description = infoMessage.content, color = 0xff0000)
-        embed.add_field(name = '**Jump**', value = f'[Go to message!]({infoMessage.jump_url})')
-        embed.set_footer(text = f'#{infoMessage.channel.name}')
-        embed.timestamp = infoMessage.created_at
-        embed.set_author(name = infoMessage.author.display_name, icon_url = infoMessage.author.avatar.url) 
-        return embed
 
     @isBotsOrWorkChannel
     @commands.command(aliases = ["1v1app"])
     async def _1v1app(self, ctx, *, args = None):
-
-        if args == None:
-            _1v1info = discord.utils.get(ctx.guild.channels, id = 886952755367903233)
-            infoMessage = await _1v1info.fetch_message(886969424463134730)
-
-            embed = self.createInfoEmbed(infoMessage)
-            await ctx.message.reply(content = "Missing information, please read:", embed = embed, mention_author = False)
-            return
-
-        tournamentApplications = discord.utils.get(ctx.guild.channels, id = 896444200432861237)
-        
-        logEmbed = discord.Embed(title = f"The Conquering Games 1v1 Application",description=f"**Application**\n{args}\n\n**Submitted by**\n{ctx.author.mention}", color=0xff0000)
-        logEmbed.timestamp = datetime.datetime.utcnow()
-        msg = await tournamentApplications.send(self.matchStaffPing, embed = logEmbed)
-
-        await msg.add_reaction(self.thumbsUp)
-        await msg.add_reaction(self.thumbsDown)
-
-        successEmbed = discord.Embed(title='Match Staff Notified!', description=f"{ctx.author.mention} Thanks for submitting your 1v1 application!", color=0xff0000)
-        await ctx.message.reply(embed = successEmbed, mention_author = False)
-
-
+        await self.sendMessage(ctx, args, "1v1", 886952755367903233, 886969424463134730, 896444200432861237, "Application")
 
     @isBotsOrWorkChannel
     @commands.command(aliases = ["2v2app"])
     async def _2v2app(self, ctx, *, args = None):
-        
-        if args == None:
-            _2v2info = discord.utils.get(ctx.guild.channels, id = 886962032753131560)
-            infoMessage = await _2v2info.fetch_message(886971602141585508)
-            
-            embed = self.createInfoEmbed(infoMessage)
-            await ctx.message.reply(content = "Missing information, please read:", embed = embed, mention_author = False)
-            return
-
-        tournamentApplications = discord.utils.get(ctx.guild.channels, id = 896444200432861237)
-        
-        logEmbed = discord.Embed(title = f"The Conquering Games 2v2 Application",description=f"**Application**\n{args}\n\n**Submitted by**\n{ctx.author.mention}", color=0xff0000)
-        logEmbed.timestamp = datetime.datetime.utcnow()
-        msg = await tournamentApplications.send(self.matchStaffPing, embed = logEmbed)
-
-        await msg.add_reaction(self.thumbsUp)
-        await msg.add_reaction(self.thumbsDown)
-
-        successEmbed = discord.Embed(title='Match Staff Notified!', description=f"{ctx.author.mention} Thanks for submitting your 2v2 application!", color=0xff0000)
-        await ctx.message.reply(embed = successEmbed, mention_author = False)
-
+        await self.sendMessage(ctx, args, "2v2", 886962032753131560, 886971602141585508, 896444200432861237, "Application")
 
     @isBotsOrWorkChannel
     @commands.command()
     async def teamapp(self, ctx, *, args = None):
-
-        if args == None:
-            teaminfo = discord.utils.get(ctx.guild.channels, id = 886972024885481493)
-            infoMessage = await teaminfo.fetch_message(886973611221598238)
-            
-            embed = self.createInfoEmbed(infoMessage)
-            await ctx.message.reply(content = "Missing information, please read:", embed = embed, mention_author = False)
-            return
-
-        tournamentApplications = discord.utils.get(ctx.guild.channels, id = 896444200432861237)
+        await self.sendMessage(ctx, args, "Team", 886972024885481493, 886973611221598238, 896444200432861237, "Application")
         
-        logEmbed = discord.Embed(title = f"The Conquering Games Team Application",description=f"**Application**\n{args}\n\n**Submitted by**\n{ctx.author.mention}", color=0xff0000)
-        logEmbed.timestamp = datetime.datetime.utcnow()
-        msg = await tournamentApplications.send(self.matchStaffPing, embed = logEmbed)
+    @isBotsOrWorkChannel
+    @commands.command()
+    async def clanapp(self, ctx, *, args = None):
+        await self.sendMessage(ctx, args, "Clan", 886988714436354068, 887029203457941526, 896444227578376192, "Application")    
 
-        await msg.add_reaction(self.thumbsUp)
-        await msg.add_reaction(self.thumbsDown)
+    @isBotsOrWorkChannel
+    @commands.command()
+    async def clanchange(self, ctx, *, args = None):
+        await self.sendMessage(ctx, args, "Clan", 886988714436354068, 887029203457941526, 896444227578376192, "Change")    
 
-        successEmbed = discord.Embed(title='Match Staff Notified!', description=f"{ctx.author.mention} Thanks for submitting your Team application!", color=0xff0000)
-        await ctx.message.reply(embed = successEmbed, mention_author = False)
+    @isBotsOrWorkChannel
+    @commands.command(aliases = ["2v2change"])
+    async def _2v2change(self, ctx, *, args = None):
+        await self.sendMessage(ctx, args, "2v2", 886962032753131560, 886971602141585508, 896479412617359361, "Change")    
+
+    @isBotsOrWorkChannel
+    @commands.command()
+    async def teamchange(self, ctx, *, args = None):
+        await self.sendMessage(ctx, args, "Team", 886972024885481493, 886973611221598238, 896479412617359361, "Change")    
+
+    @commands.is_owner()
+    @isBotsOrWorkChannel
+    @commands.command(aliases = ["testapp"])
+    async def test(self, ctx, *, args = None):
+   
+        await self.sendMessage(ctx, args, "Test", 886972024885481493, 886973611221598238, 941567353672589322, "Application")
 
 def setup(bot):
     bot.add_cog(Applications(bot))

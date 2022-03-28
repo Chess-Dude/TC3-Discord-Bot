@@ -24,7 +24,7 @@ class Information(commands.Cog):
 
     @commands.is_owner()
     @commands.command()
-    async def test(self, ctx):
+    async def testmap(self, ctx):
         mapEmbed=discord.Embed(title="Desert Vs Grass", description="Map Info for Desert vs Grass", color=0xff0000)
         mapEmbed.set_image(url = "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c0/KoreaRadar.png")
         mapEmbed.timestamp = datetime.datetime.utcnow()

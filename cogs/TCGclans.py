@@ -75,53 +75,6 @@ class TCGClans(commands.Cog):
         await ctx.message.reply("updated https://discord.com/channels/371817692199518240/707218944217579541/950979164104716308")
         await clanWeeklyLeaderboard.edit(embed=newWeeklyLB)
 
-    @isBotsChannel
-    @commands.command()
-    async def clanapp(self, ctx, *, args = None):
-        
-        if args == None:
-            clanInfo = discord.utils.get(ctx.guild.channels, id = 886988714436354068)
-            infoMessage = await clanInfo.fetch_message(887029203457941526)
-            
-            embed = self.createInfoEmbed(infoMessage)
-            await ctx.message.reply(content = "Missing information, please read:", embed = embed, mention_author = False)
-            return
-
-        clanApplications = discord.utils.get(ctx.guild.channels, id = 896444227578376192)
-        
-        logEmbed = discord.Embed(title = f"The Conquering Games Clan Application",description=f"**Application**\n{args}\n\n**Submitted by**\n{ctx.author.mention}", color=0xff0000)
-        logEmbed.timestamp = datetime.datetime.utcnow()
-        msg = await clanApplications.send(self.matchStaffPing, embed = logEmbed)
-
-        await msg.add_reaction(self.thumbsUp)
-        await msg.add_reaction(self.thumbsDown)
-
-        successEmbed = discord.Embed(title='Match Staff Notified!', description=f"{ctx.author.mention} Thanks for submitting your clan application!", color=0xff0000)
-        await ctx.message.reply(embed = successEmbed, mention_author = True)
-
-    @isBotsChannel
-    @commands.command()
-    async def clanchange(self, ctx, *, args = None):
-        
-        if args == None:
-            clanInfo = discord.utils.get(ctx.guild.channels, id = 886988714436354068)
-            infoMessage = await clanInfo.fetch_message(887029203457941526)
-            
-            embed = self.createInfoEmbed(infoMessage)
-            await ctx.message.reply(content = "Missing information, please read:", embed = embed, mention_author = False)
-            return
-
-        clanApplications = discord.utils.get(ctx.guild.channels, id = 896444227578376192)
-        
-        logEmbed = discord.Embed(title = f"The Conquering Games Clan Change",description=f"**Change**\n{args}\n\n**Submitted by**\n{ctx.author.mention}", color=0xff0000)
-        logEmbed.timestamp = datetime.datetime.utcnow()
-        msg = await clanApplications.send(self.matchStaffPing, embed = logEmbed)
-
-        await msg.add_reaction(self.thumbsUp)
-        await msg.add_reaction(self.thumbsDown)
-
-        successEmbed = discord.Embed(title='Match Staff Notified!', description=f"{ctx.author.mention} Thanks for submitting your clan change!", color=0xff0000)
-        await ctx.message.reply(embed = successEmbed, mention_author = True)
 
 def setup(bot):
     bot.add_cog(TCGClans(bot))
