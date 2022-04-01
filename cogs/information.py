@@ -97,5 +97,5 @@ class Information(commands.Cog):
     async def tcg(self, ctx):
         await ctx.message.reply('https://www.roblox.com/My/Groups.aspx?gid=3559196\nhttps://discord.gg/vcAzC5f')
 
-def setup(bot):
-    bot.add_cog(Information(bot))
+async def setup(bot):
+    await bot.add_cog(Information(bot))

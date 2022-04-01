@@ -1,14 +1,17 @@
 import asyncio
+from operator import truediv
 import os
 import discord
 from discord.ext import commands
 
 token = 'ODY5OTc0MTA4MzEyNTY3ODE4.YQGAhg.VMq38SL5ltLLe2OkgyZXRyF1FAg'
+intents = discord.Intents.default()
+intents.message_content = True
 
 bot = commands.Bot(
     command_prefix="!",
     case_insensitive=True, 
-    intents = discord.Intents.all(),
+    intents = intents,
     allowed_mentions=discord.AllowedMentions(
         users=True,        
         everyone=False,     
@@ -18,13 +21,18 @@ bot = commands.Bot(
 )
 
 bot.remove_command('help')
-bot.owner_id = 621516858205405197 or 585991378400706570
-        
+bot.owner_id = 621516858205405197
+
 async def initialiseCogs():
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
-            bot.load_extension(f'cogs.{filename[:-3]}')
+            await bot.load_extension(f'cogs.{filename[:-3]}')
             print(f'cogs.{filename[:-3]} loaded')
+
+async def main():
+    async with bot:
+        await initialiseCogs()
+        await bot.start(token)
 
 @bot.command()
 @commands.is_owner() 
@@ -64,8 +72,5 @@ async def rerun(ctx):
                 bot.load_extension(f'cogs.{filename[:-3]}')
   
     await ctx.send('Restarted :white_check_mark:')
-
-
-asyncio.run(initialiseCogs())
-bot.run(token)
-
+    
+asyncio.run(main())

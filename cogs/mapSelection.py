@@ -60,5 +60,5 @@ class MapSelection(commands.Cog):
         choices = ["Heads", "Tails"]
         await ctx.message.reply(random.choice(choices), mention_author = True)
 
-def setup(bot):
-    bot.add_cog(MapSelection(bot))
+async def setup(bot):
+    await bot.add_cog(MapSelection(bot))

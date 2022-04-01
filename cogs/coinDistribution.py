@@ -90,5 +90,5 @@ class PrizeDistribution(commands.Cog):
             await ctx.message.reply(embed = coinsRejectedEmbed, mention_author = True)
             
 
-def setup(bot):
-    bot.add_cog(PrizeDistribution(bot))
+async def setup(bot):
+    await bot.add_cog(PrizeDistribution(bot))

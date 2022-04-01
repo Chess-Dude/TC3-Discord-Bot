@@ -76,5 +76,5 @@ class TCGClans(commands.Cog):
         await clanWeeklyLeaderboard.edit(embed=newWeeklyLB)
 
 
-def setup(bot):
-    bot.add_cog(TCGClans(bot))
+async def setup(bot):
+    await bot.add_cog(TCGClans(bot))

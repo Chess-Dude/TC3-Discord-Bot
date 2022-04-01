@@ -1,5 +1,6 @@
 import discord, datetime
 from discord.ext import commands
+from discord import Intents
 
 class Applications(commands.Cog):
 
@@ -9,8 +10,8 @@ class Applications(commands.Cog):
     def botsOrWorkChannel(ctx):
         return ctx.channel.id == 408820459279220736 or ctx.channel.id == 896440473659519057 or ctx.channel.id == 941567353672589322
 
-    def createInfoEmbed(self, infoMessage : discord.Message):
-        infoEmbed = discord.Embed(description = infoMessage.content, color = 0xff0000)
+    def createInfoEmbed(self, infoMessage : Intents.message_content):
+        infoEmbed = discord.Embed(description = infoMessage.message_content, color = 0xff0000)
         infoEmbed.add_field(name = '**Jump**', value = f'[Go to message!]({infoMessage.jump_url})')
         infoEmbed.set_footer(text = f'#{infoMessage.channel.name}')
         infoEmbed.timestamp = infoMessage.created_at
@@ -86,5 +87,5 @@ class Applications(commands.Cog):
    
         await self.sendMessage(ctx, args, "Test", 886972024885481493, 886973611221598238, 941567353672589322, "Application")
 
-def setup(bot):
-    bot.add_cog(Applications(bot))
+async def setup(bot):
+    await bot.add_cog(Applications(bot))

@@ -53,5 +53,5 @@ class Scrims(commands.Cog):
         await ctx.message.reply(content = f'{ctx.author.mention} and their clan want to <@&935635762987298836>!', mention_author = True)
 
 
-def setup(bot):
-    bot.add_cog(Scrims(bot))
+async def setup(bot):
+    await bot.add_cog(Scrims(bot))

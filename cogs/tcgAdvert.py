@@ -39,5 +39,5 @@ class TCGAdvert(commands.Cog):
     async def before_task(self):
         await self.bot.wait_until_ready()
 
-def setup(bot):
-    bot.add_cog(TCGAdvert(bot))
+async def setup(bot):
+    await bot.add_cog(TCGAdvert(bot))

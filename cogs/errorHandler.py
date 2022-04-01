@@ -47,5 +47,5 @@ class errorHandler(commands.Cog):
             print(str(error))
     
     
-def setup(bot):
-    bot.add_cog(errorHandler(bot))
+async def setup(bot):
+    await bot.add_cog(errorHandler(bot))

@@ -10,13 +10,15 @@ isWorkChannel = commands.check(workChannel)
 async def updateRosters2v2(TCG : discord.Guild):
 
     _2v2rosters = discord.utils.get(TCG.channels, id = 874739232827113502)
-    embedOne = await _2v2rosters.fetch_message(876695076389146624)
-    embedTwo = await _2v2rosters.fetch_message(932030864173432833)
+    embedOne = await _2v2rosters.fetch_message(958798275895521330)
+    embedTwo = await _2v2rosters.fetch_message(958798276415602699)
+    embedThree = await _2v2rosters.fetch_message(958798277619372093)
     topRole = discord.utils.get(TCG.roles, id = 707250483743424683)
     bottomRole = discord.utils.get(TCG.roles, id = 665667383184326657)
     embedtext = ''
     _2v2Captain = discord.utils.get(TCG.roles, id = 896550746475077672)
     firstFilled = False
+    secondFilled = False
         
     for role_position in range(topRole.position-1, bottomRole.position, -1):
         membertext = '**Members:**'
@@ -45,22 +47,52 @@ async def updateRosters2v2(TCG : discord.Guild):
                 membertext = membertext + f'\n{member.display_name} - {member.mention}'
 
         embedtext = embedtext + f'\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n{membertext}'
-        if len(embedtext) > 3700:
-            embed = discord.Embed(title='The Conquering Games 2v2 Rosters (Organized alphabetically)', description=embedtext, color=0xff0000)
-            embed.set_footer(text = 'Last updated')
-            embed.timestamp = datetime.datetime.utcnow()
-            await embedOne.edit(embed = embed)
-            firstFilled = True
-            embedtext = ""
-
-    embed = discord.Embed(title='The Conquering Games 2v2 Rosters (Organized alphabetically)', description=embedtext, color=0xff0000)
+    
+#    try:
+    embed = discord.Embed(title='The Conquering Games Clan Rosters (Organized alphabetically)', description=embedtext, color=0xff0000)
     embed.set_footer(text = 'Last updated')
     embed.timestamp = datetime.datetime.utcnow()
+    await embedOne.edit(embed = embed)
+    embedtext = ""
 
-    if firstFilled:
-        await embedTwo.edit(embed = embed)
-    else:
-        await embedOne.edit(embed = embed)
+    # except :
+    #     print("embed full")
+    #     embedTextCounter = 3700
+    #     while True:
+    #         if embedtext[embedTextCounter] != '&':
+    #             embedTextCounter = embedTextCounter - 1
+            
+    #         else:
+    #             if embedtext[embedTextCounter] == '&':
+    #                 embedTextCounter = embedTextCounter - 4
+    #                 embed = discord.Embed(title='The Conquering Games 2v2 Rosters (Organized alphabetically)', description=embedtext[0:embedTextCounter], color=0xff0000)
+    #                 embed.set_footer(text = 'Last updated')
+    #                 embed.timestamp = datetime.datetime.utcnow()
+    #                 await embedOne.edit(embed = embed)
+    #                 break
+    #     try:
+    #         embed = discord.Embed(title='The Conquering Games 2v2 Rosters (Organized alphabetically)', description=embedtext[embedtext+1:-1], color=0xff0000)
+    #         embed.set_footer(text = 'Last updated')
+    #         embed.timestamp = datetime.datetime.utcnow()
+    #         await embedTwo.edit(embed = embed)
+    #         embedtext = ""
+            
+    #     except:
+    #         print("2nd embed full", embedtext[embedTextCounter:-1])
+    #         embed2TextCounter = 7400
+    #         while True:
+    #             if embedtext[embed2TextCounter] != '&':
+    #                 embed2TextCounter = embed2TextCounter - 1
+                
+    #             else:
+    #                 if embedtext[embed2TextCounter] == '&':
+    #                     embed2TextCounter = embed2TextCounter - 4
+    #                     print(embedtext[embedTextCounter:embed2TextCounter])
+    #                     embed = discord.Embed(title='The Conquering Games 2v2 Rosters (Organized alphabetically)', description=embedtext[embedTextCounter:embed2TextCounter], color=0xff0000)
+    #                     embed.set_footer(text = 'Last updated')
+    #                     embed.timestamp = datetime.datetime.utcnow()
+    #                     await embedTwo.edit(embed = embed)
+    #                     break
 
 async def updateRostersTeam(TCG : discord.Guild):
 
@@ -259,5 +291,5 @@ class updateRosters(commands.Cog):
         await discord.utils.sleep_until(next_run)
     
 
-def setup(bot):
-    bot.add_cog(updateRosters(bot))
+async def setup(bot):
+    await bot.add_cog(updateRosters(bot))
