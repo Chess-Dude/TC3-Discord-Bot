@@ -7,7 +7,7 @@ def workChannel(ctx):
 
 isWorkChannel = commands.check(workChannel)
 
-async def updateRosters2v2(TCG : discord.Guild):
+async def updateRosters2v2(TCG : discord.Guild, ctx):
 
     _2v2rosters = discord.utils.get(TCG.channels, id = 874739232827113502)
     embedOne = await _2v2rosters.fetch_message(958798275895521330)
@@ -47,54 +47,27 @@ async def updateRosters2v2(TCG : discord.Guild):
                 membertext = membertext + f'\n{member.display_name} - {member.mention}'
 
         embedtext = embedtext + f'\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n{membertext}'
-    
-#    try:
-    embed = discord.Embed(title='The Conquering Games Clan Rosters (Organized alphabetically)', description=embedtext, color=0xff0000)
+        print(embedtext)
+        if len(embedtext) > 3700:
+            embed = discord.Embed(title='The Conquering Games Team Rosters (Organized alphabetically)', description=embedtext, color=0xff0000)
+            embed.set_footer(text = 'Last updated')
+            embed.timestamp = datetime.datetime.utcnow()
+            await embedOne.edit(embed = embed)
+            firstFilled = True
+            embedtext = ""
+
+    embed = discord.Embed(title='The Conquering Games Team Rosters (Organized alphabetically)', description=embedtext, color=0xff0000)
     embed.set_footer(text = 'Last updated')
     embed.timestamp = datetime.datetime.utcnow()
-    await embedOne.edit(embed = embed)
-    embedtext = ""
 
-    # except :
-    #     print("embed full")
-    #     embedTextCounter = 3700
-    #     while True:
-    #         if embedtext[embedTextCounter] != '&':
-    #             embedTextCounter = embedTextCounter - 1
-            
-    #         else:
-    #             if embedtext[embedTextCounter] == '&':
-    #                 embedTextCounter = embedTextCounter - 4
-    #                 embed = discord.Embed(title='The Conquering Games 2v2 Rosters (Organized alphabetically)', description=embedtext[0:embedTextCounter], color=0xff0000)
-    #                 embed.set_footer(text = 'Last updated')
-    #                 embed.timestamp = datetime.datetime.utcnow()
-    #                 await embedOne.edit(embed = embed)
-    #                 break
-    #     try:
-    #         embed = discord.Embed(title='The Conquering Games 2v2 Rosters (Organized alphabetically)', description=embedtext[embedtext+1:-1], color=0xff0000)
-    #         embed.set_footer(text = 'Last updated')
-    #         embed.timestamp = datetime.datetime.utcnow()
-    #         await embedTwo.edit(embed = embed)
-    #         embedtext = ""
-            
-    #     except:
-    #         print("2nd embed full", embedtext[embedTextCounter:-1])
-    #         embed2TextCounter = 7400
-    #         while True:
-    #             if embedtext[embed2TextCounter] != '&':
-    #                 embed2TextCounter = embed2TextCounter - 1
-                
-    #             else:
-    #                 if embedtext[embed2TextCounter] == '&':
-    #                     embed2TextCounter = embed2TextCounter - 4
-    #                     print(embedtext[embedTextCounter:embed2TextCounter])
-    #                     embed = discord.Embed(title='The Conquering Games 2v2 Rosters (Organized alphabetically)', description=embedtext[embedTextCounter:embed2TextCounter], color=0xff0000)
-    #                     embed.set_footer(text = 'Last updated')
-    #                     embed.timestamp = datetime.datetime.utcnow()
-    #                     await embedTwo.edit(embed = embed)
-    #                     break
+    if firstFilled:
+        #await embedTwo.edit(embed = embed)
+        await ctx.message.reply(embed = embed)
+    else:
+        #await embedOne.edit(embed = embed)
+        await ctx.message.reply(embed = embed)
 
-async def updateRostersTeam(TCG : discord.Guild):
+async def updateRostersTeam(TCG : discord.Guild, ctx):
 
     teamRosters = discord.utils.get(TCG.channels, id = 876696917260771339)    
     embedOne = await teamRosters.fetch_message(956769119263408128)
@@ -104,6 +77,7 @@ async def updateRostersTeam(TCG : discord.Guild):
     embedtext = ''
     teamCaptain = discord.utils.get(TCG.roles, id = 649683977241886730)
     teamCoCaptain = discord.utils.get(TCG.roles, id = 716290546519244850)
+    firstFilled = False
 
     for role_position in range(topRole.position-1, bottomRole.position, -1):
 
@@ -156,11 +130,13 @@ async def updateRostersTeam(TCG : discord.Guild):
     embed.timestamp = datetime.datetime.utcnow()
 
     if firstFilled:
-        await embedTwo.edit(embed = embed)
+        #await embedTwo.edit(embed = embed)
+        await ctx.message.reply(embed = embed)
     else:
-        await embedOne.edit(embed = embed)
+        #await embedOne.edit(embed = embed)
+        await ctx.message.reply(embed = embed)
 
-async def updateRostersClans(TCG: discord.Guild):
+async def updateRostersClans(TCG: discord.Guild, ctx):
     clanRostersChannel = discord.utils.get(TCG.channels, id = 956406203943125004) 
     embedOne = await clanRostersChannel.fetch_message(956433121195196467)
     embedTwo = await clanRostersChannel.fetch_message(956433199146340432)
@@ -169,6 +145,7 @@ async def updateRostersClans(TCG: discord.Guild):
     embedtext = ''
     clanLeader = discord.utils.get(TCG.roles, id = 896533899658821662)
     clanCoLeader = discord.utils.get(TCG.roles, id = 896534077405032550)
+    firstFilled = False
 
     for role_position in range(topRole.position-1, bottomRole.position, -1):
 
@@ -221,9 +198,11 @@ async def updateRostersClans(TCG: discord.Guild):
     embed.timestamp = datetime.datetime.utcnow()
 
     if firstFilled:
-        await embedTwo.edit(embed = embed)
+        #await embedTwo.edit(embed = embed)
+        await ctx.message.reply(embed = embed)
     else:
-        await embedOne.edit(embed = embed)
+        #await embedOne.edit(embed = embed)
+        await ctx.message.reply(embed = embed)
     
 
 class updateRosters(commands.Cog):
@@ -249,7 +228,7 @@ class updateRosters(commands.Cog):
     async def _2v2(self, ctx):
         TCG = self.bot.get_guild(371817692199518240)
         response = await ctx.send('----------')
-        await updateRosters2v2(TCG)
+        await updateRosters2v2(TCG, ctx)
         await response.edit(content = 'Updated :white_check_mark:')
 
     
@@ -289,6 +268,33 @@ class updateRosters(commands.Cog):
             next_run += datetime.timedelta(days=1)
 
         await discord.utils.sleep_until(next_run)
+    
+    @commands.is_owner()
+    @commands.command()
+    async def testRosters(self, ctx):
+        TCG = self.bot.get_guild(371817692199518240)        
+        role_position = 896476284220223499
+        member_text = "**Members:**"
+        captain = None
+        team = discord.utils.get(TCG.roles, id = role_position)
+        embed_text = ""
+        
+        # for member in members:
+        #     if _2v2Captain in member.roles:
+        #         captain = member.display_name + " - " + member.mention
+        #         members.remove(member)
+        #         break
+
+        # if captain == None:
+        #     captain = 'N/A'
+
+        for member in team.members:
+            member_text = member_text + f"\n{member.display_name} - {member.mention}"
+#414733289536
+        embed_text = embed_text + f"\n\n**{team}\'s Roster:**\n**Captain:**\ncaptainText\n{member_text}"
+        
+        await ctx.message.reply(embed_text)
+
     
 
 async def setup(bot):

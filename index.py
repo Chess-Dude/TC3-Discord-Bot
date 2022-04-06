@@ -14,7 +14,7 @@ bot = commands.Bot(
     intents = intents,
     allowed_mentions=discord.AllowedMentions(
         users=True,        
-        everyone=False,     
+        everyone=True,     
         roles=True,         
         replied_user=True, 
     ),
