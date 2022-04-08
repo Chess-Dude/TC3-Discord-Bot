@@ -1,4 +1,4 @@
-import discord, gspread, datetime
+import discord, gspread, datetime, json
 
 from oauth2client.service_account import ServiceAccountCredentials
 from discord.ext import commands
@@ -12,7 +12,7 @@ client = gspread.authorize(creds)
 sheet = client.open("TC3 Unit Information").sheet1
 
 def TC3BotsOrTCGBots(ctx):
-    return ctx.channel.id == 351057167706619914 or ctx.channel.id == 408820459279220736
+    return ctx.channel.id == 351057167706619914 or ctx.channel.id == 408820459279220736 or 941567353672589322
 
 isTC3BotsOrTCGBots = commands.check(TC3BotsOrTCGBots)
 
@@ -21,22 +21,28 @@ class Information(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        with open("mapList.json", 'r') as config_reader:
+            self.mapImages = json.loads(config_reader.read())
+        
+        self.new_data = {}
+        for key, value in self.mapImages.items():
+            self.new_data[key.lower()] = value
 
-    @commands.is_owner()
-    @commands.command()
-    async def testmap(self, ctx):
-        mapEmbed=discord.Embed(title="Desert Vs Grass", description="Map Info for Desert vs Grass", color=0xff0000)
-        mapEmbed.set_image(url = "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c0/KoreaRadar.png")
-        mapEmbed.timestamp = datetime.datetime.utcnow()
-        mapEmbed.set_thumbnail(url = "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/1d/Desert_and_grass.png/revision/latest?cb=20171028152322")
-        mapEmbed.set_image(url = "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/4f/DesertGrassMap.png")
-        mapEmbed.add_field(name = "Gamemode", value = "3v3")
-        mapEmbed.add_field(name = "Map Type", value = "Land & Naval")
-        mapEmbed.add_field(name = "Crystals", value = "4 Super Crystals 8 Normal Crystals")
-        mapEmbed.add_field(name = "Oil Spots", value = "6")
+    # @commands.is_owner()
+    # @commands.command()
+    # async def testmap(self, ctx):
+    #     mapEmbed=discord.Embed(title="Desert Vs Grass", description="Map Info for Desert vs Grass", color=0xff0000)
+    #     mapEmbed.set_image(url = "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c0/KoreaRadar.png")
+    #     mapEmbed.timestamp = datetime.datetime.utcnow()
+    #     mapEmbed.set_thumbnail(url = "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/1d/Desert_and_grass.png/revision/latest?cb=20171028152322")
+    #     mapEmbed.set_image(url = "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/4f/DesertGrassMap.png")
+    #     mapEmbed.add_field(name = "Gamemode", value = "3v3")
+    #     mapEmbed.add_field(name = "Map Type", value = "Land & Naval")
+    #     mapEmbed.add_field(name = "Crystals", value = "4 Super Crystals 8 Normal Crystals")
+    #     mapEmbed.add_field(name = "Oil Spots", value = "6")
     
 
-        await ctx.message.reply(embed = mapEmbed, mention_author = False)
+    #     await ctx.message.reply(embed = mapEmbed, mention_author = False)
 
     @isTC3BotsOrTCGBots
     @commands.group(invoke_without_command=True)
@@ -54,7 +60,7 @@ class Information(commands.Cog):
             
             if resultEntry == None:
                 return
-
+            
             unitStats = ["Type", "Produced in", "Cost", "Build Time", "Health", "Damage (DPS)", "Speed", "Range", "Garrisonable", "Garrisons", "Researchable", "Produces", "Unit Slots", "Wiki Link"]
             
             embed = discord.Embed(title = f'{resultEntry["Unit"]}', description = f'Unit Stats for the {resultEntry["Unit"]}', color = 0xff0000)
@@ -66,7 +72,7 @@ class Information(commands.Cog):
                     embed.add_field(name = stat, value = f'{resultEntry[stat]}')
 
             await ctx.message.reply(embed = embed, mention_author = True)
-
+        
     @isTC3BotsOrTCGBots
     @info.command()
     async def tc1(self, ctx):
@@ -97,5 +103,16 @@ class Information(commands.Cog):
     async def tcg(self, ctx):
         await ctx.message.reply('https://www.roblox.com/My/Groups.aspx?gid=3559196\nhttps://discord.gg/vcAzC5f')
 
+    @isTC3BotsOrTCGBots   
+    @info.command()
+    async def map(self, ctx, *, args=None):
+        
+        if ctx.invoked_subcommand is None:
+            chosenMap = args.lower()
+            mapEmbed = discord.Embed(title=f"{chosenMap}", description=f"{ctx.author.mention} {chosenMap}!", color=0xff0000)
+            mapEmbed.set_image(url = self.new_data[chosenMap])
+            mapEmbed.timestamp = datetime.datetime.utcnow()
+            await ctx.message.reply(embed=mapEmbed)
+            
 async def setup(bot):
     await bot.add_cog(Information(bot))

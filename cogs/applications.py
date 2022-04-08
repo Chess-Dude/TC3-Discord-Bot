@@ -10,8 +10,8 @@ class Applications(commands.Cog):
     def botsOrWorkChannel(ctx):
         return ctx.channel.id == 408820459279220736 or ctx.channel.id == 896440473659519057 or ctx.channel.id == 941567353672589322
 
-    def createInfoEmbed(self, infoMessage : Intents.message_content):
-        infoEmbed = discord.Embed(description = infoMessage.message_content, color = 0xff0000)
+    def createInfoEmbed(self, infoMessage):
+        infoEmbed = discord.Embed(description = infoMessage.Intents.message_content, color = 0xff0000)
         infoEmbed.add_field(name = '**Jump**', value = f'[Go to message!]({infoMessage.jump_url})')
         infoEmbed.set_footer(text = f'#{infoMessage.channel.name}')
         infoEmbed.timestamp = infoMessage.created_at

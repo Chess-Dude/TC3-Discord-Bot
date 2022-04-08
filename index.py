@@ -1,17 +1,17 @@
 import asyncio
-from operator import truediv
 import os
 import discord
 from discord.ext import commands
 
-token = 'ODY5OTc0MTA4MzEyNTY3ODE4.YQGAhg.VMq38SL5ltLLe2OkgyZXRyF1FAg'
+#oldtoken = 'ODY5OTc0MTA4MzEyNTY3ODE4.YQGAhg.VMq38SL5ltLLe2OkgyZXRyF1FAg'
+token = "OTUzMDE3MDU1MjM2NDU2NDQ4.Yi-cTA.scAFqrVOE3vynhnYkzQuCFpYkWI"
 intents = discord.Intents.default()
 intents.message_content = True
-
+intents.members = True
 bot = commands.Bot(
     command_prefix="!",
     case_insensitive=True, 
-    intents = intents,
+    intents = intents,    
     allowed_mentions=discord.AllowedMentions(
         users=True,        
         everyone=True,     
