@@ -17,6 +17,7 @@ class updateRosters(commands.Cog):
     async def updateRosters2v2(self):
             
         TCG = self.bot.get_guild(371817692199518240)     
+        reminder_channel = discord.utils.get(TCG.channels, id = 666959897979781146)
         rosters_2v2 = discord.utils.get(TCG.channels, id = 874739232827113502)
         embed_one = await rosters_2v2.fetch_message(961670523593556018)
         embed_two = await rosters_2v2.fetch_message(961670524277227550)
@@ -26,16 +27,21 @@ class updateRosters(commands.Cog):
         captain_role = discord.utils.get(TCG.roles, id = 896550746475077672)
         first_filled = False
         embed_text = ''
+        teams_at_risk = ''
         
         for role_position in range(top_role.position-1, bottom_role.position, -1):
             member_text = "**Members:**"
             captain = None
             team = discord.utils.get(TCG.roles, position = role_position)
             team_members = team.members
+            total_team_members = len(team.members)
             
             if team == None:
                 continue
-
+            
+            if total_team_members < 2:
+               teams_at_risk = teams_at_risk + team.mention
+                           
             for member in team_members:
                 if captain_role in member.roles:
                     captain = member.display_name + " - " + member.mention
@@ -53,7 +59,7 @@ class updateRosters(commands.Cog):
                 for member in team_members:
                     member_text = member_text + f"\n{member.display_name} - {member.mention}"
 
-            embed_text = embed_text + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n{member_text}"    
+            embed_text = embed_text + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n{member_text}\n**Total Members: {total_team_members}**"    
             if len(embed_text) > 3700:
                 embed = discord.Embed(title="The Conquering Games 2v2 Rosters (Organized alphabetically)", description=embed_text, color=0xff0000)
                 embed.set_footer(text = 'Last updated')
@@ -71,9 +77,13 @@ class updateRosters(commands.Cog):
             
         else:
             await embed_one.edit(embed=embed)
-            
+        
+        if len(teams_at_risk) >= 1:
+            await reminder_channel.send(f"{teams_at_risk}\n\nYour team has less than 2 players! Please add a member or your team will be disbanded.")
+
     async def updateRostersTeam(self):
         TCG = self.bot.get_guild(371817692199518240)     
+        reminder_channel = discord.utils.get(TCG.channels, id = 666957650717835265)
         rosters_team = discord.utils.get(TCG.channels, id = 876696917260771339)
         embed_one = await rosters_team.fetch_message(961688043801161809)
         embed_two = await rosters_team.fetch_message(961688046238060584)
@@ -84,6 +94,7 @@ class updateRosters(commands.Cog):
         co_captain_role = discord.utils.get(TCG.roles, id = 716290546519244850)
         first_filled = False
         embed_text = ''
+        teams_at_risk = ''
         
         for role_position in range(top_role.position-1, bottom_role.position, -1):
             member_text = "**Members:**"
@@ -91,9 +102,14 @@ class updateRosters(commands.Cog):
             co_captain = None
             team = discord.utils.get(TCG.roles, position = role_position)
             team_members = team.members
+            total_team_members = len(team.members)
+            
             
             if team == None:
                 continue
+            
+            if total_team_members < 3:
+               teams_at_risk = teams_at_risk + team.mention
 
             for member in team_members:
                 if captain_role in member.roles:
@@ -121,7 +137,7 @@ class updateRosters(commands.Cog):
                 for member in team_members:
                     member_text = member_text + f"\n{member.display_name} - {member.mention}"
 
-            embed_text = embed_text + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n**Co-Captain:**\n{co_captain}\n{member_text}"    
+            embed_text = embed_text + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n**Co-Captain:**\n{co_captain}\n{member_text}\n**Total Members: {total_team_members}**"    
             if len(embed_text) > 3700:
                 embed = discord.Embed(title="The Conquering Games Team Rosters (Organized alphabetically)", description=embed_text, color=0xff0000)
                 embed.set_footer(text = "Last updated")
@@ -139,6 +155,10 @@ class updateRosters(commands.Cog):
             
         else:
             await embed_one.edit(embed=embed)
+            
+        if len(teams_at_risk) >= 1:
+            await reminder_channel.send(f"{teams_at_risk}\n\nYour team has less than 3 players! Please add a member or your team will be disbanded.")
+
 
     async def updateRostersClans(self):
         TCG = self.bot.get_guild(371817692199518240)     
@@ -250,8 +270,8 @@ class updateRosters(commands.Cog):
     async def autoUpdateRosters(self):
         now = datetime.datetime.now(pytz.timezone('UTC'))
         time_stamps = []
-        time_stamps.append(now.replace(hour=0, minute=0, second=0))
-        time_stamps.append(now.replace(hour=12, minute=0, second=0))
+        time_stamps.append(now.replace(hour=2, minute=0, second=0))
+        time_stamps.append(now.replace(hour=14, minute=0, second=0))
         
         if now in time_stamps:
             try:
@@ -267,47 +287,9 @@ class updateRosters(commands.Cog):
     
     @commands.is_owner()
     @commands.command()
-    async def testRosters(self, ctx):
-
-        TCG = self.bot.get_guild(371817692199518240)     
-        rosters_2v2 = discord.utils.get(TCG.channels, id = 874739232827113502)
-        embed_one = await rosters_2v2.fetch_message(958798275895521330)
-        embed_two = await rosters_2v2.fetch_message(958798276415602699)
-        embed_three = await rosters_2v2.fetch_message(958798277619372093)
-        top_role = discord.utils.get(TCG.roles, id = 707250483743424683)
-        bottom_role = discord.utils.get(TCG.roles, id = 665667383184326657)
-        embed_text = ''
-        captain_2v2 = discord.utils.get(TCG.roles, id = 896550746475077672)
-        first_filled = False
-        second_filled = False
-            
-        for role_position in range(top_role.position-1, bottom_role.position, -1):
-            member_text = "**Members:**"
-            captain = None
-            team = discord.utils.get(TCG.roles, position = role_position)
-            team_members = team.members
-            
-            if team == None:
-                continue
-
-            for member in team_members:
-                if captain_2v2 in member.roles:
-                    captain = member.display_name + " - " + member.mention
-                    team_members.remove(member)
-                    break
-
-            if captain == None:
-                captain = "N/A"
-
-            if len(team_members) == 0:
-                member_text = member_text + f"\nN/A"
-
-            else:
-                for member in team_members:
-                    member_text = member_text + f'\n{member.display_name} - {member.mention}'
-
-            embed_text = embed_text + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n{member_text}"
-            print(embed_text)
-            
+    async def testRosters(cself, ctx, role: discord.Role):
+        members = "".join(f'{member.display_name}' for member in role.members)
+        await ctx.send(members)
+                
 async def setup(bot):
     await bot.add_cog(updateRosters(bot))

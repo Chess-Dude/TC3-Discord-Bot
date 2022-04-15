@@ -89,6 +89,12 @@ class PrizeDistribution(commands.Cog):
             coinsRejectedEmbed = discord.Embed(title='Your Coins Were Rejected!', description=f"{ctx.author.mention} Please recheck your total coin distribution and or format. Then resubmit your coin distribution again.", color=0xff0000)
             await ctx.message.reply(embed = coinsRejectedEmbed, mention_author = True)
             
+    @isTcgBots
+    @commands.is_owner()
+    @commands.command()
+    async def buttons(self, interaction: Interaction, button: ui.Button, ctx, *, args = None):
+        view = ui.View()
+        ctx.message.reply("testing")
 
 async def setup(bot):
     await bot.add_cog(PrizeDistribution(bot))
