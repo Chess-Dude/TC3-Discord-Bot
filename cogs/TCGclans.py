@@ -1,7 +1,5 @@
 import discord, datetime
-from discord import ui
 from discord.ext import commands
-from discord import Embed
 
 class TCGClans(commands.Cog):
      

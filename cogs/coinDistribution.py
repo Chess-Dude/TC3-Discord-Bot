@@ -1,11 +1,8 @@
-from tkinter import Button
 import discord, datetime
 import discord.reaction
 from discord.ext import commands
 from discord import Interaction, ui
-from discord import Button
-from discord import Embed
-from discord.utils import get
+
 
 class PrizeDistribution(commands.Cog):
 
