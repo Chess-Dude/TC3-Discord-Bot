@@ -1,3 +1,4 @@
+from ntpath import join
 import discord, datetime, pytz
 
 from discord.ext import commands, tasks
@@ -38,5 +39,20 @@ class TCGAdvert(commands.Cog):
     async def before_task(self):
         await self.bot.wait_until_ready()
 
+    @commands.is_owner()
+    @commands.command(aliases=["joins"])
+    async def member_joins(self, ctx):
+        now = datetime.datetime.now(pytz.timezone('UTC'))
+        hours_24 = datetime.timedelta(hours = 24)
+        last_24_hours = now - hours_24
+        member = discord.Member
+        TCG = self.bot.get_guild(371817692199518240)
+        joined_members = []
+        for member in TCG.members:
+            if member.joined_at <= (member.joined_at - datetime.timedelta(hours = 24)):
+                joined_members.append(member.mention)
+        print(joined_members)
+        print(last_24_hours)
+        
 async def setup(bot):
     await bot.add_cog(TCGAdvert(bot))

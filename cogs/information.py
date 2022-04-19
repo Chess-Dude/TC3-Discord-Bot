@@ -11,11 +11,6 @@ client = gspread.authorize(creds)
 
 sheet = client.open("TC3 Unit Information").sheet1
 
-def TC3BotsOrTCGBots(ctx):
-    return ctx.channel.id == 351057167706619914 or ctx.channel.id == 408820459279220736 or 941567353672589322
-
-isTC3BotsOrTCGBots = commands.check(TC3BotsOrTCGBots)
-
 class Information(commands.Cog):
 
 
@@ -43,6 +38,11 @@ class Information(commands.Cog):
     
 
     #     await ctx.message.reply(embed = mapEmbed, mention_author = False)
+
+    def TC3BotsOrTCGBots(ctx):
+        return ctx.channel.id == 351057167706619914 or ctx.channel.id == 408820459279220736 or 941567353672589322
+
+    isTC3BotsOrTCGBots = commands.check(TC3BotsOrTCGBots)
 
     @isTC3BotsOrTCGBots
     @commands.group(invoke_without_command=True)
