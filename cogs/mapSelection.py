@@ -1,5 +1,7 @@
+from unicodedata import name
 import discord, random, json, datetime
 from discord.ext import commands
+from matplotlib.pyplot import title
 
 class MapSelection(commands.Cog):
 
@@ -12,13 +14,13 @@ class MapSelection(commands.Cog):
     def TC3OrTCGBots(ctx):
         return ctx.channel.id == 941567353672589322 or ctx.channel.id == 408820459279220736 or ctx.channel.id == 351057167706619914
 
-    def randomizeMap(self, author, maps, tournamentType):
-        maps = maps
+    def randomizeMap(self, ctx, author, maps, tournamentType):
         selectedMap = random.choice(maps)
 
-        mapEmbed = discord.Embed(title=f"Randomized {tournamentType} Map:", description=f"{author} Your randomized map is: {selectedMap}!", color=0xff0000)
+        mapEmbed = discord.Embed(title=f"Randomized {tournamentType} Map:", description=f"{author.mention} Your randomized map is: {selectedMap}!", color=0xff0000)
         mapEmbed.set_image(url = self.mapImages[selectedMap])
-        mapEmbed.timestamp = datetime.datetime.utcnow()
+        # mapEmbed.set_author(name=f"{author.display_name}", icon_url=author.avatar.url)
+        mapEmbed.timestamp = ctx.message.created_at
         
         return mapEmbed
 
@@ -28,31 +30,31 @@ class MapSelection(commands.Cog):
     @commands.command(aliases = ["1v1map"])
     async def _1v1map(self, ctx):
         maps = ["British Isles", "Cave Map", "Cavern", "City vs. Nature", "Continent", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 4", "Desert vs. Grass Spiral", "Double Mansion", "Eygptian Expedition",  "Fantasy", "Fantasy 2", "France", "Gem Mine", "Germany Map", "Golf Course", "Golf Course 2", "Korea", "Last Red City", "Long Islands", "Mansion", "Mars", "Medieval Grounds", "Mesa", "Mexico", "Passage", "RETRO: Four Seasons", "Ryry's Oil Map", "Sand Bottom Forest", "Six Small Islands", "Three Corner Cave", "Two Islands Map", "USA vs. Russia", "Void Map"]
-        await ctx.message.reply(embed = self.randomizeMap(ctx.author.mention, maps, "1v1"), mention_author = True)
+        await ctx.message.reply(embed = self.randomizeMap(ctx, ctx.author, maps, "1v1"), mention_author = True)
 
     @isBots
     @commands.command(aliases = ["2v2map"])
     async def _2v2map(self, ctx):
-        maps = ["Arctic Canal Map", "Basalt Peninsula", "British Isles", "Cavern", "Continent", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 3", "Desert vs. Grass Spiral", "Europe", "Fantasy", "Fantasy 2", "France", "Germany Map", "Golf Course", "Ice Catalyst", "Korea", "Lakebed", "Lasers", "Mainland", "Mansion: Flooded", "Mesa", "Mexico", "Passage", "River Banks", "Sandy Floors", "Six Small Islands", "Snow Battlefield", "Soviet Union", "USA vs. Russia", "Void Map", "World"]
-        await ctx.message.reply(embed = self.randomizeMap(ctx.author.mention, maps, "2v2"), mention_author = True)
+        maps = ["Arctic Canal Map", "Basalt Peninsula", "British Isles", "Cavern", "Continent", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 3", "Desert vs. Grass Spiral", "Desert vs. Grass 6", "Europe", "Fantasy", "Fantasy 2", "France", "Germany Map", "Golf Course", "Ice Catalyst", "Korea", "Lakebed", "Lasers", "Mainland", "Mansion: Flooded", "Mesa", "Mexico", "Passage", "River Banks", "Sandy Floors", "Six Small Islands", "Snow Battlefield", "Soviet Union", "USA vs. Russia", "Void Map", "World"]
+        await ctx.message.reply(embed = self.randomizeMap(ctx, ctx.author, maps, "2v2"), mention_author = True)
 
     @isBots
     @commands.command(aliases = ["3v3map"])
     async def _3v3map(self, ctx):
-        maps = ["Archipelago", "Arctic Canal Map", "Arctic Circle", "Basalt Peninsula", "British Isles", "Cave Map", "Cavern", "City 3", "City vs. Nature", "Continent", "Corners", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 3", "Desert vs. Grass 4", "Double Mansion", "Europe", "Fantasy", "Fantasy 2", "France", "Frozen River", "Gem Mine", "Germany Map", "Germany vs. France", "Golf Course", "Golf Course 2", "Ice Catalyst", "Igneous Islands/Magma", "Korea", "Lake City Map", "Lakebed", "Lasers", "Long Islands", "Mainland", "Mansion", "Mansion: Flooded", "Mars Canyons", "Mars Tunnels", "Maze", "Mesa", "Mexico", "Moon Surface", "Obsidian Atoll", "Passage", "Point blank", "RETRO: Cliffs", "RETRO: Four Seasons", "RETRO: Six Islands", "RETRO: The Moon", "River Banks", "Sand Bottom Forest", "Sandy Floors", "Six Small Islands", "Snow Battlefield", "Soviet Union", "States", "Symmetry", "Twisting Isles", "Two Islands Map", "USA vs. Russia", "Void Map", "World"]
-        await ctx.message.reply(embed = self.randomizeMap(ctx.author.mention, maps, "3v3"), mention_author = True)
+        maps = ["Archipelago", "Arctic Canal Map", "Arctic Circle", "Basalt Peninsula", "British Isles", "Cave Map", "Cavern", "City 3", "City vs. Nature", "Continent", "Corners", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 3", "Desert vs. Grass 4", "Desert vs. Grass 6", "Double Mansion", "Europe", "Fantasy", "Fantasy 2", "France", "Frozen River", "Gem Mine", "Germany Map", "Germany vs. France", "Golf Course", "Golf Course 2", "Ice Catalyst", "Igneous Islands/Magma", "Korea", "Lake City Map", "Lakebed", "Lasers", "Long Islands", "Mainland", "Mansion", "Mansion: Flooded", "Mars Canyons", "Mars Tunnels", "Maze", "Mesa", "Mexico", "Moon Surface", "Obsidian Atoll", "Passage", "Point blank", "RETRO: Cliffs", "RETRO: Four Seasons", "RETRO: Six Islands", "RETRO: The Moon", "River Banks", "Sand Bottom Forest", "Sandy Floors", "Six Small Islands", "Snow Battlefield", "Soviet Union", "States", "Symmetry", "Twisting Isles", "Two Islands Map", "USA vs. Russia", "Void Map", "World"]
+        await ctx.message.reply(embed = self.randomizeMap(ctx, ctx.author, maps, "3v3"), mention_author = True)
 
     @isBots
     @commands.command(aliases = ["4v4map"])
     async def _4v4map(self, ctx):
-        maps = ["Archipelago", "Arctic Canal Map", "Arctic Circle", "Basalt Peninsula", "British Isles", "Cave Map", "Cavern", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 3", "Desert vs. Grass 4", "Double Mansion", "Europe", "Fantasy", "Fantasy 2", "France", "Frozen River", "Gem Mine", "Germany Map", "Germany vs. France", "Golf Course", "Golf Course 2", "Ice Catalyst", "Igneous Islands/Magma", "Korea", "Lakebed", "Lasers", "Long Islands", "Mainland", "Mansion", "Mars 4", "Mars Canyons", "Maze", "Mesa", "Mexico", "Middle East", "Obsidian Atoll", "Passage", "Point blank", "River Banks", "Sand Bottom Forest", "Sandy Floors", "Six Small Islands", "Snow Battlefield", "Soviet Union", "States", "USA vs. Russia", "World"]
-        await ctx.message.reply(embed = self.randomizeMap(ctx.author.mention, maps, "4v4"), mention_author = True)
+        maps = ["Archipelago", "Arctic Canal Map", "Arctic Circle", "Basalt Peninsula", "British Isles", "Cave Map", "Cavern", "Desert vs. Grass", "Desert vs. Grass 2", "Desert vs. Grass 3", "Desert vs. Grass 4", "Desert vs. Grass 6", "Double Mansion", "Europe", "Fantasy", "Fantasy 2", "France", "Frozen River", "Gem Mine", "Germany Map", "Germany vs. France", "Golf Course", "Golf Course 2", "Ice Catalyst", "Igneous Islands/Magma", "Korea", "Lakebed", "Lasers", "Long Islands", "Mainland", "Mansion", "Mars 4", "Mars Canyons", "Maze", "Mesa", "Mexico", "Middle East", "Obsidian Atoll", "Passage", "Point blank", "River Banks", "Sand Bottom Forest", "Sandy Floors", "Six Small Islands", "Snow Battlefield", "Soviet Union", "States", "USA vs. Russia", "World"]
+        await ctx.message.reply(embed = self.randomizeMap(ctx, ctx.author, maps, "4v4"), mention_author = True)
 
     @isBots
     @commands.command(aliases = ["5v5map"])
     async def _5v5map(self, ctx):
-        maps = ["Archipelago", "Desert vs. Grass", "Desert vs. Grass 2", "Double Mansion", "Gem Mine", "Mediterranean", "Snow Battlefield", "Soviet Union", "States", "World"]
-        await ctx.message.reply(embed = self.randomizeMap(ctx.author.mention, maps, "5v5"), mention_author = True)
+        maps = ["Archipelago", "Desert vs. Grass", "Desert vs. Grass 2", "Double Mansion", "Gem Mine", "Mediterranean", "Snow Battlefield", "Soviet Union", "States", "Void City", "World"]
+        await ctx.message.reply(embed = self.randomizeMap(ctx, ctx.author, maps, "5v5"), mention_author = True)
 
     @isBots
     @commands.command(aliases=["cf"])

@@ -1,6 +1,6 @@
 import discord
-
 from discord.ext import commands
+from discord import Interaction, app_commands
 
 class errorHandler(commands.Cog):    
     
@@ -41,6 +41,12 @@ class errorHandler(commands.Cog):
         elif isinstance(error, commands.CommandOnCooldown):
             await ctx.send(f'Error: Command on cooldown, try again in {int(int(error.retry_after)/60)}m{int(error.retry_after)%60}s.')
         elif isinstance(error, commands.CheckFailure):
+            pass
+        elif isinstance(error, commands.MemberNotFound):
+            await ctx.send(f"Error: Member was not found! Please try again.")
+        elif isinstance(error, commands.RoleNotFound):
+            await ctx.send(f"Error: Role was not found! Please try again!")
+        elif isinstance(error, ZeroDivisionError):
             pass
         else:
             await ctx.send('Error: Unknown error occured. <@621516858205405197>')

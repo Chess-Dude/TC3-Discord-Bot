@@ -1,6 +1,5 @@
 import discord, datetime
 from discord.ext import commands
-from discord import Intents
 
 class Applications(commands.Cog):
 
@@ -32,8 +31,9 @@ class Applications(commands.Cog):
         thumbsUp = '\U0001F44D'
         thumbsDown = '\U0001f44e'
         
-        logEmbed = discord.Embed(title = f"The Conquering Games {activityType} {appType}",description=f"**{appType}**\n{args}\n\n**Submitted by**\n{ctx.author.mention}", color=0xff0000)
-        logEmbed.timestamp = datetime.datetime.utcnow()
+        logEmbed = discord.Embed(title = f"The Conquering Games {activityType} {appType}",description=f"**{appType}**\n{args}", color=0xff0000)
+        logEmbed.set_author(name=f"Submitted by: {ctx.author.display_name}", icon_url=ctx.author.avatar.url)
+        logEmbed.timestamp = ctx.message.created_at
         successEmbed = discord.Embed(title='Match Staff Notified!', description=f"{ctx.author.mention} Thanks For Submitting Your {activityType} {appType}!", color=0xff0000)
         
         msg = await logChannel.send(matchStaffPing, embed = logEmbed)
@@ -78,10 +78,8 @@ class Applications(commands.Cog):
     @isBotsOrWorkChannel
     @commands.command()
     async def teamchange(self, ctx, *, args = None):
-        await self.sendMessage(ctx, args, "Team", 886972024885481493, 886973611221598238, 896479412617359361, "Change")    
+        await self.sendMessage(ctx, args, "Team", 886972024885481493, 886973611221598238, 896479412617359361, "Change")  
 
-    @commands.is_owner()
-    @isBotsOrWorkChannel
     @commands.command(aliases = ["testapp"])
     async def test(self, ctx, *, args = None):
    

@@ -48,11 +48,11 @@ class TCGClans(commands.Cog):
         # oldAllTimeEmbed.set_thumbnail(url="https://cdn.discordapp.com/icons/371817692199518240/a_e004ffa8a16aa25643914ca5d4436694.gif?size=4096")
         # await clanLeaderboardChannel.send(embed = oldAllTimeEmbed)
         
-        clanAllTimeLeaderboard = await clanLeaderboardChannel.fetch_message(950978987285418014)
+        clanAllTimeLeaderboard = await clanLeaderboardChannel.fetch_message(967241735514234930)
         newAllTimeLB = discord.Embed(title = "All Time Clan Leaderboard", description = args, color=0xff0000)
-        newAllTimeLB.timestamp = datetime.datetime.utcnow()
+        newAllTimeLB.timestamp = ctx.message.created_at
         newAllTimeLB.set_thumbnail(url="https://cdn.discordapp.com/icons/371817692199518240/a_e004ffa8a16aa25643914ca5d4436694.gif?size=4096")
-        await ctx.message.reply("updated: https://discord.com/channels/371817692199518240/707218944217579541/950978987285418014")
+        await ctx.message.reply("updated: https://discordapp.com/channels/371817692199518240/707218944217579541/967241735514234930")
         await clanAllTimeLeaderboard.edit(embed=newAllTimeLB)
         
     @isWorkChannel
@@ -66,11 +66,11 @@ class TCGClans(commands.Cog):
         # oldWeeklyEmbed.set_thumbnail(url="https://cdn.discordapp.com/icons/371817692199518240/a_e004ffa8a16aa25643914ca5d4436694.gif?size=4096")
         # await clanLeaderboardChannel.send(embed = oldWeeklyEmbed)
         
-        clanWeeklyLeaderboard = await clanLeaderboardChannel.fetch_message(950979164104716308)
+        clanWeeklyLeaderboard = await clanLeaderboardChannel.fetch_message(967241739490431016)
         newWeeklyLB = discord.Embed(title = "Weekly Clan Leaderboard", description = args, color=0xff0000)
-        newWeeklyLB.timestamp = datetime.datetime.utcnow()
+        newWeeklyLB.timestamp = ctx.message.created_at
         newWeeklyLB.set_thumbnail(url="https://cdn.discordapp.com/icons/371817692199518240/a_e004ffa8a16aa25643914ca5d4436694.gif?size=4096")
-        await ctx.message.reply("updated https://discord.com/channels/371817692199518240/707218944217579541/950979164104716308")
+        await ctx.message.reply("updated https://discordapp.com/channels/371817692199518240/707218944217579541/967241739490431016")
         await clanWeeklyLeaderboard.edit(embed=newWeeklyLB)
 
 

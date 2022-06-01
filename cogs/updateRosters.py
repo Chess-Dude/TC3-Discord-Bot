@@ -1,4 +1,4 @@
-import discord, datetime, pytz
+import discord, datetime, time, pytz
 
 from discord.ext import commands, tasks
 
@@ -15,7 +15,7 @@ class updateRosters(commands.Cog):
     isWorkChannel = commands.check(workChannel)
 
     async def updateRosters2v2(self):
-            
+
         TCG = self.bot.get_guild(371817692199518240)     
         reminder_channel = discord.utils.get(TCG.channels, id = 666959897979781146)
         rosters_2v2 = discord.utils.get(TCG.channels, id = 874739232827113502)
@@ -25,27 +25,73 @@ class updateRosters(commands.Cog):
         top_role = discord.utils.get(TCG.roles, id = 707250483743424683)
         bottom_role = discord.utils.get(TCG.roles, id = 665667383184326657)
         captain_role = discord.utils.get(TCG.roles, id = 896550746475077672)
-        first_filled = False
-        embed_text = ''
+        rover_bypass_role = discord.utils.get(TCG.roles, id = 896476284220223499)
+
+        embed_text_one = ''
+        embed_text_two = ''
+        embed_text_three = ''
         teams_at_risk = ''
-        
         for role_position in range(top_role.position-1, bottom_role.position, -1):
             member_text = "**Members:**"
             captain = None
             team = discord.utils.get(TCG.roles, position = role_position)
-            team_members = team.members
-            total_team_members = len(team.members)
-            
             if team == None:
                 continue
+            team_members = team.members
+            total_team_members = len(team_members)
             
             if total_team_members < 2:
                teams_at_risk = teams_at_risk + team.mention
-                           
+            
+            # looping through all members of a team
+            # for member in team_members:
+            #     await member.add_roles(rover_bypass_role)
+            #     size = len(member.display_name)
+
+            #     # determining if the player already has a customized nickname (captain, co-captain or member) and wiping it
+            #     if " | Team Captain" in member.display_name:
+            #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[:size - 15])}")
+                    
+            #     if " | Team Co-Captain" in member.display_name:
+            #         await member.edit(nick=f"{member.display_name.rstrip(member.display_name[:size - 18])}")
+                                            
+            #     if " | Team Member" in member.display_name:
+            #         await member.edit(nick=f"{member.display_name.rstrip(member.display_name[:size - 14])}")
+
+
+            #     try:
+                    
+            #         # assigning new nicknames (Team Captain Or Team Member)
+            #         if captain_role in member.roles:
+            #             await member.edit(nick=f"{member.display_name} | Team Captain")
+
+            #         else:
+            #             await member.edit(nick=f"{member.display_name} | Team Member")                
+            #     # try: 
+            #     #     if captain_role in member.roles:
+            #     #         if " | Team Captain" in member.display_name:
+            #     #             pass
+            #     #         elif " | Team Member" in member.display_name:
+            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-14])}")
+            #     #             await member.edit(nick=f"{member.display_name} | Team Captain")
+            #     #         else:    
+            #     #             await member.edit(nick=f"{member.display_name} | Team Captain")
+            #     #     else:
+            #     #         if " | Team Member" in member.display_name:
+            #     #             pass
+            #     #         elif " | Team Captain" in member.display_name:
+            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-15])}")
+            #     #             await member.edit(nick=f"{member.display_name} | Team Member")
+            #     #         else:
+            #     #             await member.edit(nick=f"{member.display_name} | Team Member")
+
+            #     except:
+            #         print(f"{member.display_name}'s nickname could not be edited due to their nickname being too long.")
+                    
+            
             for member in team_members:
                 if captain_role in member.roles:
                     captain = member.display_name + " - " + member.mention
-                    
                     team_members.remove(member)
                     break
 
@@ -58,28 +104,38 @@ class updateRosters(commands.Cog):
             else:
                 for member in team_members:
                     member_text = member_text + f"\n{member.display_name} - {member.mention}"
-
-            embed_text = embed_text + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n{member_text}\n**Total Members: {total_team_members}**"    
-            if len(embed_text) > 3700:
-                embed = discord.Embed(title="The Conquering Games 2v2 Rosters (Organized alphabetically)", description=embed_text, color=0xff0000)
-                embed.set_footer(text = 'Last updated')
-                embed.timestamp = datetime.datetime.utcnow()
-                await embed_one.edit(embed = embed)
-                first_filled = True
-                embed_text = ''
-
-        embed = discord.Embed(title='The Conquering Games 2v2 Rosters (Organized alphabetically)', description=embed_text, color=0xff0000)
-        embed.set_footer(text = 'Last updated')
-        embed.timestamp = datetime.datetime.utcnow()
-
-        if first_filled:
-            await embed_two.edit(embed=embed)
             
-        else:
-            await embed_one.edit(embed=embed)
-        
+            if len(embed_text_one) < 3900:
+                embed_text_one = embed_text_one + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n{member_text}\n**Total Members: {total_team_members}/4**"    
+
+            elif len(embed_text_one) > 3900 and len(embed_text_two) < 3900:
+                embed_text_two = embed_text_two + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n{member_text}\n**Total Members: {total_team_members}/4**"    
+
+            elif len(embed_text_one) > 3900 and len(embed_text_two) > 3900 and len(embed_text_three) < 3900:
+                embed_text_three = embed_text_three + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n{member_text}\n**Total Members: {total_team_members}/4**"    
+
+            else:
+                print("an error occured in updaterosters 2v2")
+
+    
+        embed = discord.Embed(title="The Conquering Games 2v2 Rosters (Organized alphabetically)", description=embed_text_one, color=0xff0000)
+        embed.set_footer(text="Last updated")
+        embed.timestamp = datetime.datetime.utcnow()
+        await embed_one.edit(embed=embed)
+
+        embed = discord.Embed(title="The Conquering Games 2v2 Rosters (Organized alphabetically)", description=embed_text_two, color=0xff0000)
+        embed.set_footer(text="Last updated")
+        embed.timestamp = datetime.datetime.utcnow()
+        await embed_two.edit(embed=embed)
+
+        embed = discord.Embed(title="The Conquering Games 2v2 Rosters (Organized alphabetically)", description=embed_text_three, color=0xff0000)
+        embed.set_footer(text="Last updated")
+        embed.timestamp = datetime.datetime.utcnow()
+        await embed_three.edit(embed=embed)
+
         if len(teams_at_risk) >= 1:
             await reminder_channel.send(f"{teams_at_risk}\n\nYour team has less than 2 players! Please add a member or your team will be disbanded.")
+            time.sleep(100)
 
     async def updateRostersTeam(self):
         TCG = self.bot.get_guild(371817692199518240)     
@@ -92,29 +148,99 @@ class updateRosters(commands.Cog):
         bottom_role = discord.utils.get(TCG.roles, id = 707250483743424683)
         captain_role = discord.utils.get(TCG.roles, id = 649683977241886730)
         co_captain_role = discord.utils.get(TCG.roles, id = 716290546519244850)
+        rover_bypass_role = discord.utils.get(TCG.roles, id = 896476284220223499)
         first_filled = False
-        embed_text = ''
+        embed_text_one = ''
+        embed_text_two = ''
+        embed_text_three = ''
         teams_at_risk = ''
-        
+    
         for role_position in range(top_role.position-1, bottom_role.position, -1):
+            
             member_text = "**Members:**"
             captain = None
             co_captain = None
             team = discord.utils.get(TCG.roles, position = role_position)
-            team_members = team.members
-            total_team_members = len(team.members)
-            
-            
             if team == None:
                 continue
+            team_members = team.members
+            total_team_members = len(team_members)
             
             if total_team_members < 3:
                teams_at_risk = teams_at_risk + team.mention
 
+            # for member in team_members:
+            #     await member.add_roles(rover_bypass_role)
+            #     size = len(member.display_name)
+            #     if " | Team Captain" in member.display_name:
+            #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[:size - 15])}")
+                    
+            #     if " | Team Co-Captain" in member.display_name:
+            #         await member.edit(nick=f"{member.display_name.rstrip(member.display_name[:size - 18])}")
+                                            
+            #     if " | Team Member" in member.display_name:
+            #         await member.edit(nick=f"{member.display_name.rstrip(member.display_name[:size - 14])}")
+
+
+            #     try:
+            #         if captain_role in member.roles:
+            #             await member.edit(nick=f"{member.display_name} | Team Captain")
+
+            #         elif co_captain_role in member.roles:
+            #             await member.edit(nick=f"{member.display_name} | Team Co-Captain")
+                    
+            #         else:
+            #             await member.edit(nick=f"{member.display_name} | Team Member")
+            #     # try: 
+            #     #     if captain_role in member.roles:
+            #     #         if " | Team Captain" in member.display_name:
+            #     #             pass
+                        
+            #     #         elif " | Team Co-Captain" in member.display_name:
+            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-18])}")
+            #     #             await member.edit(nick=f"{member.display_name} | Team Captain")
+
+            #     #         elif " | Team Member" in member.display_name:
+            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-14])}")
+            #     #             await member.edit(nick=f"{member.display_name} | Team Captain")
+                        
+            #     #         else:    
+            #     #             await member.edit(nick=f"{member.display_name} | Team Captain")
+                                        
+            #     #     elif co_captain_role in member.roles:
+            #     #         if " | Team Co-Captain" in member.display_name:
+            #     #             pass
+                        
+            #     #         elif " | Team Captain" in member.display_name:
+            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-15])}")
+            #     #             await member.edit(nick=f"{member.display_name} | Team Co-Captain")
+                        
+            #     #         elif " | Team Member" in member.display_name:
+            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-14])}")
+            #     #             await member.edit(nick=f"{member.display_name} | Team Co-Captain")
+                        
+            #     #         else:
+            #     #             await member.edit(nick=f"{member.display_name} | Team Co-Captain")
+
+            #     #     else:
+            #     #         if " | Team Captain" in member.display_name:
+            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-15])}")
+                        
+            #     #         elif " | Team Co-Captain" in member.display_name:
+            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-18])}")
+                                                    
+            #     #         elif " | Team Member" in member.display_name:
+            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-14])}")
+                                                    
+            #     #         await member.edit(nick=f"{member.display_name} | Team Member")
+
+
+            #     except:
+            #         print(f"{member.display_name}'s nickname could not be edited due to their nickname being too long.")
+
             for member in team_members:
                 if captain_role in member.roles:
                     captain = member.display_name + " - " + member.mention
-                    
                     team_members.remove(member)
                     break
 
@@ -128,7 +254,7 @@ class updateRosters(commands.Cog):
                     break
 
             if co_captain == None:
-                co_captain = 'N/A'
+                co_captain = "N/A"
 
             if len(team_members) == 0:
                 member_text = member_text + f"\nN/A"
@@ -136,17 +262,103 @@ class updateRosters(commands.Cog):
             else:
                 for member in team_members:
                     member_text = member_text + f"\n{member.display_name} - {member.mention}"
+            
+            if len(embed_text_one) < 3800:
+                embed_text_one = embed_text_one + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n**Co-Captain:**\n{co_captain}\n{member_text}\n**Total Members: {total_team_members}/6**"
+                
+            elif len(embed_text_one) > 3800 and len(embed_text_two) < 3800:
+                embed_text_two = embed_text_two + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n**Co-Captain:**\n{co_captain}\n{member_text}\n**Total Members: {total_team_members}/6**"    
+                
+            elif len(embed_text_one) > 3800 and len(embed_text_two) > 3800 and len(embed_text_three) < 3800:
+                embed_text_three = embed_text_three + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n**Co-Captain:**\n{co_captain}\n{member_text}\n**Total Members: {total_team_members}/6**"    
 
-            embed_text = embed_text + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n**Co-Captain:**\n{co_captain}\n{member_text}\n**Total Members: {total_team_members}**"    
+            else:
+                print("an error occured in updaterosters team")
+
+        embed = discord.Embed(title="The Conquering Games Team Rosters (Organized alphabetically)", description=embed_text_one, color=0xff0000)
+        embed.set_footer(text="Last updated")
+        embed.timestamp = datetime.datetime.utcnow()
+        await embed_one.edit(embed=embed)
+        
+        embed = discord.Embed(title="The Conquering Games Team Rosters (Organized alphabetically)", description=embed_text_two, color=0xff0000)
+        embed.set_footer(text="Last updated")
+        embed.timestamp = datetime.datetime.utcnow()
+        await embed_two.edit(embed=embed)
+
+        embed = discord.Embed(title="The Conquering Games Team Rosters (Organized alphabetically)", description=embed_text_three, color=0xff0000)
+        embed.set_footer(text="Last updated")
+        embed.timestamp = datetime.datetime.utcnow()
+        await embed_three.edit(embed=embed)
+
+        if len(teams_at_risk) >= 1:
+            await reminder_channel.send(f"{teams_at_risk}\n\nYour team has less than 3 players! Please add a member or your team will be disbanded.")
+            time.sleep(100)
+
+
+    async def updateRostersClans(self):
+        TCG = self.bot.get_guild(371817692199518240)     
+        reminder_channel = discord.utils.get(TCG.channels, id = 707220152625791047)
+        clan_rosters = discord.utils.get(TCG.channels, id = 956406203943125004)
+        embed_one = await clan_rosters.fetch_message(967235300172632064)
+        embed_two = await clan_rosters.fetch_message(967235316501061643)
+        embed_three = await clan_rosters.fetch_message(967235330669445162)
+        top_role = discord.utils.get(TCG.roles, id = 421099292552331264)
+        bottom_role = discord.utils.get(TCG.roles, id = 422255381721514014)
+        clan_leader_role = discord.utils.get(TCG.roles, id = 896533899658821662)
+        co_leader_role = discord.utils.get(TCG.roles, id = 896534077405032550)
+        first_filled = False
+        embed_text = ''
+        clans_at_risk = ''
+        
+        for role_position in range(top_role.position-1, bottom_role.position, -1):
+            member_text = "**Members:**"
+            clan_leader = None
+            co_leader = None
+            clan = discord.utils.get(TCG.roles, position = role_position)
+            if clan == None:
+                continue
+            clan_members = clan.members
+            total_clan_members = len(clan.members)
+        
+            
+            if total_clan_members < 5:
+               clans_at_risk = clans_at_risk + clan.mention
+
+            for member in clan_members:
+                if clan_leader_role in member.roles:
+                    clan_leader = member.display_name + " - " + member.mention
+                    clan_members.remove(member)
+                    break
+
+            if clan_leader == None:
+                clan_leader = "N/A"
+            
+            for member in clan_members:
+                if co_leader_role in member.roles:
+                    co_leader = member.display_name + " - " + member.mention
+                    clan_members.remove(member)
+                    break
+
+            if co_leader_role == None:
+                co_leader = 'N/A'
+
+            if len(clan_members) == 0:
+                member_text = member_text + f"\nN/A"
+
+            else:
+                for member in clan_members:
+                    member_text = member_text + f"\n{member.display_name} - {member.mention}"
+
+            embed_text = embed_text + f"\n\n**{clan.mention}\'s Roster:**\n**Leader:**\n{clan_leader}\n**Co-Leader:**\n{co_leader}\n{member_text}\n**Total Members: {total_clan_members}/10**"    
             if len(embed_text) > 3700:
-                embed = discord.Embed(title="The Conquering Games Team Rosters (Organized alphabetically)", description=embed_text, color=0xff0000)
+                embed = discord.Embed(title="The Conquering Games Clan Rosters (Organized alphabetically)", description=embed_text, color=0xff0000)
                 embed.set_footer(text = "Last updated")
                 embed.timestamp = datetime.datetime.utcnow()
                 await embed_one.edit(embed = embed)
                 first_filled = True
                 embed_text = ''
 
-        embed = discord.Embed(title="The Conquering Games Team Rosters (Organized alphabetically)", description=embed_text, color=0xff0000)
+        embed = discord.Embed(title="The Conquering Games Clan Rosters (Organized alphabetically)", description=embed_text, color=0xff0000)
         embed.set_footer(text = "Last updated")
         embed.timestamp = datetime.datetime.utcnow()
 
@@ -156,81 +368,12 @@ class updateRosters(commands.Cog):
         else:
             await embed_one.edit(embed=embed)
             
-        if len(teams_at_risk) >= 1:
-            await reminder_channel.send(f"{teams_at_risk}\n\nYour team has less than 3 players! Please add a member or your team will be disbanded.")
+        if len(clans_at_risk) >= 1:
+            await reminder_channel.send(f"{clans_at_risk}\n\nYour clan has less than 5 players! Please add a member or your clan will be disbanded.")
+            time.sleep(100)
 
-
-    async def updateRostersClans(self):
-        TCG = self.bot.get_guild(371817692199518240)     
-        clanRostersChannel = discord.utils.get(TCG.channels, id = 956406203943125004) 
-        embedOne = await clanRostersChannel.fetch_message(956433121195196467)
-        embedTwo = await clanRostersChannel.fetch_message(956433199146340432)
-        topRole = discord.utils.get(TCG.roles, id = 421099292552331264)
-        bottomRole = discord.utils.get(TCG.roles, id = 422255381721514014)
-        embedtext = ''
-        clanLeader = discord.utils.get(TCG.roles, id = 896533899658821662)
-        clanCoLeader = discord.utils.get(TCG.roles, id = 896534077405032550)
-        firstFilled = False
-
-        for role_position in range(topRole.position-1, bottomRole.position, -1):
-
-            membertext = '**Members:**'
-            leader = None
-            coLeader = None
-            team = discord.utils.get(TCG.roles, position = role_position)
-
-            if team == None:
-                continue
-                    
-            members = team.members
-
-            for member in members:
-                if clanLeader in member.roles:
-                    leader = member.display_name + " - " + member.mention
-                    members.remove(member)
-                    break
-
-            if leader == None:
-                leader = 'N/A'    
-
-            for member in members:
-                if clanCoLeader in member.roles:
-                    coLeader = member.display_name + " - " + member.mention
-                    members.remove(member)
-                    break
-
-            if coLeader == None:
-                coLeader = 'N/A'
-
-            if len(members) == 0:
-                membertext = membertext + f'\nN/A'
-
-            else:
-                for member in members:
-                    membertext = membertext + f'\n{member.display_name} - {member.mention}'
-
-            embedtext = embedtext + f'\n\n**{team.mention}\'s Roster:**\n**Clan Leader:**\n{leader}\n**Clan Co-Leader:**\n{coLeader}\n{membertext}'
-            if len(embedtext) > 3700:
-                embed = discord.Embed(title='The Conquering Games Clan Rosters (Organized alphabetically)', description=embedtext, color=0xff0000)
-                embed.set_footer(text = 'Last updated')
-                embed.timestamp = datetime.datetime.utcnow()
-                await embedOne.edit(embed = embed)
-                firstFilled = True
-                embedtext = ""
-
-        embed = discord.Embed(title='The Conquering Games Clan Rosters (Organized alphabetically)', description=embedtext, color=0xff0000)
-        embed.set_footer(text = 'Last updated')
-        embed.timestamp = datetime.datetime.utcnow()
-
-        if firstFilled:
-            await embedTwo.edit(embed = embed)
-            #await ctx.message.reply(embed = embed)
-        else:
-            await embedOne.edit(embed = embed)
-            #await ctx.message.reply(embed = embed)
-        
     @isWorkChannel
-    @commands.has_any_role(896440653406433310, 371840164672045067, 665951855888826369, 899424078836936705) #last one is my server role
+    @commands.has_any_role(896440653406433310, 371840164672045067, 665951855888826369)
     @commands.group()
     async def updateRosters(self, ctx):
         
@@ -239,7 +382,7 @@ class updateRosters(commands.Cog):
 
 
     @isWorkChannel
-    @commands.has_any_role(896440653406433310, 371840164672045067, 665951855888826369, 899424078836936705) #last one is my server role
+    @commands.has_any_role(896440653406433310, 371840164672045067, 665951855888826369)
     @commands.cooldown(1, 60, commands.BucketType.guild)
     @updateRosters.command(aliases = ['2v2'])
     async def _2v2(self, ctx):
@@ -249,7 +392,7 @@ class updateRosters(commands.Cog):
 
     
     @isWorkChannel
-    @commands.has_any_role(896440653406433310, 371840164672045067, 665951855888826369, 899424078836936705) #last one is my role
+    @commands.has_any_role(896440653406433310, 371840164672045067, 665951855888826369)
     @commands.cooldown(1, 10, commands.BucketType.guild)
     @updateRosters.command()
     async def team(self, ctx):
@@ -258,7 +401,7 @@ class updateRosters(commands.Cog):
         await response.edit(content = 'Updated :white_check_mark:')
 
     @isWorkChannel
-    @commands.has_any_role(896440653406433310, 371840164672045067, 665951855888826369, 899424078836936705) #last one is my role
+    @commands.has_any_role(896440653406433310, 371840164672045067, 665951855888826369)
     @commands.cooldown(1, 10, commands.BucketType.guild)
     @updateRosters.command()
     async def clan(self, ctx):
@@ -277,6 +420,7 @@ class updateRosters(commands.Cog):
             try:
                 await self.updateRosters2v2()
                 await self.updateRostersTeam()
+                await self.updateRostersClans()
 
             except:
                 print("rosters did not update, error in autoUpdateRosters")

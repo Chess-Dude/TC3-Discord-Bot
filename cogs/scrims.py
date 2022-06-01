@@ -60,7 +60,7 @@ class Scrims(commands.Cog):
     @commands.cooldown(1, 1800, commands.BucketType.guild)
     @commands.command()
     async def play(self, ctx):        
-        await ctx.message.reply(content = f"{ctx.author.mention} is going to play some TC3, come help them rekt some noobs! @here!\n\n*Don't want to get pinged? Run the command: \n!!rank game*", mention_author = True)
+        await ctx.message.reply(content = f"{ctx.author.mention} is going to play some TC3, come help them rekt some noobs! <@&356558859260657666>\n\n*Don't want to get pinged? Run the command: \n!!rank game*", mention_author = True)
 
 async def setup(bot):
     await bot.add_cog(Scrims(bot))
