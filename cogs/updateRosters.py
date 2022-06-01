@@ -156,7 +156,7 @@ class updateRosters(commands.Cog):
         teams_at_risk = ''
     
         for role_position in range(top_role.position-1, bottom_role.position, -1):
-            
+
             member_text = "**Members:**"
             captain = None
             co_captain = None
@@ -169,74 +169,72 @@ class updateRosters(commands.Cog):
             if total_team_members < 3:
                teams_at_risk = teams_at_risk + team.mention
 
-            # for member in team_members:
-            #     await member.add_roles(rover_bypass_role)
-            #     size = len(member.display_name)
-            #     if " | Team Captain" in member.display_name:
-            #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[:size - 15])}")
+            for member in team_members:
+                await member.add_roles(rover_bypass_role)
+                if " | Team Captain" in member.display_name:
+                    await member.edit(nick=member.display_name[:-len(" | Team Captain")])
                     
-            #     if " | Team Co-Captain" in member.display_name:
-            #         await member.edit(nick=f"{member.display_name.rstrip(member.display_name[:size - 18])}")
+                elif " | Team Co-Captain" in member.display_name:
+                    await member.edit(nick=member.display_name[:-len(" | Team Co-Captain")])
                                             
-            #     if " | Team Member" in member.display_name:
-            #         await member.edit(nick=f"{member.display_name.rstrip(member.display_name[:size - 14])}")
+                elif " | Team Member" in member.display_name:
+                    await member.edit(nick=member.display_name[:-len(" | Team Member")])
 
+                try:
+                    if captain_role in member.roles:
+                        await member.edit(nick=f"{member.display_name} | Team Captain")
 
-            #     try:
-            #         if captain_role in member.roles:
-            #             await member.edit(nick=f"{member.display_name} | Team Captain")
-
-            #         elif co_captain_role in member.roles:
-            #             await member.edit(nick=f"{member.display_name} | Team Co-Captain")
+                    elif co_captain_role in member.roles:
+                        await member.edit(nick=f"{member.display_name} | Team Co-Captain")
                     
-            #         else:
-            #             await member.edit(nick=f"{member.display_name} | Team Member")
-            #     # try: 
-            #     #     if captain_role in member.roles:
-            #     #         if " | Team Captain" in member.display_name:
-            #     #             pass
+                    else:
+                        await member.edit(nick=f"{member.display_name} | Team Member")
+                # try: 
+                #     if captain_role in member.roles:
+                #         if " | Team Captain" in member.display_name:
+                #             pass
                         
-            #     #         elif " | Team Co-Captain" in member.display_name:
-            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-18])}")
-            #     #             await member.edit(nick=f"{member.display_name} | Team Captain")
+                #         elif " | Team Co-Captain" in member.display_name:
+                #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-18])}")
+                #             await member.edit(nick=f"{member.display_name} | Team Captain")
 
-            #     #         elif " | Team Member" in member.display_name:
-            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-14])}")
-            #     #             await member.edit(nick=f"{member.display_name} | Team Captain")
+                #         elif " | Team Member" in member.display_name:
+                #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-14])}")
+                #             await member.edit(nick=f"{member.display_name} | Team Captain")
                         
-            #     #         else:    
-            #     #             await member.edit(nick=f"{member.display_name} | Team Captain")
+                #         else:    
+                #             await member.edit(nick=f"{member.display_name} | Team Captain")
                                         
-            #     #     elif co_captain_role in member.roles:
-            #     #         if " | Team Co-Captain" in member.display_name:
-            #     #             pass
+                #     elif co_captain_role in member.roles:
+                #         if " | Team Co-Captain" in member.display_name:
+                #             pass
                         
-            #     #         elif " | Team Captain" in member.display_name:
-            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-15])}")
-            #     #             await member.edit(nick=f"{member.display_name} | Team Co-Captain")
+                #         elif " | Team Captain" in member.display_name:
+                #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-15])}")
+                #             await member.edit(nick=f"{member.display_name} | Team Co-Captain")
                         
-            #     #         elif " | Team Member" in member.display_name:
-            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-14])}")
-            #     #             await member.edit(nick=f"{member.display_name} | Team Co-Captain")
+                #         elif " | Team Member" in member.display_name:
+                #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-14])}")
+                #             await member.edit(nick=f"{member.display_name} | Team Co-Captain")
                         
-            #     #         else:
-            #     #             await member.edit(nick=f"{member.display_name} | Team Co-Captain")
+                #         else:
+                #             await member.edit(nick=f"{member.display_name} | Team Co-Captain")
 
-            #     #     else:
-            #     #         if " | Team Captain" in member.display_name:
-            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-15])}")
+                #     else:
+                #         if " | Team Captain" in member.display_name:
+                #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-15])}")
                         
-            #     #         elif " | Team Co-Captain" in member.display_name:
-            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-18])}")
+                #         elif " | Team Co-Captain" in member.display_name:
+                #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-18])}")
                                                     
-            #     #         elif " | Team Member" in member.display_name:
-            #     #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-14])}")
+                #         elif " | Team Member" in member.display_name:
+                #             await member.edit(nick=f"{member.display_name.rstrip(member.display_name[-14])}")
                                                     
-            #     #         await member.edit(nick=f"{member.display_name} | Team Member")
+                #         await member.edit(nick=f"{member.display_name} | Team Member")
 
 
-            #     except:
-            #         print(f"{member.display_name}'s nickname could not be edited due to their nickname being too long.")
+                except:
+                    print(f"{member.display_name}'s nickname could not be edited due to their nickname being too long.")
 
             for member in team_members:
                 if captain_role in member.roles:
