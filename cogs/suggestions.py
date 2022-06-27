@@ -49,7 +49,7 @@ class Suggestions(commands.Cog):
         suggestions = discord.utils.get(ctx.guild.channels, id = 724424911791325214)
         
         suggestionEmbed = discord.Embed(title = f"The Conquering Games Suggestions",description=f"**Suggestion**\n{args}\n", color=0xff0000)
-        suggestionEmbed.set_author(name=f"Suggested by: {ctx.author.display_name}", icon_url=ctx.author.avatar.url)
+        suggestionEmbed.set_author(name=f"Suggested by: {ctx.author.display_name}", icon_url=ctx.author.display_avatar.url)
         suggestionEmbed.timestamp = datetime.datetime.utcnow()
         
         if ctx.message.attachments:

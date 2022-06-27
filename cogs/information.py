@@ -63,7 +63,7 @@ class Information(commands.Cog):
                 
                 unitStats = ["Type", "Produced in", "Cost", "Build Time", "Health", "Damage (DPS)", "Speed", "Range", "Garrisonable", "Garrisons", "Researchable", "Produces", "Unit Slots", "Wiki Link", "Image Link"]
                 embed = discord.Embed(title=f'{resultEntry["Unit"]}', description=f'Unit Stats for the {resultEntry["Unit"]}', color=0xff0000)
-                embed.set_author(name=f"{ctx.author.display_name}", icon_url=f"{ctx.author.avatar.url}")
+                embed.set_author(name=f"{ctx.author.display_name}", icon_url=f"{ctx.author.display_avatar.url}")
                 embed.timestamp = ctx.message.created_at
                 embed.set_thumbnail(url=f'{resultEntry["Image Link"]}')
 
@@ -132,6 +132,10 @@ class Information(commands.Cog):
             embed.set_footer(text=f"User ID: {member.id}")
             
         await ctx.message.reply(embed=embed, mention_author=True)
+
+    @info.command()
+    async def matchmaking(self, ctx):
+        await ctx.message.reply("If you wish to find another member to play TC3 with, please run the ``!!rank game`` command in <#351057167706619914>. This will give you access to the matchmaking channel. Upon gaining access, you may run the ``!play`` command (in the matchmaking channel) to find a fellow player!")
 
 async def setup(bot):
     await bot.add_cog(Information(bot))

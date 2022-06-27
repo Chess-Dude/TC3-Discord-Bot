@@ -1,7 +1,13 @@
 import os, discord, datetime
 from discord.ext import commands
+from discord.ext.commands import Greedy
+from discord.object import Object 
+from typing import Optional, Literal
+from discord import app_commands
+from cogs.appCommandsTest import DropdownView
+from cogs.mapSelectionAppCommands import RerollDropdown
 
-token = "OTUzMDE3MDU1MjM2NDU2NDQ4.G42EbG.4iRZ0_JdZqyfui-5UIixIUY4dsppgvn9YYyR34"
+token = "OTUzMDE3MDU1MjM2NDU2NDQ4.Gp0q6l.8VIj98FK-wkozHMSXUYKdZa62D-1k5899DTS-I"
 class MyBot(commands.Bot):
     
     def __init__(self):
@@ -27,6 +33,9 @@ class MyBot(commands.Bot):
             if filename.endswith('.py'):
                 await bot.load_extension(f'cogs.{filename[:-3]}')
                 print(f'cogs.{filename[:-3]} loaded')
+        self.add_view(DropdownView())
+        self.add_view(RerollDropdown())
+        print("view loaded successfully")
 
 bot = MyBot()
 bot.remove_command("help")
@@ -65,9 +74,37 @@ async def echo(ctx, *, args):
 
 @bot.command()
 @commands.is_owner()
-async def sync(ctx):
-    await bot.tree.sync()
-    await ctx.send("app_commands have been synced successfully")
+async def sync(ctx, guilds: Greedy[Object], spec: Optional[Literal["~", "*"]] = None):
+    if not guilds:
+        if spec == "~":
+            fmt = await ctx.bot.tree.sync(guild=ctx.guild)
+        elif spec == "*":
+            ctx.bot.tree.copy_global_to(guild=ctx.guild)
+            fmt = await ctx.bot.tree.sync(guild=ctx.guild)
+        else:
+            fmt = await ctx.bot.tree.sync()
+
+        await ctx.send(
+            f"Synced {len(fmt)} commands {'globally' if spec is None else 'to the current guild.'}"
+        )
+        return
+
+    fmt = 0
+    for guild in guilds:
+        try:
+            await ctx.bot.tree.sync(guild=guild)
+        except discord.HTTPException:
+            pass
+        else:
+            fmt += 1
+
+    await ctx.send(f"Synced the tree to {fmt}/{len(guilds)} guilds.")
+    
+@commands.is_owner()
+@bot.command(aliases=["renamerole"])
+async def rename_role(ctx, role: discord.Role, args):
+    await role.edit(name=args)
+    await ctx.reply(f"renamed {role.mention} to {args}")
 
 @bot.command()
 @commands.is_owner()

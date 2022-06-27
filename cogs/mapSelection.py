@@ -1,7 +1,5 @@
-from unicodedata import name
 import discord, random, json, datetime
 from discord.ext import commands
-from matplotlib.pyplot import title
 
 class MapSelection(commands.Cog):
 
@@ -19,7 +17,7 @@ class MapSelection(commands.Cog):
 
         mapEmbed = discord.Embed(title=f"Randomized {tournamentType} Map:", description=f"{author.mention} Your randomized map is: {selectedMap}!", color=0xff0000)
         mapEmbed.set_image(url = self.mapImages[selectedMap])
-        # mapEmbed.set_author(name=f"{author.display_name}", icon_url=author.avatar.url)
+        mapEmbed.set_author(name=f"{author.display_name}", icon_url=author.display_avatar.url)
         mapEmbed.timestamp = ctx.message.created_at
         
         return mapEmbed

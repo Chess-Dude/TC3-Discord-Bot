@@ -9,21 +9,19 @@ class RoleCommands(commands.Cog):
     def work_channel(ctx):
         return ctx.channel.id == 941567353672589322 or ctx.channel.id == 896440473659519057
     
-    async def assign_roles(self, ctx, loading_message, team_name, member1, member2, member3, member4, member5, member6, tournament_division, tournaments_captain_role_id, tournaments_co_captain_role_id, tournaments_role_id, tournaments_team):
+    async def assign_roles(self, team_name, member1, member2, member3, member4, member5, member6, tournament_division, tournaments_captain_role_id, tournaments_co_captain_role_id, tournaments_role_id, tournaments_team):
         TCG = self.bot.get_guild(371817692199518240)
-        await loading_message.edit(content=f"Assigning Roles...")
         tournaments_captain_role = discord.utils.get(TCG.roles, id=tournaments_captain_role_id)
         tournaments_co_captain_role = discord.utils.get(TCG.roles, id=tournaments_co_captain_role_id)
         tournaments_role = discord.utils.get(TCG.roles, id=tournaments_role_id)
         tournament_division_role = tournament_division
-
+        
         await member1.add_roles(team_name)
         await member2.add_roles(team_name)
         await member3.add_roles(team_name)
         await member4.add_roles(team_name)
         await member5.add_roles(team_name)
         await member6.add_roles(team_name)
-        await loading_message.edit(content=f"Role {team_name} Assigned...")
 
         await member1.add_roles(tournaments_role)
         await member2.add_roles(tournaments_role)
@@ -31,7 +29,6 @@ class RoleCommands(commands.Cog):
         await member4.add_roles(tournaments_role)
         await member5.add_roles(tournaments_role)
         await member6.add_roles(tournaments_role)
-        await loading_message.edit(content=f"{tournaments_role} Assigned...")
 
         await member1.add_roles(tournament_division_role)
         await member2.add_roles(tournament_division_role)
@@ -39,33 +36,27 @@ class RoleCommands(commands.Cog):
         await member4.add_roles(tournament_division_role)
         await member5.add_roles(tournament_division_role)
         await member6.add_roles(tournament_division_role)
-        await loading_message.edit(content=f"{tournament_division_role} Assigned...")
 
         await member1.add_roles(tournaments_captain_role)
         
         if tournaments_team: 
             await member2.add_roles(tournaments_co_captain_role)
 
-        await loading_message.edit(content=f"All Roles Assigned!")
-        await loading_message.edit(content=f"Team Created Successfully! ✅")
-
-    async def create_role(self, ctx, name, colour, role_divider_id):
-        loading_message = await ctx.send("----------")
+    async def create_role(self, name, colour, role_divider_id):
         TCG = self.bot.get_guild(371817692199518240)
         role_divider = discord.utils.get(TCG.roles, id=role_divider_id)
         await TCG.create_role(name=name, colour=colour)
         team_name = discord.utils.get(TCG.roles, name=name)
-        await loading_message.edit(content=f"Role {team_name.mention} created successfully ✅")
         await team_name.edit(position=role_divider.position-1)
-        await loading_message.edit(content=f"Role {team_name.mention} moved successfully ✅")
-        await loading_message.edit(content=f"Team Created Successfully! ✅")
         
-        return loading_message, team_name
+        return team_name
 
     async def create_team(self, ctx, name, colour, role_divider_id, member1, member2, member3, member4, member5, member6, tournament_division, tournaments_captain_role_id, tournaments_co_captain_role_id, tournaments_role_id, tournaments_team):
         if tournament_division.id == 649685824492929034 or tournament_division.id == 798776263040040980 or tournament_division.id == 649685682901483542 or tournament_division.id == 649684979357450282 or tournament_division.id == 649684758691053594:
-            loading_message, team_name = await self.create_role(ctx, name, colour, role_divider_id)
-            await self.assign_roles(ctx, loading_message, team_name, member1, member2, member3, member4, member5, member6, tournament_division, tournaments_captain_role_id, tournaments_co_captain_role_id, tournaments_role_id, tournaments_team)
+            loading_message = await ctx.send("----------")
+            team_name = await self.create_role(name, colour, role_divider_id)
+            await self.assign_roles(team_name, member1, member2, member3, member4, member5, member6, tournament_division, tournaments_captain_role_id, tournaments_co_captain_role_id, tournaments_role_id, tournaments_team)
+            await loading_message.edit(content=f"Team Created Successfully! ✅")
 
     async def disband_role(self, ctx, name, role_divider_top_id, role_divider_bottom_id, tournaments_captain_role_id, tournaments_co_captain_role_id, tournaments_role_id, tournaments_scout_division_role_id, tournaments_mid_division_role_id, tournaments_juggernaut_divion_role_id):
         response = await ctx.send("-----------") 
@@ -131,19 +122,25 @@ class RoleCommands(commands.Cog):
 
     @is_work_channel
     @commands.cooldown(1, 30, commands.BucketType.guild)
-    @commands.command(aliases=["createroleteam"])
+    @commands.command(aliases=["createrole3v3"])
     async def create_team_role(self, ctx, name, member1: discord.Member, member2: discord.Member, member3: discord.Member, member4: discord.Member, member5: discord.Member, member6: discord.Member, colour: discord.Color, tournament_division: discord.Role):
         await self.create_team(ctx, name, colour, 707250485702426625, member1, member2, member3, member4, member5, member6, tournament_division, 649683977241886730, 716290546519244850, 896555065282818079, True)
 
+    # @is_work_channel
+    # @commands.cooldown(1, 30, commands.BucketType.guild)
+    # @commands.command(aliases=["createroleclan"])
+    # async def create_team_role(self, ctx, name, member1: discord.Member, member2: discord.Member, member3: discord.Member, member4: discord.Member, member5: discord.Member, member6: discord.Member, colour: discord.Color, tournament_division: discord.Role):
+    #     await self.create_team(ctx, name, colour, 707250485702426625, member1, member2, member3, member4, member5, member6, tournament_division, 649683977241886730, 716290546519244850, 896555065282818079, True)
+
     @is_work_channel
-    @commands.cooldown(1, 30, commands.BucketType.guild)
+    @commands.cooldown(1, 10, commands.BucketType.guild)
     @commands.command(aliases=["disband2v2"])
     async def disband_2v2(self, ctx, name: discord.Role):
         await self.disband_role(ctx, name, 707250483743424683, 665667383184326657, 896550746475077672, 896550746475077672, 896550133309775872, 649685824492929034, 798776263040040980, 649685682901483542)
 
     @is_work_channel
-    @commands.cooldown(1, 30, commands.BucketType.guild)
-    @commands.command(aliases=["disbandteam"])
+    @commands.cooldown(1, 10, commands.BucketType.guild)
+    @commands.command(aliases=["disband3v3"])
     async def disband_team(self, ctx, name: discord.Role):
         await self.disband_role(ctx, name, 707250485702426625, 707250483743424683, 649683977241886730, 716290546519244850, 896555065282818079, 649684979357450282, 649684979357450282, 649684758691053594)
 

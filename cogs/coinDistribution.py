@@ -62,7 +62,7 @@ class PrizeDistribution(commands.Cog):
         # view.add_item(rejectButton)
         
         logEmbed = discord.Embed(title = f"The Conquering Games Coin Distribution",description=f"**Distribution**\n{args}", color=0xff0000)
-        logEmbed.set_author(name=f"Submitted by: {ctx.author.display_name}", icon_url=ctx.author.avatar.url)
+        logEmbed.set_author(name=f"Submitted by: {ctx.author.display_name}", icon_url=ctx.author.display_avatar.url)
         logEmbed.timestamp = ctx.message.created_at
         msg = await coinDistribtuionChannel.send(self.hmsPing, embed = logEmbed) #, view=view)
 
