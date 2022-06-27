@@ -7,7 +7,7 @@ from discord import app_commands
 from cogs.appCommandsTest import DropdownView
 from cogs.mapSelectionAppCommands import RerollDropdown
 
-token = "OTUzMDE3MDU1MjM2NDU2NDQ4.Gp0q6l.8VIj98FK-wkozHMSXUYKdZa62D-1k5899DTS-I"
+token = ""
 class MyBot(commands.Bot):
     
     def __init__(self):

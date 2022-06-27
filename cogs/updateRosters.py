@@ -151,31 +151,19 @@ class updateRosters(commands.Cog):
 
                 try:
                     if captain_role in member.roles:
+                        team_members.remove(member)
                         captain = member.display_name + " - " + member.mention
                         await member.add_roles(rover_bypass_role)
                         await member.edit(nick=f"{member.display_name} | Team Captain")
-                        team_members.remove(member)
 
                     elif co_captain_role in member.roles:
+                        team_members.remove(member)
                         co_captain = member.display_name + " - " + member.mention
                         await member.add_roles(rover_bypass_role)
-                        await member.edit(nick=f"{member.display_name} | Team Co-Captain")
-                        team_members.remove(member)                        
+                        await member.edit(nick=f"{member.display_name} | Team Co-Captain")                        
 
                 except:
-                    print(f"{member.display_name}'s nickname could not be edited due to their nickname being too long.")
-            
-                if " | Team Captain" in member.display_name:
-                    member_display_name = member.display_name[:-len(" | Team Captain")]
-                    member_text = member_text + f"\n{member_display_name} - {member.mention}"
-
-                elif " | Team Co-Captain" in member.display_name:
-                    member_display_name = member.display_name[:-len(" | Team Co-Captain")]
-                    member_text = member_text + f"\n{member_display_name} - {member.mention}"
-
-                else:
-                    member_text = member_text + f"\n{member.display_name} - {member.mention}"
-        
+                    print(f"{member.display_name}'s nickname could not be edited due to their nickname being too long.")     
 
             if captain == None:
                 captain = "N/A"
@@ -185,6 +173,19 @@ class updateRosters(commands.Cog):
 
             if len(team_members) == 0:
                 member_text = member_text + f"\nN/A"
+
+            else:
+                for member in team_members:
+                    if " | Team Captain" in member.display_name:
+                        member_display_name = member.display_name[:-len(" | Team Captain")]
+                        member_text = member_text + f"\n{member_display_name} - {member.mention}"
+
+                    elif " | Team Co-Captain" in member.display_name:
+                        member_display_name = member.display_name[:-len(" | Team Co-Captain")]
+                        member_text = member_text + f"\n{member_display_name} - {member.mention}"
+
+                    else:
+                        member_text = member_text + f"\n{member.display_name} - {member.mention}"
 
             if len(embed_text_one) < 3800:
                 embed_text_one = embed_text_one + f"\n\n**{team.mention}\'s Roster:**\n**Captain:**\n{captain}\n**Co-Captain:**\n{co_captain}\n{member_text}\n**Total Members: {total_team_members}/6**"
