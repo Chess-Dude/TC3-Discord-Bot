@@ -1,11 +1,12 @@
-import os, discord, datetime
+import os, discord
 from discord.ext import commands
 from discord.ext.commands import Greedy
 from discord.object import Object 
 from typing import Optional, Literal
-from discord import app_commands
-from cogs.appCommandsTest import DropdownView
-from cogs.mapSelectionAppCommands import RerollDropdown
+from cogs.tourneyApplicationCommands import DropdownView
+from cogs.mapSelectionCommands import RerollDropdown
+from cogs.informationChannels import ParentTournamentInformationViews, ChildTournamentInformationViews, ParentGeneralInformationViews 
+from cogs.tc3StrategyChannel import ReviewStrategies
 
 token = ""
 class MyBot(commands.Bot):
@@ -27,7 +28,7 @@ class MyBot(commands.Bot):
             ),  
             application_id=953017055236456448
         )
-        
+    
     async def setup_hook(self):
         for filename in os.listdir('./cogs'):
             if filename.endswith('.py'):
@@ -35,6 +36,10 @@ class MyBot(commands.Bot):
                 print(f'cogs.{filename[:-3]} loaded')
         self.add_view(DropdownView())
         self.add_view(RerollDropdown())
+        self.add_view(ParentTournamentInformationViews())
+        self.add_view(ChildTournamentInformationViews())
+        self.add_view(ParentGeneralInformationViews())
+        self.add_view(ReviewStrategies())
         print("view loaded successfully")
 
 bot = MyBot()
@@ -59,15 +64,6 @@ async def reload(ctx, args):
             print(f'cogs.{filename[:-3]} re-loaded')
 
 @bot.command()
-@commands.is_owner() 
-async def AdminRole(ctx, member:discord.Member, role:discord.Role):
-    if role in member.roles:
-        await member.remove_roles(role)
-    else:
-        await member.add_roles(role)
-    await ctx.send('did')
-
-@bot.command()
 @commands.is_owner()
 async def echo(ctx, *, args):
     await ctx.send(f"{args}")
@@ -77,7 +73,7 @@ async def echo(ctx, *, args):
 async def sync(ctx, guilds: Greedy[Object], spec: Optional[Literal["~", "*"]] = None):
     if not guilds:
         if spec == "~":
-            fmt = await ctx.bot.tree.sync(guild=ctx.guild)
+            fmt = await ctx.bot.tree.sync(guild=ctx.guild)   
         elif spec == "*":
             ctx.bot.tree.copy_global_to(guild=ctx.guild)
             fmt = await ctx.bot.tree.sync(guild=ctx.guild)
@@ -100,15 +96,38 @@ async def sync(ctx, guilds: Greedy[Object], spec: Optional[Literal["~", "*"]] = 
 
     await ctx.send(f"Synced the tree to {fmt}/{len(guilds)} guilds.")
     
-@commands.is_owner()
-@bot.command(aliases=["renamerole"])
-async def rename_role(ctx, role: discord.Role, args):
-    await role.edit(name=args)
-    await ctx.reply(f"renamed {role.mention} to {args}")
-
 @bot.command()
 @commands.is_owner()
 async def embed(ctx):
     await ctx.send(embed=discord.Embed(title="N/A", description="", color=0xff0000))
+
+@bot.event
+async def on_member_join(member):
+    TC3_SERVER = bot.get_guild(350068992045744141)
+    if member.guild == TC3_SERVER:
+        LOBBY_CHANNEL = bot.get_channel(350068992045744142)
+        welcome_message_channel = bot.get_channel(351084557929283585)
+
+        msg = await LOBBY_CHANNEL.send(f"Welcome to The Official Conquerors 3 Discord {member.mention}! If you have any questions feel free to ping <@585991378400706570>! Make sure to checkout <#351057978381828096> and <#696086223009218682> to stay up to date with the latest The Conquerors 3 content! Before you post, please read <#731499115573280828> to keep our server running smoothly and without any problems.")
+        await welcome_message_channel.send(f"<@563066303015944198>, <@361170109877977098>, <@898392058077802496>, <@804726051166617652>, <@450662444612845580> \n{msg.jump_url}")
+
+@bot.command()
+@commands.is_owner()
+async def archive_tcg(ctx):
+    _3v3_category = discord.utils.get(
+        ctx.guild.categories, 
+        id=666965988373299211
+    )   
+
+    _2v2_category = discord.utils.get(
+        ctx.guild.categories, 
+        id=666965988373299211
+    )   
+
+    _1v1_category = discord.utils.get(
+        ctx.guild.categories, 
+        id=666965988373299211
+    )   
+
 
 bot.run(token)

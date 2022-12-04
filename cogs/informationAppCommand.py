@@ -1,8 +1,10 @@
-import discord, gspread, datetime, json, asyncio, typing
+import discord, gspread, json, typing
 from oauth2client.service_account import ServiceAccountCredentials
 from discord import Member, app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
+from cogs.informationChannels import InformationEmbeds
+from cogs.mapSelectionCommands import AppCommandsMapSelection
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
@@ -17,31 +19,9 @@ class InformationAppCommands(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-    #     with open("mapList.json", 'r') as config_reader:
-    #         self.mapImages = json.loads(config_reader.read())
-        
-    #     self.new_data = {}
-    #     for key, value in self.mapImages.items():
-    #         self.new_data[key.lower()] = value
-
-    # # @commands.is_owner()
-    # # @commands.command()
-    # # async def testmap(self, ctx):
-    # #     mapEmbed=discord.Embed(title="Desert Vs Grass", description="Map Info for Desert vs Grass", color=0xff0000)
-    # #     mapEmbed.set_image(url = "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c0/KoreaRadar.png")
-    # #     mapEmbed.timestamp = datetime.datetime.utcnow()
-    # #     mapEmbed.set_thumbnail(url = "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/1d/Desert_and_grass.png/revision/latest?cb=20171028152322")
-    # #     mapEmbed.set_image(url = "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/4f/DesertGrassMap.png")
-    # #     mapEmbed.add_field(name = "Gamemode", value = "3v3")
-    # #     mapEmbed.add_field(name = "Map Type", value = "Land & Naval")
-    # #     mapEmbed.add_field(name = "Crystals", value = "4 Super Crystals 8 Normal Crystals")
-    # #     mapEmbed.add_field(name = "Oil Spots", value = "6")
-    
-
-    # #     await ctx.message.reply(embed = mapEmbed, mention_author = False)
 
     def bots_channels(interaction):
-        return interaction.channel.id == 941567353672589322 or interaction.channel.id == 351057167706619914 or interaction.channel.id == 408820459279220736 
+        return interaction.channel.id == 941567353672589322 or interaction.channel.id == 351057167706619914 
 
     is_bots = app_commands.check(bots_channels)
     
@@ -60,56 +40,178 @@ class InformationAppCommands(commands.Cog):
         interaction: discord.Interaction, 
         unit: typing.Optional[str],
         ):         
-            
-            input_unit = unit
-            data = sheet.get_all_records()
-            result_entry = None
+            if unit != None:
+                input_unit = unit
+                data = sheet.get_all_records()
+                result_entry = None
 
-            for entry in data:
-                if input_unit.lower() == entry["Unit"].lower() or input_unit.lower() == entry["Unit"].lower().replace(" ", ""):
-                    result_entry = entry
-            
-            if result_entry == None:
-                return
-            
-            unit_stats = ["Type", "Produced in", "Cost", "Build Time", "Health", "Damage (DPS)", "Speed", "Range", "Garrisonable", "Garrisons", "Researchable", "Produces", "Unit Slots", "Wiki Link", "Image Link"]
-            info_embed = discord.Embed(
-                title=f'{result_entry["Unit"]}', 
-                description=f'Unit Stats for the {result_entry["Unit"]}', 
-                color=0xff0000)
+                for entry in data:
+                    if input_unit.lower() == entry["Unit"].lower() or input_unit.lower() == entry["Unit"].lower().replace(" ", ""):
+                        result_entry = entry
+                
+                if result_entry == None:
+                    await interaction.response.send_message(content=f"Error: You did not provide a valid unit. Please try again.", ephemeral=True)
 
-            info_embed.set_author(
-                name=f"{interaction.user.display_name}", 
-                icon_url=f"{interaction.user.display_avatar.url}")
+                else:            
+                    unit_stats = ["Type", "Produced in", "Cost", "Build Time", "Health", "Damage (DPS)", "Speed", "Range", "Garrisonable", "Garrisons", "Researchable", "Produces", "Unit Slots", "Wiki Link", "Image Link"]
+                    info_embed = discord.Embed(
+                        title=f'{result_entry["Unit"]}', 
+                        description=f'Unit Stats for the {result_entry["Unit"]}', 
+                        color=0xff0000)
 
-            info_embed.set_thumbnail(url=f'{result_entry["Image Link"]}')
+                    info_embed.set_author(
+                        name=f"{interaction.user.display_name}", 
+                        icon_url=f"{interaction.user.display_avatar.url}")
 
-            for stat in unit_stats:
-                info_embed.add_field(
-                    name=stat, 
-                    value = f'{result_entry[stat]}')
-            
-            info_embed.set_footer(
-                text=f"The Conquerors 3 {input_unit} information",
-                icon_url=interaction.guild.icon
-            )
-            
-            info_embed.timestamp = interaction.created_at
-            
-            await interaction.response.send_message(embed=info_embed)
+                    info_embed.set_thumbnail(url=f'{result_entry["Image Link"]}')
 
-    # @isTC3BotsOrTCGBots   
-    # @info.command()
-    # async def map(self, ctx, *, args=None):
+                    for stat in unit_stats:
+                        info_embed.add_field(
+                            name=stat, 
+                            value = f'{result_entry[stat]}')
+                    
+                    info_embed.set_footer(
+                        text=f"The Conquerors 3 • {input_unit} information",
+                        icon_url=interaction.guild.icon
+                    )
+                    
+                    info_embed.timestamp = interaction.created_at
+                    
+                    await interaction.response.send_message(embed=info_embed)
+            
+            else:
+                await interaction.response.send_message(ephemeral="Please enter a valid unit!")
+
+    @info_unit.autocomplete("unit")
+    async def info_unit_autocomplete(
+        self,
+        interaction: discord.Interaction,
+        current: str,
+    ) -> list[app_commands.Choice[str]]:
+        unit = [
+                "Scout",
+                "Light Soldier",
+                "Heavy Soldier",
+                "Repairman",
+                "Construction Soldier",
+                "Engineer",
+                "Anti Air Soldier",
+                "Medic",
+                "Sniper",
+                "Juggernaut",
+                "Light Tank", 
+                "Heavy Tank",
+                "Anti Air Tank",
+                "Explosive Tank",
+                "Artillery",
+                "Light Plane",
+                "Heavy Plane",
+                "Helicopter",
+                "Stealth Bomber",
+                "Transport Plane",
+                "Space Fighter",
+                "Mothership",
+                "Gunboat",
+                "Destroyer",
+                "Battleship",
+                "Submarine",
+                "Aircraft Carrier",
+                "Oil Ship",
+                "Transport Ship",
+                "Nuclear Missile",
+                "Fire Missile",
+                "Missile",
+                "Medi Truck",
+                "Jeep",
+                "Humvee",
+                "General",
+                "Hovercraft",
+                "Power Plant",
+                "Nuclear Plant",
+                "Oil Rig",
+                "Barracks",
+                "Tank Factory",
+                "Airport",
+                "Space Link",
+                "Naval Shipyard",
+                "Nuclear Silo",
+                "Fort",
+                "Turret",
+                "Anti Air Turret",
+                "Command Center",
+                "Headquarters",
+                "Walls",
+                "Shield Generator",
+                "Landmine",
+                "Watermine",
+                "Soldier House",
+                "Tank House",
+                "Plane House",
+                "Naval House",
+                "Bunker",
+                "Construction Yard",
+                "Hospital",
+                "Research Center",
+                "Super Heavy Soldier",
+                "Super Heavy Tank",
+                "Super Heavy Juggernaut",
+                "Super Heavy Plane",
+                "Super Mothership",
+                "Super Juggernaut"
+                ]
+        return [
+            app_commands.Choice(name=selected_unit, value=selected_unit)
+            for selected_unit in unit if current.lower() in selected_unit.lower()
+        ][:25]
         
-    #     if ctx.invoked_subcommand is None:
-    #         async with ctx.typing():
-    #             chosenMap = args.lower()
-    #             mapEmbed = discord.Embed(title=f"{chosenMap}", description=f"{ctx.author.mention} {chosenMap}!", color=0xff0000)
-    #             mapEmbed.set_image(url = self.new_data[chosenMap])
-    #             mapEmbed.timestamp = ctx.message.created_at
-    #         await ctx.message.reply(embed=mapEmbed)
+    @is_bots   
+    @info_group.command(
+        name="map",
+        description="Get a map radar"
+    )
+    @app_commands.describe(map="Pick a map you would like information on!")
+    @app_commands.rename(map="map")    
+    async def map(
+        self, 
+        interaction: discord.Interaction,
+        map: str
+        ):
+        map_images = AppCommandsMapSelection.get_map_image()
         
+        map_embed = discord.Embed(
+            title=f"{map} Radar:", 
+            description=f"{interaction.user.mention}", 
+            color=0xff0000
+        )
+        
+        map_embed.set_image(url=map_images[map])
+        
+        map_embed.set_author(
+            name=f"{interaction.user.display_name}", 
+            icon_url=interaction.user.display_avatar.url)
+        
+        map_embed.set_footer(
+            text=f"{map} radar", 
+            icon_url=interaction.guild.icon)
+        
+        map_embed.timestamp = interaction.created_at
+
+        await interaction.response.send_message(
+            embed=map_embed)
+
+    @map.autocomplete("map")
+    async def map_autocomplete(
+        self,
+        interaction: discord.Interaction,
+        current: str,
+    ) -> list[app_commands.Choice[str]]:
+        map = AppCommandsMapSelection.get_map_image()
+        map = list(map)
+        return [
+            app_commands.Choice(name=map_image, value=map_image)
+            for map_image in map if current.lower() in map_image.lower()
+        ][:25]
+
     @is_bots
     @info_group.command(
         name="user", 
@@ -158,9 +260,8 @@ class InformationAppCommands(commands.Cog):
         Choice(name="tc1", value=1),
         Choice(name="tc2", value=2),
         Choice(name="tc3", value=3),
-        Choice(name="tcg", value=4),
-        Choice(name="wiki", value=5),
-        Choice(name="twitter", value=6)
+        Choice(name="wiki", value=4),
+        Choice(name="twitter", value=5)
     ])    
     async def link_resource(
         self,
@@ -176,9 +277,6 @@ class InformationAppCommands(commands.Cog):
         elif resource.name == "tc3":
             await interaction.response.send_message(content="https://www.roblox.com/games/8377997/")
 
-        elif resource.name == "tcg":
-            await interaction.response.send_message(content="https://www.roblox.com/My/Groups.aspx?gid=3559196\nhttps://discord.gg/vcAzC5f")
-
         elif resource.name == "wiki":
             await interaction.response.send_message(content="http://theofficialconquerorswikia.wikia.com/wiki/The_official_conquerors_wiki")
 
@@ -192,7 +290,28 @@ class InformationAppCommands(commands.Cog):
         self, 
         interaction: discord.Interaction
         ):
-            await interaction.response.send_message("If you wish to find another member to play TC3 with, please run the ``!!rank game`` command in <#351057167706619914>. This will give you access to the matchmaking channel. Upon gaining access, you may run the ``!play`` command (in the matchmaking channel) to find a fellow player!")
+            await interaction.response.send_message("If you wish to find another member to play TC3 with, please run the ``!!rank game`` command in <#351057167706619914>. This will give you access to the matchmaking channel. Upon gaining access, you may run the ``/play`` command (in the matchmaking channel) to find a fellow player!")
+
+    @info_group.command(
+        name="game_night", 
+        description="A Command That Allows You To Get Info On The Game Night Tournament!")    
+    async def one_day_info(
+        self, 
+        interaction: discord.Interaction
+        ):
+            await interaction.response.send_message("__To sign-up for the one-day tournament please follow the steps below:__\n1. Join The Conquering 3 (https://discord.gg/tc3).\n2.Verify your roblox account by going to <#351057167706619914> and typing ``/verify`` (or hitting the 'update my roles' button in <#1026328773341216808>)\n3. Ping yourself in <#1015670142656581742>\n\nPing a event committee member if you need help or have any questions!")
+
+    @info_group.command(
+        name="tournaments", 
+        description="A Command That Allows You To Get Info On Tournaments!")    
+    async def tournament_info(
+        self, 
+        interaction: discord.Interaction
+        ):
+            await InformationEmbeds.tournament_embed_info(
+                self, 
+                interaction
+            )
 
 async def setup(bot):
     await bot.add_cog(InformationAppCommands(bot))
