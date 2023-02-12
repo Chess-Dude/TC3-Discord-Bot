@@ -7,7 +7,7 @@ class AdvertMessages(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.wait_until_4pm.start()
-        
+
     @tasks.loop(seconds=1.0)
     async def wait_until_4pm(self):
         now = datetime.datetime.now(pytz.timezone('UTC'))
@@ -35,12 +35,17 @@ class AdvertMessages(commands.Cog):
         events_message_time_stamps.append(now.replace(hour=18, minute=0, second=0))
         events_message_time_stamps.append(now.replace(hour=22, minute=0, second=0))
 
+        update_lb_message = []
+        # update_lb_message.append(now.replace(hour=6, minute=0, second=0))
+        # update_lb_message.append(now.replace(hour=12, minute=0, second=0))
+        # update_lb_message.append(now.replace(hour=18, minute=0, second=0))
+        # update_lb_message.append(now.replace(hour=23, minute=0, second=0))
 
         if now in tourney_message_time_stamps:
             try: 
                 TC3 = self.bot.get_guild(350068992045744141)
                 lobby = discord.utils.get(TC3.channels, id = 350068992045744142)
-                await lobby.send("__Tournaments__\n\nAre you tired of playing against unskilled players? If so, join official tournaments with __huge coin and robux prizes__!")
+                await lobby.send("__Tournaments__\nAre you tired of playing against unskilled players? If so, join official tournaments with __huge coin and robux prizes__! Check out <#1047726075221901383> to see how to join!")
                 await asyncio.sleep(60)
 
             except:
@@ -61,6 +66,29 @@ class AdvertMessages(commands.Cog):
                 TC3 = self.bot.get_guild(350068992045744141)
                 lobby = discord.utils.get(TC3.channels, id=350068992045744142)
                 await lobby.send("__Events__\nOur beloved event committee also holds weekly game nights that have a vast variety of games. Occasionally the event committee also holds special events announced at the beginning of every month. Partaking in game nights and special events allows you to enter <#959066479947571232>! If you wish to be notified upon every game night, please run the ``!!rank events`` command.")
+                await asyncio.sleep(60)
+
+            except:
+                print("events_message_time_stamps wait_until_4pm not looped peroperly")
+
+        elif now in update_lb_message:
+            try: 
+                TC3 = self.bot.get_guild(350068992045744141)
+                clan_lb_channel = discord.utils.get(TC3.channels, id=1050289500783386655)
+                clan_weekly_lb = await clan_lb_channel.fetch_message(1056413563209650228)
+                clan_yearly_lb = await clan_lb_channel.fetch_message(1056413562525974608)                
+                
+                clan_lb_embed = clan_weekly_lb.embeds[0].to_dict()
+                all_clan_points = clan_lb_embed['description']
+
+                new_yearly_clan_lb = discord.Embed(
+                    title="Clan Point Yearly Leaderboard",
+                    description=all_clan_points,
+                    color=0x00ffff,
+                    timestamp=datetime.datetime.utcnow()
+                )
+                print(all_clan_points)
+                await clan_yearly_lb.edit(embed=new_yearly_clan_lb)
                 await asyncio.sleep(60)
 
             except:

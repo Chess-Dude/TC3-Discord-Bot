@@ -1,10 +1,11 @@
-import discord, gspread, json, typing
+import discord, gspread, json, typing, requests
 from oauth2client.service_account import ServiceAccountCredentials
 from discord import Member, app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
 from cogs.informationChannels import InformationEmbeds
 from cogs.mapSelectionCommands import AppCommandsMapSelection
+from bs4 import BeautifulSoup
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
@@ -57,7 +58,7 @@ class InformationAppCommands(commands.Cog):
                     info_embed = discord.Embed(
                         title=f'{result_entry["Unit"]}', 
                         description=f'Unit Stats for the {result_entry["Unit"]}', 
-                        color=0xff0000)
+                        color=0x00ffff)
 
                     info_embed.set_author(
                         name=f"{interaction.user.display_name}", 
@@ -167,37 +168,111 @@ class InformationAppCommands(commands.Cog):
     @is_bots   
     @info_group.command(
         name="map",
-        description="Get a map radar"
-    )
+        description="Get a map radar")
     @app_commands.describe(map="Pick a map you would like information on!")
     @app_commands.rename(map="map")    
     async def map(
         self, 
         interaction: discord.Interaction,
         map: str
-        ):
+    ):  
+
+        map = map.title()
+        map = map.replace(" Vs ", " vs. ")
+        map = map.replace(" Vs. ", " vs. ")
+        page = requests.get("https://theconquerors.fandom.com/wiki/Category:Maps")
+
+        soup = BeautifulSoup(page.content, "html.parser")
+        no = soup.findAll('table', class_="article-table")[0].findAll('tr')
+        map_info_dict = {}
+
+        for i in range(len(no)): 
+            c = no[i].find_all("th")
+            map_info_dict[c[0].text] = []
+            for z in range(len(c)):
+                map_info_dict[c[0].text].append(c[z].text)
+
+        map_info_list = [] 
+        for cur_map in map_info_dict:
+            cur_map_name = cur_map.replace("\n", '')
+            cur_map_name = cur_map_name.title()
+            cur_map_name = cur_map_name.replace(" Vs ", " vs. ")
+            cur_map_name = cur_map_name.replace(" Vs. ", " vs. ")
+            if ((cur_map_name == map) or 
+                (cur_map_name.lower() == map)):
+                for value in map_info_dict[cur_map]:
+                    value = value.replace("\n", ' ')
+                    map_info_list.append(value)
+
         map_images = AppCommandsMapSelection.get_map_image()
-        
+
         map_embed = discord.Embed(
-            title=f"{map} Radar:", 
+            title=f"{map} Map Information:", 
             description=f"{interaction.user.mention}", 
-            color=0xff0000
+            color=0x00ffff
         )
         
-        map_embed.set_image(url=map_images[map])
+        try:
+            map_embed.set_image(url=map_images[map.title()])
         
+        except KeyError:
+            map_embed.set_image(url=map_images[map])
+                
         map_embed.set_author(
             name=f"{interaction.user.display_name}", 
             icon_url=interaction.user.display_avatar.url)
         
         map_embed.set_footer(
-            text=f"{map} radar", 
+            text=f"{map} Map Information", 
             icon_url=interaction.guild.icon)
-        
+
         map_embed.timestamp = interaction.created_at
+        try:
+            map_embed.add_field(
+                name=f"Mode:",
+                value=f"{map_info_list[2]}",
+                inline=True
+            )
+
+            map_embed.add_field(
+                name=f"Map Type:",
+                value=f"{map_info_list[3]}",
+                inline=True
+            )
+
+            map_embed.add_field(
+                name=f"Max Income:",
+                value=f"{map_info_list[4]}",
+                inline=True
+            )
+
+            map_embed.add_field(
+                name=f"Number Of Crystals:",
+                value=f"{map_info_list[5]}",
+                inline=True
+            )
+
+            map_embed.add_field(
+                name=f"Number Of Oil Spots:",
+                value=f"{map_info_list[6]}",
+                inline=True
+            )
+            map_embed.add_field(
+                name=f"Playable?",
+                value=f"{map_info_list[7]}",
+                inline=True
+            )
+
+        except IndexError:
+            map_embed.add_field(
+                name=f"Data Unavailable",
+                value=f"The TC3 Wiki is out of date. Please check back later.",
+                inline=True
+            )
 
         await interaction.response.send_message(
-            embed=map_embed)
+            embed=map_embed
+        )
 
     @map.autocomplete("map")
     async def map_autocomplete(
@@ -227,7 +302,7 @@ class InformationAppCommands(commands.Cog):
             roles = [role for role in member.roles]
             embed = discord.Embed(
                 title=f"{member}", 
-                colour=0xff0000, 
+                colour=0x00ffff, 
                 timestamp=interaction.created_at)
             
             embed.set_author(

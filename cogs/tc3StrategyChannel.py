@@ -86,7 +86,7 @@ class StrategyModal(discord.ui.Modal, title="TC3 Strategy Form"):
         strategy_embed = discord.Embed(
             title=f"{interaction.user.display_name}'s {self.game_mode.value} {self.map_name.value} strategy",
             description=f"{self.explanation.value}",
-            color=0xff0000
+            color=0x00ffff
         )
         
         strategy_embed.set_author(
@@ -105,13 +105,7 @@ class StrategyModal(discord.ui.Modal, title="TC3 Strategy Form"):
         strategy_embed.set_image(
             url=self.links_1.value
         )
-            
-        strategy_embed.add_field(
-            name="**Votes**",
-            value=f"Upvotes: 0 ``0%``\nDownvotes: 0 ``0%``",
-            inline=False
-        )
-    
+              
         strategy_embed.set_footer(
             text=f"The Conquerors 3 Strategies",
             icon_url=interaction.guild.icon
@@ -134,7 +128,7 @@ class StrategyModal(discord.ui.Modal, title="TC3 Strategy Form"):
         success_embed=discord.Embed(
             title="Strategy Submitted", 
             description=f"{interaction.user.mention} Thanks for submitting your strategy!", 
-            color=0xff0000
+            color=0x00ffff
         )
 
         await interaction.response.send_message(embed=success_embed)
@@ -159,70 +153,6 @@ class StrategyCommands(commands.Cog):
         interaction:discord.Interaction
     ):
         await interaction.response.send_modal(StrategyModal())
-
-    async def update_votes(
-        self,
-        payload
-    ):        
-        TC3 = self.bot.get_guild(350068992045744141)
-        all_strat_thread = TC3.get_thread(1048729690866724956)
-
-        tc3_bot = self.bot.get_user(953017055236456448)
-        if payload.user_id != tc3_bot.id:
-            if payload.channel_id == all_strat_thread.id:
-                strategy_message = await all_strat_thread.fetch_message(payload.message_id)
-                if strategy_message.author.id == tc3_bot.id: 
-                    for reaction in strategy_message.reactions:
-                        if str(reaction.emoji) == '👍':
-                            user_upvote_list = [user async for user in reaction.users()]
-                        
-                        elif str(reaction.emoji) == '👎': 
-                            user_downvote_list = [user async for user in reaction.users()]
-                    user_upvote_list, user_downvote_list = list(set(user_upvote_list).difference(user_downvote_list)), list(set(user_downvote_list).difference(user_upvote_list))
-
-                    total_thumbs_up = len(user_upvote_list)
-                    total_thumbs_down = len(user_downvote_list)
-                    total_reactions = total_thumbs_up + total_thumbs_down
-                    try:
-                        total_upvote_percentage = round((total_thumbs_up / total_reactions) * 100, 2)
-                        total_downvote_percentage = round(((total_thumbs_down / total_reactions) * 100), 2)
-                    except ZeroDivisionError:
-                        return 0
-                    
-                    strategy_embed = strategy_message.embeds[0].to_dict()
-                    footer_dictionary = dict(strategy_embed["footer"])
-                    thumbnail_dictionary = dict(strategy_embed["thumbnail"])
-                    author_dictionary = dict(strategy_embed["author"])
-                    timestamp_dictionary = strategy_embed["timestamp"]
-
-                    new_strategy_embed = discord.Embed(title=strategy_embed["title"], colour=strategy_embed["color"], timestamp=datetime.datetime.utcnow())
-
-                    try:
-                        image_dictionary = dict(strategy_embed["image"])                
-                        new_strategy_embed.set_image(url=image_dictionary["url"])
-                    except:
-                        pass
-                    
-                    new_strategy_embed.description = (f"{strategy_embed['description']}")
-                    new_strategy_embed.add_field(name="**Votes**", value=f"Upvotes: {total_thumbs_up} ``{total_upvote_percentage}%``\nDownvotes: {total_thumbs_down} ``{total_downvote_percentage}%``")
-                    new_strategy_embed.set_author(name=author_dictionary["name"], icon_url=author_dictionary["icon_url"])
-                    new_strategy_embed.set_thumbnail(url=thumbnail_dictionary["url"])
-                    new_strategy_embed.set_footer(text=footer_dictionary["text"], icon_url=footer_dictionary["icon_url"])
-                    await strategy_message.edit(embed=new_strategy_embed)
-
-    @commands.Cog.listener()
-    async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
-        await StrategyCommands.update_votes(
-            self=self,
-            payload=payload
-        )
-
-    @commands.Cog.listener()
-    async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
-        await StrategyCommands.update_votes(
-            self=self,
-            payload=payload
-        )
         
 async def setup(bot):
     await bot.add_cog(StrategyCommands(bot))

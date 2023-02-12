@@ -30,7 +30,7 @@ class TournamentDisbandCommands(commands.Cog):
 
             log_embed = discord.Embed(
             title=f"The Conquering Games {tournament_type} Team Disband Application", 
-            color=0xff0000,
+            color=0x00ffff,
             timestamp=interaction.created_at
             )
 
@@ -50,10 +50,8 @@ class TournamentDisbandCommands(commands.Cog):
                 inline=False
                 )
 
-            EC_ROLE = interaction.guild.get_role(475669961990471680)
-
             await tournament_applications_channel.send(
-                content=f"ec_role.mention",
+                content=f"<@650847350042132514>, <@818729621029388338>, <@319573094731874304>, <@198273107205685248>, <@711003479430266972>, <@768259026084429896>, <@820952452739891281>, <@282761998326824961>",
                 embed=log_embed
             )
 
@@ -85,7 +83,7 @@ class TournamentDisbandCommands(commands.Cog):
         success_embed = discord.Embed(
             title="Match Staff Have Been Notified To Disband Your Team!",
             description=f"We're sad to see you go 😢",
-            color=0xff0000
+            color=0x00ffff
         )
 
         await interaction.response.send_message(embed=success_embed)            

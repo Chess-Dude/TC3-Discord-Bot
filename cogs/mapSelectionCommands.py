@@ -425,7 +425,7 @@ class AppCommandsMapSelection(commands.Cog):
             map_embed = discord.Embed(
             title=f"Randomized {map_type} Map:", 
             description=f"{interaction.user.mention} Your randomized map is: {selected_map}!", 
-            color=0xff0000
+            color=0x00ffff
             )
             
             map_embed.set_image(url=map_images[selected_map])

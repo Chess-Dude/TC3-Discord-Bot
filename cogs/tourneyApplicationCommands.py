@@ -16,7 +16,7 @@ class TeamCreation():
         
         roster_embed = discord.Embed(
             title=f"{team_name}'s Roster", 
-            color=0xff0000,
+            color=0x00ffff,
             timestamp=interaction.created_at
         )
 
@@ -210,6 +210,8 @@ class Dropdown(discord.ui.Select):
             await player.add_roles(tournament_role)
             await player.send(content=f"You have been placed in {tournament_division} by {interaction.user.mention}! You can now ping yourself in <#1045927249825775647> to sign up for a tournament!")
             await interaction.channel.send(f"{interaction.user.mention} Placed {player.mention} in {tournament_division}")
+        
+        await interaction.message.edit(view=None)
 
 
 class DropdownView(discord.ui.View):
@@ -233,7 +235,7 @@ class tournament_application_commands(commands.Cog):
         success_embed = discord.Embed(
             title="Match Staff Notified!", 
             description=description, 
-            color=0xff0000
+            color=0x00ffff
             )
 
         await interaction.response.send_message(embed=success_embed)
@@ -323,7 +325,7 @@ class tournament_application_commands(commands.Cog):
 
         view = DropdownView()
         await tournament_applications_channel.send(
-            content=f"<@650847350042132514>, <@818729621029388338>, <@319573094731874304>, <@198273107205685248>",
+            content=f"<@650847350042132514>, <@818729621029388338>, <@319573094731874304>, <@198273107205685248>, <@711003479430266972>, <@768259026084429896>, <@820952452739891281>, <@282761998326824961>",
             embed=log_embed,
             view=view
             )

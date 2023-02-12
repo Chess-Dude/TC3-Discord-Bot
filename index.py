@@ -1,12 +1,17 @@
 import os, discord
+from discord import app_commands
 from discord.ext import commands
 from discord.ext.commands import Greedy
 from discord.object import Object 
 from typing import Optional, Literal
 from cogs.tourneyApplicationCommands import DropdownView
 from cogs.mapSelectionCommands import RerollDropdown
-from cogs.informationChannels import ParentTournamentInformationViews, ChildTournamentInformationViews, ParentGeneralInformationViews 
+from cogs.informationChannels import ParentTournamentInformationViews, ChildTournamentInformationViews, ParentGeneralInformationViews, ParentClanInformationViews 
 from cogs.tc3StrategyChannel import ReviewStrategies
+from cogs.clanPointsCommands import ReviewClanPoints
+from cogs.clanCommands import ReviewClanApplication
+from cogs.redeemSystem import RedeemModalReview, RedeemTicketPanel
+from cogs.chessTournamentForm import ChessTournamentTicketPanel, ChessTournamentModalReview
 
 token = ""
 class MyBot(commands.Bot):
@@ -28,7 +33,7 @@ class MyBot(commands.Bot):
             ),  
             application_id=953017055236456448
         )
-    
+
     async def setup_hook(self):
         for filename in os.listdir('./cogs'):
             if filename.endswith('.py'):
@@ -40,7 +45,14 @@ class MyBot(commands.Bot):
         self.add_view(ChildTournamentInformationViews())
         self.add_view(ParentGeneralInformationViews())
         self.add_view(ReviewStrategies())
-        print("view loaded successfully")
+        self.add_view(ReviewClanPoints())
+        self.add_view(ReviewClanApplication())
+        self.add_view(ParentClanInformationViews())
+        self.add_view(RedeemModalReview())
+        self.add_view(RedeemTicketPanel())
+        self.add_view(ChessTournamentModalReview())
+        self.add_view(ChessTournamentTicketPanel())
+        print("views loaded successfully")
 
 bot = MyBot()
 bot.remove_command("help")
@@ -113,21 +125,62 @@ async def on_member_join(member):
 
 @bot.command()
 @commands.is_owner()
-async def archive_tcg(ctx):
-    _3v3_category = discord.utils.get(
-        ctx.guild.categories, 
-        id=666965988373299211
-    )   
+async def clan_lb(ctx):
+    clan_lb_embed = discord.Embed(
+        title="Clan Point Yearly Leaderboard",
+        description="CRC - 60\nFresh Pickles - 0\nShambhala - 0\nFederal Republic of the Montreal - 0\n Glory to Sentigosedge - 0\nThe Marching Conquerors - 0",
+        color=0x00ffff
+    )
 
-    _2v2_category = discord.utils.get(
-        ctx.guild.categories, 
-        id=666965988373299211
-    )   
+    await ctx.send(embed=clan_lb_embed)
 
-    _1v1_category = discord.utils.get(
-        ctx.guild.categories, 
-        id=666965988373299211
-    )   
+    clan_lb_embed = discord.Embed(
+        title="Clan Point Weekly Leaderboard",
+        description="CRC - 60\nFresh Pickles - 0\nShambhala - 0\nFederal Republic of the Montreal - 0\n Glory to Sentigosedge - 0\nThe Marching Conquerors - 1000\nThe Marching Conquerors - 0\n",
+        color=0x00ffff
+    )
 
+    await ctx.send(embed=clan_lb_embed)
+
+class GoToMessage(discord.ui.View):
+    def __init__(self, msg_url: str):
+        super().__init__()
+        self.add_item(discord.ui.Button(label="Go to Message", url=msg_url))
+
+@bot.tree.context_menu(
+    name="Report to Moderators"
+)
+async def report_user(
+    interaction: discord.Interaction, 
+    message: discord.Message
+):
+    log_channel = interaction.guild.get_channel(442447501325369345)
+
+    log_embed = discord.Embed(
+        title=f"User Report: {message.author}", 
+        description=f"{message.content}", 
+        color=0x00ffff
+        )        
+
+    log_embed.set_author(
+        name=interaction.user.display_name,
+        icon_url=interaction.user.display_avatar.url
+    )
+
+    await log_channel.send(
+        content=f"<@&351166789700550679> <@&363125947635073025>",
+        embed=log_embed,
+        view=GoToMessage(message.jump_url)
+    )
+
+    success_embed = discord.Embed(
+        title=f"Successfully Notified Moderators!", 
+        color=0x00ffff
+        )        
+
+    await interaction.response.send_message(
+        embed=success_embed, 
+        ephemeral=True
+    )
 
 bot.run(token)

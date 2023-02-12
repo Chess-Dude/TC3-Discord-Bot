@@ -22,7 +22,7 @@ class ModeratorCommands(commands.Cog):
         
         response_embed = discord.Embed(
             description=f"✅ {count} Messages Have Been Purged!", 
-            colour=0x00FF00
+            colour=0x00ffff
         )
         
         success_message = await interaction.channel.send(embed=response_embed)
@@ -30,7 +30,7 @@ class ModeratorCommands(commands.Cog):
         log_channel = self.bot.get_channel(1028869177798295632)
         
         log_embed = discord.Embed(
-            color=0xff0000, 
+            color=0x00ffff, 
             timestamp=interaction.created_at
         )
         
@@ -103,7 +103,7 @@ class ModeratorCommands(commands.Cog):
         
         response_embed = discord.Embed(
             description=f"✅ {member.display_name}#{member.discriminator} has been muted for {duration} {time_type} | {reason}", 
-            colour=0x00FF00
+            colour=0x00ffff
         )
         
         success_message = await interaction.channel.send(embed=response_embed)
@@ -111,7 +111,7 @@ class ModeratorCommands(commands.Cog):
         log_channel = self.bot.get_channel(1028869177798295632)
         
         log_embed = discord.Embed(
-            color=0xff0000, 
+            color=0x00ffff, 
             timestamp=interaction.created_at
         )
         
@@ -181,7 +181,7 @@ class ModeratorCommands(commands.Cog):
         await member.remove_roles(muted_role)
 
         unmute_log_embed = discord.Embed(
-            color=0xff0000, 
+            color=0x00ffff, 
             timestamp=interaction.created_at
         )
 
@@ -207,6 +207,7 @@ class ModeratorCommands(commands.Cog):
             inline=False
         )       
 
+        log_channel = interaction.guild.get_channel(351084557929283585)
         await log_channel.send(embed=unmute_log_embed)
 
     @app_commands.checks.has_permissions(manage_messages=True)
@@ -227,7 +228,7 @@ class ModeratorCommands(commands.Cog):
         
         response_embed = discord.Embed(
             description=f"✅ {member.display_name}#{member.discriminator} has been unmuted", 
-            colour=0x00FF00
+            colour=0x00ffff
         )
         
         success_message = await interaction.channel.send(embed=response_embed)
@@ -235,7 +236,7 @@ class ModeratorCommands(commands.Cog):
         log_channel = self.bot.get_channel(1028869177798295632)
         
         log_embed = discord.Embed(
-            color=0xff0000, 
+            color=0x00ffff, 
             timestamp=interaction.created_at
         )
         
@@ -296,7 +297,7 @@ class ModeratorCommands(commands.Cog):
         success_message = await interaction.channel.send(embed=response_embed)
 
         log_channel = self.bot.get_channel(1028869177798295632)
-        log_embed = discord.Embed(color=0xff0000, timestamp=interaction.created_at)
+        log_embed = discord.Embed(color=0x00ffff, timestamp=interaction.created_at)
         
         log_embed.set_author(
             name=f"{interaction.guild.name}",
