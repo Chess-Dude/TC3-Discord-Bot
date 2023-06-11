@@ -1,17 +1,22 @@
 import os, discord
-from discord import app_commands
 from discord.ext import commands
 from discord.ext.commands import Greedy
 from discord.object import Object 
 from typing import Optional, Literal
-from cogs.tourneyApplicationCommands import DropdownView
+from cogs.teamApplicationClasses.teamApplicationDropdown import TournamentDropdownView
 from cogs.mapSelectionCommands import RerollDropdown
-from cogs.informationChannels import ParentTournamentInformationViews, ChildTournamentInformationViews, ParentGeneralInformationViews, ParentClanInformationViews 
-from cogs.tc3StrategyChannel import ReviewStrategies
+from cogs.informationChannels import ParentTournamentInformationViews, ParentClanInformationViews
+from cogs.informationEmbeds.childTournamentView import ChildTournamentInformationViews  
+from cogs.strategyClasses.reviewStrategies import ReviewStrategies
 from cogs.clanPointsCommands import ReviewClanPoints
-from cogs.clanCommands import ReviewClanApplication
-from cogs.redeemSystem import RedeemModalReview, RedeemTicketPanel
-from cogs.chessTournamentForm import ChessTournamentTicketPanel, ChessTournamentModalReview
+from cogs.clanClasses.clanApplicationClasses.clanApplicationReview import ReviewClanApplication
+from cogs.redeemSystem import RedeemTicketPanel
+from cogs.redeemClasses.RedeemModalReview import RedeemModalReview 
+from cogs.chessTournamentClasses.chessTournamentModalReview import ChessTournamentModalReview
+from cogs.chessTournamentForm import ChessTournamentTicketPanel
+from cogs.signUpCommands import TournamentTicketPanel
+from cogs.signupClasses.tournamentSignupModalReview import TournamentSignupModalReview
+from cogs.clanClasses.clanRosterClasses.DisbandClans import DisbandClansClass
 
 token = ""
 class MyBot(commands.Bot):
@@ -39,11 +44,11 @@ class MyBot(commands.Bot):
             if filename.endswith('.py'):
                 await bot.load_extension(f'cogs.{filename[:-3]}')
                 print(f'cogs.{filename[:-3]} loaded')
-        self.add_view(DropdownView())
+        self.add_view(TournamentDropdownView())
         self.add_view(RerollDropdown())
         self.add_view(ParentTournamentInformationViews())
         self.add_view(ChildTournamentInformationViews())
-        self.add_view(ParentGeneralInformationViews())
+        # self.add_view(ParentGeneralInformationViews())
         self.add_view(ReviewStrategies())
         self.add_view(ReviewClanPoints())
         self.add_view(ReviewClanApplication())
@@ -52,6 +57,9 @@ class MyBot(commands.Bot):
         self.add_view(RedeemTicketPanel())
         self.add_view(ChessTournamentModalReview())
         self.add_view(ChessTournamentTicketPanel())
+        self.add_view(TournamentSignupModalReview())
+        self.add_view(TournamentTicketPanel())
+        self.add_view(DisbandClansClass())        
         print("views loaded successfully")
 
 bot = MyBot()
@@ -121,27 +129,42 @@ async def on_member_join(member):
         welcome_message_channel = bot.get_channel(351084557929283585)
 
         msg = await LOBBY_CHANNEL.send(f"Welcome to The Official Conquerors 3 Discord {member.mention}! If you have any questions feel free to ping <@585991378400706570>! Make sure to checkout <#351057978381828096> and <#696086223009218682> to stay up to date with the latest The Conquerors 3 content! Before you post, please read <#731499115573280828> to keep our server running smoothly and without any problems.")
-        await welcome_message_channel.send(f"<@563066303015944198>, <@361170109877977098>, <@898392058077802496>, <@804726051166617652>, <@450662444612845580> \n{msg.jump_url}")
+        await welcome_message_channel.send(f"<@563066303015944198>, <@361170109877977098>, <@898392058077802496>, <@450662444612845580>, <@646463139977625623>, <@897020169958883348>, <@1006873288229793833> \n{msg.jump_url}")
 
 @bot.command()
 @commands.is_owner()
 async def clan_lb(ctx):
+    import discord
+    clan_lb_channel = bot.get_channel(1050289500783386655)
+    clan_yearly_lb_message = await clan_lb_channel.fetch_message(1056413562525974608)
+
+    description = """
+Omnipotent - 32638
+The Marching Conquerors - 29083
+CRC - 25849
+goom - 18741
+The Hivemind - 11993
+NylonW - 10268
+Total Victory - 9092
+The Bozos - 7159
+Ablogical - 5594
+Lose 4 Cry - 4604
+CR - 3051
+i hate tc3 the clan - 2081
+Fresh Pickles - 2060
+The Bots - 1887
+Glory to Sentigosedge - 1577
+The Dairy Mafia - 1313
+Shambhala - 232
+"""
     clan_lb_embed = discord.Embed(
         title="Clan Point Yearly Leaderboard",
-        description="CRC - 60\nFresh Pickles - 0\nShambhala - 0\nFederal Republic of the Montreal - 0\n Glory to Sentigosedge - 0\nThe Marching Conquerors - 0",
+        description=f"{description}",
         color=0x00ffff
     )
 
-    await ctx.send(embed=clan_lb_embed)
-
-    clan_lb_embed = discord.Embed(
-        title="Clan Point Weekly Leaderboard",
-        description="CRC - 60\nFresh Pickles - 0\nShambhala - 0\nFederal Republic of the Montreal - 0\n Glory to Sentigosedge - 0\nThe Marching Conquerors - 1000\nThe Marching Conquerors - 0\n",
-        color=0x00ffff
-    )
-
-    await ctx.send(embed=clan_lb_embed)
-
+    await clan_yearly_lb_message.edit(embed=clan_lb_embed)
+    await ctx.send("completed")
 class GoToMessage(discord.ui.View):
     def __init__(self, msg_url: str):
         super().__init__()

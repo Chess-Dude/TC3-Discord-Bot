@@ -29,7 +29,7 @@ class ChannelUtilityCommands(commands.Cog):
     @create_command_group.command(
         name="game_night",
         description="A Command That Allows You To Create A Server Channel!")
-    @app_commands.describe(role_1="Ping a role to be added to the channel here!")
+    @app_commands.describe(role_1="P1`ing a role to be added to the channel here!")
     @app_commands.describe(role_2="Ping a role to be added to the channel here!")
     @app_commands.rename(role_1="role_1")
     @app_commands.rename(role_2="role_2")
@@ -89,11 +89,13 @@ class ChannelUtilityCommands(commands.Cog):
         MOD_ROLE = interaction.guild.get_role(351166789700550679)
         MIT_ROLE = interaction.guild.get_role(363125947635073025)
         CONQUEROR_ROLE = interaction.guild.get_role(365244875861393408)
+        MUTED_ROLE = interaction.guild.get_role(351091626950787084)
 
         overwrites = {
             interaction.guild.default_role: discord.PermissionOverwrite(view_channel=False),
             interaction.guild.me: discord.PermissionOverwrite(read_messages=True),
-            CONQUEROR_ROLE: discord.PermissionOverwrite(view_channel=True, manage_channels=False, manage_permissions=False, manage_webhooks=False, send_messages=True, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False, embed_links=True, attach_files=True, add_reactions=False, use_external_emojis=False, use_external_stickers=False, mention_everyone=False, manage_messages=False, manage_threads=False, read_message_history=True, send_tts_messages=False, use_application_commands=False),
+            MUTED_ROLE: discord.PermissionOverwrite(view_channel=True, manage_channels=False, manage_permissions=False, manage_webhooks=False, send_messages=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False, embed_links=False, attach_files=False, add_reactions=False, use_external_emojis=False, use_external_stickers=False, mention_everyone=False, manage_messages=False, manage_threads=False, read_message_history=True, send_tts_messages=False, use_application_commands=False),
+            CONQUEROR_ROLE: discord.PermissionOverwrite(view_channel=True, manage_channels=False, manage_permissions=False, manage_webhooks=False, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False, embed_links=True, attach_files=True, add_reactions=False, use_external_emojis=False, use_external_stickers=False, mention_everyone=False, manage_messages=False, manage_threads=False, read_message_history=True, send_tts_messages=False, use_application_commands=False), # left send_messages=UNSPECIFIED due to discord perms, 
             EC_ROLE: discord.PermissionOverwrite(view_channel=True, manage_channels=False, manage_permissions=False, manage_webhooks=False, send_messages=True, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False, embed_links=True, attach_files=True, add_reactions=True, use_external_emojis=True, use_external_stickers=False, mention_everyone=False, manage_messages=False, manage_threads=False, read_message_history=True, send_tts_messages=False, use_application_commands=False),
             MOD_ROLE: discord.PermissionOverwrite(view_channel=True, manage_channels=False, manage_permissions=False, manage_webhooks=False, send_messages=True, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False, embed_links=True, attach_files=True, add_reactions=False, use_external_emojis=False, use_external_stickers=False, mention_everyone=False, manage_messages=True, manage_threads=True, read_message_history=True, send_tts_messages=False, use_application_commands=True),
             MIT_ROLE: discord.PermissionOverwrite(view_channel=True, manage_channels=False, manage_permissions=False, manage_webhooks=False, send_messages=True, send_messages_in_threads=False, create_public_threads=False, create_private_threads=False, embed_links=True, attach_files=True, add_reactions=False, use_external_emojis=False, use_external_stickers=False, mention_everyone=False, manage_messages=True, manage_threads=True, read_message_history=True, send_tts_messages=False, use_application_commands=True)

@@ -4,7 +4,7 @@ from discord import Member, app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
 from cogs.informationChannels import InformationEmbeds
-from cogs.mapSelectionCommands import AppCommandsMapSelection
+from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUitilityMethods
 from bs4 import BeautifulSoup
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
@@ -30,6 +30,28 @@ class InformationAppCommands(commands.Cog):
         name="info",
         description="A Command That Allows You To Get Information On A Certain Object!")
 
+    @info_group.command(
+        name="one_day_sign_up", 
+        description="A Command That Allows You To Get Information On the One-Day Tournament!")
+    async def info_one_day_tournament(
+        self, 
+        interaction: discord.Interaction, 
+    ):      
+
+
+        message = """
+        
+__🛑 Rules and Guidelines:__
+https://docs.google.com/document/d/1e0JkxBFhv55TkJxCLWxVVBxQByblbZV7Ryw95ILqpCE/edit?usp=sharing\n\n
+__🔢 To sign-up for the one-day tournament please follow the steps below:__
+1. Verify your roblox account by going to <#351057167706619914> and typing ``/verify``
+2. Ping yourself yourself in <#1015670142656581742> (when signups open)
+3. Ensure that your level roles are all up to date (use the ``/verify`` command)
+"""            
+        await interaction.response.send_message(
+            content=message
+        )
+
     @is_bots
     @info_group.command(
         name="unit", 
@@ -39,7 +61,7 @@ class InformationAppCommands(commands.Cog):
     async def info_unit(
         self, 
         interaction: discord.Interaction, 
-        unit: typing.Optional[str],
+        unit: str
         ):         
             if unit != None:
                 input_unit = unit
@@ -204,7 +226,7 @@ class InformationAppCommands(commands.Cog):
                     value = value.replace("\n", ' ')
                     map_info_list.append(value)
 
-        map_images = AppCommandsMapSelection.get_map_image()
+        map_images = MapSelectionUitilityMethods.get_map_image()
 
         map_embed = discord.Embed(
             title=f"{map} Map Information:", 
@@ -280,7 +302,7 @@ class InformationAppCommands(commands.Cog):
         interaction: discord.Interaction,
         current: str,
     ) -> list[app_commands.Choice[str]]:
-        map = AppCommandsMapSelection.get_map_image()
+        map = MapSelectionUitilityMethods.get_map_image()
         map = list(map)
         return [
             app_commands.Choice(name=map_image, value=map_image)

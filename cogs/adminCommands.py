@@ -241,6 +241,97 @@ class AdminCommands(commands.Cog):
 
         else:
             await ctx.send(f"You provided {len(player_tuple)} members")
+
+    @commands.has_any_role(351074813055336458, 743302990001340559, 554152645192056842)
+    @commands.command(aliases=["balanceteams2v2"])
+    async def balance_teams_2v2(
+        self,
+        ctx,
+        *player_tuple: discord.Member
+    ):  
+        if (len(player_tuple) % 2) == 0:
+            level_role_list = []
+            low_level_list = [] # between level 0-30
+            mid_level_list = [] # between level 40-60
+            high_level_list = [] # level 70+
+            top_role = discord.utils.get(
+                ctx.guild.roles, 
+                id=589808867999875072
+            )        
+            bottom_role = discord.utils.get(
+                ctx.guild.roles, 
+                id=1046102834363519017
+            )
+            team_list = []
+
+            for level_role_pos in range(top_role.position-1, bottom_role.position, -1):
+                level_role = discord.utils.get(
+                    ctx.guild.roles, 
+                    position=level_role_pos
+                )
+                if level_role == None:
+                    continue
+
+                level_role_list.append(level_role)
+            # index 0 = 100, index 1 = 70, index 2 = 60, index 3 = 50, index 4 = 40, index 5 = 30, index 6 = 20, index 7 = 10, index 8 = 5
             
+            for player in player_tuple:
+                if ((level_role_list[0] in player.roles) or 
+                (level_role_list[1] in player.roles)):
+                    high_level_list.append(player)
+                    continue
+
+                if ((level_role_list[2] in player.roles) or 
+                (level_role_list[3] in player.roles) or 
+                (level_role_list[4] in player.roles)):
+                    mid_level_list.append(player)
+                    continue
+                
+                else:
+                    low_level_list.append(player)
+
+            count = 0            
+            while (len(high_level_list) + len(mid_level_list) + len(low_level_list) >= 2):
+                count = count + 1
+                
+                try:
+                    team_list.append(high_level_list[0])
+                    high_level_list.remove(high_level_list[0])                
+                except:
+                    try:
+                        team_list.append(mid_level_list[0])
+                        mid_level_list.remove(mid_level_list[0])
+                    except:
+                        team_list.append(low_level_list[0])
+                        low_level_list.remove(low_level_list[0])
+                
+                try:
+                    team_list.append(low_level_list[0])
+                    low_level_list.remove(low_level_list[0])
+                except:
+                    try:
+                        team_list.append(mid_level_list[0])
+                        mid_level_list.remove(mid_level_list[0])
+                    except:
+                        team_list.append(high_level_list[0])                    
+                        high_level_list.remove(high_level_list[0])
+                
+                player_names = ''
+                group_num = count 
+                group_role = discord.utils.get(
+                    ctx.guild.roles, 
+                    name=f"Group {group_num}"
+                )
+                
+                for player in team_list:
+                    await player.add_roles(group_role)
+                    player_names = player_names + player.mention + ' ' 
+                await ctx.send(f"**__{group_role.mention}__**\n{player_names}")
+                team_list = []
+
+        else:
+            await ctx.send(f"You provided {len(player_tuple)} members. Not divisible by 2")
+            
+
 async def setup(bot):
     await bot.add_cog(AdminCommands(bot))

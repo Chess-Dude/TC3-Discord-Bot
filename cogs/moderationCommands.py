@@ -97,10 +97,32 @@ class ModeratorCommands(commands.Cog):
         time_type: str,
         reason: str
     ):
+        staff_role_id_list = [1072233470606200853,
+                              351074813055336458,
+                              351166789700550679,
+                              363125947635073025,
+                              743302990001340559,
+                              554152645192056842,
+                              743115435821498460,
+                              419333829891850250,
+                              363500459203231746
+                              ]
+        
+        for role_id in staff_role_id_list:
+            staff_role = interaction.guild.get_role(role_id)
+            
+            if staff_role in member.roles:
+                response_embed = discord.Embed(
+                    description=f"✅ {member.display_name}#{member.discriminator} is a staff member! | Failed to mute.", 
+                    colour=0x00ffff
+                )
+                success_message = await interaction.channel.send(embed=response_embed)
+                return
+
         muted_role = interaction.guild.get_role(351091626950787084)
 
         await member.add_roles(muted_role)
-        
+
         response_embed = discord.Embed(
             description=f"✅ {member.display_name}#{member.discriminator} has been muted for {duration} {time_type} | {reason}", 
             colour=0x00ffff
@@ -162,17 +184,16 @@ class ModeratorCommands(commands.Cog):
 
         time_now = datetime.datetime.now()
 
-        if time_type == "minutes":
+        if time_type.lower() == "minutes":
             time_duration = datetime.timedelta(minutes=duration)
             duration_seconds = duration * 60
 
 
-        elif time_type == "hours":
+        elif time_type.lower() == "hours":
             time_duration = datetime.timedelta(hours=duration)
             duration_seconds = duration * 3600
 
-        unmute_time = time_now + time_duration
-
+        # await member.timed_out_until(unmute_time)
         await member.timeout(time_duration)
         await member.add_roles(muted_role)
 
@@ -223,7 +244,8 @@ class ModeratorCommands(commands.Cog):
         member: discord.Member
     ):
         muted_role = interaction.guild.get_role(351091626950787084)
-        
+        await member.timeout(None)
+
         await member.remove_roles(muted_role)
         
         response_embed = discord.Embed(

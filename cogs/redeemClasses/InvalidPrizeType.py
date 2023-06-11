@@ -1,0 +1,2 @@
+class InvalidPrizeType(Exception):
+    pass
