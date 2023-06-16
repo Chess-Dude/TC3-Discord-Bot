@@ -117,7 +117,19 @@ class RedeemModal(discord.ui.Modal, title="The Conquerors 3 Prize Redeem Form"):
                 ephemeral=True
             )
             return
-                
+
+        except discord.errors.NotFound:
+            error_embed = discord.Embed(
+                title="Error: Your message link was not valid. Please try again.",
+                color=0x00ffff
+            )
+            
+            await interaction.response.send_message(
+                embed=error_embed,
+                ephemeral=True
+            )
+            return
+                                
         except InvalidPrizeType:
             error_embed = discord.Embed(
                 title="Error: You did not specify if the prize type was Robux/Coins. Please try again.",

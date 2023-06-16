@@ -1,6 +1,5 @@
-import discord, typing
+import discord
 from discord import app_commands
-from discord.app_commands import Choice
 from discord.ext import commands
 
 class TournamentDisbandCommands(commands.Cog):
@@ -51,7 +50,7 @@ class TournamentDisbandCommands(commands.Cog):
                 )
 
             await tournament_applications_channel.send(
-                content=f"<@650847350042132514>, <@818729621029388338>, <@319573094731874304>, <@198273107205685248>, <@711003479430266972>, <@768259026084429896>, <@820952452739891281>, <@282761998326824961>",
+                content=f"<@198273107205685248>, <@711003479430266972>, <@768259026084429896>, <@282761998326824961>",
                 embed=log_embed
             )
 

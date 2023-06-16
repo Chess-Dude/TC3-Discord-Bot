@@ -15,10 +15,14 @@ from cogs.redeemClasses.RedeemModalReview import RedeemModalReview
 from cogs.chessTournamentClasses.chessTournamentModalReview import ChessTournamentModalReview
 from cogs.chessTournamentForm import ChessTournamentTicketPanel
 from cogs.signUpCommands import TournamentTicketPanel
-from cogs.signupClasses.tournamentSignupModalReview import TournamentSignupModalReview
-from cogs.clanClasses.clanRosterClasses.DisbandClans import DisbandClansClass
+from cogs.clanClasses.clanRosterClasses.disbandClans import DisbandClansClass
+from cogs.signupClasses.skillDivsionDropdown import SkillDivisionDropdownView
+from dotenv import load_dotenv
 
-token = ""
+load_dotenv()
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+token = BOT_TOKEN
+
 class MyBot(commands.Bot):
     
     def __init__(self):
@@ -48,7 +52,7 @@ class MyBot(commands.Bot):
         self.add_view(RerollDropdown())
         self.add_view(ParentTournamentInformationViews())
         self.add_view(ChildTournamentInformationViews())
-        # self.add_view(ParentGeneralInformationViews())
+        self.add_view(SkillDivisionDropdownView())
         self.add_view(ReviewStrategies())
         self.add_view(ReviewClanPoints())
         self.add_view(ReviewClanApplication())
@@ -57,7 +61,6 @@ class MyBot(commands.Bot):
         self.add_view(RedeemTicketPanel())
         self.add_view(ChessTournamentModalReview())
         self.add_view(ChessTournamentTicketPanel())
-        self.add_view(TournamentSignupModalReview())
         self.add_view(TournamentTicketPanel())
         self.add_view(DisbandClansClass())        
         print("views loaded successfully")

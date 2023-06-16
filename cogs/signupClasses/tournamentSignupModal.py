@@ -1,5 +1,6 @@
 import discord
-from .tournamentSignupModalReview import TournamentSignupModalReview
+from .skillDivsionDropdown import SkillDivisionDropdownView
+# from .tournamentSignupModalReview import TournamentSignupModalReview
 from .errorHandlers import NotFree, FailedToUnderstandGuidelines
 
 class TournamentSignupModal(discord.ui.Modal, title="Tournament Sign-up"):
@@ -113,7 +114,8 @@ class TournamentSignupModal(discord.ui.Modal, title="Tournament Sign-up"):
         msg = await signup_channel.send(
             content=f"{interaction.user.mention}",
             embed=signup_embed,
-            view=TournamentSignupModalReview()
+            view=SkillDivisionDropdownView()
+            # view=TournamentSignupModalReview()
         )
 
         if ((self.available.value.lower() == "no") or 
