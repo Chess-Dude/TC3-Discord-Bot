@@ -4,7 +4,7 @@ from discord import Member, app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
 from cogs.informationChannels import InformationEmbeds
-from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUitilityMethods
+from .mapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUitilityMethods
 from bs4 import BeautifulSoup
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]

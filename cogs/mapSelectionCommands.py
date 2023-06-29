@@ -2,8 +2,8 @@ import discord, random, json
 from discord import app_commands
 from discord.ext import commands
 from discord.app_commands import Choice
-from .randomMapSelectionClasses.mapSelectionDropdown import RerollDropdown
-from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUitilityMethods
+from .mapSelectionClasses.mapSelectionDropdown import RerollDropdown
+from .mapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUitilityMethods
 
 class AppCommandsMapSelection(commands.Cog):
     def __init__(self, bot):
