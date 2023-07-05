@@ -12,6 +12,7 @@ class MapSelectionUitilityMethods():
     ):
         if game_mode == "1v1":
             maps = [
+                "USA vs. Canada",
                 "Spain",
                 "Arctic Canal Map",
                 "Basalt Peninsula",
@@ -71,6 +72,7 @@ class MapSelectionUitilityMethods():
 
         elif game_mode == "2v2":
             maps = [
+                "USA vs. Canada",
                 "Spain",
                 "Arctic Canal Map", 
                 "Basalt Peninsula", 
@@ -110,6 +112,7 @@ class MapSelectionUitilityMethods():
 
         if game_mode == "3v3":
             maps = [
+                "USA vs. Canada",                
                 "Spain",
                 "Archipelago", 
                 "Arctic Canal Map", 
@@ -178,6 +181,7 @@ class MapSelectionUitilityMethods():
 
         elif game_mode == "4v4":
             maps = [
+                "USA vs. Canada",
                 "Archipelago", 
                 "Arctic Canal Map", 
                 "Arctic Circle", 
@@ -232,6 +236,7 @@ class MapSelectionUitilityMethods():
 
         elif game_mode == "5v5":
             maps = [
+                "USA vs. Canada",
                 "Archipelago",
                 "Arctic Canal Map",
                 "Basalt Peninsula", 

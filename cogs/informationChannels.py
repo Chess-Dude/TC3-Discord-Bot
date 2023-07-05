@@ -50,7 +50,7 @@ class ParentClanInformationViews(discord.ui.View):
 
         information_embed.add_field(
             name="**__How to Join a clan?__**",
-            value="> To join a clan, direct message a Clan Leader or Co Leader that is looking for new members! You can find clan advertisements under <#1055586560919216218>."
+            value="> To join a clan, direct message a Clan Leader or Co Leader that is looking for new members! You can find clan advertisements under <#1121271059761602722>."
         )
         await interaction.response.send_message(embed=information_embed, ephemeral=True)
 

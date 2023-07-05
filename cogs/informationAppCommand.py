@@ -22,7 +22,7 @@ class InformationAppCommands(commands.Cog):
         self.bot = bot
 
     def bots_channels(interaction):
-        return interaction.channel.id == 941567353672589322 or interaction.channel.id == 351057167706619914 
+        return interaction.channel.id == 941567353672589322 or interaction.channel.id == 351057167706619914
 
     is_bots = app_commands.check(bots_channels)
     

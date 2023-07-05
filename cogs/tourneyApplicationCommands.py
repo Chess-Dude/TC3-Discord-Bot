@@ -27,7 +27,7 @@ class TournamentApplicationCommands(commands.Cog):
     async def _1v1_application(        
         self,
         interaction: discord.Interaction,
-        ):
+    ):
         team_roster = [interaction.user]
         
         all_members_verified = await TeamCreation.check_verified(
@@ -69,6 +69,7 @@ class TournamentApplicationCommands(commands.Cog):
         self,
         interaction: discord.Interaction,
         team_name: str,
+        team_color: str,
         team_captain: discord.Member,
         team_member_1: discord.Member,
         team_member_2: typing.Optional[discord.Member],
@@ -119,6 +120,7 @@ class TournamentApplicationCommands(commands.Cog):
         self,
         interaction: discord.Interaction,
         team_name: str,
+        team_color: str,
         team_captain: discord.Member,
         team_co_captain: discord.Member,
         team_member_1: discord.Member,

@@ -92,7 +92,7 @@ class ModeratorCommands(commands.Cog):
     async def mute_command(        
         self,
         interaction: discord.Interaction,
-        member: discord.Member,
+        member: discord.User,
         duration: int,
         time_type: str,
         reason: str
@@ -360,6 +360,7 @@ class ModeratorCommands(commands.Cog):
         except:
             pass
 
+        member = discord.Object(id=member.id)
         await interaction.guild.ban(user=member, reason=reason)       
 
 async def setup(bot):

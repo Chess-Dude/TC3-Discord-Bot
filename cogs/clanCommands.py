@@ -1,14 +1,27 @@
-import discord, typing, json
+import discord, typing, mysql.connector, os
 from discord import app_commands
 from discord.ext import commands
 from cogs.teamApplicationClasses.teamCreation import TeamCreation
-from .clanClasses.clanApplicationClasses.clanCreationMethods import ClanCreationmethods
+from .clanClasses.clanApplicationClasses.clanCreationMethods import ClanCreationMethods
 from .clanClasses.clanApplicationClasses.clanChangeMethods import ClanChangesMethods
+from .clanClasses.clanApplicationClasses.clanDisbandMethods import ClanDisbandMethods
+from .clanClasses.clanRosterClasses.generateClanRoster import GenerateClanRoster
+from dotenv import load_dotenv
 
 class ClanCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
+
+        load_dotenv()
+        # self.mydb = mysql.connector.connect(
+        #     host=os.getenv("IP_ADDRESS"),
+        #     user=os.getenv("DB_USERNAME"),
+        #     password=os.getenv("DB_PASSWORD"),
+        #     database="clanPointDatabase"
+        # )
+
+        # self.cursor = self.mydb.cursor() 
+
     def bots_or_work_channel(interaction):
         return interaction.channel.id == 941567353672589322 or interaction.channel.id == 896440473659519057 or interaction.channel.id == 351057167706619914
 
@@ -44,8 +57,7 @@ class ClanCommands(commands.Cog):
         clan_member_2: discord.Member,
         clan_member_3: typing.Optional[discord.Member],
         clan_member_4: typing.Optional[discord.Member]
-        ):
-  
+    ):
             clan_roster = [clan_leader, clan_co_leader, clan_member_1, clan_member_2, clan_member_3, clan_member_4]
 
             all_members_verified = await TeamCreation.check_verified(
@@ -55,17 +67,18 @@ class ClanCommands(commands.Cog):
             )
 
             if all_members_verified:
-                clan_color = await ClanCreationmethods.colour_converter(
+                clan_color = await ClanCreationMethods.colour_converter(
                     self,
                     clan_color=clan_color
                 )
 
-                await ClanCreationmethods.application_log_embed(
+                await ClanCreationMethods.application_log_embed(
                     self,
                     interaction=interaction,
                     clan_name=clan_name,
                     clan_color=str(clan_color),
-                    clan_roster=clan_roster
+                    clan_roster=clan_roster,
+                    pool=self.bot.pool
                 )
 
                 await TeamCreation.success_embed(
@@ -73,6 +86,7 @@ class ClanCommands(commands.Cog):
                     interaction=interaction,
                     description=f"{interaction.user.mention} Thank You For Submitting Your Clan Application!"
                 )
+            
 
     @app_commands.check(bots_or_work_channel)
     @clan_group.command(
@@ -104,8 +118,10 @@ class ClanCommands(commands.Cog):
                 self=self,
                 interaction=interaction,
                 roles_to_remove=roles_to_remove,
-                remove_clan_member=interaction.user
+                remove_clan_member=interaction.user,
+                pool=self.bot.pool
             )
+
 
     @app_commands.check(bots_or_work_channel)
     @app_commands.checks.has_any_role(1054999374993817700, 1054999381029429349)
@@ -138,6 +154,12 @@ class ClanCommands(commands.Cog):
             color=0x00ffff
         )
 
+        update_embed = discord.Embed(
+            title="Your Clan Has Been Updated with the following changes:",
+            description="Updated clan",
+            color=0x2f3136
+        )
+
         await interaction.response.send_message(embed=success_embed)
 
         clan_role = await ClanChangesMethods.get_clan_role(
@@ -154,8 +176,16 @@ class ClanCommands(commands.Cog):
         if ((clan_leader_role in interaction.user.roles) or 
         (clan_co_leader_role in interaction.user.roles)):
 
+            clan_roster = [new_clan_leader, new_clan_co_leader, new_clan_member]
+
+            all_members_verified = await TeamCreation.check_verified(
+                self,
+                interaction=interaction, 
+                team_roster=clan_roster
+            )
+
             if new_clan_hex_color != None:            
-                new_clan_hex_color = await ClanCreationmethods.colour_converter(
+                new_clan_hex_color = await ClanCreationMethods.colour_converter(
                     self=self,
                     clan_color=new_clan_hex_color
                 )
@@ -165,55 +195,91 @@ class ClanCommands(commands.Cog):
                     clan_role=clan_role,
                     new_tournament_team_hex_color=discord.Color.from_str(new_clan_hex_color)
                 )
-        
-            if new_clan_leader != None:
-                roles_to_config = [clan_role, clan_leader_role, clans_role_ping]            
-                
-                await ClanChangesMethods.update_clan_leader(
-                    self=self,
-                    interaction=interaction,
-                    roles_to_config=roles_to_config,
-                    new_clan_leader=new_clan_leader,
+
+                update_embed.add_field(
+                    name="Color:",
+                    value=f"Changed to {new_clan_hex_color}"
                 )
+
+            if new_clan_leader != None and all_members_verified:
+                if clan_role in new_clan_leader.roles:
+                    roles_to_config = [clan_role, clan_leader_role, clans_role_ping]            
+                    
+                    await ClanChangesMethods.update_clan_leader(
+                        self=self,
+                        interaction=interaction,
+                        roles_to_config=roles_to_config,
+                        new_clan_leader=new_clan_leader,
+                    )
+
+                    update_embed.add_field(
+                        name="New Leader:",
+                        value=f"Changed to {new_clan_leader.mention}"
+                    )
+
+                else:
+                    await interaction.channel.send("Error: The new clan leader must be an existing clan member.")
+                    return                
             
-            if new_clan_co_leader != None:
-                roles_to_add = [clan_role, clan_co_leader_role, clan_leader_role, clans_role_ping]            
+            if new_clan_co_leader != None and all_members_verified:
+                if clan_role in new_clan_co_leader.roles:
+                    roles_to_add = [clan_role, clan_co_leader_role, clan_leader_role, clans_role_ping]            
 
-                await ClanChangesMethods.update_clan_co_leader(
-                    self=self,
-                    roles_to_add=roles_to_add,
-                    new_clan_co_leader=new_clan_co_leader,
-                )
+                    await ClanChangesMethods.update_clan_co_leader(
+                        self=self,
+                        roles_to_add=roles_to_add,
+                        new_clan_co_leader=new_clan_co_leader,
+                    )
 
-            if new_clan_member != None:
-                roles_to_add = [clan_role, clans_role_ping]
-                await ClanChangesMethods.add_clan_member(
-                    self=self,
-                    roles_to_add=roles_to_add,
-                    new_clan_member=new_clan_member
-                )
+                    update_embed.add_field(
+                        name="New Co-Leader:",
+                        value=f"Changed to {new_clan_co_leader.mention}"
+                    )
+
+                else:
+                    await interaction.channel.send("Error: The new clan leader must be an existing clan member.")
+                    return
+                
+            if new_clan_member != None and all_members_verified:
+                if len(clan_role.members) < 10: 
+                    roles_to_add = [clan_role, clans_role_ping]
+                    await ClanChangesMethods.add_clan_member(
+                        self=self,
+                        roles_to_add=roles_to_add,
+                        new_clan_member=new_clan_member,
+                        pool=self.bot.pool
+                    )
+                    
+                    update_embed.add_field(
+                        name="New Member:",
+                        value=f"Added {new_clan_member.mention}"
+                    )
+                
+                else:
+                    await interaction.channel.send(content="Error: You have 10 People in your clan. Please remove a member and retry")
 
         if remove_clan_member != None:
-            clan_leader_role = interaction.guild.get_role(1054999374993817700)
-            clan_co_leader_role = interaction.guild.get_role(1054999381029429349)
-            roles_to_remove = [clan_role, clan_co_leader_role, clan_leader_role]            
-            await ClanChangesMethods.remove_clan_member(
-                self=self,
-                interaction=interaction,
-                roles_to_remove=roles_to_remove,
-                remove_clan_member=remove_clan_member
-            )
-
-    async def disband_tournament_team(
-        self,
-        clan_role,
-        role_config_list
-        ):
-            for member in clan_role.members:
-                for role in role_config_list:
-                    await member.remove_roles(role)
-                                                                                   
-            await discord.Role.delete(clan_role)
+            if clan_role in remove_clan_member.roles:
+                clan_leader_role = interaction.guild.get_role(1054999374993817700)
+                clan_co_leader_role = interaction.guild.get_role(1054999381029429349)
+                roles_to_remove = [clan_role, clan_co_leader_role, clan_leader_role]            
+                await ClanChangesMethods.remove_clan_member(
+                    self=self,
+                    interaction=interaction,
+                    roles_to_remove=roles_to_remove,
+                    remove_clan_member=remove_clan_member,
+                    pool=self.bot.pool
+                )
+                
+                update_embed.add_field(
+                    name="Remove Member:",
+                    value=f"Removed {remove_clan_member.mention}"
+                )
+            
+            else:
+                await interaction.channel.send(content="Error: You cannot remove a clan member that is not in your clan.")
+        
+        await interaction.channel.send(embed=update_embed)
 
     @app_commands.checks.has_any_role(1054999374993817700, 1054999381029429349)
     @app_commands.check(bots_or_work_channel)
@@ -246,264 +312,89 @@ class ClanCommands(commands.Cog):
                 bottom_role_divider=interaction.guild.get_role(1053050637555880027)
             )
 
-            await ClanCommands.disband_tournament_team(
+            await ClanDisbandMethods.delete_clan_role(
                 self=self,
                 clan_role=clan_role,
-                role_config_list=[clan_role, clan_co_leader_role, clan_leader_role, clans_role_ping]                
+                role_config_list=[clan_role, clan_co_leader_role, clan_leader_role, clans_role_ping],
+                bot=self.bot                
             )
-
-    def remove_name_value(
-        self, 
-        input_string
-    ):
-        name_value_pairs = input_string.split('\n')
-        name_value_dict = {}
-        for pair in name_value_pairs:
-            name, value = pair.split('-')
-            name_value_dict[name] = value
-        return name_value_dict
-
-    def replace_name_value(
-        self,
-        input_string,
-        clan_info
-    ):
-        name_value_dict = ClanCommands.remove_name_value(
-            self, 
-            input_string=input_string
-        )
-    
-        if clan_info in name_value_dict:
-            del name_value_dict[clan_info]
-        new_input_string = "\n".join(["{} - {}".format(name, value) for name, value in name_value_dict.items()])
-        return new_input_string
-
-    @app_commands.checks.has_any_role(475669961990471680, 351074813055336458, 743302990001340559)
-    @clan_group.command(
-        name="remove_clan_name",
-        description="A Commands That Allows You To Remove A Clan from the leaderboards!")
-    @app_commands.describe(clan_info="Specify the clan info here. EG - Clan Name - 0")
-    @app_commands.rename(clan_info="clan_info")      
-    async def remove_clan_name(        
-        self,
-        interaction: discord.Interaction,
-        clan_info: str
-    ):
-        clan_lb_channel = interaction.guild.get_channel(1050289500783386655)
-        clan_weekly_lb_message = await clan_lb_channel.fetch_message(1056413563209650228)
-        clan_yearly_lb_message = await clan_lb_channel.fetch_message(1056413562525974608)
-        clan_lb_embed = clan_weekly_lb_message.embeds[0].to_dict()
-        clan_lb_embed_yearly = clan_yearly_lb_message.embeds[0].to_dict()
-        all_clan_points_weekly = clan_lb_embed['description']
-        all_clan_points_yearly = clan_lb_embed_yearly['description']
-
-        new_description_weekly = ClanCommands.replace_name_value(
-            self,
-            input_string=all_clan_points_weekly,
-            clan_info=clan_info
-        )
-
-        new_description_yearly = ClanCommands.replace_name_value(
-            self,
-            input_string=all_clan_points_yearly,
-            clan_info=clan_info
-        )
-
-        new_weekly_lb = discord.Embed(
-            title="Clan Point Weekly Leaderboard",
-            description=new_description_weekly,
-            timestamp=interaction.created_at,
-            color=0x00ffff
-        )
-
-        new_yearly_lb = discord.Embed(
-            title="Clan Point Yearly Leaderboard",
-            description=new_description_yearly,
-            timestamp=interaction.created_at,
-            color=0x00ffff
-        )
-
-        await clan_weekly_lb_message.edit(embed=new_weekly_lb)
-        await clan_yearly_lb_message.edit(embed=new_yearly_lb)
-        await interaction.response.send_message("Completed")
-    
-    async def leaderboard_type_autocomplete(
-        self, 
-        interaction: discord.Interaction,
-        current: str,
-    ) -> list[app_commands.Choice[str]]:
-        type_list = ["Weekly", "Yearly", "Both"]
-        return [
-            app_commands.Choice(name=type, value=type)
-            for type in type_list if current.lower() in type.lower()
-        ]
-
-    @app_commands.checks.has_any_role(475669961990471680, 351074813055336458, 743302990001340559)
-    @clan_group.command(
-        name="add_clan_points",
-        description="A Commands That Allows You To Add Clan Points To the leaderboards!")
-    @app_commands.describe(leaderboard_type="Specify the leaderboard (Weekly/Yearly)")       
-    @app_commands.describe(clan_name="Specify the clan info here.")
-    @app_commands.describe(clan_points="Specify the clan points to add here.")
-    @app_commands.autocomplete(leaderboard_type=leaderboard_type_autocomplete)       
-    @app_commands.rename(clan_points="clan_points")      
-    @app_commands.rename(clan_name="clan_name")      
-    async def add_clan_points(        
-        self,
-        interaction: discord.Interaction,
-        leaderboard_type: str,
-        clan_name: str,
-        clan_points: int
-    ):
-        if leaderboard_type == "Weekly":
-            lb_message_id = 1056413563209650228
-        
-        elif leaderboard_type == "Yearly":
-            lb_message_id = 1056413562525974608
-
-        clan_lb_channel = interaction.guild.get_channel(1050289500783386655)
-        clan_lb_message = await clan_lb_channel.fetch_message(lb_message_id)
-        clan_lb_embed = clan_lb_message.embeds[0].to_dict()
-        all_clan_points = clan_lb_embed['description']
-        name_value_pairs = all_clan_points.split('\n')
-        name_value_dict = {}
-
-        for pair in name_value_pairs:
-
-            try: 
-                name, value = pair.split('-')
-                name_value_dict[name] = value
-            except:
-                name = "Lose 4 Cry"
-                name_value_dict[name] = 0
-                await interaction.channel.send(f"Set {pair} to 0 due to ValueError: Too Many values to unpack (expected 2) - potential cause is negative clan points (two -)")
-
-        print(name_value_dict)
-        
-        while clan_name not in name_value_dict:
-            clan_name = clan_name + ' '
-
-        name_value_dict[clan_name] = str(int(name_value_dict[clan_name]) + clan_points)
-        new_description = "\n".join(["{} - {}".format(name, value) for name, value in name_value_dict.items()])
-
-        new_lb = discord.Embed(
-            title=f"Clan Point {leaderboard_type} Leaderboard",
-            description=new_description,
-            timestamp=interaction.created_at,
-            color=0x00ffff
-        )
-
-        await clan_lb_message.edit(embed=new_lb)
-        await interaction.response.send_message("Completed")
-
-    @app_commands.checks.has_any_role(475669961990471680, 351074813055336458, 743302990001340559)
-    @clan_group.command(
-        name="remove_clan_points",
-        description="A Commands That Allows You To Add Clan Points To the leaderboards!")
-    @app_commands.describe(clan_name="Specify the clan info here.")
-    @app_commands.describe(clan_points="Specify the clan points to add here.")
-    @app_commands.rename(clan_points="clan_points")      
-    @app_commands.rename(clan_name="clan_name")      
-    async def remove_clan_points(        
-        self,
-        interaction: discord.Interaction,
-        clan_name: str,
-        clan_points: int
-    ):
-        clan_lb_channel = interaction.guild.get_channel(1050289500783386655)
-        # clan_weekly_lb_message = await clan_lb_channel.fetch_message(1056413563209650228)
-        clan_yearly_lb_message = await clan_lb_channel.fetch_message(1056413562525974608)
-        clan_lb_embed = clan_yearly_lb_message.embeds[0].to_dict()
-        all_clan_points = clan_lb_embed['description']
-
-        name_value_pairs = all_clan_points.split('\n')
-        name_value_dict = {}
-        for pair in name_value_pairs:
-            name, value = pair.split('-')
-            name_value_dict[name] = value
-        print(name_value_dict)
-        
-        while clan_name not in name_value_dict:
-            clan_name = clan_name + ' '
-
-        name_value_dict[clan_name] = str(int(name_value_dict[clan_name]) - clan_points)
-        new_description = "\n".join(["{} - {}".format(name, value) for name, value in name_value_dict.items()])
-
-        # new_weekly_lb = discord.Embed(
-        #     title="Clan Point Weekly Leaderboard",
-        #     description=new_description,
-        #     timestamp=interaction.created_at,
-        #     color=0x00ffff
-        # )141
-
-        new_yearly_lb = discord.Embed(
-            title="Clan Point Yearly Leaderboard",
-            description=new_description,
-            timestamp=interaction.created_at,
-            color=0x00ffff
-        )
-
-        # await clan_weekly_lb_message.edit(embed=new_weekly_lb)
-        await clan_yearly_lb_message.edit(embed=new_yearly_lb)
-        await interaction.response.send_message("Completed")
-
-    @app_commands.checks.has_any_role(475669961990471680, 351074813055336458, 743302990001340559)
-    @clan_group.command(
-        name="weekly_lb_reset",
-        description="A Commands That Allows You To Submit Clan Points!")
-    async def reset_clan_points(        
-        self,
-        interaction: discord.Interaction,
-    ):
-        clan_lb_channel = interaction.guild.get_channel(1050289500783386655)
-        clan_lb_message = await clan_lb_channel.fetch_message(1056413563209650228)
-        
-        clan_lb_embed = clan_lb_message.embeds[0].to_dict()
-        all_clan_points = clan_lb_embed['description']
-        lines = all_clan_points.strip().split('\n')
-        reset_lines = [' '.join(line.split()[:-1]) + ' 0' for line in lines]
-        new_description = ('\n'.join(reset_lines))
-
-        new_weekly_lb = discord.Embed(
-            title="Clan Point Weekly Leaderboard",
-            description=new_description,
-            timestamp=interaction.created_at,
-            color=0x00ffff
-        )
-
-        await clan_lb_message.edit(embed=new_weekly_lb)
-        await interaction.response.send_message("Completed")
 
     @app_commands.describe(member="member")
     @app_commands.rename(member="member")      
     @clan_group.command(
         name="points",
         description="get this users clan points grinded!")
-    async def get_clan_points (
+    async def get_member_clan_points (
         self,
         interaction,
         member: discord.Member
     ):
+        async with self.bot.pool.acquire() as connection:
+            # Select data from the ClanPointTracker table
+            sql = "SELECT * FROM ClanPointTracker WHERE discordUserID = $1"
+            member_clan_point_data = await connection.fetch(sql, member.id)
 
-        with open('clanPointsTracker.json', 'r') as f:
-            users = json.load(f)
+            print(member_clan_point_data)
+            if len(member_clan_point_data) != 0:
+                response_embed = discord.Embed(
+                    title=f"{member.nick}'s total clan points are: {member_clan_point_data[0][3]}",
+                    color=0x00ffff
+                )
+                await interaction.response.send_message(
+                    embed=response_embed
+                )
+            else:
+                response_embed = discord.Embed(
+                    title=f"{member.nick}'s total clan points were not found. Please try again later.",
+                    color=0x00ffff
+                )
+                await interaction.response.send_message(
+                    embed=response_embed
+                )
+    
+    @app_commands.describe(clan_role="clan_role")
+    @app_commands.rename(clan_role="clan_role")      
+    @clan_group.command(
+        name="roster",
+        description="get the clans roster!")
+    async def send_clan_roster (
+        self,
+        interaction,
+        clan_role: discord.Role
+    ):
+        generate_clan_roster_obj = GenerateClanRoster()
+        
+        clan_list = generate_clan_roster_obj.get_clans(
+            interaction=interaction
+        )
 
-        try:
-            current_clan_points = users[f'{member.id}']['clan_points']
-            
-            response_embed = discord.Embed(
-                title=f"{member.name}'s total clan points are: {current_clan_points}",
-                color=0x00ffff
+        if clan_role in clan_list:
+            clan_info_list = generate_clan_roster_obj.get_clan_info(
+                interaction=interaction,
+                clan_role=clan_role
             )
+
+            clan_roster_embed = await generate_clan_roster_obj.send_clan_roster(
+                interaction=interaction,
+                clan_role=clan_role,
+                clan_info_list=clan_info_list
+            )
+
             await interaction.response.send_message(
-                embed=response_embed
+                embed=clan_roster_embed
             )
 
-        except KeyError:
-            response_embed = discord.Embed(
-                title=f"{member.name}'s total clan points were not found. Please try again later.",
-                color=0x00ffff
+            await generate_clan_roster_obj.clan_disband_check(
+                interaction=interaction,
+                clan_role=clan_role
             )
+
+        else:
+            response_embed = discord.Embed(
+                title="Error: You did not specify a clan role",
+                color=0x2f3136
+            )
+
             await interaction.response.send_message(
                 embed=response_embed
             )

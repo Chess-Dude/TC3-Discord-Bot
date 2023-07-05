@@ -1,4 +1,4 @@
-import os, discord
+import os, discord, asyncpg
 from discord.ext import commands
 from discord.ext.commands import Greedy
 from discord.object import Object 
@@ -7,8 +7,7 @@ from cogs.teamApplicationClasses.teamApplicationDropdown import TournamentDropdo
 from cogs.mapSelectionCommands import RerollDropdown
 from cogs.informationChannels import ParentTournamentInformationViews, ParentClanInformationViews
 from cogs.informationEmbeds.childTournamentView import ChildTournamentInformationViews  
-from cogs.strategyClasses.reviewStrategies import ReviewStrategies
-from cogs.clanPointsCommands import ReviewClanPoints
+from cogs.clanPointCommands import ReviewClanPoints
 from cogs.clanClasses.clanApplicationClasses.clanApplicationReview import ReviewClanApplication
 from cogs.redeemSystem import RedeemTicketPanel
 from cogs.redeemClasses.RedeemModalReview import RedeemModalReview 
@@ -23,9 +22,10 @@ load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 token = BOT_TOKEN
 
-class MyBot(commands.Bot):
-    
-    def __init__(self):
+class TC3Bot(commands.Bot):
+    def __init__(
+        self
+    ):
         intents = discord.Intents.default()
         intents.message_content = True
         intents.members = True
@@ -48,14 +48,16 @@ class MyBot(commands.Bot):
             if filename.endswith('.py'):
                 await bot.load_extension(f'cogs.{filename[:-3]}')
                 print(f'cogs.{filename[:-3]} loaded')
+        credentials = {"user": os.getenv("DB_USERNAME"), "password": os.getenv("DB_PASSWORD"), "database": os.getenv("DB_NAME"), "host": "127.0.0.1"}
+        self.pool = await asyncpg.create_pool(**credentials)
+        print("pooled successfully")        
         self.add_view(TournamentDropdownView())
         self.add_view(RerollDropdown())
         self.add_view(ParentTournamentInformationViews())
         self.add_view(ChildTournamentInformationViews())
         self.add_view(SkillDivisionDropdownView())
-        self.add_view(ReviewStrategies())
         self.add_view(ReviewClanPoints())
-        self.add_view(ReviewClanApplication())
+        self.add_view(ReviewClanApplication(self.pool))
         self.add_view(ParentClanInformationViews())
         self.add_view(RedeemModalReview())
         self.add_view(RedeemTicketPanel())
@@ -65,13 +67,14 @@ class MyBot(commands.Bot):
         self.add_view(DisbandClansClass())        
         print("views loaded successfully")
 
-bot = MyBot()
+bot = TC3Bot()
 bot.remove_command("help")
 
 @commands.is_owner()
 @bot.command()
 async def shutdown(ctx):
     await ctx.send("shutting down")
+    await bot.pool.close()    
     await bot.close()
     bot.clear()
     
@@ -134,46 +137,12 @@ async def on_member_join(member):
         msg = await LOBBY_CHANNEL.send(f"Welcome to The Official Conquerors 3 Discord {member.mention}! If you have any questions feel free to ping <@585991378400706570>! Make sure to checkout <#351057978381828096> and <#696086223009218682> to stay up to date with the latest The Conquerors 3 content! Before you post, please read <#731499115573280828> to keep our server running smoothly and without any problems.")
         await welcome_message_channel.send(f"<@563066303015944198>, <@361170109877977098>, <@898392058077802496>, <@450662444612845580>, <@646463139977625623>, <@897020169958883348>, <@1006873288229793833> \n{msg.jump_url}")
 
-@bot.command()
-@commands.is_owner()
-async def clan_lb(ctx):
-    import discord
-    clan_lb_channel = bot.get_channel(1050289500783386655)
-    clan_yearly_lb_message = await clan_lb_channel.fetch_message(1056413562525974608)
-
-    description = """
-Omnipotent - 32638
-The Marching Conquerors - 29083
-CRC - 25849
-goom - 18741
-The Hivemind - 11993
-NylonW - 10268
-Total Victory - 9092
-The Bozos - 7159
-Ablogical - 5594
-Lose 4 Cry - 4604
-CR - 3051
-i hate tc3 the clan - 2081
-Fresh Pickles - 2060
-The Bots - 1887
-Glory to Sentigosedge - 1577
-The Dairy Mafia - 1313
-Shambhala - 232
-"""
-    clan_lb_embed = discord.Embed(
-        title="Clan Point Yearly Leaderboard",
-        description=f"{description}",
-        color=0x00ffff
-    )
-
-    await clan_yearly_lb_message.edit(embed=clan_lb_embed)
-    await ctx.send("completed")
 class GoToMessage(discord.ui.View):
     def __init__(self, msg_url: str):
         super().__init__()
         self.add_item(discord.ui.Button(label="Go to Message", url=msg_url))
 
-@bot.tree.context_menu(
+bot.tree.context_menu(
     name="Report to Moderators"
 )
 async def report_user(
@@ -208,5 +177,59 @@ async def report_user(
         embed=success_embed, 
         ephemeral=True
     )
+
+
+@bot.command()
+@commands.is_owner()
+async def init_clan_databases(ctx):
+    clan_divider_top_role = ctx.guild.get_role(1053050572296704000)
+    clan_divider_bottom_role = ctx.guild.get_role(1053050637555880027)
+
+    for role_position in range(clan_divider_top_role.position-1, clan_divider_bottom_role.position, -1):
+        clan_role = discord.utils.get(
+            ctx.guild.roles, 
+            position=role_position
+        )
+
+        if clan_role is not None:
+            async with bot.pool.acquire() as connection:
+                sql = "INSERT INTO clanpointleaderboard (clanName, clanRoleID, weeklyClanPoints, yearlyClanPoints) VALUES ($1, $2, $3, $4)"
+                val = (clan_role.name, int(clan_role.id), 0, 0)
+                inserted_row = await connection.execute(sql, *val)
+                print(inserted_row, "record inserted into ClanPointLeaderboard.")
+
+            for member in clan_role.members:
+                if member is not None:
+                    async with bot.pool.acquire() as connection:
+                        sql = "INSERT INTO ClanPointTracker (robloxUsername, discordUserID, totalClanPoints, currentClanRoleID, currentClanName) VALUES ($1, $2, $3, $4, $5)"
+                        val = (f"{member.nick}", member.id, 0, clan_role.id, f"{clan_role.name}")
+
+                        inserted_row = await connection.execute(sql, *val)
+                        print(inserted_row, "record inserted into ClanPointTracker.")
+
+@bot.command()
+@commands.is_owner()
+async def print_clan_databases(ctx):
+
+    async with bot.pool.acquire() as connection:
+        sql = "SELECT * FROM ClanPointLeaderboard"
+        result = await connection.fetch(sql)
+        
+        for row in result:
+            print(row)
+
+        print("\n\n")
+        sql = "SELECT * FROM ClanPointTracker"
+        result = await connection.fetch(sql)
+        
+        for row in result:
+            print(row)
+
+        print("\n\n")
+        sql = "SELECT * FROM ClanPointSubmissionTracker"
+        result = await connection.fetch(sql)
+        
+        for row in result:
+            print(row)            
 
 bot.run(token)

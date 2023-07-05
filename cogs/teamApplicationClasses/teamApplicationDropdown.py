@@ -181,7 +181,27 @@ class Dropdown(discord.ui.Select):
 
             tournament_role = interaction.guild.get_role(1047716260185653298)
 
-            if tournament_type != "1v1":    
+            if tournament_type != "1v1":
+                # clan_roster_list = [clan_leader, clan_co_leader, clan_member_1, clan_member_2, clan_member_3, clan_member_4]
+                # clan_hex_color = discord.Color.from_str(clan_hex_color)
+
+                # clan_role = await ClanRoleCreation.create_role(
+                #     self, 
+                #     interaction, 
+                #     role_name=clan_name, 
+                #     colour=clan_hex_color, 
+                #     role_divider_id=role_divider_id
+                # )
+
+                # await ClanRoleCreation.assign_roles(
+                #     self, 
+                #     interaction=interaction, 
+                #     clan_roster=clan_roster_list, 
+                #     clan_role=clan_role,
+                #     clan_leader_role_id=clan_leader_role_id, 
+                #     clan_co_leader_role_id=clan_co_leader_role_id, 
+                # )
+
                 roster_embed = await Dropdown.roster_embed(
                     self,
                     interaction=interaction,
@@ -193,17 +213,15 @@ class Dropdown(discord.ui.Select):
                 )
 
                 roster_embed_message = await roster_thread.send(embed=roster_embed)
-                if tournament_type == "2v2":
-                    roster_thread_str = "<#1045927311842750486>"
-                else:
-                    roster_thread_str = "<#1045927352187752548>"
+                roster_thread_str = "<#1123407962766049340>"
+
 
                 for member in team_roster_list:
                     await member.add_roles(tournament_division_role)
                     await member.add_roles(tournament_role)
                     try:
                         await member.send(
-                            content=f"Your team has been created by {interaction.user.mention}! \n{roster_embed_message.jump_url}\n\nYou can ping you and your teammates in {roster_thread_str} to sign up for a tournament!",
+                            content=f"Your team has been created by {interaction.user.mention}! \nYou can ping you and your teammates in {roster_thread_str} to sign up for a tournament!",
                             embed=roster_embed
                             )
                     except: 
