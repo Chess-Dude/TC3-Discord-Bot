@@ -50,7 +50,7 @@ class TournamentDisbandCommands(commands.Cog):
                 )
 
             await tournament_applications_channel.send(
-                content=f"<@198273107205685248>, <@711003479430266972>, <@768259026084429896>, <@282761998326824961>",
+                content=f"``<@711003479430266972>, <@768259026084429896>, <@282761998326824961>``",
                 embed=log_embed
             )
 

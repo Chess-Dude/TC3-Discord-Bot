@@ -8,8 +8,6 @@ class errorHandlerAppCommands(commands.Cog):
         bot: commands.Bot
         ):
             self.bot = bot
-
-            # setting the handler
             bot.tree.on_error = self.on_app_command_error
 
   # the error handler
@@ -57,7 +55,7 @@ class errorHandlerAppCommands(commands.Cog):
                     await interaction.response.send_message(
                         content=f"Error: You failed to put in the correct value. Please retry this command with the appropriate values.", 
                         ephemeral=True)
-
+                    
             elif isinstance(
                 error, 
                 ZeroDivisionError

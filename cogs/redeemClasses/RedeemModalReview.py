@@ -70,12 +70,12 @@ class RedeemModalReview(discord.ui.View):
 
             if "Coins" in prize_type_name:
                 prize_type = "Coins"
-                prize_channel = interaction.guild.get_channel(786663716987863072)
+                prize_channel = interaction.guild.get_channel(1123270001600778312)
                 prize_role = interaction.guild.get_role(676116195069657098)
 
             elif "Robux" in prize_type_name:
                 prize_type = "Robux" 
-                prize_channel = interaction.guild.get_channel(899077866749296651)
+                prize_channel = interaction.guild.get_channel(1123270021037170790)
                 prize_role = interaction.guild.get_role(899078081866768414)
 
             user = interaction.guild.get_member(int(user_redeeming.replace("<@", "").replace(">", "")))

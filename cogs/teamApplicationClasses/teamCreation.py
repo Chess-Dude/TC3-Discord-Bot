@@ -102,7 +102,7 @@ class TeamCreation():
 
         view = TournamentDropdownView()
         await tournament_applications_channel.send(
-            content=f"<@198273107205685248>, <@711003479430266972>, <@768259026084429896>, <@282761998326824961>",
+            content=f"``<@711003479430266972>, <@768259026084429896>, <@282761998326824961>``",
             embed=log_embed,
             view=view
             )
@@ -124,6 +124,6 @@ class TeamCreation():
         
         if len(unverified_members) > 0:
             unverified_members = (','.join(unverified_members))
-            await interaction.response.send_message(f"__The Following Members Are **Unverified**:__\n{unverified_members}\n\nPlease have them run the ``/verify`` command in <#351057167706619914>. Once all members are verified, you must redo the application.", ephemeral=True)
+            await interaction.response.send_message(f"__The Following Members Are **Unverified**:__\n{unverified_members}\n\nPlease have them run the ``/verify`` command in <#351057167706619914>. Once all members are verified, you must redo the application.")
         else:
             return True

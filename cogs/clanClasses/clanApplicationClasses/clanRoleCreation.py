@@ -1,6 +1,6 @@
-import discord 
+import discord
 
-class ClanCreation():
+class ClanRoleCreation():
     async def create_role(
         self, 
         interaction: discord.Interaction, 
@@ -30,9 +30,9 @@ class ClanCreation():
         self, 
         interaction: discord.Interaction, 
         clan_roster,
-        clan_role, # custom tournament team role
-        clan_leader_role_id, # team captain
-        clan_co_leader_role_id # team co captain 
+        clan_role, # custom clan role
+        clan_leader_role_id, # clan leader
+        clan_co_leader_role_id # clan co-leader 
     ):
 
         TC3_SERVER = interaction.guild

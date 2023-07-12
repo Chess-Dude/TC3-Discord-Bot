@@ -44,10 +44,16 @@ class ClanRosterCommands(commands.Cog):
                     clan_role=clan_role
                 )
 
-                await generate_clan_roster_obj.send_clan_roster(
+                clan_roster_embed = await generate_clan_roster_obj.send_clan_roster(
                     interaction=interaction,
                     clan_role=clan_role,
                     clan_info_list=clan_info_list
+                )
+
+                clan_roster_channel = interaction.guild.get_channel(1101934520212656158)
+
+                await clan_roster_channel.send(
+                    embed=clan_roster_embed
                 )
 
                 await generate_clan_roster_obj.clan_disband_check(

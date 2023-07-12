@@ -1,13 +1,98 @@
-import discord, typing
+import discord, typing, ast
+from discord.ext import commands, tasks
 from discord import app_commands
-from discord.ext import commands
+from .clanClasses.clanPointClassesREWORKED.clanPointBotMethods import ClanPointBotMethods
 from .clanClasses.clanPointClasses.clanPointReview import ReviewClanPoints
+from .clanClasses.clanPointClassesREWORKED.clanPointAPIMethods import ClanPointAPIMethods
 
 class ClanPointCommands(commands.Cog):
     def __init__(self, bot):
-        self.bot = bot
+        self.bot = bot     
+        self.looped_update_leaderboard.start()
+        self.looped_send_clan_point_notif.start()
+        self.clan_point_bot_methods_obj = ClanPointBotMethods()
+        self.clan_point_api_methods_obj = ClanPointAPIMethods()
 
- 
+    @tasks.loop(hours=6.0)
+    async def looped_update_leaderboard(self):
+        self.LEADERBOARD_CHANNEL = self.bot.get_channel(1121947513981779978)
+        await self.LEADERBOARD_CHANNEL.purge(limit=1)
+        embeds_list = await self.clan_point_bot_methods_obj.get_updated_leaderboards(bot=self.bot)
+        await self.LEADERBOARD_CHANNEL.send(
+            embeds=embeds_list
+        )
+
+    @looped_update_leaderboard.before_loop       
+    async def before_update_leaderboard_task(self):
+        await self.bot.wait_until_ready()
+
+    @tasks.loop(minutes=5.0)
+    async def looped_send_clan_point_notif(
+        self
+    ):
+        end_of_round_bonus_results = await self.clan_point_bot_methods_obj.get_end_of_round_bonus(
+            bot=self.bot
+        )
+
+        for end_of_round_bonus_record in end_of_round_bonus_results:
+            endofroundbonusstring = end_of_round_bonus_record["endofroundbonusstring"]
+            end_of_round_bonus_list = ast.literal_eval(endofroundbonusstring)
+            
+            if len(end_of_round_bonus_list) != 0:                
+                total_clan_points = self.clan_point_api_methods_obj.calculate_total_clan_points(
+                    end_of_round_bonus_list=end_of_round_bonus_list
+                )
+                
+                await self.clan_point_bot_methods_obj.send_log_embed(
+                    end_of_round_bonus_list=end_of_round_bonus_list,
+                    bot=self.bot,
+                    total_clan_points=total_clan_points               
+                )
+
+    @looped_send_clan_point_notif.before_loop       
+    async def before_update_clan_point_task(self):
+        await self.bot.wait_until_ready()
+
+    manage_clan_points = app_commands.Group(
+        name="manage",
+        description="allows you to manage clans",
+        guild_ids=[350068992045744141]
+    )
+
+    @app_commands.checks.has_any_role(554152645192056842, 743302990001340559, 351074813055336458)
+    @manage_clan_points.command(
+        name="clan_leaderboard_update",
+        description="A Command That Allows You To Update Clan Leaderboards!")
+    async def update_clan_leaderboard(
+        self, 
+        interaction: discord.Interaction
+    ):
+        await self.looped_update_leaderboard()
+
+    @app_commands.checks.has_any_role(554152645192056842, 743302990001340559, 351074813055336458)
+    @manage_clan_points.command(
+        name="reset_weekly_leaderboard",
+        description="A Command That Allows You To Reset Weekly Clan Leaderboards!")
+    async def reset_weekly_leaderboard(
+        self, 
+        interaction: discord.Interaction
+    ):
+        await self.looped_update_leaderboard()
+        embeds_list = await self.clan_point_bot_methods_obj.get_updated_leaderboards(cursor=self.cursor)
+        await interaction.channel.send(
+            content=f"Final leaderboard for this week:",
+            embeds=embeds_list
+        )
+
+        async with self.bot.pool.acquire() as connection:
+            sql = "UPDATE ClanPointLeaderboard SET yearlyClanPoints = 0"
+            await connection.execute(sql)
+            await connection.commit()
+        
+        await interaction.channel.send(
+            content="Successfully Reset Weekly Leaderboard. Please run the ``/manage clan_leaderboard_update`` command to view the updated leaderboard."
+        )
+
     async def game_mode_autocomplete(
         self, 
         interaction: discord.Interaction,

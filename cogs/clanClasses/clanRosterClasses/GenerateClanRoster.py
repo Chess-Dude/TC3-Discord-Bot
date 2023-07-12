@@ -77,7 +77,6 @@ class GenerateClanRoster():
         clan_leader_text = ''
         co_leader_text = '' 
         member_text = ''
-        clan_roster_channel = interaction.guild.get_channel(1101934520212656158)
 
         if len(clan_leader) == 0:
             clan_leader_text = "• N/A"
@@ -98,7 +97,7 @@ class GenerateClanRoster():
             for member in clan_members:
                 member_text = member_text + f"\n• {member.display_name} - {member.mention}"
 
-        embed_text = f"``Leader:``\n{clan_leader_text}\n\n``Co-Leader:``\n{co_leader_text}\n\n``Members:``{member_text}\n\n``Total Members:``\n• {(len(clan_role.members))}/6"        
+        embed_text = f"``Leader:``\n{clan_leader_text}\n\n``Co-Leader:``\n{co_leader_text}\n\n``Members:``{member_text}\n\n``Total Members:``\n• {(len(clan_role.members))}/10"        
         clan_roster_embed = discord.Embed(
             title=f"``{clan_role.name}'s Roster:\n``",
             description=embed_text,
@@ -106,19 +105,17 @@ class GenerateClanRoster():
             timestamp=interaction.created_at
         )
 
-        await clan_roster_channel.send(
-            embed=clan_roster_embed
-        )
+        return clan_roster_embed
 
     async def clan_disband_check(
         self,
         interaction,
         clan_role
     ):
-        if len(clan_role.members) < 4:
+        if len(clan_role.members) < 4 or (len(clan_role.members) > 10):
             notif_embed = discord.Embed(
                 title="Notice: Clan Disbandment At Risk!",
-                description="Your clan has lesser than 4 members currently! If you fail to recruit the required amount of members soon, your clan will be disbanded.",
+                description="Your clan has either too many or too less members currently! If you fail to recruit the required amount of members soon, your clan will be disbanded.\nRun the ``/clan roster`` command in <#351057167706619914> to view your clan roster.",
                 color=0xffffff
             )
             for member in clan_role.members:

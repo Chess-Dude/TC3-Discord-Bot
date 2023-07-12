@@ -1,48 +1,14 @@
-from .clanCreation import ClanCreation
+from .clanRoleCreation import ClanRoleCreation
 import discord, re
 
+
 class ReviewClanApplication(discord.ui.View):
-    def __init__(self):
-        super().__init__(timeout=None)
-
-    async def update_leaderboard(
-        self,
-        clan_lb_channel,
-        clan_lb_message_id,
-        clan_role_name
+    def __init__(
+        self, 
+        pool
     ):
-        clan_lb_message = await clan_lb_channel.fetch_message(clan_lb_message_id)
-        
-        clan_lb_embed = clan_lb_message.embeds[0].to_dict()
-        all_clan_points = clan_lb_embed['description']
-
-        # Split the input string into a list of strings
-        clan_point_list = all_clan_points.split("\n")
-
-        # Create a list of tuples from the list of strings
-        clan_list_list = []
-        for clan_item in clan_point_list:
-            clan, lb_clan_points = clan_item.split(" - ")
-            clan_list_list.append([clan, int(lb_clan_points)])
-
-        clan_list_list.append([clan_role_name, int(0)])
-
-        # Sort the list of lists in ascending order by the number following the clan's name
-        sorted_list_list = sorted(clan_list_list, key=lambda x: x[1])
-
-        # Reverse the sorted list of tuples
-        reversed_tuple_list = reversed(sorted_list_list)
-
-        # Create a list of strings from the reversed list of tuples
-        sorted_strings = []
-        for clan, lb_clan_points in reversed_tuple_list:
-            sorted_strings.append(f"{clan} - {lb_clan_points}")
-
-        # Join the list of strings into a single string
-        result = "\n".join(sorted_strings)
-
-        return result
-
+        self.pool = pool
+        super().__init__(timeout=None)
 
     @discord.ui.button(label="Approve", style=discord.ButtonStyle.green, emoji='✅', custom_id="persistent_view:approve_clan_app")
     async def approve_button(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -55,17 +21,9 @@ class ReviewClanApplication(discord.ui.View):
         info_str = create_role_field["value"]
 
         clan_name = info_str.split('"')[1]
-
-        # Removing the clan name from the string
         copy_info_str = info_str.replace(clan_name, '', 1)
-
-        # Removing any non-numeric characters and whitespace
         clan_roster_str = re.sub(r'[^\d\s]+', '', copy_info_str)
-
-        # Removing leading/trailing whitespace
         clan_roster_str = clan_roster_str.strip()
-
-        # Splitting the roster string into a list of member IDs
         clan_roster_list = clan_roster_str.split(' ')
         del clan_roster_list[-1]
 
@@ -81,61 +39,60 @@ class ReviewClanApplication(discord.ui.View):
         clan_leader_role_id = 1054999374993817700 
         clan_co_leader_role_id = 1054999381029429349 
 
-        clan_roster_list = [clan_leader, clan_co_leader, clan_member_1, clan_member_2, clan_member_3, clan_member_4]
-        clan_hex_color = discord.Color.from_str(clan_hex_color)
+        async with self.pool.acquire() as connection:
+            sql = "SELECT * FROM ClanPointLeaderboard WHERE clanName = $1"
+            clan_name_data = await connection.fetch(sql, clan_name)
 
-        clan_role = await ClanCreation.create_role(
-            self, 
-            interaction, 
-            role_name=clan_name, 
-            colour=clan_hex_color, 
-            role_divider_id=role_divider_id
-        )
+            if len(clan_name_data) == 0:            
+                clan_roster_list = [clan_leader, clan_co_leader, clan_member_1, clan_member_2, clan_member_3, clan_member_4]
+                clan_hex_color = discord.Color.from_str(clan_hex_color)
 
-        await ClanCreation.assign_roles(
-            self, 
-            interaction=interaction, 
-            clan_roster=clan_roster_list, 
-            clan_role=clan_role,
-            clan_leader_role_id=clan_leader_role_id, 
-            clan_co_leader_role_id=clan_co_leader_role_id, 
-        )
-        
-        clan_lb_channel = interaction.guild.get_channel(1050289500783386655)
-        
-        new_weekly_result = await ReviewClanApplication.update_leaderboard(
-            self=self,
-            clan_lb_channel=clan_lb_channel,
-            clan_lb_message_id=1056413563209650228,
-            clan_role_name=clan_name
-        )
+                clan_role = await ClanRoleCreation.create_role(
+                    self, 
+                    interaction, 
+                    role_name=clan_name, 
+                    colour=clan_hex_color, 
+                    role_divider_id=role_divider_id
+                )
 
-        new_weekly_clan_lb = discord.Embed(
-            title="Clan Point Weekly Leaderboard",
-            description=new_weekly_result,
-            color=0x00ffff,
-            timestamp=interaction.created_at
-        )
+                await ClanRoleCreation.assign_roles(
+                    self, 
+                    interaction=interaction, 
+                    clan_roster=clan_roster_list, 
+                    clan_role=clan_role,
+                    clan_leader_role_id=clan_leader_role_id, 
+                    clan_co_leader_role_id=clan_co_leader_role_id, 
+                )
 
-        new_yearly_result = await ReviewClanApplication.update_leaderboard(
-            self=self,
-            clan_lb_channel=clan_lb_channel,
-            clan_lb_message_id=1056413562525974608,
-            clan_role_name=clan_name
-        )
+                sql = "INSERT INTO ClanPointLeaderboard (clanName, clanRoleID, weeklyClanPoints, yearlyClanPoints) VALUES ($1, $2, $3, $4)"
+                values = (clan_role.name, int(clan_role.id), 0, 0)
+                await connection.execute(sql, *values)
 
-        new_yearly_clan_lb = discord.Embed(
-            title="Clan Point Yearly Leaderboard",
-            description=new_yearly_result,
-            color=0x00ffff,
-            timestamp=interaction.created_at
-        )
+                await interaction.channel.send(f"{interaction.user.mention} Created ``{clan_role.mention}``")
 
-        clan_weekly_lb_message = await clan_lb_channel.fetch_message(1056413563209650228)
-        clan_yearly_lb_message = await clan_lb_channel.fetch_message(1056413562525974608)
-        await clan_weekly_lb_message.edit(embed=new_weekly_clan_lb)
-        await clan_yearly_lb_message.edit(embed=new_yearly_clan_lb)
-        await interaction.channel.send(f"{interaction.user.mention} Created ``{clan_role.mention}`` ")
+                for clan_member in clan_roster_list:
+                    sql = "SELECT * FROM ClanPointTracker WHERE discordUserID = $1"
+                    member_clan_point_data = await connection.fetch(sql, clan_member.id)
+
+                    if len(member_clan_point_data) == 0:
+                        sql = "INSERT INTO ClanPointTracker (robloxUsername, discordUserID, totalClanPoints, currentClanRoleID, currentClanName) VALUES ($1, $2, $3, $4, $5)"
+                        values = (clan_member.nick, clan_member.id, 0, clan_role.id, clan_role.name)
+                        inserted_row = await connection.execute(sql, *values)
+
+                    else:
+                        sql = "UPDATE ClanPointTracker SET currentClanRoleID = $1, currentClanName = $2 WHERE discordUserID = $3"
+                        values = (clan_role.id, clan_role.name, clan_member.id)
+                        await connection.execute(sql, *values)
+
+            else:
+                response_embed = discord.Embed(
+                    title=f"{clan_name} already exists. Ask the applicant to choose another name.",
+                    color=0x00ffff
+                )
+                await interaction.channel.send(
+                    embed=response_embed
+                )    
+
         await interaction.message.edit(view=None)
 
     @discord.ui.button(label="Reject", style=discord.ButtonStyle.red, emoji='❌', custom_id="persistent_view:reject_clan_app")

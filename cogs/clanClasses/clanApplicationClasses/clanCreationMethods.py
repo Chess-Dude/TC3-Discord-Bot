@@ -2,8 +2,7 @@ import discord, matplotlib
 from discord import Colour
 from .clanApplicationReview import ReviewClanApplication
 
-class ClanCreationmethods():
-
+class ClanCreationMethods():
     async def colour_converter(
         self,
         clan_color
@@ -25,14 +24,11 @@ class ClanCreationmethods():
         interaction: discord.Interaction, 
         clan_name,
         clan_color,        
-        clan_roster
+        clan_roster,
+        pool
     ):
         TC3_SERVER = interaction.guild
         applications_channel = TC3_SERVER.get_channel(1043644487949357157)
-        ec_role = discord.utils.get(
-            TC3_SERVER.roles, 
-            id=475669961990471680
-        )
 
         log_embed = discord.Embed(
             title=f"The Conqeurors 3 Clan Application", 
@@ -104,9 +100,9 @@ class ClanCreationmethods():
             inline=False
         )
 
-        view = ReviewClanApplication()
+        view = ReviewClanApplication(pool)
         await applications_channel.send(
-            content=f"<@198273107205685248>, <@711003479430266972>, <@768259026084429896>, <@282761998326824961>",
+            content=f"``<@711003479430266972>, <@768259026084429896>, <@282761998326824961>``",
             embed=log_embed,
             view=view
         )
