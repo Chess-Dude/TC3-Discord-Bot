@@ -15,13 +15,16 @@ from cogs.redeemClasses.RedeemModalReview import RedeemModalReview
 from cogs.chessTournamentClasses.chessTournamentModalReview import ChessTournamentModalReview
 from cogs.chessTournamentForm import ChessTournamentTicketPanel
 from cogs.signUpCommands import TournamentTicketPanel
-from cogs.clanClasses.clanRosterClasses.disbandClans import DisbandClansClass
+from cogs.clanClasses.clanRosterClasses.DisbandClans import DisbandClansClass
 from cogs.signupClasses.skillDivsionDropdown import SkillDivisionDropdownView
-from dotenv import load_dotenv
+from dotenv import load_dotenv, set_key
 
 load_dotenv()
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-token = BOT_TOKEN
+token = os.getenv("BOT_TOKEN")
+#token = BOT_TOKEN
+if token == None:
+    token = input("Please enter your bot token: ")
+    set_key(".env", "BOT_TOKEN", token)
 
 class MyBot(commands.Bot):
     
@@ -50,6 +53,9 @@ class MyBot(commands.Bot):
                 print(f'cogs.{filename[:-3]} loaded')
         self.add_view(TournamentDropdownView())
         self.add_view(RerollDropdown())
+        #self.add_view(MapChooserDropdown())
+        #self.add_view(TroopChooserDropdown()) #map chooser comming... eventually
+        #self.add_view(ChooseDropdown())
         self.add_view(ParentTournamentInformationViews())
         self.add_view(ChildTournamentInformationViews())
         self.add_view(SkillDivisionDropdownView())
@@ -74,6 +80,7 @@ async def shutdown(ctx):
     await ctx.send("shutting down")
     await bot.close()
     bot.clear()
+    exit(0) #Exit with success status code
     
 @bot.command()
 @commands.is_owner()
@@ -81,10 +88,10 @@ async def reload(ctx, args):
     for filename in os.listdir('./cogs'):
         if filename == args:
             await bot.unload_extension(f'cogs.{filename[:-3]}')
-            print((f'cogs.{filename[:-3]} unloaded'))
+            print((f'cogs.{filename[:-3]} unloaded successfully!'))
             await bot.load_extension(f'cogs.{filename[:-3]}')
-            await ctx.send(f'cogs.{filename[:-3]} loaded')
-            print(f'cogs.{filename[:-3]} re-loaded')
+            await ctx.send(f'cogs.{filename[:-3]} re-loaded successfully!')
+            print(f'cogs.{filename[:-3]} loaded successfully!')
 
 @bot.command()
 @commands.is_owner()
@@ -93,15 +100,15 @@ async def echo(ctx, *, args):
 
 @bot.command()
 @commands.is_owner()
-async def sync(ctx, guilds: Greedy[Object], spec: Optional[Literal["~", "*"]] = None):
+async def sync(ctx: commands.Context, guilds: Greedy[Object], spec: Optional[Literal["~", "*"]] = None):
     if not guilds:
         if spec == "~":
-            fmt = await ctx.bot.tree.sync(guild=ctx.guild)   
+            fmt = await bot.tree.sync(guild=ctx.guild)   
         elif spec == "*":
-            ctx.bot.tree.copy_global_to(guild=ctx.guild)
-            fmt = await ctx.bot.tree.sync(guild=ctx.guild)
+            bot.tree.copy_global_to(guild=ctx.guild) #type: ignore
+            fmt = await bot.tree.sync(guild=ctx.guild)
         else:
-            fmt = await ctx.bot.tree.sync()
+            fmt = await bot.tree.sync()
 
         await ctx.send(
             f"Synced {len(fmt)} commands {'globally' if spec is None else 'to the current guild.'}"
@@ -125,21 +132,21 @@ async def embed(ctx):
     await ctx.send(embed=discord.Embed(title="N/A", description="", color=0xff0000))
 
 @bot.event
-async def on_member_join(member):
+async def on_member_join(member:discord.Member):
     TC3_SERVER = bot.get_guild(350068992045744141)
     if member.guild == TC3_SERVER:
         LOBBY_CHANNEL = bot.get_channel(350068992045744142)
         welcome_message_channel = bot.get_channel(351084557929283585)
 
-        msg = await LOBBY_CHANNEL.send(f"Welcome to The Official Conquerors 3 Discord {member.mention}! If you have any questions feel free to ping <@585991378400706570>! Make sure to checkout <#351057978381828096> and <#696086223009218682> to stay up to date with the latest The Conquerors 3 content! Before you post, please read <#731499115573280828> to keep our server running smoothly and without any problems.")
-        await welcome_message_channel.send(f"<@563066303015944198>, <@361170109877977098>, <@898392058077802496>, <@450662444612845580>, <@646463139977625623>, <@897020169958883348>, <@1006873288229793833> \n{msg.jump_url}")
+        msg = await LOBBY_CHANNEL.send(f"Welcome to The Official Conquerors 3 Discord {member.mention}! If you have any questions feel free to ping <@585991378400706570>! Make sure to checkout <#351057978381828096> and <#696086223009218682> to stay up to date with the latest The Conquerors 3 content! Before you post, please read <#731499115573280828> to keep our server running smoothly and without any problems.") #type: ignore
+        await welcome_message_channel.send(f"<@563066303015944198>, <@361170109877977098>, <@898392058077802496>, <@450662444612845580>, <@646463139977625623>, <@897020169958883348>, <@1006873288229793833> \n{member.display_name} joined!\n**`Jump Link`**:\n{msg.jump_url}") #type: ignore
 
 @bot.command()
 @commands.is_owner()
 async def clan_lb(ctx):
     import discord
     clan_lb_channel = bot.get_channel(1050289500783386655)
-    clan_yearly_lb_message = await clan_lb_channel.fetch_message(1056413562525974608)
+    clan_yearly_lb_message = await clan_lb_channel.fetch_message(1056413562525974608) #type: ignore
 
     description = """
 Omnipotent - 32638
@@ -163,7 +170,8 @@ Shambhala - 232
     clan_lb_embed = discord.Embed(
         title="Clan Point Yearly Leaderboard",
         description=f"{description}",
-        color=0x00ffff
+        #color=0x00ffff
+        color=discord.Color.from_rgb(0, 255, 255)
     )
 
     await clan_yearly_lb_message.edit(embed=clan_lb_embed)
@@ -180,6 +188,7 @@ async def report_user(
     interaction: discord.Interaction, 
     message: discord.Message
 ):
+    assert interaction.guild is not None
     log_channel = interaction.guild.get_channel(442447501325369345)
 
     log_embed = discord.Embed(
@@ -193,7 +202,7 @@ async def report_user(
         icon_url=interaction.user.display_avatar.url
     )
 
-    await log_channel.send(
+    await log_channel.send( #type: ignore
         content=f"<@&351166789700550679> <@&363125947635073025>",
         embed=log_embed,
         view=GoToMessage(message.jump_url)

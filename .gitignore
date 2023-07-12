@@ -130,3 +130,9 @@ dmypy.json
 
 #
 creds.json
+
+# VSCode Settings
+.vscode/
+
+#Github settings
+.github/
