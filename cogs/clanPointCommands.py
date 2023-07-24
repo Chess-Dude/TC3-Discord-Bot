@@ -3,7 +3,6 @@ from discord.ext import commands, tasks
 from discord import app_commands
 from .clanClasses.clanPointClassesREWORKED.clanPointBotMethods import ClanPointBotMethods
 from .clanClasses.clanPointClasses.clanPointReview import ReviewClanPoints
-from .clanClasses.clanPointClassesREWORKED.clanPointAPIMethods import ClanPointAPIMethods
 
 class ClanPointCommands(commands.Cog):
     def __init__(self, bot):
@@ -11,7 +10,6 @@ class ClanPointCommands(commands.Cog):
         self.looped_update_leaderboard.start()
         self.looped_send_clan_point_notif.start()
         self.clan_point_bot_methods_obj = ClanPointBotMethods()
-        self.clan_point_api_methods_obj = ClanPointAPIMethods()
 
     @tasks.loop(hours=6.0)
     async def looped_update_leaderboard(self):
@@ -39,7 +37,7 @@ class ClanPointCommands(commands.Cog):
             end_of_round_bonus_list = ast.literal_eval(endofroundbonusstring)
             
             if len(end_of_round_bonus_list) != 0:                
-                total_clan_points = self.clan_point_api_methods_obj.calculate_total_clan_points(
+                total_clan_points = self.clan_point_bot_methods_obj.calculate_total_clan_points(
                     end_of_round_bonus_list=end_of_round_bonus_list
                 )
                 

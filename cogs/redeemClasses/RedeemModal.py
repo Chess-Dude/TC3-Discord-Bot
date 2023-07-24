@@ -26,7 +26,7 @@ class RedeemModal(discord.ui.Modal, title="The Conquerors 3 Prize Redeem Form"):
         style=discord.TextStyle.short,
         placeholder="Total Coins/Robux Being Claimed Here...",
         required=True,
-        min_length=3,
+        min_length=2,
         max_length=10
     )
 

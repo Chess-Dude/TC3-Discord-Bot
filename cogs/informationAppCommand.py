@@ -1,6 +1,6 @@
-import discord, gspread, json, typing, requests
+import discord, gspread, requests, os
 from oauth2client.service_account import ServiceAccountCredentials
-from discord import Member, app_commands
+from discord import app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
 from cogs.informationChannels import InformationEmbeds

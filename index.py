@@ -16,7 +16,10 @@ from cogs.chessTournamentForm import ChessTournamentTicketPanel
 from cogs.signUpCommands import TournamentTicketPanel
 from cogs.clanClasses.clanRosterClasses.disbandClans import DisbandClansClass
 from cogs.signupClasses.skillDivsionDropdown import SkillDivisionDropdownView
+from cogs.tc3BugReport import BugReportTicketPanel
+from cogs.tc3BugClasses.bugModalReview import BugModalReview
 from dotenv import load_dotenv
+import psutil
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -48,8 +51,8 @@ class TC3Bot(commands.Bot):
             if filename.endswith('.py'):
                 await bot.load_extension(f'cogs.{filename[:-3]}')
                 print(f'cogs.{filename[:-3]} loaded')
-        credentials = {"user": os.getenv("DB_USERNAME"), "password": os.getenv("DB_PASSWORD"), "database": os.getenv("DB_NAME"), "host": "127.0.0.1"}
-        self.pool = await asyncpg.create_pool(**credentials)
+        credentials = {"host": os.getenv("DB_HOST"), "database": os.getenv("DB_NAME"), "user": os.getenv("DB_USERNAME"), "password": os.getenv("DB_PASSWORD")}
+        self.pool = await asyncpg.create_pool(min_size=1, max_size=5, **credentials)
         print("pooled successfully")        
         self.add_view(TournamentDropdownView())
         self.add_view(RerollDropdown())
@@ -65,6 +68,8 @@ class TC3Bot(commands.Bot):
         self.add_view(ChessTournamentTicketPanel())
         self.add_view(TournamentTicketPanel())
         self.add_view(DisbandClansClass())        
+        self.add_view(BugReportTicketPanel())
+        self.add_view(BugModalReview())
         print("views loaded successfully")
 
 bot = TC3Bot()
@@ -93,6 +98,12 @@ async def reload(ctx, args):
 @commands.is_owner()
 async def echo(ctx, *, args):
     await ctx.send(f"{args}")
+
+@bot.command()
+async def ram(ctx):
+    process = psutil.Process()
+    memory_usage = process.memory_info().rss / 1024 ** 2  # Memory usage in MB
+    await ctx.send(f"Current RAM usage: {memory_usage:.2f} MB")
 
 @bot.command()
 @commands.is_owner()

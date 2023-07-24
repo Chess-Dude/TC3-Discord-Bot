@@ -109,6 +109,71 @@ class RoleUtilityCommands(commands.Cog):
             else: 
                 await interaction.channel.send("You do not have permission to assign or remove that role")
 
+    @app_commands.checks.has_any_role(351074813055336458, 475669961990471680)
+    @role_command_group.command(
+        name="one_day",
+        description="A Command That Allows You To Add Or Remove A one-day tournament Role From Members!")
+    @app_commands.autocomplete(type=type_autocomplete)
+    @app_commands.describe(role="Ping a discord role to be added to a member here!")
+    @app_commands.describe(member_1="Ping a discord member here!")
+    @app_commands.describe(member_2="Ping a discord member here!")
+    @app_commands.describe(member_3="Ping a discord member here!")
+    @app_commands.describe(member_4="Ping a discord member here!")
+    @app_commands.rename(role="role")
+    @app_commands.rename(member_1="member_1")
+    @app_commands.rename(member_2="member_2")
+    @app_commands.rename(member_3="member_3")
+    @app_commands.rename(member_4="member_4")
+    async def role_manage_oneday(        
+        self,
+        interaction: discord.Interaction,
+        type: str,
+        role: discord.Role,
+        member_1: discord.Member,
+        member_2: typing.Optional[discord.Member],
+        member_3: typing.Optional[discord.Member],
+        member_4: typing.Optional[discord.Member]       
+    ):
+        add_flag = False
+        remove_flag = False
+        if type.lower() == "add":
+            add_flag = True
+
+        elif type.lower() == "remove":
+            remove_flag = True
+        
+        else:
+            await interaction.response.send_message("Error: Unknown Type. Please specify if you would like to add or remove a division role.")
+
+        if add_flag or remove_flag:
+            role_list = []
+            top_role = interaction.guild.get_role(589808867999875072)
+            bottom_role = interaction.guild.get_role(411712513672216586)
+
+            for role_pos in range(top_role.position-1, bottom_role.position, -1):
+                server_role = discord.utils.get(
+                    interaction.guild.roles, 
+                    position=role_pos
+                )
+                if role_list == None:
+                    continue
+
+                role_list.append(server_role)
+
+            if role in role_list:
+                await RoleUtilityCommands.member_role_update(
+                    self=self,
+                    role=role,
+                    member_list=[member_1, member_2, member_3, member_4],
+                    add_role=add_flag,
+                    remove_role=remove_flag
+                )
+                
+                await interaction.channel.send("Completed")
+
+            else: 
+                await interaction.channel.send("You do not have permission to assign or remove that role")
+
     @app_commands.checks.has_any_role(351074813055336458)
     @role_command_group.command(
         name="any",

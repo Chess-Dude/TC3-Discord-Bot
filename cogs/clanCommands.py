@@ -1,4 +1,4 @@
-import discord, typing, mysql.connector, os
+import discord, typing
 from discord import app_commands
 from discord.ext import commands
 from cogs.teamApplicationClasses.teamCreation import TeamCreation
@@ -6,21 +6,10 @@ from .clanClasses.clanApplicationClasses.clanCreationMethods import ClanCreation
 from .clanClasses.clanApplicationClasses.clanChangeMethods import ClanChangesMethods
 from .clanClasses.clanApplicationClasses.clanDisbandMethods import ClanDisbandMethods
 from .clanClasses.clanRosterClasses.generateClanRoster import GenerateClanRoster
-from dotenv import load_dotenv
 
 class ClanCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-        load_dotenv()
-        # self.mydb = mysql.connector.connect(
-        #     host=os.getenv("IP_ADDRESS"),
-        #     user=os.getenv("DB_USERNAME"),
-        #     password=os.getenv("DB_PASSWORD"),
-        #     database="clanPointDatabase"
-        # )
-
-        # self.cursor = self.mydb.cursor() 
 
     def bots_or_work_channel(interaction):
         return interaction.channel.id == 941567353672589322 or interaction.channel.id == 896440473659519057 or interaction.channel.id == 351057167706619914
@@ -92,7 +81,7 @@ class ClanCommands(commands.Cog):
     @clan_group.command(
         name="leave",
         description="A Command That Alows You To Leave Your Clan!")
-    async def clan_change(
+    async def clan_leave(
         self,
         interaction: discord.Interaction
     ): 
@@ -334,7 +323,6 @@ class ClanCommands(commands.Cog):
             sql = "SELECT * FROM ClanPointTracker WHERE discordUserID = $1"
             member_clan_point_data = await connection.fetch(sql, member.id)
 
-            print(member_clan_point_data)
             if len(member_clan_point_data) != 0:
                 response_embed = discord.Embed(
                     title=f"{member.nick}'s total clan points are: {member_clan_point_data[0][3]}",

@@ -1,4 +1,4 @@
-from .clanRoleCreation import ClanRoleCreation
+from .roleCreation import RoleCreation
 import discord, re
 
 
@@ -47,7 +47,7 @@ class ReviewClanApplication(discord.ui.View):
                 clan_roster_list = [clan_leader, clan_co_leader, clan_member_1, clan_member_2, clan_member_3, clan_member_4]
                 clan_hex_color = discord.Color.from_str(clan_hex_color)
 
-                clan_role = await ClanRoleCreation.create_role(
+                clan_role = await RoleCreation.create_role(
                     self, 
                     interaction, 
                     role_name=clan_name, 
@@ -55,13 +55,13 @@ class ReviewClanApplication(discord.ui.View):
                     role_divider_id=role_divider_id
                 )
 
-                await ClanRoleCreation.assign_roles(
+                await RoleCreation.assign_roles(
                     self, 
                     interaction=interaction, 
-                    clan_roster=clan_roster_list, 
-                    clan_role=clan_role,
-                    clan_leader_role_id=clan_leader_role_id, 
-                    clan_co_leader_role_id=clan_co_leader_role_id, 
+                    member_roster=clan_roster_list, 
+                    role=clan_role,
+                    leader_role_id=clan_leader_role_id, 
+                    co_leader_role_id=clan_co_leader_role_id, 
                 )
 
                 sql = "INSERT INTO ClanPointLeaderboard (clanName, clanRoleID, weeklyClanPoints, yearlyClanPoints) VALUES ($1, $2, $3, $4)"

@@ -121,7 +121,10 @@ class ChannelUtilityCommands(commands.Cog):
             interaction=interaction,
             game_mode="1v1"
         )
-        await new_channel.send(embed=map_embed)
+
+        await new_channel.send(
+            embed=map_embed 
+        )
 
 
     @app_commands.checks.has_any_role(554152645192056842, 351074813055336458)
@@ -221,14 +224,22 @@ class ChannelUtilityCommands(commands.Cog):
         channel_4: typing.Optional[discord.TextChannel],
         channel_5: typing.Optional[discord.TextChannel]         
     ): 
+        immune_channel_ids = [1047726075221901383, 1123407859221274784, 1123407962766049340, 1123408004084158555]
         channel_list = [channel_1, channel_2, channel_3, channel_4, channel_5]
         contest_category = discord.utils.get(
             interaction.guild.categories, 
             id=695665409361182861
         )        
+
+        tournament_category = discord.utils.get(
+            interaction.guild.categories, 
+            id=1039574633273364510
+        )        
+
         for channel in channel_list: 
-            if channel != None:
-                if channel.category == contest_category:  
+            if ((channel != None) and 
+            (channel.id not in immune_channel_ids)):
+                if channel.category == contest_category or channel.category == tournament_category:  
                     await channel.delete()
                 
                 else:

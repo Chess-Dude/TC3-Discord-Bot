@@ -31,11 +31,28 @@ class TournamentSignupModal(discord.ui.Modal, title="Tournament Sign-up"):
         max_length=3
     )
 
+    backup_player = discord.ui.TextInput(
+        label="Would you like to be a backup player? (Y/N)",
+        style=discord.TextStyle.short,
+        placeholder="Yes/No Here...",
+        required=True,
+        min_length=1,
+        max_length=3
+    )
+
     async def on_submit(
         self, 
         interaction: discord.Interaction
     ):
+        one_day_tourney_role = interaction.guild.get_role(690624687004319804)
+        await interaction.user.add_roles(one_day_tourney_role)
+
         try:
+            if ((self.backup_player.value.lower() == "yes") or 
+                (self.backup_player.value.lower() == 'y')):
+                backup_role = interaction.guild.get_role(695683985510236220)
+                await interaction.user.add_roles(backup_role)
+
             if ((self.available.value.lower() == "no") or 
                 (self.available.value.lower() == 'n')):
                 raise NotFree      
@@ -110,12 +127,17 @@ class TournamentSignupModal(discord.ui.Modal, title="Tournament Sign-up"):
             inline=True
         )
 
+        signup_embed.add_field(
+            name="``Are you a backup player? (Y/N)``",
+            value=f"``{self.backup_player.value}``",
+            inline=False
+        )
+
         signup_channel = interaction.guild.get_channel(1015670142656581742)
         msg = await signup_channel.send(
             content=f"{interaction.user.mention}",
             embed=signup_embed,
             view=SkillDivisionDropdownView()
-            # view=TournamentSignupModalReview()
         )
 
         if ((self.available.value.lower() == "no") or 

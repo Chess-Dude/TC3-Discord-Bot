@@ -1,7 +1,74 @@
 import discord
 
 class ClanPointBotMethods():
-     
+
+    def calculate_total_clan_points(
+        self,
+        end_of_round_bonus_list
+    ):
+        victory_bonus = int(end_of_round_bonus_list[1])
+        damage_dealt_bonus = int(end_of_round_bonus_list[2])
+        damage_healed_bonus = int(end_of_round_bonus_list[3])
+        waves_survived_bonus = int(end_of_round_bonus_list[7])
+        game_mode = end_of_round_bonus_list[8]
+        end_time = int(end_of_round_bonus_list[9])
+        game_mode_multiplier = 0
+
+        if ((game_mode.lower() == "conquest") and 
+            (end_time >=20)):
+                game_mode_multiplier = 2
+                game_mode_cap = 125
+                if damage_healed_bonus > 15:
+                    damage_healed_bonus = 15
+
+        if ((game_mode.lower() == "lightning conquest") and 
+            (end_time >=15)):
+                game_mode_multiplier = 1.5
+                game_mode_cap = 125
+                if damage_healed_bonus > 15:
+                    damage_healed_bonus = 15
+
+
+        elif ((game_mode.lower() == "territory conquest") or 
+            (game_mode.lower() == "tc") and 
+            (end_time >= 20)):
+                game_mode_multiplier = 1
+                game_mode_cap = 125
+                if damage_healed_bonus > 15:
+                    damage_healed_bonus = 15
+
+        elif ((game_mode.lower() == "survival") and 
+            (end_time >= 20)):
+                game_mode_multiplier = 1
+                game_mode_cap = 250
+
+        elif ((game_mode.lower() == "king of the hill") or 
+            (game_mode.lower() == "koth") and 
+            (end_time >= 20)):
+                game_mode_multiplier = 1.5
+                game_mode_cap = 90
+
+        elif ((game_mode.lower() == "free for all")  
+            (game_mode.lower() == "ffa") and 
+            (end_time >= 20)):
+                game_mode_multiplier = 2
+                game_mode_cap = 300
+
+        else:
+            print("Following game mode not handled:")
+            print(game_mode)
+
+        total_clan_points = 0
+        if game_mode_multiplier != 0:
+            total_clan_points = damage_dealt_bonus + damage_healed_bonus + victory_bonus + waves_survived_bonus
+                        
+            total_clan_points = int(total_clan_points) * int(game_mode_multiplier)
+
+            if (int(total_clan_points) > int(game_mode_cap)):
+                total_clan_points = game_mode_cap
+
+        return total_clan_points
+
     async def get_updated_leaderboards(
         self, 
         bot

@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from discord.ext import commands
-from discord.app_commands import Choice
 from .informationEmbeds.parentTournamentView import ParentTournamentInformationViews
 
 class ParentClanInformationViews(discord.ui.View):
@@ -158,42 +157,6 @@ class ParentClanInformationViews(discord.ui.View):
         await interaction.response.send_message(embed=information_embed, ephemeral=True)
 
 
-# class ParentGeneralInformationViews(discord.ui.View):
-#     def __init__(self):
-#         super().__init__(timeout=None)
-
-#     @discord.ui.button(label="FAQ", style=discord.ButtonStyle.blurple, custom_id="persistent_view:Discord_FAQ", emoji='❔')
-#     async def info_faq(self, interaction: discord.Interaction, button: discord.ui.Button):
-#         information_embed = discord.Embed(
-#             title=f"Game FAQ or Discord FAQ",
-#             color=0x00ffff
-#         )
-#         await interaction.response.send_message(embed=information_embed, view=ChildTournamentInformationViews(), ephemeral=True)
-
-#     @discord.ui.button(label="Story Information", style=discord.ButtonStyle.blurple, custom_id="persistent_view:Story_Information", emoji='📖')
-#     async def info_story(self, interaction: discord.Interaction, button: discord.ui.Button):
-#         information_embed = discord.Embed(
-#             title=f"Story Information",
-#             color=0x00ffff
-#         )
-#         await interaction.response.send_message(embed=information_embed, view=ChildTournamentInformationViews(), ephemeral=True)
-
-#     @discord.ui.button(label="Tournament Information", style=discord.ButtonStyle.blurple, custom_id="persistent_view:Tournament_Information", emoji='🏆')
-#     async def info_tournament(self, interaction: discord.Interaction, button: discord.ui.Button):
-#         await InformationEmbeds.tournament_embed_info(
-#             self, 
-#             interaction
-#         )
-
-#     @discord.ui.button(label="Suggestion Instructions", style=discord.ButtonStyle.blurple, custom_id="persistent_view:Suggestion_Instructions", emoji='🔢')
-#     async def info_suggestion(self, interaction: discord.Interaction, button: discord.ui.Button):
-#         information_embed = discord.Embed(
-#             title=f"What 3v3 tournament information would you like to know more about?",
-#             color=0x00ffff
-#         )
-#         await interaction.response.send_message(embed=information_embed, view=ChildTournamentInformationViews(), ephemeral=True)
-
-
 class InformationEmbeds(commands.Cog):
 
     def __init__(self, bot):
@@ -241,27 +204,6 @@ class InformationEmbeds(commands.Cog):
             view=ParentClanInformationViews()
         )
 
-    @commands.is_owner()
-    @commands.command()
-    async def general_information_embed(
-        self, 
-        ctx
-    ):
-        """Starts a persistent view."""
-        information_embed = discord.Embed(
-            title=f"Information",
-            description=f"This section will cover everything there is to know about events at The Conquerors 3.",
-            color=0x00ffff
-        )
-
-        information_embed.set_image(
-            url="https://media.discordapp.net/attachments/501185430751019008/1025972287645691985/unknown.png?width=691&height=389"
-        )
-        
-        # await ctx.send(
-        #     embed=information_embed, 
-        #     view=ParentGeneralInformationViews()
-        # )
 
 async def setup(bot):
     await bot.add_cog(InformationEmbeds(bot))

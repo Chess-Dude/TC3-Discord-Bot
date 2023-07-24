@@ -24,8 +24,7 @@ class TeamCreation():
         tournament_type, 
         team_roster
     ):
-        server = interaction.guild
-        tournament_applications_channel = server.get_channel(1043644487949357157)
+        tournament_applications_channel = interaction.guild.get_channel(1043644487949357157)
 
         log_embed = discord.Embed(
             title=f"{tournament_type} Tournament Application", 
@@ -124,6 +123,6 @@ class TeamCreation():
         
         if len(unverified_members) > 0:
             unverified_members = (','.join(unverified_members))
-            await interaction.response.send_message(f"__The Following Members Are **Unverified**:__\n{unverified_members}\n\nPlease have them run the ``/verify`` command in <#351057167706619914>. Once all members are verified, you must redo the application.")
+            await interaction.channel.send(f"__The Following Members Are **Unverified**:__\n{unverified_members}\n\nPlease have them run the ``/verify`` command in <#351057167706619914>. Once all members are verified, you must redo the application.")
         else:
             return True

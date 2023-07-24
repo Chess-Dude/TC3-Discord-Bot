@@ -1,15 +1,15 @@
 import os
 import psycopg2
-from flask import Flask, render_template, request
+from flask import Flask, request
 from dotenv import load_dotenv
-from cogs.clanClasses.clanPointClassesREWORKED.clanPointAPIMethods import ClanPointAPIMethods
+from clanPointAPIMethods import ClanPointAPIMethods
 
 load_dotenv()
 
 clan_point_api_methods_obj = ClanPointAPIMethods()
 mydb = psycopg2.connect(
-    host="localhost",
-    port="5432",
+    host=os.getenv("DB_HOST"),
+    port=str(os.getenv("DB_PORT")),
     dbname=os.getenv("DB_NAME"),
     user=os.getenv("DB_USERNAME"),
     password=os.getenv("DB_PASSWORD")
@@ -57,4 +57,4 @@ async def process_request():
         return "This API does not support GET requests"
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port="1111", debug=False)
+    app.run(os.getenv("IP_ADDRESS"), port="1111", debug=False)
