@@ -34,14 +34,16 @@ class ClanPointAPIMethods():
         end_time = int(end_of_round_bonus_list[9])
         game_mode_multiplier = 0
 
+        print(f"The Game mode: {game_mode}, type: {type(game_mode)}")
         if ((game_mode.lower() == "conquest") and 
             (end_time >=20)):
+                print("game mode is conquest")
                 game_mode_multiplier = 2
                 game_mode_cap = 125
                 if damage_healed_bonus > 15:
                     damage_healed_bonus = 15
 
-        if ((game_mode.lower() == "lightning conquest") and 
+        elif ((game_mode.lower() == "lightning conquest") and 
             (end_time >=15)):
                 game_mode_multiplier = 1.5
                 game_mode_cap = 125

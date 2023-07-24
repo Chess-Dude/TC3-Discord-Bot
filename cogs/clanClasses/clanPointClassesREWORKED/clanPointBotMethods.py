@@ -21,7 +21,7 @@ class ClanPointBotMethods():
                 if damage_healed_bonus > 15:
                     damage_healed_bonus = 15
 
-        if ((game_mode.lower() == "lightning conquest") and 
+        elif ((game_mode.lower() == "lightning conquest") and 
             (end_time >=15)):
                 game_mode_multiplier = 1.5
                 game_mode_cap = 125

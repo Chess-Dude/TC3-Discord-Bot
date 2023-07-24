@@ -1,6 +1,4 @@
-import os
-import psycopg2
-from flask import Flask, request
+import os, json, psycopg2
 from dotenv import load_dotenv
 from clanPointAPIMethods import ClanPointAPIMethods
 
@@ -14,17 +12,12 @@ mydb = psycopg2.connect(
     user=os.getenv("DB_USERNAME"),
     password=os.getenv("DB_PASSWORD")
 )
-
 cursor = mydb.cursor()
-
-app = Flask(__name__)
-
-@app.route('/', methods=["POST"])
-async def process_request():
-    if request.method == "POST":
-        content_type = request.headers.get("Content-Type")
+def process_request(event, context):
+    if event["httpMethod"] == "POST":
+        content_type = event["headers"].get("Content-Type")
         if content_type == "application/json":
-            json_data = request.json
+            json_data = json.loads(event["body"])
 
             end_of_round_bonus_list = clan_point_api_methods_obj.get_player_data(
                 raw_player_data=json_data
@@ -41,20 +34,24 @@ async def process_request():
                     cursor=cursor,
                     clan_points_to_add=total_clan_points
                 )
-
                 sql = "INSERT INTO ClanPointSubmissionTracker (endOfRoundBonusString) VALUES (%s)"
                 val = (str(end_of_round_bonus_list),)
-
                 cursor.execute(sql, val)
                 mydb.commit()
-            
-            return json_data
-        
+            return {
+                "statusCode": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": json.dumps(json_data)
+            }
         else:
-            return "Content-Type not supported!"
-   
+            return {
+                "statusCode": 400,
+                "body": "Content-Type not supported!"
+            }
     else:
-        return "This API does not support GET requests"
-
-if __name__ == "__main__":
-    app.run(os.getenv("IP_ADDRESS"), port="1111", debug=False)
+        return {
+            "statusCode": 405,
+            "body": "This API does not support GET requests"
+        }
