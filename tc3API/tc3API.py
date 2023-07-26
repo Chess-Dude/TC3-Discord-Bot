@@ -1,6 +1,6 @@
 import os, json, psycopg2
 from dotenv import load_dotenv
-from clanPointAPIMethods import ClanPointAPIMethods
+from tc3API.clanPointAPIMethods import ClanPointAPIMethods
 
 load_dotenv()
 

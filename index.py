@@ -223,18 +223,18 @@ async def init_clan_databases(ctx):
 async def print_clan_databases(ctx):
 
     async with bot.pool.acquire() as connection:
-        sql = "SELECT * FROM ClanPointLeaderboard"
-        result = await connection.fetch(sql)
+        # sql = "SELECT * FROM ClanPointLeaderboard"
+        # result = await connection.fetch(sql)
         
-        for row in result:
-            print(row)
+        # for row in result:
+        #     print(row)
 
-        print("\n\n")
-        sql = "SELECT * FROM ClanPointTracker"
-        result = await connection.fetch(sql)
+        # print("\n\n")
+        # sql = "SELECT * FROM ClanPointTracker"
+        # result = await connection.fetch(sql)
         
-        for row in result:
-            print(row)
+        # for row in result:
+        #     print(row)
 
         print("\n\n")
         sql = "SELECT * FROM ClanPointSubmissionTracker"
