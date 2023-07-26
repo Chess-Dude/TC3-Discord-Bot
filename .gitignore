@@ -128,5 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#
-.creds.json
+# creds file
+creds.json
+
+# serverless-dependencies
+node_modules/
