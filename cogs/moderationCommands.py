@@ -1,6 +1,7 @@
-import discord, asyncio, datetime
+import discord, asyncio, typing
 from discord import app_commands
 from discord.ext import commands
+from .moderationClasses.muteClasses.muteUtility import MuteUtility
 
 class ModeratorCommands(commands.Cog):
     def __init__(self, bot):
@@ -97,139 +98,48 @@ class ModeratorCommands(commands.Cog):
         time_type: str,
         reason: str
     ):
-        staff_role_id_list = [1072233470606200853,
-                              351074813055336458,
-                              351166789700550679,
-                              363125947635073025,
-                              743302990001340559,
-                              554152645192056842,
-                              743115435821498460,
-                              419333829891850250,
-                              363500459203231746
-                              ]
-        
-        for role_id in staff_role_id_list:
-            staff_role = interaction.guild.get_role(role_id)
-            
-            if staff_role in member.roles:
-                response_embed = discord.Embed(
-                    description=f"✅ {member.display_name}#{member.discriminator} is a staff member! | Failed to mute.", 
-                    colour=0x00ffff
-                )
-                success_message = await interaction.channel.send(embed=response_embed)
-                return
-
-        muted_role = interaction.guild.get_role(351091626950787084)
-
-        await member.add_roles(muted_role)
-
-        response_embed = discord.Embed(
-            description=f"✅ {member.display_name}#{member.discriminator} has been muted for {duration} {time_type} | {reason}", 
-            colour=0x00ffff
-        )
-        
-        success_message = await interaction.channel.send(embed=response_embed)
-
-        log_channel = self.bot.get_channel(1028869177798295632)
-        
-        log_embed = discord.Embed(
-            color=0x00ffff, 
-            timestamp=interaction.created_at
-        )
-        
-        log_embed.set_author(
-            name=f"{interaction.guild.name}",
-            icon_url=f"{interaction.guild.icon}"
+        mute_utility_obj = MuteUtility(
+            member=member,
+            duration=duration,
+            interaction=interaction,
+            time_type=time_type,
+            reason=reason
         )
 
-        log_embed.add_field(
-            name="Moderator",
-            value=f"{interaction.user.mention}, ``{interaction.user.id}``",
-            inline=False
+        if not await mute_utility_obj.is_staff():
+            duration_seconds = await mute_utility_obj.mute_user()
+            await asyncio.sleep(duration_seconds)
+            await mute_utility_obj.unmute_user()
+
+    perm_mute_command_group = app_commands.Group(
+        name="perm", 
+        description="A Command That Allows You To Perma Mute a Member!"
+    )
+
+    @app_commands.checks.has_permissions(manage_messages=True)
+    @perm_mute_command_group.command(
+        name="mute",
+        description="A Command that allows moderators to mute a member permanently")
+    @app_commands.describe(member="specify which member to mute")
+    @app_commands.describe(reason="specify reason of mute")
+    @app_commands.rename(member="member")
+    @app_commands.rename(reason="reason")
+    async def perma_mute_command(        
+        self,
+        interaction: discord.Interaction,
+        member: discord.User,
+        reason: typing.Optional[str]       
+    ):
+        mute_utility_obj = MuteUtility(
+            member=member,
+            duration=None,
+            interaction=interaction,
+            time_type=None,
+            reason=reason
         )
 
-        log_embed.add_field(
-            name="Member Muted",
-            value=f"{member.mention}, ``{member.id}``",
-            inline=False
-        )           
-
-        log_embed.add_field(
-            name="Reason Of Mute",
-            value=f"``{reason}``",
-            inline=False
-        )           
-        
-        log_embed.add_field(
-            name="Duration Of Mute",
-            value=f"``{duration} {time_type}``",
-            inline=False
-        )           
-        
-        log_embed.add_field(
-            name="Jump", 
-            value = f"[Go to message!]({success_message.jump_url})",
-            inline=False
-        )
-    
-        log_embed_message = await log_channel.send(embed=log_embed)
-        
-        try:
-            await member.send(
-                content=f"You have been muted. You may appeal this mute here: https://goo.gl/forms/40zjxwBgD9RaV4Lh1",
-                embed=log_embed
-            )
-        except:
-            pass
-
-        time_now = datetime.datetime.now()
-
-        if time_type.lower() == "minutes":
-            time_duration = datetime.timedelta(minutes=duration)
-            duration_seconds = duration * 60
-
-
-        elif time_type.lower() == "hours":
-            time_duration = datetime.timedelta(hours=duration)
-            duration_seconds = duration * 3600
-
-        # await member.timed_out_until(unmute_time)
-        await member.timeout(time_duration)
-        await member.add_roles(muted_role)
-
-        await asyncio.sleep(duration_seconds)
-
-        await member.remove_roles(muted_role)
-
-        unmute_log_embed = discord.Embed(
-            color=0x00ffff, 
-            timestamp=interaction.created_at
-        )
-
-        unmute_log_embed.set_author(
-            name=f"{interaction.guild.name}",
-            icon_url=f"{interaction.guild.icon}"
-        )
-
-        unmute_log_embed.add_field(
-            name="Member Unmuted",
-            value=f"{member.mention}, ``{member.id}``",
-            inline=False
-        )           
-                
-        await member.send(
-            content="You have been unmuted.",
-            embed=unmute_log_embed
-        )
-
-        unmute_log_embed.add_field(
-            name="Jump", 
-            value = f"[Go to message!]({log_embed_message.jump_url})",
-            inline=False
-        )       
-
-        log_channel = interaction.guild.get_channel(351084557929283585)
-        await log_channel.send(embed=unmute_log_embed)
+        if not await mute_utility_obj.is_staff():
+            duration_seconds = await mute_utility_obj.mute_user()
 
     @app_commands.checks.has_permissions(manage_messages=True)
     @app_commands.checks.cooldown(1, 5, key=lambda i: (i.guild_id))
@@ -243,58 +153,17 @@ class ModeratorCommands(commands.Cog):
         interaction: discord.Interaction,
         member: discord.Member
     ):
-        muted_role = interaction.guild.get_role(351091626950787084)
-        await member.timeout(None)
-
-        await member.remove_roles(muted_role)
-        
-        response_embed = discord.Embed(
-            description=f"✅ {member.display_name}#{member.discriminator} has been unmuted", 
-            colour=0x00ffff
-        )
-        
-        success_message = await interaction.channel.send(embed=response_embed)
-
-        log_channel = self.bot.get_channel(1028869177798295632)
-        
-        log_embed = discord.Embed(
-            color=0x00ffff, 
-            timestamp=interaction.created_at
-        )
-        
-        log_embed.set_author(
-            name=f"{interaction.guild.name}",
-            icon_url=f"{interaction.guild.icon}"
+        mute_utility_obj = MuteUtility(
+            member=member,
+            duration=None,
+            interaction=interaction,
+            time_type=None,
+            reason=None
         )
 
-        log_embed.add_field(
-            name="Moderator",
-            value=f"{interaction.user.mention}, ``{interaction.user.id}``",
-            inline=False
-        )
+        await interaction.response.send_message(content=f"Unmuted {member.mention}", ephemeral=True)
 
-        log_embed.add_field(
-            name="Member Unmuted",
-            value=f"{member.mention}, ``{member.id}``",
-            inline=False
-        )           
-        
-        log_embed.add_field(
-            name="Jump", 
-            value = f"[Go to message!]({success_message.jump_url})",
-            inline=False
-        )
-    
-        await log_channel.send(embed=log_embed)
-        
-        try:
-            await member.send(
-                content=f"You have been Unmuted.",
-                embed=log_embed
-            )
-        except:
-            pass
-
+        await mute_utility_obj.unmute_user()
 
     @app_commands.checks.has_permissions(ban_members=True)
     @app_commands.checks.cooldown(1, 5, key=lambda i: (i.guild_id))
@@ -362,6 +231,74 @@ class ModeratorCommands(commands.Cog):
 
         member = discord.Object(id=member.id)
         await interaction.guild.ban(user=member, reason=reason)       
+
+    @app_commands.checks.has_permissions(ban_members=True)
+    @app_commands.checks.cooldown(1, 5, key=lambda i: (i.guild_id))
+    @app_commands.command(
+        name="kick",
+        description="A Command that allows moderators to ban a member")
+    @app_commands.describe(member="specify which member to ban")
+    @app_commands.describe(reason="specify reason of ban")
+    @app_commands.rename(member="member")
+    @app_commands.rename(reason="reason")
+    async def kick_command(        
+        self,
+        interaction: discord.Interaction,
+        member: discord.User,
+        reason: str
+    ):
+
+        response_embed = discord.Embed(
+            description=f"✅ {member.display_name}#{member.discriminator} has been kicked | {reason}", 
+            colour=0xff0000
+        )
+        
+        success_message = await interaction.channel.send(embed=response_embed)
+
+        log_channel = self.bot.get_channel(1028869177798295632)
+        log_embed = discord.Embed(color=0x00ffff, timestamp=interaction.created_at)
+        
+        log_embed.set_author(
+            name=f"{interaction.guild.name}",
+            icon_url=f"{interaction.guild.icon}"
+        )
+
+        log_embed.add_field(
+            name="Moderator",
+            value=f"{interaction.user.mention}, ``{interaction.user.id}``",
+            inline=False
+        )
+
+        log_embed.add_field(
+            name="Member Kicked",
+            value=f"{member.mention}, ``{member.id}``",
+            inline=False
+        )           
+
+        log_embed.add_field(
+            name="Reason Of Kick",
+            value=f"``{reason}``",
+            inline=False
+        )           
+        
+        log_embed.add_field(
+            name="Jump", 
+            value = f"[Go to message!]({success_message.jump_url})",
+            inline=False
+        )
+    
+        await log_channel.send(embed=log_embed)
+
+        try:
+            await member.send(
+                content="You have been kicked. You may appeal this ban here: https://goo.gl/forms/40zjxwBgD9RaV4Lh1.",
+                embed=log_embed
+            )
+        except:
+            pass
+
+        await interaction.guild.kick(user=member, reason=reason)       
+
 
 async def setup(bot):
     await bot.add_cog(ModeratorCommands(bot))

@@ -24,7 +24,7 @@ class ClanPointCommands(commands.Cog):
     async def before_update_leaderboard_task(self):
         await self.bot.wait_until_ready()
 
-    @tasks.loop(minutes=5.0)
+    @tasks.loop(seconds=300.0)
     async def looped_send_clan_point_notif(
         self
     ):
@@ -40,12 +40,19 @@ class ClanPointCommands(commands.Cog):
                 total_clan_points = self.clan_point_bot_methods_obj.calculate_total_clan_points(
                     end_of_round_bonus_list=end_of_round_bonus_list
                 )
-                
-                await self.clan_point_bot_methods_obj.send_log_embed(
-                    end_of_round_bonus_list=end_of_round_bonus_list,
+
+                user_clan_point_data = await self.clan_point_bot_methods_obj.get_user_clan_point_data(
                     bot=self.bot,
-                    total_clan_points=total_clan_points               
+                    end_of_round_bonus_list=end_of_round_bonus_list
                 )
+
+                if len(user_clan_point_data) != 0:                
+                    await self.clan_point_bot_methods_obj.send_log_embed(
+                        end_of_round_bonus_list=end_of_round_bonus_list,
+                        bot=self.bot,
+                        total_clan_points=total_clan_points,
+                        user_clan_point_data=user_clan_point_data               
+                    )
 
     @looped_send_clan_point_notif.before_loop       
     async def before_update_clan_point_task(self):
@@ -76,19 +83,18 @@ class ClanPointCommands(commands.Cog):
         interaction: discord.Interaction
     ):
         await self.looped_update_leaderboard()
-        embeds_list = await self.clan_point_bot_methods_obj.get_updated_leaderboards(cursor=self.cursor)
+        embeds_list = await self.clan_point_bot_methods_obj.get_updated_leaderboards(bot=self.bot)
         await interaction.channel.send(
             content=f"Final leaderboard for this week:",
             embeds=embeds_list
         )
 
         async with self.bot.pool.acquire() as connection:
-            sql = "UPDATE ClanPointLeaderboard SET yearlyClanPoints = 0"
+            sql = "UPDATE ClanPointLeaderboard SET weeklyClanPoints = 0"
             await connection.execute(sql)
-            await connection.commit()
-        
+
         await interaction.channel.send(
-            content="Successfully Reset Weekly Leaderboard. Please run the ``/manage clan_leaderboard_update`` command to view the updated leaderboard."
+            content="Successfully Reset Weekly Leaderboard. Please run the ``/manage clan_leaderboard_update`` command to view the updated leaderboard. Below is the finalized embeds for this" 
         )
 
     async def game_mode_autocomplete(

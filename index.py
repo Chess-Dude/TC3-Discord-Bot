@@ -33,6 +33,7 @@ class TC3Bot(commands.Bot):
         intents.message_content = True
         intents.members = True
         intents.reactions = True
+        intents.presences = False
         super().__init__(
             command_prefix="!",
             case_insensitive=True, 
