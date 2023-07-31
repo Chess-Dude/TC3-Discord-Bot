@@ -1,4 +1,4 @@
-import discord, typing, ast, asyncio
+import discord, typing, ast
 from discord.ext import commands, tasks
 from discord import app_commands
 from .clanClasses.clanPointClassesREWORKED.clanPointBotMethods import ClanPointBotMethods
@@ -9,7 +9,6 @@ class ClanPointCommands(commands.Cog):
         self.bot = bot     
         self.looped_update_leaderboard.start()
         self.looped_send_clan_point_notif.start()
-        self.looped_check_clan_users.start()
         self.clan_point_bot_methods_obj = ClanPointBotMethods()
 
     @tasks.loop(hours=6.0)
@@ -25,102 +24,38 @@ class ClanPointCommands(commands.Cog):
     async def before_update_leaderboard_task(self):
         await self.bot.wait_until_ready()
 
-    @tasks.loop(seconds=60.0)
+    @tasks.loop(seconds=300.0)
     async def looped_send_clan_point_notif(
         self
     ):
-        print("running looped_send_clan_point_notif")
         end_of_round_bonus_results = await self.clan_point_bot_methods_obj.get_end_of_round_bonus(
             bot=self.bot
         )
 
         for end_of_round_bonus_record in end_of_round_bonus_results:
-            endofroundbonusinfo = end_of_round_bonus_record["endofroundbonusstring"]
-            end_of_round_bonus_dict = ast.literal_eval(endofroundbonusinfo)
+            endofroundbonusstring = end_of_round_bonus_record["endofroundbonusstring"]
+            end_of_round_bonus_list = ast.literal_eval(endofroundbonusstring)
             
-            if len(end_of_round_bonus_dict) != 0:                
+            if len(end_of_round_bonus_list) != 0:                
                 total_clan_points = self.clan_point_bot_methods_obj.calculate_total_clan_points(
-                    end_of_round_bonus_dict=end_of_round_bonus_dict
+                    end_of_round_bonus_list=end_of_round_bonus_list
                 )
 
                 user_clan_point_data = await self.clan_point_bot_methods_obj.get_user_clan_point_data(
                     bot=self.bot,
-                    end_of_round_bonus_dict=end_of_round_bonus_dict
+                    end_of_round_bonus_list=end_of_round_bonus_list
                 )
 
                 if len(user_clan_point_data) != 0:                
                     await self.clan_point_bot_methods_obj.send_log_embed(
-                        end_of_round_bonus_dict=end_of_round_bonus_dict,
+                        end_of_round_bonus_list=end_of_round_bonus_list,
                         bot=self.bot,
                         total_clan_points=total_clan_points,
-                        user_clan_point_data=user_clan_point_data,
-                        channel_id=1122622489974034434               
-                    )
-
-                else:
-                    await self.clan_point_bot_methods_obj.send_log_embed(
-                        end_of_round_bonus_dict=end_of_round_bonus_dict,
-                        bot=self.bot,
-                        total_clan_points=total_clan_points,
-                        user_clan_point_data=user_clan_point_data,
-                        channel_id=1135576322605850684               
+                        user_clan_point_data=user_clan_point_data               
                     )
 
     @looped_send_clan_point_notif.before_loop       
     async def before_update_clan_point_task(self):
-        await self.bot.wait_until_ready()
-
-    # 12 hours. idk why, but setting hours=12 was failing...
-    @tasks.loop(seconds=43200.0)
-    async def looped_check_clan_users(
-        self
-    ):
-        await asyncio.sleep(30)
-        print("running check_clan_users")
-        async with self.bot.pool.acquire() as connection:
-            sql = (
-                "UPDATE ClanPointTracker "
-                "SET currentClanName = 'None', currentClanRoleID = '000000000000000000'"
-            )
-            await connection.execute(sql)
-
-            guild = self.bot.get_guild(350068992045744141)
-            clan_divider_top_role = discord.utils.get(guild.roles, id=1053050572296704000)
-            clan_divider_bottom_role = discord.utils.get(guild.roles, id=1053050637555880027)
-
-            for role_position in range(clan_divider_top_role.position-1, clan_divider_bottom_role.position, -1):
-                clan_role = discord.utils.get(
-                    guild.roles, 
-                    position=role_position
-                )
-                if clan_role is not None:
-                    print(f" looping over: {clan_role.name}")
-                    for member in clan_role.members:
-                        if member is not None:
-                            print(f"member being reviewed: {member.name}")
-
-                            sql = "SELECT discordUserID FROM ClanpointTracker WHERE discordUserID = $1"
-                            result = await connection.fetchval(sql, member.id)
-                            exists_in_database = result is not None
-
-                            if not exists_in_database:
-                                print(f"added {member.name} into db")
-                                sql = "INSERT INTO ClanPointTracker (robloxUsername, discordUserID, totalClanPoints, currentClanRoleID, currentClanName) VALUES ($1, $2, $3, $4, $5)"
-                                val = (f"{member.nick}", member.id, 0, clan_role.id, f"{clan_role.name}")
-
-                                inserted_row = await connection.execute(sql, *val)
-                      
-                            else:
-                                print(f"set{member.name} clan to {clan_role.name}")
-                                sql = (
-                                    "UPDATE ClanPointTracker "
-                                    "SET currentClanName = $1, currentClanRoleID = $2 "
-                                    "WHERE discordUserID = $3"
-                                )
-                                await connection.execute(sql, clan_role.name, clan_role.id, member.id)
-
-    @looped_check_clan_users.before_loop       
-    async def before_update_clan_members(self):
         await self.bot.wait_until_ready()
 
     manage_clan_points = app_commands.Group(

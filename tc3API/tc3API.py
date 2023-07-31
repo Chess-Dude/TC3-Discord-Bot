@@ -1,6 +1,6 @@
 import os, json, psycopg2
 from dotenv import load_dotenv
-from clanPointAPIMethods import ClanPointAPIMethods
+from tc3API.clanPointAPIMethods import ClanPointAPIMethods
 
 load_dotenv()
 
@@ -19,20 +19,23 @@ def process_request(event, context):
         if content_type == "application/json":
             json_data = json.loads(event["body"])
 
-            if len(json_data) != 0:
+            end_of_round_bonus_list = clan_point_api_methods_obj.get_player_data(
+                raw_player_data=json_data
+            )
+
+            if len(end_of_round_bonus_list) != 0:
                 total_clan_points = clan_point_api_methods_obj.calculate_total_clan_points(
-                    end_of_round_bonus_dict=json_data
+                    end_of_round_bonus_list=end_of_round_bonus_list
                 )
 
                 clan_point_api_methods_obj.add_clan_points(
-                    end_of_round_bonus_dict=json_data,
+                    end_of_round_bonus_list=end_of_round_bonus_list,
                     mydb=mydb,
                     cursor=cursor,
                     clan_points_to_add=total_clan_points
                 )
-
                 sql = "INSERT INTO ClanPointSubmissionTracker (endOfRoundBonusString) VALUES (%s)"
-                val = (str(json_data),)
+                val = (str(end_of_round_bonus_list),)
                 cursor.execute(sql, val)
                 mydb.commit()
             return {

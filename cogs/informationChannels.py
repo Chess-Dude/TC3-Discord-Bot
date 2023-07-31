@@ -181,8 +181,12 @@ class InformationEmbeds(commands.Cog):
             view=ParentTournamentInformationViews()
         )
 
-    async def send_clan_embed_info(
-        self,
+    @app_commands.command(
+        name="clan_information",
+        description="Get Information On Clans!"
+    )
+    async def clan_embed_info(
+        self, 
         interaction
     ):
         information_embed = discord.Embed(
@@ -199,6 +203,7 @@ class InformationEmbeds(commands.Cog):
             embed=information_embed, 
             view=ParentClanInformationViews()
         )
+
 
 async def setup(bot):
     await bot.add_cog(InformationEmbeds(bot))

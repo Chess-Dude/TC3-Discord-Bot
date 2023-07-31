@@ -410,17 +410,5 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
                 interaction
             )
 
-    @info_group.command(
-        name="clans", 
-        description="A Command That Allows You To Get Info On Tournaments!")    
-    async def clan_info(
-        self, 
-        interaction: discord.Interaction
-        ):
-            await InformationEmbeds.send_clan_embed_info(
-                self, 
-                interaction
-            )
-
 async def setup(bot):
     await bot.add_cog(InformationAppCommands(bot))
