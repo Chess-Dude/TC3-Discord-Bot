@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord.ext.commands import Greedy
 from discord.object import Object 
 from typing import Optional, Literal
+from cogs.informationEmbeds.welcomeEmbed.parentWelcomeView import ParentWelcomeView
 from cogs.teamApplicationClasses.teamApplicationDropdown import TournamentDropdownView
 from cogs.mapSelectionCommands import RerollDropdown
 from cogs.informationChannels import ParentTournamentInformationViews, ParentClanInformationViews
@@ -149,6 +150,25 @@ async def on_member_join(member):
         msg = await LOBBY_CHANNEL.send(f"Welcome to The Official Conquerors 3 Discord {member.mention}! If you have any questions feel free to ping <@585991378400706570>! Make sure to checkout <#351057978381828096> and <#696086223009218682> to stay up to date with the latest The Conquerors 3 content! Before you post, please read <#731499115573280828> to keep our server running smoothly and without any problems.")
         await welcome_message_channel.send(f"<@563066303015944198>, <@361170109877977098>, <@898392058077802496>, <@450662444612845580>, <@646463139977625623>, <@897020169958883348>, <@1006873288229793833> \n{msg.jump_url}")
 
+        welcome_information_embed = discord.Embed(
+            title=f"The Conquerors 3 Community | Information",
+            description=f"Welcome to The Conquerors 3 Discord Server! Please click a button if you would like to learn more about it.",
+            color=0x00ffff
+        )
+
+        welcome_information_embed.set_image(
+            url="https://media.discordapp.net/attachments/350068992045744142/1047732656508510299/IMG_3001.png?width=1193&height=671"
+        )
+
+        try:        
+            await member.send(
+                embed=welcome_information_embed, 
+                view=ParentWelcomeView()
+            )
+        
+        except:
+            pass
+
 class GoToMessage(discord.ui.View):
     def __init__(self, msg_url: str):
         super().__init__()
@@ -221,6 +241,24 @@ async def init_clan_databases(ctx):
 
 @bot.command()
 @commands.is_owner()
+async def delete_all_from_tables(ctx):
+    # SQL queries to delete all rows from the tables
+    delete_leaderboard_query = "DELETE FROM ClanPointLeaderboard;"
+    delete_tracker_query = "DELETE FROM ClanPointTracker;"
+    delete_submission_tracker_query = "DELETE FROM ClanPointSubmissionTracker;"
+
+    # Acquire a connection from the pool
+    async with bot.pool.acquire() as connection:
+        # Create a transaction to execute the queries
+        async with connection.transaction():
+            # Execute the DELETE queries
+            await connection.execute(delete_leaderboard_query)
+            await connection.execute(delete_tracker_query)
+            await connection.execute(delete_submission_tracker_query)
+            print("deleted all values from tables")
+
+@bot.command()
+@commands.is_owner()
 async def print_clan_databases(ctx):
 
     async with bot.pool.acquire() as connection:
@@ -230,12 +268,12 @@ async def print_clan_databases(ctx):
         # for row in result:
         #     print(row)
 
-        # print("\n\n")
-        # sql = "SELECT * FROM ClanPointTracker"
-        # result = await connection.fetch(sql)
+        print("\n\n")
+        sql = "SELECT * FROM ClanPointTracker"
+        result = await connection.fetch(sql)
         
-        # for row in result:
-        #     print(row)
+        for row in result:
+            print(row)
 
         print("\n\n")
         sql = "SELECT * FROM ClanPointSubmissionTracker"

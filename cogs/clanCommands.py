@@ -386,6 +386,25 @@ class ClanCommands(commands.Cog):
             await interaction.response.send_message(
                 embed=response_embed
             )
-            
+
+    @clan_group.command(
+        name="reverify",
+        description="reverify your roblox username to match with auto cp sub.")
+    async def clan_reverify (
+        self,
+        interaction
+    ):
+        async with self.bot.pool.acquire() as connection:
+            sql = (
+                "UPDATE ClanPointTracker "
+                "SET robloxUsername = $1 "
+                "WHERE discordUserID = $2"
+            )
+
+            await connection.execute(sql, interaction.user.display_name, interaction.user.id)    
+
+        await interaction.response.send_message(content=f"Updated username to: {interaction.user.display_name} in database.")    
+
+
 async def setup(bot):
     await bot.add_cog(ClanCommands(bot))
