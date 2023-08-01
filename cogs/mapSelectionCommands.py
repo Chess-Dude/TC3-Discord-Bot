@@ -17,7 +17,6 @@ class AppCommandsMapSelection(commands.Cog):
     @group.command(
         name="map",
         description="A Command That Randomizes A Game Map!")
-    @app_commands.check(bots)
     @app_commands.choices(game_mode=[
         Choice(name="1v1", value=1),
         Choice(name="2v2", value=2),
@@ -35,7 +34,9 @@ class AppCommandsMapSelection(commands.Cog):
         interaction: discord.Interaction,
         game_mode: Choice[int]
     ):
-
+        if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
+            raise app_commands.errors.CheckFailure
+        
         map_embed = MapSelectionUitilityMethods.random_map_init(
             self=self,
             interaction=interaction,

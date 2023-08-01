@@ -35,8 +35,15 @@ class TC3Bot(commands.Bot):
         intents.members = True
         intents.reactions = True
         intents.presences = False
+        activity = discord.Activity(
+            name="Conquering Noobs on Roblox's best RTS - The Conquerors 3. Play now at: https://www.roblox.com/games/8377997",       # The game name
+            type=discord.ActivityType.playing,
+            details="Conquering Robloxians",  # Additional details
+            large_image="tc3Thumbnail"       # Use the name of the image without the file extension
+        )        
         super().__init__(
             command_prefix="!",
+            activity=activity,
             case_insensitive=True, 
             intents = intents,    
             allowed_mentions=discord.AllowedMentions(
@@ -148,7 +155,7 @@ async def on_member_join(member):
         welcome_message_channel = bot.get_channel(351084557929283585)
 
         msg = await LOBBY_CHANNEL.send(f"Welcome to The Official Conquerors 3 Discord {member.mention}! If you have any questions feel free to ping <@585991378400706570>! Make sure to checkout <#351057978381828096> and <#696086223009218682> to stay up to date with the latest The Conquerors 3 content! Before you post, please read <#731499115573280828> to keep our server running smoothly and without any problems.")
-        await welcome_message_channel.send(f"<@563066303015944198>, <@361170109877977098>, <@898392058077802496>, <@450662444612845580>, <@646463139977625623>, <@897020169958883348>, <@1006873288229793833> \n{msg.jump_url}")
+        await welcome_message_channel.send(f"<@649834100626292746>, <@361170109877977098>, <@898392058077802496>, <@1006873288229793833> \n{msg.jump_url}")
 
         welcome_information_embed = discord.Embed(
             title=f"The Conquerors 3 Community | Information",

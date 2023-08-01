@@ -16,8 +16,6 @@ client = gspread.authorize(creds)
 sheet = client.open("Copy of TC3 Unit Information").sheet1
 
 class InformationAppCommands(commands.Cog):
-
-
     def __init__(self, bot):
         self.bot = bot
 
@@ -52,7 +50,6 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             content=message
         )
 
-    @is_bots
     @info_group.command(
         name="unit", 
         description="A Command That Allows You To Get Information On A Certain TC3 Unit!!")
@@ -62,48 +59,51 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         self, 
         interaction: discord.Interaction, 
         unit: str
-        ):         
-            if unit != None:
-                input_unit = unit
-                data = sheet.get_all_records()
-                result_entry = None
+    ):         
+        if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
+            raise app_commands.errors.CheckFailure
 
-                for entry in data:
-                    if input_unit.lower() == entry["Unit"].lower() or input_unit.lower() == entry["Unit"].lower().replace(" ", ""):
-                        result_entry = entry
-                
-                if result_entry == None:
-                    await interaction.response.send_message(content=f"Error: You did not provide a valid unit. Please try again.", ephemeral=True)
+        if unit != None:
+            input_unit = unit
+            data = sheet.get_all_records()
+            result_entry = None
 
-                else:            
-                    unit_stats = ["Type", "Produced in", "Cost", "Build Time", "Health", "Damage (DPS)", "Speed", "Range", "Garrisonable", "Garrisons", "Researchable", "Produces", "Unit Slots", "Wiki Link", "Image Link"]
-                    info_embed = discord.Embed(
-                        title=f'{result_entry["Unit"]}', 
-                        description=f'Unit Stats for the {result_entry["Unit"]}', 
-                        color=0x00ffff)
-
-                    info_embed.set_author(
-                        name=f"{interaction.user.display_name}", 
-                        icon_url=f"{interaction.user.display_avatar.url}")
-
-                    info_embed.set_thumbnail(url=f'{result_entry["Image Link"]}')
-
-                    for stat in unit_stats:
-                        info_embed.add_field(
-                            name=stat, 
-                            value = f'{result_entry[stat]}')
-                    
-                    info_embed.set_footer(
-                        text=f"The Conquerors 3 • {input_unit} information",
-                        icon_url=interaction.guild.icon
-                    )
-                    
-                    info_embed.timestamp = interaction.created_at
-                    
-                    await interaction.response.send_message(embed=info_embed)
+            for entry in data:
+                if input_unit.lower() == entry["Unit"].lower() or input_unit.lower() == entry["Unit"].lower().replace(" ", ""):
+                    result_entry = entry
             
-            else:
-                await interaction.response.send_message(ephemeral="Please enter a valid unit!")
+            if result_entry == None:
+                await interaction.response.send_message(content=f"Error: You did not provide a valid unit. Please try again.", ephemeral=True)
+
+            else:            
+                unit_stats = ["Type", "Produced in", "Cost", "Build Time", "Health", "Damage (DPS)", "Speed", "Range", "Garrisonable", "Garrisons", "Researchable", "Produces", "Unit Slots", "Wiki Link", "Image Link"]
+                info_embed = discord.Embed(
+                    title=f'{result_entry["Unit"]}', 
+                    description=f'Unit Stats for the {result_entry["Unit"]}', 
+                    color=0x00ffff)
+
+                info_embed.set_author(
+                    name=f"{interaction.user.display_name}", 
+                    icon_url=f"{interaction.user.display_avatar.url}")
+
+                info_embed.set_thumbnail(url=f'{result_entry["Image Link"]}')
+
+                for stat in unit_stats:
+                    info_embed.add_field(
+                        name=stat, 
+                        value = f'{result_entry[stat]}')
+                
+                info_embed.set_footer(
+                    text=f"The Conquerors 3 • {input_unit} information",
+                    icon_url=interaction.guild.icon
+                )
+                
+                info_embed.timestamp = interaction.created_at
+                
+                await interaction.response.send_message(embed=info_embed)
+        
+        else:
+            await interaction.response.send_message(ephemeral="Please enter a valid unit!")
 
     @info_unit.autocomplete("unit")
     async def info_unit_autocomplete(
@@ -187,7 +187,6 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             for selected_unit in unit if current.lower() in selected_unit.lower()
         ][:25]
         
-    @is_bots   
     @info_group.command(
         name="map",
         description="Get a map radar")
@@ -198,6 +197,8 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         interaction: discord.Interaction,
         map: str
     ):  
+        if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
+            raise app_commands.errors.CheckFailure
 
         map = map.title()
         map = map.replace(" Vs ", " vs. ")
@@ -309,7 +310,6 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             for map_image in map if current.lower() in map_image.lower()
         ][:25]
 
-    @is_bots
     @info_group.command(
         name="user", 
         description="A Command That Allows You To Get Info On A Discord Member!")
@@ -319,36 +319,37 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         self, 
         interaction: discord.Interaction,
         user: discord.Member
-        ):
-            member = user
-            roles = [role for role in member.roles]
-            embed = discord.Embed(
-                title=f"{member}", 
-                colour=0x00ffff, 
-                timestamp=interaction.created_at)
-            
-            embed.set_author(
-                name=f"{member.display_name}", 
-                icon_url=f"{member.avatar.url}")
-            
-            embed.set_thumbnail(url=member.avatar.url)
+    ):
+        if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
+            raise app_commands.errors.CheckFailure            
+        member = user
+        roles = [role for role in member.roles]
+        embed = discord.Embed(
+            title=f"{member}", 
+            colour=0x00ffff, 
+            timestamp=interaction.created_at)
         
-            embed.add_field(
-                name="Created Account On:", 
-                value=member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC"))
-            embed.add_field(
-                name="Joined Server On:", 
-                value=member.joined_at.strftime("%a, %#d %B %Y, %I:%M %p UTC"))
-            embed.add_field(
-                name="Roles:", 
-                value="".join([role.mention for role in roles[1: ]]), inline=False)
-            
-            embed.set_footer(
-                text=f"User ID: {member.id}")
-            
-            await interaction.response.send_message(embed=embed)
+        embed.set_author(
+            name=f"{member.display_name}", 
+            icon_url=f"{member.avatar.url}")
+        
+        embed.set_thumbnail(url=member.avatar.url)
+    
+        embed.add_field(
+            name="Created Account On:", 
+            value=member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC"))
+        embed.add_field(
+            name="Joined Server On:", 
+            value=member.joined_at.strftime("%a, %#d %B %Y, %I:%M %p UTC"))
+        embed.add_field(
+            name="Roles:", 
+            value="".join([role.mention for role in roles[1: ]]), inline=False)
+        
+        embed.set_footer(
+            text=f"User ID: {member.id}")
+        
+        await interaction.response.send_message(embed=embed)
 
-    @is_bots
     @app_commands.command(
         name="link",
         description="A Command That Allows You To Get A Link To A Site!"
@@ -365,6 +366,9 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         interaction: discord.Interaction,
         resource: Choice[int]
     ):
+        if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
+            raise app_commands.errors.CheckFailure
+        
         if resource.name == "tc1":
             await interaction.response.send_message(content="https://www.roblox.com/games/172585743/")
 
