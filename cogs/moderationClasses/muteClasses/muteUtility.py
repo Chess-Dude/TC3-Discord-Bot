@@ -52,7 +52,11 @@ class MuteUtility:
         """
         Does all the muting process. Invoked by perm mute and mute command.
         """
-        muted_role = self.interaction.guild.get_role(351091626950787084)
+        try:
+            muted_role = self.interaction.guild.get_role(351091626950787084)
+        
+        except:
+            muted_role = discord.utils.get(self.interaction.guild.roles, name="muted")
         await self.member.add_roles(muted_role)
         duration_seconds = 0
         if self.time_type != None:
@@ -82,9 +86,8 @@ class MuteUtility:
         )
         
         success_message = await self.interaction.channel.send(embed=response_embed)
+        appeal_message = ''
 
-        log_channel = self.interaction.guild.get_channel(1028869177798295632)
-        
         log_embed = discord.Embed(
             color=0x00ffff, 
             timestamp=self.interaction.created_at
@@ -124,12 +127,15 @@ class MuteUtility:
             value = f"[Go to message!]({success_message.jump_url})",
             inline=False
         )
-    
-        self.log_embed_message = await log_channel.send(embed=log_embed)
-        
+
+        if self.interaction.guild.id == 350068992045744141:
+            log_channel = self.interaction.guild.get_channel(1028869177798295632)
+            appeal_message = "You may appeal this mute here: https://goo.gl/forms/40zjxwBgD9RaV4Lh1"
+            self.log_embed_message = await log_channel.send(embed=log_embed)
+            
         try:
             await self.member.send(
-                content=f"You have been muted. You may appeal this mute here: https://goo.gl/forms/40zjxwBgD9RaV4Lh1",
+                content=f"You have been muted at the ``{self.interaction.guild.name}`` server. {appeal_message}",
                 embed=log_embed
             )
         except:
@@ -180,5 +186,6 @@ class MuteUtility:
                 inline=False
             )       
 
-        log_channel = self.interaction.guild.get_channel(351084557929283585)
-        await log_channel.send(embed=unmute_log_embed)
+        if self.interaction.guild.id == 350068992045744141:
+            log_channel = self.interaction.guild.get_channel(351084557929283585)
+            await log_channel.send(embed=unmute_log_embed)

@@ -27,9 +27,7 @@ class ModeratorCommands(commands.Cog):
         )
         
         success_message = await interaction.channel.send(embed=response_embed)
-
-        log_channel = self.bot.get_channel(1028869177798295632)
-        
+     
         log_embed = discord.Embed(
             color=0x00ffff, 
             timestamp=interaction.created_at
@@ -63,8 +61,10 @@ class ModeratorCommands(commands.Cog):
             value = f"[Go to message!]({success_message.jump_url})",
             inline=False
         )
-    
-        await log_channel.send(embed=log_embed)
+
+        if self.interaction.guild.id == 350068992045744141:
+            log_channel = self.bot.get_channel(1028869177798295632)
+            await log_channel.send(embed=log_embed)
 
     async def time_type_autocomplete(
         self, 
@@ -186,8 +186,8 @@ class ModeratorCommands(commands.Cog):
         )
         
         success_message = await interaction.channel.send(embed=response_embed)
+        appeal_message = ''
 
-        log_channel = self.bot.get_channel(1028869177798295632)
         log_embed = discord.Embed(color=0x00ffff, timestamp=interaction.created_at)
         
         log_embed.set_author(
@@ -218,12 +218,15 @@ class ModeratorCommands(commands.Cog):
             value = f"[Go to message!]({success_message.jump_url})",
             inline=False
         )
-    
-        await log_channel.send(embed=log_embed)
+
+        if interaction.guild.id == 350068992045744141:
+            appeal_message = "You may appeal this ban here: https://goo.gl/forms/40zjxwBgD9RaV4Lh1."
+            log_channel = self.bot.get_channel(1028869177798295632)
+            await log_channel.send(embed=log_embed)
 
         try:
             await member.send(
-                content="You have been banned. You may appeal this ban here: https://goo.gl/forms/40zjxwBgD9RaV4Lh1.",
+                content=f"You have been banned from ``{interaction.guild.name}``. {appeal_message}",
                 embed=log_embed
             )
         except:
@@ -252,10 +255,10 @@ class ModeratorCommands(commands.Cog):
             description=f"✅ {member.display_name}#{member.discriminator} has been kicked | {reason}", 
             colour=0xff0000
         )
-        
-        success_message = await interaction.channel.send(embed=response_embed)
 
-        log_channel = self.bot.get_channel(1028869177798295632)
+        success_message = await interaction.channel.send(embed=response_embed)
+        appeal_message = ''
+
         log_embed = discord.Embed(color=0x00ffff, timestamp=interaction.created_at)
         
         log_embed.set_author(
@@ -286,12 +289,15 @@ class ModeratorCommands(commands.Cog):
             value = f"[Go to message!]({success_message.jump_url})",
             inline=False
         )
-    
-        await log_channel.send(embed=log_embed)
+
+        if interaction.guild.id == 350068992045744141:
+            appeal_message = "You may appeal this ban here: https://goo.gl/forms/40zjxwBgD9RaV4Lh1."
+            log_channel = self.bot.get_channel(1028869177798295632)
+            await log_channel.send(embed=log_embed)
 
         try:
             await member.send(
-                content="You have been kicked. You may appeal this ban here: https://goo.gl/forms/40zjxwBgD9RaV4Lh1.",
+                content=f"You have been kicked from: ``{interaction.guild.name}``. {appeal_message}",
                 embed=log_embed
             )
         except:

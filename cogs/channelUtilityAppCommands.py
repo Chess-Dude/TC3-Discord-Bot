@@ -169,7 +169,7 @@ class ChannelUtilityCommands(commands.Cog):
         warning_message = await new_channel.send(f"<:octagonal_sign:1047306960657199114> **__REMINDER__** that talking in this channel will result in a __10 minute mute__ <:octagonal_sign:1047306960657199114>")
         await warning_message.pin(reason="Pins the '<:octagonal_sign:1047306960657199114> **__REMINDER__** that talking in this channel will result in a __10 minute mute__ <:octagonal_sign:1047306960657199114>' message")
 
-    @app_commands.checks.has_permissions(administrator=True)
+    @app_commands.checks.has_any_role(351074813055336458, 351073422241038337)
     @delete_command_group.command(
         name="admin_delete",
         description="A Command That Allows You To Delete A Server Channel!")
@@ -191,7 +191,7 @@ class ChannelUtilityCommands(commands.Cog):
         channel_3: typing.Optional[discord.TextChannel],
         channel_4: typing.Optional[discord.TextChannel],
         channel_5: typing.Optional[discord.TextChannel]         
-    ): 
+    ):     
         channel_list = [channel_1, channel_2, channel_3, channel_4, channel_5]
         for channel in channel_list: 
             if channel != None:

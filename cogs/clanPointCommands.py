@@ -370,6 +370,58 @@ class ClanPointCommands(commands.Cog):
         else: 
             await interaction.response.send_message("That member is not in a clan.")
 
+    @app_commands.checks.has_any_role(554152645192056842, 743302990001340559, 351074813055336458)
+    @app_commands.describe(member="Ping the member to hard reset here.")
+    @app_commands.describe(clan_role="current clan role")
+    @app_commands.describe(roblox_username="mention the roblox username here")    
+    @app_commands.rename(member="member")
+    @app_commands.rename(clan_role="clan_role")
+    @app_commands.rename(roblox_username="roblox_username")
+    @manage_clan_points.command(
+        name="reset_user_data",
+        description="A Command That Allows You To Reset USER DATA. CASE SENSITIVE!")
+    async def reset_user_data(
+        self, 
+        interaction: discord.Interaction,
+        member: discord.Member,
+        clan_role: discord.Role,
+        roblox_username: str   
+    ):
+        async with self.bot.pool.acquire() as connection:
+            sql = "SELECT * FROM ClanPointTracker WHERE robloxUsername = $1"
+            user_clan_point_data = await connection.fetch(sql, roblox_username) # "YoItzSamBoi" replace this with the end_of_round_bonus_list[0] for testing purposes
+            
+            await interaction.channel.send(
+                content=f"ALL records off this user when searching for roblox user: {user_clan_point_data}" 
+            )
+
+            sql = "SELECT * FROM ClanPointTracker WHERE discordUserID = $1"
+            user_clan_point_data = await connection.fetch(sql, member.id) # "YoItzSamBoi" replace this with the end_of_round_bonus_list[0] for testing purposes
+            
+            await interaction.channel.send(
+                content=f"ALL records off this user when searching for their discord ID: {user_clan_point_data}" 
+            )
+
+            sql = "DELETE FROM ClanPointTracker WHERE discordUserID = $1"
+            results = await connection.execute(sql, member.id)
+
+            await interaction.channel.send(
+                content=f"Successfully Reset this members records: {results}" 
+            )
+
+            sql = "INSERT INTO ClanPointTracker (robloxUsername, discordUserID, totalClanPoints, currentClanRoleID, currentClanName) VALUES ($1, $2, $3, $4, $5)"
+            val = (f"{roblox_username}", member.id, 0, clan_role.id, f"{clan_role.name}")
+            inserted_row = await connection.execute(sql, *val)
+            await interaction.channel.send(
+                content=f"Successfully Reset this members records: {results}\n\nInserted Row: {inserted_row}" 
+            )
+
+            sql = "SELECT * FROM ClanPointTracker WHERE robloxUsername = $1"
+            user_clan_point_data = await connection.fetch(sql, roblox_username) # "YoItzSamBoi" replace this with the end_of_round_bonus_list[0] for testing purposes
+            
+            await interaction.channel.send(
+                content=f"ALL records **AFTER** stats being reset when searching for roblox user: {user_clan_point_data}" 
+            )
 
 async def setup(bot):
     await bot.add_cog(ClanPointCommands(bot))
