@@ -73,9 +73,7 @@ class SkillDivisionDropdown(discord.ui.Select):
                 await user.add_roles(normal_tournament_role)
                 await user.add_roles(division_role)
 
-                await finalized_signups.send(
-                    content=f"{user.name}{user.discriminator}"
-                )
+                await finalized_signups.send(content=str(user))
 
                 finalized_embed = discord.Embed(
                     title=f"Your sign-up was accepted by {interaction.user.name}",
