@@ -12,7 +12,7 @@ class ClanPointCommands(commands.Cog):
         self.looped_check_clan_users.start()
         self.clan_point_bot_methods_obj = ClanPointBotMethods()
 
-    @tasks.loop(hours=6.0)
+    @tasks.loop(hours=0.5)
     async def looped_update_leaderboard(self):
         self.LEADERBOARD_CHANNEL = self.bot.get_channel(1121947513981779978)
         await self.LEADERBOARD_CHANNEL.purge(limit=1)

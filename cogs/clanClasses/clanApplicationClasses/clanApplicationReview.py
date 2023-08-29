@@ -51,7 +51,7 @@ class ReviewClanApplication(discord.ui.View):
                     self, 
                     interaction, 
                     role_name=clan_name, 
-                    colour=clan_hex_color, 
+                    role_colour=clan_hex_color, 
                     role_divider_id=role_divider_id
                 )
 
@@ -62,6 +62,7 @@ class ReviewClanApplication(discord.ui.View):
                     role=clan_role,
                     leader_role_id=clan_leader_role_id, 
                     co_leader_role_id=clan_co_leader_role_id, 
+                    ping_role_id=1057043814797295646
                 )
 
                 sql = "INSERT INTO ClanPointLeaderboard (clanName, clanRoleID, weeklyClanPoints, yearlyClanPoints) VALUES ($1, $2, $3, $4)"
