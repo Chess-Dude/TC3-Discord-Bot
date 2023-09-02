@@ -133,3 +133,8 @@ creds.json
 
 # serverless-dependencies
 node_modules/
+
+# Editor files
+.vscode/
+.github/
+.idea/
