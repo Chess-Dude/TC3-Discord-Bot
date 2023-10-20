@@ -3,8 +3,7 @@ async-timeout==4.0.2
 asyncpg==0.27.0
 beautifulsoup4==4.11.2
 bs4==0.0.1
-discord==2.1.0
-discord.py==2.2.2
+discord.py==2.3.0
 distlib==0.3.7
 google-auth==2.16.1
 google-auth-oauthlib==1.0.0
