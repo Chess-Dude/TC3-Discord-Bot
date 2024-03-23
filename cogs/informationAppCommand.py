@@ -191,8 +191,6 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         ][:25]
     
     async def get_map_info(map_name: str) -> tuple[str, str, str]: 
-        map_name = map_name.title().replace(" Vs ", " vs. ").replace(" Vs. ", " vs. ")
-        
         page = requests.get("https://theconquerors.fandom.com/wiki/Maps")
         soup = BeautifulSoup(page.content, "html.parser")
 
@@ -228,7 +226,7 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             raise app_commands.errors.CheckFailure
         
 
-        map_name, cost, map_size = get_map_info(map)
+        map_name, cost, map_size = await get_map_info(map)
         map_images = MapSelectionUitilityMethods.get_map_image()
         map_embed = discord.Embed(
             title=f"{map} Map Information:", 
