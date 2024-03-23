@@ -190,6 +190,28 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             for selected_unit in unit if current.lower() in selected_unit.lower()
         ][:25]
     
+    async def get_map_info(map_name: str) -> tuple[str, str, str]: 
+        page = requests.get("https://theconquerors.fandom.com/wiki/Maps")
+        soup = BeautifulSoup(page.content, "html.parser")
+
+        table = soup.find('table', class_='wikitable')
+        table_rows = table.findAll('tr')
+        
+        selected_row = None
+        for row in table_rows:
+            if map_name in row.get_text():
+                selected_row = row
+                break
+        # If a non existent image is queried this will break from selected row being None.
+        # Not sure what type of error handling you'd want. 
+        table_data = selected_row.findAll('td')
+
+        map_name = table_data[0].get_text(strip=True)
+        cost = table_data[-1].get_text(strip=True)
+        map_size = table_data[-2].get_text(strip=True)
+
+        return (map_name, cost, map_size)
+    
     @info_group.command(
         name="map",
         description="Get a map radar")
@@ -202,36 +224,10 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
     ):  
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
-        print(f"map name before change: {map}")
-        map = map.title()
-        map = map.replace(" Vs ", " vs. ")
-        map = map.replace(" Vs. ", " vs. ")
-        page = requests.get("https://theconquerors.fandom.com/wiki/Category:Maps")
-        print(f"map name after change: {map}")
-        soup = BeautifulSoup(page.content, "html.parser")
-        no = soup.findAll('table', class_="article-table")[0].findAll('tr')
-        map_info_dict = {}
+        
 
-        for i in range(len(no)): 
-            c = no[i].find_all("th")
-            map_info_dict[c[0].text] = []
-            for z in range(len(c)):
-                map_info_dict[c[0].text].append(c[z].text)
-
-        map_info_list = [] 
-        for cur_map in map_info_dict:
-            cur_map_name = cur_map.replace("\n", '')
-            cur_map_name = cur_map_name.title()
-            cur_map_name = cur_map_name.replace(" Vs ", " vs. ")
-            cur_map_name = cur_map_name.replace(" Vs. ", " vs. ")
-            if ((cur_map_name == map) or 
-                (cur_map_name.lower() == map)):
-                for value in map_info_dict[cur_map]:
-                    value = value.replace("\n", ' ')
-                    map_info_list.append(value)
-        print(f"Map info list: {map_info_list}")
+        map_name, cost, map_size = await get_map_info(map)
         map_images = MapSelectionUitilityMethods.get_map_image()
-
         map_embed = discord.Embed(
             title=f"{map} Map Information:", 
             description=f"{interaction.user.mention}", 
@@ -240,7 +236,6 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         
         try:
             map_embed.set_image(url=map_images[map.title()])
-        
         except KeyError:
             map_embed.set_image(url=map_images[map])
                 
@@ -253,47 +248,15 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             icon_url=interaction.guild.icon)
 
         map_embed.timestamp = interaction.created_at
-        try:
-            map_embed.add_field(
-                name=f"Mode:",
-                value=f"{map_info_list[2]}",
-                inline=True
-            )
-
-            map_embed.add_field(
-                name=f"Map Type:",
-                value=f"{map_info_list[3]}",
-                inline=True
-            )
-
-            map_embed.add_field(
-                name=f"Max Income:",
-                value=f"{map_info_list[4]}",
-                inline=True
-            )
-
-            map_embed.add_field(
-                name=f"Number Of Crystals:",
-                value=f"{map_info_list[5]}",
-                inline=True
-            )
-
-            map_embed.add_field(
-                name=f"Number Of Oil Spots:",
-                value=f"{map_info_list[6]}",
-                inline=True
-            )
-            map_embed.add_field(
-                name=f"Playable?",
-                value=f"{map_info_list[7]}",
-                inline=True
-            )
-
-        except IndexError:
-            map_embed.add_field(
-                name=f"Data Unavailable",
-                value=f"The TC3 Wiki is out of date. Please check back later.",
-                inline=True
+        map_embed.add_field(
+            name=f"Max Income:",
+            value=cost,
+            inline=True
+        )
+        map_embed.add_field(
+            name=f"Map Size:",
+            value=map_size,
+            inline=True
             )
 
         await interaction.response.send_message(
