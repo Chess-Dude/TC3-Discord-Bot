@@ -189,29 +189,7 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             app_commands.Choice(name=selected_unit, value=selected_unit)
             for selected_unit in unit if current.lower() in selected_unit.lower()
         ][:25]
-    
-    async def get_map_info(map_name: str) -> tuple[str, str, str]: 
-        page = requests.get("https://theconquerors.fandom.com/wiki/Maps")
-        soup = BeautifulSoup(page.content, "html.parser")
-
-        table = soup.find('table', class_='wikitable')
-        table_rows = table.findAll('tr')
-        
-        selected_row = None
-        for row in table_rows:
-            if map_name in row.get_text():
-                selected_row = row
-                break
-        # If a non existent image is queried this will break from selected row being None.
-        # Not sure what type of error handling you'd want. 
-        table_data = selected_row.findAll('td')
-
-        map_name = table_data[0].get_text(strip=True)
-        cost = table_data[-1].get_text(strip=True)
-        map_size = table_data[-2].get_text(strip=True)
-
-        return (map_name, cost, map_size)
-    
+ 
     @info_group.command(
         name="map",
         description="Get a map radar")
@@ -226,7 +204,31 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             raise app_commands.errors.CheckFailure
         
 
-        map_name, cost, map_size = await get_map_info(map)
+        page = requests.get("https://theconquerors.fandom.com/wiki/Maps")
+        soup = BeautifulSoup(page.content, "html.parser")
+
+        table = soup.find('table', class_='wikitable')
+        table_rows = table.findAll('tr')
+        
+        selected_row = None
+        for row in table_rows:
+            if map in row.get_text():
+                selected_row = row
+                break
+        # If a non existent image is queried this will break from selected row being None.
+        # Not sure what type of error handling you'd want. 
+            # just made a simple handler so I dont get pinged, if you want you can make an embed and make it fancy.
+        try:
+            table_data = selected_row.findAll('td')
+
+        except AttributeError:
+            await interaction.response.send_message(content="Error: That map was not found! Try again or check the wiki.")
+            return
+
+        map_name = table_data[0].get_text(strip=True)
+        cost = table_data[-2].get_text(strip=True)
+        map_size = table_data[-1].get_text(strip=True)
+
         map_images = MapSelectionUitilityMethods.get_map_image()
         map_embed = discord.Embed(
             title=f"{map} Map Information:", 
