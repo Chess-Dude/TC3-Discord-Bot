@@ -203,43 +203,22 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
         
-
-        page = requests.get("https://theconquerors.fandom.com/wiki/Maps")
-        soup = BeautifulSoup(page.content, "html.parser")
-
-        table = soup.find('table', class_='wikitable')
-        table_rows = table.findAll('tr')
-        
-        selected_row = None
-        for row in table_rows:
-            if map in row.get_text():
-                selected_row = row
-                break
-        # If a non existent image is queried this will break from selected row being None.
-        # Not sure what type of error handling you'd want. 
-            # just made a simple handler so I dont get pinged, if you want you can make an embed and make it fancy.
-        try:
-            table_data = selected_row.findAll('td')
-
-        except AttributeError:
+        maps = MapSelectionUitilityMethods.map_data
+        if map not in maps:
             await interaction.response.send_message(content="Error: That map was not found! Try again or check the wiki.")
             return
+        map_data = maps[map]
+    
+        cost = map_data['max_income']
+        map_size = map_data['map_size']
+        map_image = map_data['image'] or 'N/A' # There are a few maps missing images (None is stored)
 
-        map_name = table_data[0].get_text(strip=True)
-        cost = table_data[-2].get_text(strip=True)
-        map_size = table_data[-1].get_text(strip=True)
-
-        map_images = MapSelectionUitilityMethods.get_map_image()
         map_embed = discord.Embed(
             title=f"{map} Map Information:", 
             description=f"{interaction.user.mention}", 
             color=0x00ffff
         )
-        
-        try:
-            map_embed.set_image(url=map_images[map.title()])
-        except KeyError:
-            map_embed.set_image(url=map_images[map])
+        map_embed.set_image(url=map_image)
                 
         map_embed.set_author(
             name=f"{interaction.user.display_name}", 
@@ -260,6 +239,9 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             value=map_size,
             inline=True
             )
+        for gamemode, types in map_data['gamemode'].items():
+            value = "\n".join(types)
+            map_embed.add_field(name=gamemode, value=value, inline=False)
 
         await interaction.response.send_message(
             embed=map_embed
