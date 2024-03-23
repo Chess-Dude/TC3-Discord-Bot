@@ -68,7 +68,7 @@ class ParentClanInformationViews(discord.ui.View):
 
         information_embed.add_field(
             name="**__How do I submit clan points?__**",
-            value="> Clan points can be submitted via the slash command: ``/submit clan point`` ``Damage_Dealt_Bonus:`` ``Damaged_Healed_Bonus:`` ``Victory_Bonus:`` ``Game_Mode:`` ``Image_Link:`` ``Clan_Member``\n\n> This Command will then notify a staff member to review your clan point submission.",
+            value="> Clan points can be submitted by just finishing a game! Finishing a game will send a confirmation of your clan points in <#1122622489974034434>.",
             inline=False
         )
 
@@ -187,7 +187,7 @@ class InformationEmbeds(commands.Cog):
     ):
         information_embed = discord.Embed(
             title=f"Clan Information",
-            description=f"This section will cover everything there is to know about Clans for The Conquerors 3.\n\nClans are a group of 4-6 people that compete competitively for rewards and leaderboard positions. These groups of people advance themselves up the leaderboards by earning clan/conquering points from submitting end of round bonuses via a command. There are 2 types of leaderboards weekly and yearly, clans will be rewarded based on weekly leaderboards.",
+            description=f"This section will cover everything there is to know about Clans for The Conquerors 3.\n\nClans are a group of 4-10 people that compete competitively for rewards and leaderboard positions. These groups of people advance themselves up the leaderboards by earning clan/conquering points from submitting end of round bonuses via a command. There are 2 types of leaderboards weekly and yearly, clans will be rewarded based on weekly leaderboards.",
             color=0x00ffff
         )
 

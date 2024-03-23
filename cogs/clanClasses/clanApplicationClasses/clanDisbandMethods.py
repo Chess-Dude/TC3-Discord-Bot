@@ -15,7 +15,7 @@ class ClanDisbandMethods():
                 if len(member_clan_point_data) != 0:
                     sql = "UPDATE ClanPointTracker SET currentClanRoleID = $1, currentClanName = $2 WHERE discordUserID = $3"
                     await connection.execute(sql, 0, "NONE", member.id)
-                    await connection.commit()
+                    # await connection.commit() I have no clue why this line of code should exist
 
             for role in role_config_list:
                 await member.remove_roles(role)

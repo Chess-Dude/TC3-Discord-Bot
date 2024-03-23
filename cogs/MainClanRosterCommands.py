@@ -61,5 +61,60 @@ class ClanRosterCommands(commands.Cog):
                     clan_role=clan_role
                 )
 
+    @app_commands.checks.has_any_role(554152645192056842, 743302990001340559, 351074813055336458)
+    @roster_group.command(
+        name="clan_2",
+        description="A Command That Allows You To Update Clan Rosters!")
+    async def update_rosters_clan_2(        
+        self,
+        interaction: discord.Interaction,
+    ):
+        generate_clan_roster_obj = GenerateClanRoster()
+        
+        await generate_clan_roster_obj.purge_channel_messages(
+            interaction=interaction
+        )
+
+        # this will be get_clans 
+        clan_list = [] 
+        is_clan = False
+        for role in interaction.guild.roles:
+            if role.name == "FILLER FOR BOT DO NOT REMOVE":
+                is_clan = True
+
+            elif role.name == "-----clans-----":
+                is_clan = False
+
+            if is_clan:
+                print(role.name)
+                clan_list.append(role)                        
+
+            print(role.name)
+            clan_list.append(role)
+        
+        for clan_role in clan_list:
+            if clan_role != None:
+                clan_info_list = generate_clan_roster_obj.get_clan_info(
+                    interaction=interaction,
+                    clan_role=clan_role
+                )
+
+                clan_roster_embed = await generate_clan_roster_obj.send_clan_roster(
+                    interaction=interaction,
+                    clan_role=clan_role,
+                    clan_info_list=clan_info_list
+                )
+
+                clan_roster_channel = interaction.guild.get_channel(1101934520212656158)
+
+                await clan_roster_channel.send(
+                    embed=clan_roster_embed
+                )
+
+                await generate_clan_roster_obj.clan_disband_check(
+                    interaction=interaction,
+                    clan_role=clan_role
+                )
+
 async def setup(bot):
     await bot.add_cog(ClanRosterCommands(bot))

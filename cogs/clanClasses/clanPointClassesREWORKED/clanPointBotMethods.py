@@ -78,7 +78,8 @@ class ClanPointBotMethods():
             weekly_lb_desc = ''
 
             for clan_row in clan_leaderboard_rows:
-                weekly_lb_desc += f"**{clan_row[1]}** - ``{clan_row[3]}``\n"
+                if int(clan_row[3]) != 0:
+                    weekly_lb_desc += f"**{clan_row[1]}** - ``{clan_row[3]}``\n"
 
             weekly_lb_embed = discord.Embed(
                 title="Weekly Leaderboard",
@@ -90,7 +91,8 @@ class ClanPointBotMethods():
             clan_leaderboard_rows = await connection.fetch(sql)
             yearly_lb_desc = ''
             for clan_row in clan_leaderboard_rows:
-                yearly_lb_desc += f"**{clan_row[1]}** - ``{clan_row[4]}``\n"
+                if int(clan_row[3]) != 0:
+                    yearly_lb_desc += f"**{clan_row[1]}** - ``{clan_row[4]}``\n"
 
             yearly_lb_embed = discord.Embed(
                 title="Yearly Leaderboard",
@@ -144,11 +146,13 @@ class ClanPointBotMethods():
                 description="Submission originates from in-game",
                 color=0x2f3136
             )
-            
-            log_embed.set_author(
-                name=f"{user_clan_point_data[0][2]}",
-                icon_url=clan_member.display_avatar.url
-            )
+            try:    
+                log_embed.set_author(
+                    name=f"{user_clan_point_data[0][2]}",
+                    icon_url=clan_member.display_avatar.url
+                )
+            except:
+                pass
 
             log_embed.add_field(
                 name=f"Clan Of Member:",

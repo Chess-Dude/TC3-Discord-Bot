@@ -199,12 +199,12 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
     ):  
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
-
+        print(f"map name before change: {map}")
         map = map.title()
         map = map.replace(" Vs ", " vs. ")
         map = map.replace(" Vs. ", " vs. ")
         page = requests.get("https://theconquerors.fandom.com/wiki/Category:Maps")
-
+        print(f"map name after change: {map}")
         soup = BeautifulSoup(page.content, "html.parser")
         no = soup.findAll('table', class_="article-table")[0].findAll('tr')
         map_info_dict = {}
@@ -226,7 +226,7 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
                 for value in map_info_dict[cur_map]:
                     value = value.replace("\n", ' ')
                     map_info_list.append(value)
-
+        print(f"Map info list: {map_info_list}")
         map_images = MapSelectionUitilityMethods.get_map_image()
 
         map_embed = discord.Embed(

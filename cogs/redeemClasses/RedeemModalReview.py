@@ -1,8 +1,29 @@
 import discord 
+import discord, gspread, os 
+from oauth2client.service_account import ServiceAccountCredentials
+
+scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
+
+creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+
+client = gspread.authorize(creds)
+
+google_sheet = client.open("TC3 Coin Redeem")
+temp_coin_redeem_logs = google_sheet.worksheet("CoinRedeemLogs")
+perm_coin_redeem_logs = google_sheet.worksheet("PermCoinRedeemLogs")
 
 class RedeemModalReview(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
+
+    def insert_coin_log(
+            self,
+            roblox_username,
+            total_coins,
+            reward_reason
+        ):
+            temp_coin_redeem_logs.insert_row([f" ", f"{roblox_username}", f"{total_coins}", f"{reward_reason}"], index=4)
+            perm_coin_redeem_logs.insert_row([f" ", f"{roblox_username}", f"{total_coins}", f"{reward_reason}"], index=4)
 
     async def create_embed(
             self,
@@ -67,27 +88,32 @@ class RedeemModalReview(discord.ui.View):
             prize_type_name = total_prize_field['name']           
             reward_reason_field = redeem_embed_values[1]
             reward_reason = reward_reason_field['value']
+            redeem_modal_review_obj = RedeemModalReview()
+
+            user = interaction.guild.get_member(int(user_redeeming.replace("<@", "").replace(">", "")))
+            total_prize = total_prize.replace('`', '')
+            reward_reason = reward_reason.replace('`', '')
 
             if "Coins" in prize_type_name:
                 prize_type = "Coins"
                 prize_channel = interaction.guild.get_channel(1123270001600778312)
                 prize_role = interaction.guild.get_role(676116195069657098)
-
+                redeem_modal_review_obj.insert_coin_log(
+                    roblox_username=user.display_name,
+                    total_coins=total_prize,
+                    reward_reason=reward_reason
+                )
+                
             elif "Robux" in prize_type_name:
                 prize_type = "Robux" 
                 prize_channel = interaction.guild.get_channel(1123270021037170790)
                 prize_role = interaction.guild.get_role(899078081866768414)
-
-            user = interaction.guild.get_member(int(user_redeeming.replace("<@", "").replace(">", "")))
-            total_prize = total_prize.replace('`', '')
-            reward_reason = reward_reason.replace('`', '')
 
             await user.add_roles(prize_role)
             msg = await prize_channel.send(
                 content=f"{user.mention} / {user.display_name} / {total_prize} {prize_type} / {reward_reason}"
             )
 
-            redeem_modal_review_obj = RedeemModalReview()
             redeem_embed = await redeem_modal_review_obj.create_embed(
                 interaction=interaction,
                 user=user,

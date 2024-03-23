@@ -269,15 +269,15 @@ async def delete_all_from_tables(ctx):
 async def print_clan_databases(ctx):
 
     async with bot.pool.acquire() as connection:
-        # sql = "SELECT * FROM ClanPointLeaderboard"
-        # result = await connection.fetch(sql)
-        
-        # for row in result:
-        #     print(row)
-
-        print("\n\n")
-        sql = "SELECT * FROM ClanPointTracker"
+        sql = "SELECT * FROM ClanPointLeaderboard"
         result = await connection.fetch(sql)
+        
+        for row in result:
+            print(row)
+
+        # print("\n\n")
+        # sql = "SELECT * FROM ClanPointTracker"
+        # result = await connection.fetch(sql)
         
         for row in result:
             print(row)
@@ -289,4 +289,28 @@ async def print_clan_databases(ctx):
         for row in result:
             print(row)            
 
+@bot.command()
+@commands.is_owner()
+async def print_clans(ctx):
+    clan_divider_top_role = ctx.guild.get_role(1053050572296704000)
+    clan_divider_bottom_role = ctx.guild.get_role(1053050637555880027)
+    clan_role_list = [] 
+    for role_position in range(clan_divider_top_role.position-1, clan_divider_bottom_role.position, -1):
+        clan_role = discord.utils.get(
+            ctx.guild.roles, 
+            position=role_position
+        )
+        print(clan_role.name)
+        clan_role_list.append(clan_role)
+    
+    print("\n\n\n")
+    
+
+    for role in ctx.guild.roles:
+        print(role.name)
+
 bot.run(token)
+
+# if role name == ---clans---, continue looping
+# each loop check if role name is filler for bot
+# if false, then add to clan role list, if true, return

@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # creds file
-creds.json
+.creds.json
 
 # serverless-dependencies
 node_modules/

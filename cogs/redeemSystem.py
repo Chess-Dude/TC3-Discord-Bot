@@ -33,6 +33,6 @@ class RedeemCommands(commands.Cog):
             embed=ticket_embed,
             view=RedeemTicketPanel()
         )
-
+        
 async def setup(bot):
     await bot.add_cog(RedeemCommands(bot))
