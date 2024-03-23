@@ -251,7 +251,7 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
 
         map_embed.timestamp = interaction.created_at
         map_embed.add_field(
-            name=f"Max Eco:",
+            name=f"Max Income:",
             value=cost,
             inline=True
         )
