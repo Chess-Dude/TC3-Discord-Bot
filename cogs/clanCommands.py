@@ -269,6 +269,8 @@ class ClanCommands(commands.Cog):
                 await interaction.channel.send(content="Error: You cannot remove a clan member that is not in your clan.")
         
         await interaction.channel.send(embed=update_embed)
+        log_channel = interaction.guild.get_channel(1043644487949357157)
+        await log_channel.send(content=f"{interaction.user.mention} made a change to {clan_role.name}:",embed=update_embed)
 
     @app_commands.checks.has_any_role(1054999374993817700, 1054999381029429349)
     @app_commands.check(bots_or_work_channel)

@@ -181,7 +181,7 @@ class ModeratorCommands(commands.Cog):
         reason: str
     ):
         response_embed = discord.Embed(
-            description=f"✅ {member.display_name}#{member.discriminator} has been banned | {reason}", 
+            description=f"✅ {member.display_name} has been banned | {reason}", 
             colour=0xff0000
         )
         
@@ -252,7 +252,7 @@ class ModeratorCommands(commands.Cog):
     ):
 
         response_embed = discord.Embed(
-            description=f"✅ {member.display_name}#{member.discriminator} has been kicked | {reason}", 
+            description=f"✅ {member.display_name} has been kicked | {reason}", 
             colour=0xff0000
         )
 

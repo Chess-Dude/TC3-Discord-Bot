@@ -13,7 +13,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 
 client = gspread.authorize(creds)
 
-sheet = client.open("Copy of TC3 Unit Information").sheet1
+sheet = client.open("TC3 Stats for TC3 BOT").sheet1
 
 class InformationAppCommands(commands.Cog):
     def __init__(self, bot):
@@ -71,24 +71,27 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             for entry in data:
                 if input_unit.lower() == entry["Unit"].lower() or input_unit.lower() == entry["Unit"].lower().replace(" ", ""):
                     result_entry = entry
-            
+
             if result_entry == None:
                 await interaction.response.send_message(content=f"Error: You did not provide a valid unit. Please try again.", ephemeral=True)
 
             else:            
-                unit_stats = ["Type", "Produced in", "Cost", "Build Time", "Health", "Damage (DPS)", "Speed", "Range", "Garrisonable", "Garrisons", "Researchable", "Produces", "Unit Slots", "Wiki Link", "Image Link"]
+                unit_stats = ["Type", "Produced In", "Damage", "Range", "Attack Speed", "DPS", "Health", "Price", "Speed", "Prod. Time", "Capacity", "Other", "Wiki Image"]
                 info_embed = discord.Embed(
                     title=f'{result_entry["Unit"]}', 
-                    description=f'Unit Stats for the {result_entry["Unit"]}', 
+                    description=f'Unit Stats for the {result_entry["Unit"]}\n{result_entry["Other"]}', 
                     color=0x00ffff)
 
                 info_embed.set_author(
                     name=f"{interaction.user.display_name}", 
                     icon_url=f"{interaction.user.display_avatar.url}")
 
-                info_embed.set_thumbnail(url=f'{result_entry["Image Link"]}')
+                info_embed.set_thumbnail(url=f'{result_entry["Wiki Image"]}')
 
+                stats_not_include = ["Wiki Image"]
                 for stat in unit_stats:
+                    if stat in stats_not_include:
+                        continue
                     info_embed.add_field(
                         name=stat, 
                         value = f'{result_entry[stat]}')
@@ -186,7 +189,7 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             app_commands.Choice(name=selected_unit, value=selected_unit)
             for selected_unit in unit if current.lower() in selected_unit.lower()
         ][:25]
-        
+    
     @info_group.command(
         name="map",
         description="Get a map radar")

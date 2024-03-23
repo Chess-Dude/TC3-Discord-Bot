@@ -139,7 +139,7 @@ class ClanPointBotMethods():
         TC3_SERVER = bot.get_guild(350068992045744141)
         clan_point_subs_channel = bot.get_channel(channel_id)
 
-        if len(user_clan_point_data) != 0:
+        if (len(user_clan_point_data) != 0) and (str(user_clan_point_data[0][5]) != "None"):
             clan_member = bot.get_user(user_clan_point_data[0][2])
             log_embed = discord.Embed(
                 title=f"{user_clan_point_data[0][1]} Clan Point Submission",

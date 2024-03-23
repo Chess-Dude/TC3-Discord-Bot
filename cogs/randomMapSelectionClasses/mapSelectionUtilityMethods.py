@@ -12,6 +12,15 @@ class MapSelectionUitilityMethods():
     ):
         if game_mode == "1v1":
             maps = [
+                "Skymap v2",
+                "Fantaziya",
+                "Desert vs. Grass 7",
+                "Europe v3",
+                "Mexico v2",
+                "Haloween2023Map",
+                "Gulf of Mexico",
+                "China",
+                "Scandinavia",
                 "USA vs. Canada",
                 "Spain",
                 "Arctic Canal Map",
@@ -72,6 +81,15 @@ class MapSelectionUitilityMethods():
 
         elif game_mode == "2v2":
             maps = [
+                "Skymap v2",
+                "Fantaziya",
+                "Desert vs. Grass 7",
+                "Europe v3",
+                "Mexico v2",
+                "Haloween2023Map",
+                "Gulf of Mexico",
+                "China",
+                "Scandinavia",                
                 "USA vs. Canada",
                 "Spain",
                 "Arctic Canal Map", 
@@ -112,6 +130,15 @@ class MapSelectionUitilityMethods():
 
         if game_mode == "3v3":
             maps = [
+                "Skymap v2",
+                "Fantaziya",
+                "Desert vs. Grass 7",
+                "Europe v3",
+                "Mexico v2",
+                "Haloween2023Map",
+                "Gulf of Mexico",
+                "China",
+                "Scandinavia",                
                 "USA vs. Canada",                
                 "Spain",
                 "Archipelago", 
@@ -181,6 +208,15 @@ class MapSelectionUitilityMethods():
 
         elif game_mode == "4v4":
             maps = [
+                "Skymap v2",
+                "Fantaziya",
+                "Desert vs. Grass 7",
+                "Europe v3",
+                "Mexico v2",
+                "Haloween2023Map",
+                "Gulf of Mexico",
+                "China",
+                "Scandinavia",                
                 "USA vs. Canada",
                 "Archipelago", 
                 "Arctic Canal Map", 
@@ -236,6 +272,12 @@ class MapSelectionUitilityMethods():
 
         elif game_mode == "5v5":
             maps = [
+                "Fantaziya",
+                "Desert vs. Grass 7",
+                "Europe v3",
+                "Gulf of Mexico",
+                "China",
+                "Scandinavia",                
                 "USA vs. Canada",
                 "Archipelago",
                 "Arctic Canal Map",
@@ -263,13 +305,18 @@ class MapSelectionUitilityMethods():
 
         elif game_mode == "2v2v2":
             maps = [
+                "Dalarna Island",                
+                "Triple Mansion",
                 "Arctic Circle",
                 "Cave Map",
                 "City 3",
                 "Continent",
                 "Corners",
                 "Divided Metropolis",
+                "Grass Cliff",
+                "Halloween FFA Map",
                 "Mansion",
+                "Mars Mole",
                 "Maze",
                 "Middle East",
                 "Moon Surface",
@@ -285,7 +332,26 @@ class MapSelectionUitilityMethods():
                 "Twisting Isles",
                 "Two Cave Map"
                 ]
-
+        
+        elif game_mode == "3v3v3":
+            maps = [
+                "Dalarna Island",                
+                "Triple Mansion",
+                "Divided Metropolis",
+                "Grass Cliff",
+                "Halloween FFA Map",
+                "Mansion",
+                "Mars Mole",
+                "RETRO: Six Islands",
+                "RETRO: The Moon",
+                "Ryry's Oil Map",
+                "Six Small Islands",
+                "Snowy Islands",
+                "Three Corner Cave",
+                "Tri Weather Reworked",
+                "Two Cave Map"
+                ]
+        
         elif game_mode == "FFA3":
             maps = [
                 "City 3",

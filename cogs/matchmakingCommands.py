@@ -28,5 +28,18 @@ class ScrimsAppCommands(commands.Cog):
         
         await interaction.channel.send(content=f"{interaction.user.mention} is going to play some TC3, come help them rekt some noobs! {game_role.mention}\n\nDon't want to get pinged? Run the command: \n``!!rank game``")        
 
+    @app_commands.guilds(350068992045744141)
+    @app_commands.checks.cooldown(1, 600, key=lambda i: (i.guild_id))
+    @app_commands.command(
+        name="scrim",
+        description="A Command That Allows You To Request Competitive Members for a Match!")
+    @app_commands.checks.check(matchmaking)
+    async def scrim_command(
+        self,
+        interaction: discord.Interaction
+    ):  
+        scrim_role = interaction.guild.get_role(1218662305210957884)    
+        await interaction.channel.send(content=f"{interaction.user.mention} would like to scrim! {scrim_role.mention}\n\nDon't want to get pinged? Run the command: \n``!!rank scrim``")        
+
 async def setup(bot):
     await bot.add_cog(ScrimsAppCommands(bot))

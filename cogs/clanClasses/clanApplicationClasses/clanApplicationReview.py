@@ -28,13 +28,16 @@ class ReviewClanApplication(discord.ui.View):
         del clan_roster_list[-1]
 
         clan_hex_color = info_str[-len("#36393E"):-1]
-
-        clan_leader = interaction.guild.get_member(int(clan_roster_list[0]))
-        clan_co_leader = interaction.guild.get_member(int(clan_roster_list[1]))            
-        clan_member_1 = interaction.guild.get_member(int(clan_roster_list[2]))            
-        clan_member_2 = interaction.guild.get_member(int(clan_roster_list[3]))            
-        clan_member_3 = interaction.guild.get_member(int(clan_roster_list[4]))            
-        clan_member_4 = interaction.guild.get_member(int(clan_roster_list[5]))
+        try:
+            clan_leader = interaction.guild.get_member(int(clan_roster_list[0]))
+            clan_co_leader = interaction.guild.get_member(int(clan_roster_list[1]))            
+            clan_member_1 = interaction.guild.get_member(int(clan_roster_list[2]))            
+            clan_member_2 = interaction.guild.get_member(int(clan_roster_list[3]))            
+            clan_member_3 = interaction.guild.get_member(int(clan_roster_list[4]))            
+            clan_member_4 = interaction.guild.get_member(int(clan_roster_list[5]))
+        except Exception as error:
+            clan_member_4 = clan_member_3
+            await interaction.channel.send(content=f"Error: {error}. Please review line 39 in clanApplicationReview. (May be IndexError).")
         role_divider_id = 1053050572296704000    
         clan_leader_role_id = 1054999374993817700 
         clan_co_leader_role_id = 1054999381029429349 

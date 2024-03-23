@@ -333,5 +333,31 @@ class AdminCommands(commands.Cog):
             await ctx.send(f"You provided {len(player_tuple)} members. Not divisible by 2")
             
 
+    @commands.is_owner()
+    @commands.command(aliases=["getServers"])
+    async def get_servers(
+        self,
+        ctx,
+    ):
+        total_guilds = self.bot.guilds
+        await ctx.send(f"bot is in: {len(total_guilds)}")
+        total_members = 0
+        for guild in total_guilds:
+            await ctx.send(guild.name)
+            total_members = total_members + len(guild.members)
+        
+        await ctx.send(total_members)
+
+    @commands.is_owner()
+    @commands.command(aliases=["getChannels"])
+    async def get_channels(
+        self,
+        ctx,
+    ):
+        rd_server = self.bot.get_guild(1170851599485239437)
+        for channel in rd_server.channels:
+            await ctx.send(channel.name)
+
+
 async def setup(bot):
     await bot.add_cog(AdminCommands(bot))

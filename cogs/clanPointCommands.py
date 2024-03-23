@@ -49,7 +49,8 @@ class ClanPointCommands(commands.Cog):
                 )
 
                 try:
-                    if len(user_clan_point_data) != 0:                
+                    if ((len(user_clan_point_data) != 0) and 
+                        ((str(user_clan_point_data[0][5])) != "None")):                
                         await self.clan_point_bot_methods_obj.send_log_embed(
                             end_of_round_bonus_dict=end_of_round_bonus_dict,
                             bot=self.bot,

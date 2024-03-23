@@ -24,10 +24,11 @@ class AppCommandsMapSelection(commands.Cog):
         Choice(name="4v4", value=4),
         Choice(name="5v5", value=5),
         Choice(name="2v2v2", value=6),
-        Choice(name="FFA3", value=7),
-        Choice(name="FFA4", value=8),
-        Choice(name="FFA6", value=9),
-        Choice(name="game_night_3v3", value=10)
+        Choice(name="3v3v3", value=7),        
+        Choice(name="FFA3", value=8),
+        Choice(name="FFA4", value=9),
+        Choice(name="FFA6", value=10)
+        # Choice(name="game_night_3v3", value=11)
     ])
     async def random_map(
         self,

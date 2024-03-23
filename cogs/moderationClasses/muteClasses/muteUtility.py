@@ -38,7 +38,7 @@ class MuteUtility:
             
             if staff_role in self.member.roles:
                 response_embed = discord.Embed(
-                    description=f"✅ {self.member.display_name}#{self.member.discriminator} is a staff member! | Failed to mute.", 
+                    description=f"✅ {self.member.display_name} is a staff member! | Failed to mute.", 
                     colour=0x00ffff
                 )
                 self.success_message = await self.interaction.channel.send(embed=response_embed)
@@ -69,6 +69,10 @@ class MuteUtility:
                 time_duration = datetime.timedelta(hours=self.duration)
                 duration_seconds = self.duration * 3600
 
+            else:
+                time_duration = datetime.timedelta(minutes=self.duration)
+                duration_seconds = self.duration * 60
+
             await self.member.timeout(time_duration)
 
         await self.send_mute_log_embed()
@@ -81,7 +85,7 @@ class MuteUtility:
         sends mute log embed to log channel and user.
         """
         response_embed = discord.Embed(
-            description=f"✅ {self.member.display_name}#{self.member.discriminator} has been muted for {self.duration} {self.time_type} | {self.reason}", 
+            description=f"✅ {self.member.display_name} has been muted for {self.duration} {self.time_type} | {self.reason}", 
             colour=0x00ffff
         )
         

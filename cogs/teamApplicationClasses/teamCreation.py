@@ -101,7 +101,7 @@ class TeamCreation():
 
         view = TournamentDropdownView()
         await tournament_applications_channel.send(
-            content=f"``<@711003479430266972>, <@768259026084429896>, <@282761998326824961>``",
+            content=f"<@384408445404577792>",
             embed=log_embed,
             view=view
             )
