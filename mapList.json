@@ -1,7 +1,7 @@
 {
     "Archipelago": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4",
                 "5v5"
@@ -13,7 +13,7 @@
     },
     "Arctic Canal Map": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -21,15 +21,39 @@
         "map_size": "800x800",
         "max_income": "$600"
     },
+    "Artic Canal Map": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/34/RADAR_Artic_Canal_Map.png/revision/latest/scale-to-width-down/280?cb=20230927205252",
+        "map_size": "800x800",
+        "max_income": "$600"
+    },
+    "Artic Circle": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a3/RADAR_Artic_Circle.png/revision/latest/scale-to-width-down/280?cb=20230927205329",
+        "map_size": "980x980",
+        "max_income": "$260"
+    },
     "Basalt Peninsula": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -39,11 +63,11 @@
     },
     "British Isles": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -53,11 +77,11 @@
     },
     "Canada v2": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -67,14 +91,14 @@
     },
     "Cave map": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "2v2v2"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ],
-            "King of the Hill": [
+            "King Of The Hill": [
                 "3v3",
                 "2v2v2"
             ]
@@ -85,12 +109,12 @@
     },
     "Cavern": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -100,13 +124,13 @@
     },
     "China": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -116,15 +140,15 @@
     },
     "City 3": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "2v2v2"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA",
                 "3FFA"
             ],
-            "King of the Hill": [
+            "King Of The Hill": [
                 "3v3",
                 "2v2v2"
             ]
@@ -135,11 +159,11 @@
     },
     "City vs. Nature": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -149,12 +173,12 @@
     },
     "Continent": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "2v2v2"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -164,11 +188,11 @@
     },
     "Corners": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "2v2v2"
             ],
-            "King of the Hill": [
+            "King Of The Hill": [
                 "3v3",
                 "2v2v2"
             ]
@@ -179,11 +203,11 @@
     },
     "Dalarna Island": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2v2",
                 "3v3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "3FFA"
             ]
         },
@@ -193,13 +217,13 @@
     },
     "Desert vs. Grass": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -209,13 +233,13 @@
     },
     "Desert vs. Grass 2": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -225,13 +249,13 @@
     },
     "Desert vs. Grass 3": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -241,11 +265,11 @@
     },
     "Desert vs. Grass 4": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -255,12 +279,12 @@
     },
     "Desert vs. Grass 6": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -268,12 +292,28 @@
         "map_size": "800x800",
         "max_income": "$460"
     },
+    "Desert vs. Grass 7": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c1/RADAR_Desert_vs._Grass_7.png/revision/latest/scale-to-width-down/280?cb=20240324193728",
+        "map_size": "800x800",
+        "max_income": "$600"
+    },
     "Desert vs. Grass Spiral": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -283,7 +323,7 @@
     },
     "Divided Metropolis": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2v2",
                 "3v3v3"
             ]
@@ -294,12 +334,12 @@
     },
     "Double Mansion": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -309,7 +349,7 @@
     },
     "Egyptian Expedition": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -319,7 +359,7 @@
     },
     "Enceladus": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "3FFA"
             ]
         },
@@ -329,12 +369,12 @@
     },
     "Europe": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -344,29 +384,29 @@
     },
     "Europe 3": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
-        "image": null,
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/3f/RADAR_Europe_3.png/revision/latest/scale-to-width-down/280?cb=20240203183440",
         "map_size": "800x800",
         "max_income": "$615"
     },
     "Fantasy": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -376,13 +416,13 @@
     },
     "Fantasy 2": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -392,7 +432,7 @@
     },
     "Fantasy Survival": {
         "gamemode": {
-            "King of the Hill": [
+            "King Of The Hill": [
                 "3v3",
                 "2v2v2"
             ]
@@ -401,14 +441,30 @@
         "map_size": "800x800",
         "max_income": "$210"
     },
+    "Fantaziya": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/db/RADAR_Fantaziya.png/revision/latest/scale-to-width-down/280?cb=20240324193736",
+        "map_size": "800x800",
+        "max_income": "$410"
+    },
     "France": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -418,7 +474,7 @@
     },
     "Frosty Gear": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "6FFA"
             ]
         },
@@ -428,7 +484,7 @@
     },
     "Frozen River": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3"
             ]
         },
@@ -438,12 +494,12 @@
     },
     "Gem Mine": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -453,12 +509,12 @@
     },
     "Germany Map": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -468,12 +524,12 @@
     },
     "Germany vs France": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -483,12 +539,12 @@
     },
     "Golf Course": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -498,11 +554,11 @@
     },
     "Golf Course 2": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -512,7 +568,7 @@
     },
     "Grass Cliff": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2v2",
                 "3v3v3"
             ]
@@ -523,13 +579,13 @@
     },
     "Gulf of Mexico": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -539,11 +595,11 @@
     },
     "Halloween FFA Map": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2v2",
                 "3v3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "6FFA"
             ]
         },
@@ -553,22 +609,22 @@
     },
     "Halloween2023Map": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
-        "image": null,
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/39/RADAR_Halloween2023Map.png/revision/latest/scale-to-width-down/280?cb=20231021180400",
         "map_size": "800x800",
         "max_income": "$210"
     },
     "Ice Catalyst": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
@@ -580,7 +636,7 @@
     },
     "Igneous Islands": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4"
             ]
@@ -591,7 +647,7 @@
     },
     "Italy": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
@@ -603,12 +659,12 @@
     },
     "Korea": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -618,7 +674,7 @@
     },
     "Lake City Map": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3"
             ]
         },
@@ -628,12 +684,12 @@
     },
     "Lakebed": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -643,13 +699,13 @@
     },
     "Lasers": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -659,7 +715,7 @@
     },
     "Last Red City": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -669,10 +725,10 @@
     },
     "Long Islands": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -682,7 +738,7 @@
     },
     "Magma Pools": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "6FFA"
             ]
         },
@@ -692,12 +748,12 @@
     },
     "Mainland": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -707,12 +763,12 @@
     },
     "Mansion": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4",
                 "2v2v2"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -722,11 +778,11 @@
     },
     "Mansion Flooded": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -736,7 +792,7 @@
     },
     "Mars": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -746,7 +802,7 @@
     },
     "Mars 4": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "4v4"
             ]
         },
@@ -756,7 +812,7 @@
     },
     "Mars Canyons": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4"
             ]
@@ -767,7 +823,7 @@
     },
     "Mars Mole": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "2v2v2",
                 "3v3v3"
@@ -779,10 +835,10 @@
     },
     "Mars Tunnels": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "6FFA"
             ]
         },
@@ -792,7 +848,7 @@
     },
     "Maze": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4",
                 "2v2v2"
@@ -804,7 +860,7 @@
     },
     "Medieval Grounds": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -814,7 +870,7 @@
     },
     "Mediterranean": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "5v5"
             ]
         },
@@ -824,12 +880,12 @@
     },
     "Mesa": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -839,12 +895,12 @@
     },
     "Mexico": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -854,7 +910,7 @@
     },
     "Middle East": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "4v4",
                 "2v2v2"
             ]
@@ -865,7 +921,7 @@
     },
     "Monument Park": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA",
                 "4FFA"
             ]
@@ -876,11 +932,11 @@
     },
     "Moon Surface": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "2v2v2"
             ],
-            "King of the Hill": [
+            "King Of The Hill": [
                 "3v3",
                 "2v2v2"
             ]
@@ -891,7 +947,7 @@
     },
     "Obsidian Atoll": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4"
             ]
@@ -902,13 +958,13 @@
     },
     "Passage": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -918,11 +974,11 @@
     },
     "Point Blank": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -932,11 +988,11 @@
     },
     "RETRO Cliffs": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "2v2v2"
             ],
-            "King of the Hill": [
+            "King Of The Hill": [
                 "3v3",
                 "2v2v2"
             ]
@@ -947,14 +1003,14 @@
     },
     "RETRO Four Seasons": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "2v2v2"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ],
-            "King of the Hill": [
+            "King Of The Hill": [
                 "3v3",
                 "2v2v2"
             ]
@@ -965,13 +1021,13 @@
     },
     "RETRO Six Islands": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "2v2v2",
                 "3v3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA",
                 "3FFA"
             ]
@@ -982,11 +1038,11 @@
     },
     "RETRO The Moon": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "2v2v2"
             ],
-            "King of the Hill": [
+            "King Of The Hill": [
                 "3v3",
                 "2v2v2"
             ]
@@ -997,7 +1053,7 @@
     },
     "River Banks": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
@@ -1009,11 +1065,11 @@
     },
     "Ryry's Oil Map": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2v2",
                 "3v3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA",
                 "3FFA"
             ]
@@ -1024,11 +1080,11 @@
     },
     "Sand Botton Forest": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -1038,10 +1094,10 @@
     },
     "Sand City": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA",
                 "4FFA"
             ]
@@ -1052,7 +1108,7 @@
     },
     "Sandstone Cog": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "6FFA"
             ]
         },
@@ -1062,7 +1118,7 @@
     },
     "Sandy Floors": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3"
             ]
@@ -1073,13 +1129,13 @@
     },
     "Scandinavia": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -1089,12 +1145,12 @@
     },
     "Six Small Islands": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "2v2v2"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA",
                 "4FFA"
             ]
@@ -1105,13 +1161,13 @@
     },
     "Skymap": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -1119,9 +1175,24 @@
         "map_size": "900x900",
         "max_income": "$570"
     },
+    "Skymap 2": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/48/RADAR_Skymap_2.png/revision/latest/scale-to-width-down/280?cb=20240324193741",
+        "map_size": "900x900",
+        "max_income": "$480"
+    },
     "Snow Battlefield": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
@@ -1134,14 +1205,14 @@
     },
     "Snowy Islands": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2v2",
                 "3v3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "3FFA"
             ],
-            "King of the Hill": [
+            "King Of The Hill": [
                 "2v2v2"
             ]
         },
@@ -1151,13 +1222,13 @@
     },
     "Soviet Union": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -1167,11 +1238,11 @@
     },
     "Spain": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -1181,7 +1252,7 @@
     },
     "States": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "4v4",
                 "5v5"
@@ -1193,7 +1264,7 @@
     },
     "Symmetry": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3"
             ]
         },
@@ -1201,64 +1272,13 @@
         "map_size": "800x800",
         "max_income": "$360"
     },
-    "Territory Map 1": {
-        "gamemode": {
-            "Territory Conquest": [
-                "3v3",
-                "2v2v2"
-            ]
-        },
-        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/08/RADAR_Territory_Map_1.png/revision/latest/scale-to-width-down/279?cb=20230927212038",
-        "map_size": "740x740",
-        "max_income": "$240"
-    },
-    "Territory Map 3": {
-        "gamemode": {
-            "Territory Conquest": [
-                "3v3"
-            ]
-        },
-        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/33/RADAR_Territory_Map_3.png/revision/latest/scale-to-width-down/280?cb=20230927212046",
-        "map_size": "800x800",
-        "max_income": "$280"
-    },
-    "Territory Map 4": {
-        "gamemode": {
-            "Territory Conquest": [
-                "3v3"
-            ]
-        },
-        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/10/RADAR_Territory_Map_4.png/revision/latest/scale-to-width-down/280?cb=20230927212053",
-        "map_size": "680x680",
-        "max_income": "$180"
-    },
-    "Territory Map 5": {
-        "gamemode": {
-            "Territory Conquest": [
-                "3v3"
-            ]
-        },
-        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e3/RADAR_Territory_Map_5.png/revision/latest/scale-to-width-down/280?cb=20230927212102",
-        "map_size": "800x800",
-        "max_income": "$270"
-    },
-    "Territory Map 6": {
-        "gamemode": {
-            "Territory Conquest": [
-                "3v3"
-            ]
-        },
-        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/bd/RADAR_Territory_Map_6.png/revision/latest/scale-to-width-down/280?cb=20230927212108",
-        "map_size": "800x800",
-        "max_income": "$265"
-    },
     "Three Corner Cave": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2v2",
                 "3v3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA",
                 "3FFA"
             ]
@@ -1267,13 +1287,27 @@
         "map_size": "650x650",
         "max_income": "$255"
     },
-    "Tri Weather Reworked": {
+    "Three Corner Cave 2": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2v2",
                 "3v3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
+                "3FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/91/RADAR_Three_Corner_Cave_2.png/revision/latest/scale-to-width-down/280?cb=20240324193746",
+        "map_size": "800x800",
+        "max_income": "$345"
+    },
+    "Tri Weather Reworked": {
+        "gamemode": {
+            "Conquest": [
+                "2v2v2",
+                "3v3v3"
+            ],
+            "Free For All": [
                 "3FFA"
             ]
         },
@@ -1283,7 +1317,7 @@
     },
     "Triple Mansion": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3v3"
             ]
         },
@@ -1293,7 +1327,7 @@
     },
     "Tropical Oasis": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA",
                 "3FFA",
                 "6FFA"
@@ -1305,11 +1339,11 @@
     },
     "Twisting Isles": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3",
                 "2v2v2"
             ],
-            "King of the Hill": [
+            "King Of The Hill": [
                 "3v3",
                 "2v2v2"
             ]
@@ -1320,14 +1354,14 @@
     },
     "Two Cave Map": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "2v2v2",
                 "3v3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA",
                 "3FFA"
             ]
@@ -1338,10 +1372,10 @@
     },
     "Two Islands Map": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -1351,13 +1385,13 @@
     },
     "USA vs Canada": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -1367,12 +1401,12 @@
     },
     "USA vs Russia": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -1382,7 +1416,7 @@
     },
     "Underground Cog": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "3FFA",
                 "6FFA"
             ]
@@ -1393,7 +1427,7 @@
     },
     "Void": {
         "gamemode": {
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "4FFA"
             ]
         },
@@ -1403,7 +1437,7 @@
     },
     "Void City": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "4v4",
                 "5v5"
             ]
@@ -1414,11 +1448,11 @@
     },
     "Void Map": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3"
             ],
-            "FFA & Lightning FFA": [
+            "Free For All": [
                 "2FFA"
             ]
         },
@@ -1428,7 +1462,7 @@
     },
     "World": {
         "gamemode": {
-            "Conquest & Lightning": [
+            "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",

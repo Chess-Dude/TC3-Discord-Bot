@@ -199,53 +199,47 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         interaction: discord.Interaction,
         map: str
     ):  
+        map_name = map
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
         
         maps = MapSelectionUtilityMethods.map_data
-        if map not in maps:
-            await interaction.response.send_message(content="Error: That map was not found! Try again or check the wiki.")
+        if map_name not in maps:
+            await interaction.response.send_message("Error: That map was not found! Try again or check the wiki.", ephemeral=True)
             return
-        map_data = maps[map]
-    
+
+        map_data = maps[map_name]
         cost = map_data['max_income']
         map_size = map_data['map_size']
-        map_image = map_data['image'] 
+        map_image = map_data.get('image', None)
+
         map_embed = discord.Embed(
-            title=f"{map} Map Information:", 
-            description=f"{interaction.user.mention}", 
+            title=f"{map_name} Map Information:",
+            description=f"{interaction.user.mention}",
             color=0x00ffff
         )
-        if map_image:
+        if map_image != None:
             map_embed.set_image(url=map_image)
-                
+
         map_embed.set_author(
-            name=f"{interaction.user.display_name}", 
-            icon_url=interaction.user.display_avatar.url)
-        
+            name=f"{interaction.user.display_name}",
+            icon_url=interaction.user.display_avatar.url
+        )
+
         map_embed.set_footer(
-            text=f"{map} Map Information", 
-            icon_url=interaction.guild.icon)
+            text=f"{map_name} Map Information",
+            icon_url=interaction.guild.icon.url if interaction.guild.icon else None
+        )
 
         map_embed.timestamp = interaction.created_at
-        map_embed.add_field(
-            name=f"Max Income:",
-            value=cost,
-            inline=True
-        )
-        map_embed.add_field(
-            name=f"Map Size:",
-            value=map_size,
-            inline=True
-            )
+        map_embed.add_field(name="Max Income:", value=cost, inline=True)
+        map_embed.add_field(name="Map Size:", value=map_size, inline=True)
         all_types = []
         for gamemode, types in map_data['gamemode'].items():
             all_types.extend(types)
         map_embed.add_field(name='Playable Gamemodes', value=" / ".join(all_types), inline=False)
 
-        await interaction.response.send_message(
-            embed=map_embed
-        )
+        await interaction.response.send_message(embed=map_embed)
 
     @map.autocomplete("map")
     async def map_autocomplete(
