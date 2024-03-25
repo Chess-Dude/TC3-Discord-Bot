@@ -4,8 +4,7 @@ from discord import app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
 from cogs.informationChannels import InformationEmbeds
-from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUitilityMethods
-from bs4 import BeautifulSoup
+from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
@@ -200,70 +199,47 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         interaction: discord.Interaction,
         map: str
     ):  
+        map_name = map
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
         
-
-        page = requests.get("https://theconquerors.fandom.com/wiki/Maps")
-        soup = BeautifulSoup(page.content, "html.parser")
-
-        table = soup.find('table', class_='wikitable')
-        table_rows = table.findAll('tr')
-        
-        selected_row = None
-        for row in table_rows:
-            if map in row.get_text():
-                selected_row = row
-                break
-        # If a non existent image is queried this will break from selected row being None.
-        # Not sure what type of error handling you'd want. 
-            # just made a simple handler so I dont get pinged, if you want you can make an embed and make it fancy.
-        try:
-            table_data = selected_row.findAll('td')
-
-        except AttributeError:
-            await interaction.response.send_message(content="Error: That map was not found! Try again or check the wiki.")
+        maps = MapSelectionUtilityMethods.map_data
+        if map_name not in maps:
+            await interaction.response.send_message("Error: That map was not found! Try again or check the wiki.", ephemeral=True)
             return
 
-        map_name = table_data[0].get_text(strip=True)
-        cost = table_data[-2].get_text(strip=True)
-        map_size = table_data[-1].get_text(strip=True)
+        map_data = maps[map_name]
+        cost = map_data['max_income']
+        map_size = map_data['map_size']
+        map_image = map_data.get('image', None)
 
-        map_images = MapSelectionUitilityMethods.get_map_image()
         map_embed = discord.Embed(
-            title=f"{map} Map Information:", 
-            description=f"{interaction.user.mention}", 
+            title=f"{map_name} Map Information:",
+            description=f"{interaction.user.mention}",
             color=0x00ffff
         )
-        
-        try:
-            map_embed.set_image(url=map_images[map.title()])
-        except KeyError:
-            map_embed.set_image(url=map_images[map])
-                
+        if map_image != None:
+            map_embed.set_image(url=map_image)
+
         map_embed.set_author(
-            name=f"{interaction.user.display_name}", 
-            icon_url=interaction.user.display_avatar.url)
-        
+            name=f"{interaction.user.display_name}",
+            icon_url=interaction.user.display_avatar.url
+        )
+
         map_embed.set_footer(
-            text=f"{map} Map Information", 
-            icon_url=interaction.guild.icon)
+            text=f"{map_name} Map Information",
+            icon_url=interaction.guild.icon.url if interaction.guild.icon else None
+        )
 
         map_embed.timestamp = interaction.created_at
-        map_embed.add_field(
-            name=f"Max Income:",
-            value=cost,
-            inline=True
-        )
-        map_embed.add_field(
-            name=f"Map Size:",
-            value=map_size,
-            inline=True
-            )
+        map_embed.add_field(name="Max Income:", value=cost, inline=True)
+        map_embed.add_field(name="Map Size:", value=map_size, inline=True)
+        all_types = []
+        for gamemode, types in map_data['gamemode'].items():
+            all_types.extend(types)
+        map_embed.add_field(name='Playable Gamemodes', value=" / ".join(all_types), inline=False)
 
-        await interaction.response.send_message(
-            embed=map_embed
-        )
+        await interaction.response.send_message(embed=map_embed)
 
     @map.autocomplete("map")
     async def map_autocomplete(
@@ -271,12 +247,12 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         interaction: discord.Interaction,
         current: str,
     ) -> list[app_commands.Choice[str]]:
-        map = MapSelectionUitilityMethods.get_map_image()
+        map = MapSelectionUtilityMethods.get_map_image()
         map = list(map)
         return [
             app_commands.Choice(name=map_image, value=map_image)
             for map_image in map if current.lower() in map_image.lower()
-        ][:25]
+        ][:10]
 
     @info_group.command(
         name="user", 

@@ -1,7 +1,7 @@
 import discord, typing
 from discord import app_commands
 from discord.ext import commands
-from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUitilityMethods
+from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 class ChannelUtilityCommands(commands.Cog):
     def __init__(self, bot):
@@ -67,7 +67,7 @@ class ChannelUtilityCommands(commands.Cog):
         await interaction.response.send_message(f"created {new_channel.mention}")
         await new_channel.send(f"{role_1.mention} vs {role_2.mention} Please Join the lobby and create a party. Here is the map you will play:")
         
-        map_embed = MapSelectionUitilityMethods.random_map_init(
+        map_embed = MapSelectionUtilityMethods.random_map_init(
             self=self,
             interaction=interaction,
             game_mode="game_night_3v3"
@@ -116,7 +116,7 @@ class ChannelUtilityCommands(commands.Cog):
         await interaction.response.send_message(f"created {new_channel.mention}")
         await new_channel.send(f"{player_1.mention} vs {player_2.mention} Please Join the lobby and create a party. Here is the map you will play:")
         
-        map_embed = MapSelectionUitilityMethods.random_map_init(
+        map_embed = MapSelectionUtilityMethods.random_map_init(
             self=self,
             interaction=interaction,
             game_mode="1v1"
