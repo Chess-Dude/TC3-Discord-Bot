@@ -162,7 +162,4 @@ class MapSelectionUtilityMethods():
         )
 
         return map_embed
-    
-    get_map_data() # startup grab data from wiki
-    update_map_data()
 
