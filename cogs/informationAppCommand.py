@@ -4,8 +4,7 @@ from discord import app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
 from cogs.informationChannels import InformationEmbeds
-from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUitilityMethods
-from bs4 import BeautifulSoup
+from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
@@ -203,7 +202,7 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
         
-        maps = MapSelectionUitilityMethods.map_data
+        maps = MapSelectionUtilityMethods.map_data
         if map not in maps:
             await interaction.response.send_message(content="Error: That map was not found! Try again or check the wiki.")
             return
@@ -211,14 +210,14 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
     
         cost = map_data['max_income']
         map_size = map_data['map_size']
-        map_image = map_data['image'] or 'N/A' # There are a few maps missing images (None is stored)
-
+        map_image = map_data['image'] 
         map_embed = discord.Embed(
             title=f"{map} Map Information:", 
             description=f"{interaction.user.mention}", 
             color=0x00ffff
         )
-        map_embed.set_image(url=map_image)
+        if map_image:
+            map_embed.set_image(url=map_image)
                 
         map_embed.set_author(
             name=f"{interaction.user.display_name}", 
@@ -253,12 +252,12 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         interaction: discord.Interaction,
         current: str,
     ) -> list[app_commands.Choice[str]]:
-        map = MapSelectionUitilityMethods.get_map_image()
+        map = MapSelectionUtilityMethods.get_map_image()
         map = list(map)
         return [
             app_commands.Choice(name=map_image, value=map_image)
             for map_image in map if current.lower() in map_image.lower()
-        ][:25]
+        ][:10]
 
     @info_group.command(
         name="user", 
