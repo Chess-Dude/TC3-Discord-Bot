@@ -101,8 +101,10 @@ class MapSelectionUtilityMethods():
             for map_data in MapSelectionUtilityMethods.map_data.items():
                 map_name = map_data[0]
                 map_data = map_data[1]
-                submodes = list(map_data['gamemode'].values())[0]
-                if game_mode in submodes:
+                all_types = []
+                for gamemode, types in map_data['gamemode'].items():
+                    all_types.extend(types)
+                if game_mode in all_types:
                     maps.append(map_name)
         return maps
 
@@ -117,9 +119,33 @@ class MapSelectionUtilityMethods():
             description=f"{interaction.user.mention} Your randomized map is: {selected_map}!", 
             color=0x00ffff
             )
-            image = MapSelectionUtilityMethods.map_data[selected_map]['image'] # can be None for certain maps. Like Desert Vs Grass 7
-            if image:
-                map_embed.set_image(url=image)
+            
+            map_data = MapSelectionUtilityMethods.map_data[selected_map]
+            cost = map_data['max_income']
+            map_size = map_data['map_size']
+            map_image = map_data.get('image', None)
+
+            map_embed = discord.Embed(
+                title=f"{selected_map} Map Information:",
+                description=f"{interaction.user.mention}",
+                color=0x00ffff
+            )
+            if map_image != None:
+                map_embed.set_image(url=map_image)
+
+            map_embed.set_author(
+                name=f"{interaction.user.display_name}",
+                icon_url=interaction.user.display_avatar.url
+            )
+
+            map_embed.set_footer(
+                text=f"{selected_map} Map Information",
+                icon_url=interaction.guild.icon.url if interaction.guild.icon else None
+            )
+
+            map_embed.timestamp = interaction.created_at
+            map_embed.add_field(name="Max Income:", value=cost, inline=True)
+            map_embed.add_field(name="Map Size:", value=map_size, inline=True)
             
             map_embed.set_author(
                 name=f"{interaction.user.display_name}", 

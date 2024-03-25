@@ -238,9 +238,10 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
             value=map_size,
             inline=True
             )
+        all_types = []
         for gamemode, types in map_data['gamemode'].items():
-            value = "\n".join(types)
-            map_embed.add_field(name=gamemode, value=value, inline=False)
+            all_types.extend(types)
+        map_embed.add_field(name='Playable Gamemodes', value=" / ".join(all_types), inline=False)
 
         await interaction.response.send_message(
             embed=map_embed
