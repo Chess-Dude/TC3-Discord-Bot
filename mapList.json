@@ -4,9 +4,6 @@
             "Conquest": [
                 "3v3",
                 "4v4",
-                "5v5",
-                "3v3",
-                "4v4",
                 "5v5"
             ]
         },
@@ -17,7 +14,6 @@
     "Arctic Canal Map": {
         "gamemode": {
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -28,10 +24,6 @@
     "Artic Canal Map": {
         "gamemode": {
             "Conquest": [
-                "2v2",
-                "3v3",
-                "4v4",
-                "5v5",
                 "2v2",
                 "3v3",
                 "4v4",
@@ -46,8 +38,6 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "2v2v2",
-                "3v3",
                 "2v2v2"
             ]
         },
@@ -61,14 +51,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -80,12 +65,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
-                "3v3",
-                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -97,12 +79,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
-                "3v3",
-                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -114,17 +93,12 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "2v2v2",
-                "3v3",
                 "2v2v2"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ],
             "King Of The Hill": [
-                "3v3",
-                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -138,13 +112,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -158,14 +128,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -177,19 +142,13 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "2v2v2",
-                "3v3",
                 "2v2v2"
             ],
             "Free For All": [
                 "FFA2",
-                "FFA3",
-                "FFA2",
                 "FFA3"
             ],
             "King Of The Hill": [
-                "3v3",
-                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -202,12 +161,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
-                "3v3",
-                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -220,13 +176,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "2v2v2",
-                "2v2",
-                "3v3",
                 "2v2v2"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -238,13 +190,9 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "2v2v2",
-                "3v3",
                 "2v2v2"
             ],
             "King Of The Hill": [
-                "3v3",
-                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -257,12 +205,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
-                "3v3v3",
-                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "FFA3",
                 "FFA3"
             ]
         },
@@ -276,14 +221,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -297,14 +237,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -318,14 +253,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -337,12 +267,9 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "4v4",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -355,13 +282,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -375,14 +298,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -393,11 +311,9 @@
     "Desert vs. Grass Spiral": {
         "gamemode": {
             "Conquest": [
-                "2v2",
                 "2v2"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -408,8 +324,6 @@
     "Divided Metropolis": {
         "gamemode": {
             "Conquest": [
-                "2v2v2",
-                "3v3v3",
                 "2v2v2",
                 "3v3v3"
             ]
@@ -423,13 +337,9 @@
             "Conquest": [
                 "3v3",
                 "4v4",
-                "5v5",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -440,7 +350,6 @@
     "Egyptian Expedition": {
         "gamemode": {
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -451,7 +360,6 @@
     "Enceladus": {
         "gamemode": {
             "Free For All": [
-                "FFA3",
                 "FFA3"
             ]
         },
@@ -464,13 +372,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -484,14 +388,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -505,14 +404,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -526,14 +420,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -544,8 +433,6 @@
     "Fantasy Survival": {
         "gamemode": {
             "King Of The Hill": [
-                "3v3",
-                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -560,14 +447,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -580,13 +462,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -597,7 +475,6 @@
     "Frosty Gear": {
         "gamemode": {
             "Free For All": [
-                "FFA6",
                 "FFA6"
             ]
         },
@@ -608,7 +485,6 @@
     "Frozen River": {
         "gamemode": {
             "Conquest": [
-                "3v3",
                 "3v3"
             ]
         },
@@ -621,13 +497,9 @@
             "Conquest": [
                 "3v3",
                 "4v4",
-                "5v5",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -640,13 +512,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -659,13 +527,9 @@
             "Conquest": [
                 "3v3",
                 "4v4",
-                "5v5",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -678,13 +542,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -696,12 +556,9 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "4v4",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -712,8 +569,6 @@
     "Grass Cliff": {
         "gamemode": {
             "Conquest": [
-                "2v2v2",
-                "3v3v3",
                 "2v2v2",
                 "3v3v3"
             ]
@@ -728,14 +583,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -747,12 +597,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
-                "3v3v3",
-                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "FFA6",
                 "FFA6"
             ]
         },
@@ -765,13 +612,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -782,9 +625,6 @@
     "Ice Catalyst": {
         "gamemode": {
             "Conquest": [
-                "2v2",
-                "3v3",
-                "4v4",
                 "2v2",
                 "3v3",
                 "4v4"
@@ -798,8 +638,6 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "4v4",
-                "3v3",
                 "4v4"
             ]
         },
@@ -810,9 +648,6 @@
     "Italy": {
         "gamemode": {
             "Conquest": [
-                "2v2",
-                "3v3",
-                "4v4",
                 "2v2",
                 "3v3",
                 "4v4"
@@ -827,13 +662,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -844,7 +675,6 @@
     "Lake City Map": {
         "gamemode": {
             "Conquest": [
-                "3v3",
                 "3v3"
             ]
         },
@@ -857,13 +687,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -877,14 +703,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -895,7 +716,6 @@
     "Last Red City": {
         "gamemode": {
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -906,11 +726,9 @@
     "Long Islands": {
         "gamemode": {
             "Conquest": [
-                "3v3",
                 "3v3"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -921,7 +739,6 @@
     "Magma Pools": {
         "gamemode": {
             "Free For All": [
-                "FFA6",
                 "FFA6"
             ]
         },
@@ -934,13 +751,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -953,13 +766,9 @@
             "Conquest": [
                 "3v3",
                 "4v4",
-                "2v2v2",
-                "3v3",
-                "4v4",
                 "2v2v2"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -971,12 +780,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
-                "3v3",
-                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -987,7 +793,6 @@
     "Mars": {
         "gamemode": {
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -998,7 +803,6 @@
     "Mars 4": {
         "gamemode": {
             "Conquest": [
-                "4v4",
                 "4v4"
             ]
         },
@@ -1009,8 +813,6 @@
     "Mars Canyons": {
         "gamemode": {
             "Conquest": [
-                "3v3",
-                "4v4",
                 "3v3",
                 "4v4"
             ]
@@ -1024,9 +826,6 @@
             "Conquest": [
                 "3v3",
                 "2v2v2",
-                "3v3v3",
-                "3v3",
-                "2v2v2",
                 "3v3v3"
             ]
         },
@@ -1037,11 +836,9 @@
     "Mars Tunnels": {
         "gamemode": {
             "Conquest": [
-                "3v3",
                 "3v3"
             ],
             "Free For All": [
-                "FFA6",
                 "FFA6"
             ]
         },
@@ -1054,9 +851,6 @@
             "Conquest": [
                 "3v3",
                 "4v4",
-                "2v2v2",
-                "3v3",
-                "4v4",
                 "2v2v2"
             ]
         },
@@ -1067,7 +861,6 @@
     "Medieval Grounds": {
         "gamemode": {
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1078,7 +871,6 @@
     "Mediterranean": {
         "gamemode": {
             "Conquest": [
-                "5v5",
                 "5v5"
             ]
         },
@@ -1091,13 +883,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1110,13 +898,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1127,8 +911,6 @@
     "Middle East": {
         "gamemode": {
             "Conquest": [
-                "4v4",
-                "2v2v2",
                 "4v4",
                 "2v2v2"
             ]
@@ -1141,8 +923,6 @@
         "gamemode": {
             "Free For All": [
                 "FFA2",
-                "FFA4",
-                "FFA2",
                 "FFA4"
             ]
         },
@@ -1154,13 +934,9 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "2v2v2",
-                "3v3",
                 "2v2v2"
             ],
             "King Of The Hill": [
-                "3v3",
-                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -1172,8 +948,6 @@
     "Obsidian Atoll": {
         "gamemode": {
             "Conquest": [
-                "3v3",
-                "4v4",
                 "3v3",
                 "4v4"
             ]
@@ -1188,14 +962,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1207,12 +976,9 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "4v4",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1224,13 +990,9 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "2v2v2",
-                "3v3",
                 "2v2v2"
             ],
             "King Of The Hill": [
-                "3v3",
-                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -1243,17 +1005,12 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "2v2v2",
-                "3v3",
                 "2v2v2"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ],
             "King Of The Hill": [
-                "3v3",
-                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -1268,15 +1025,9 @@
                 "2v2",
                 "3v3",
                 "2v2v2",
-                "3v3v3",
-                "2v2",
-                "3v3",
-                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "FFA2",
-                "FFA3",
                 "FFA2",
                 "FFA3"
             ]
@@ -1289,13 +1040,9 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "2v2v2",
-                "3v3",
                 "2v2v2"
             ],
             "King Of The Hill": [
-                "3v3",
-                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -1309,9 +1056,6 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ]
         },
@@ -1323,13 +1067,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
-                "3v3v3",
-                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "FFA2",
-                "FFA3",
                 "FFA2",
                 "FFA3"
             ]
@@ -1342,12 +1082,9 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "4v4",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1358,12 +1095,9 @@
     "Sand City": {
         "gamemode": {
             "Conquest": [
-                "4v4",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
-                "FFA4",
                 "FFA2",
                 "FFA4"
             ]
@@ -1375,7 +1109,6 @@
     "Sandstone Cog": {
         "gamemode": {
             "Free For All": [
-                "FFA6",
                 "FFA6"
             ]
         },
@@ -1386,8 +1119,6 @@
     "Sandy Floors": {
         "gamemode": {
             "Conquest": [
-                "2v2",
-                "3v3",
                 "2v2",
                 "3v3"
             ]
@@ -1402,14 +1133,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1422,14 +1148,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "2v2v2",
-                "2v2",
-                "3v3",
                 "2v2v2"
             ],
             "Free For All": [
-                "FFA2",
-                "FFA4",
                 "FFA2",
                 "FFA4"
             ]
@@ -1444,14 +1165,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1464,13 +1180,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1481,10 +1193,6 @@
     "Snow Battlefield": {
         "gamemode": {
             "Conquest": [
-                "2v2",
-                "3v3",
-                "4v4",
-                "5v5",
                 "2v2",
                 "3v3",
                 "4v4",
@@ -1499,16 +1207,12 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
-                "3v3v3",
-                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "FFA3",
                 "FFA3"
             ],
             "King Of The Hill": [
-                "2v2v2",
                 "2v2v2"
             ]
         },
@@ -1522,14 +1226,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1541,12 +1240,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
-                "3v3",
-                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1559,9 +1255,6 @@
             "Conquest": [
                 "3v3",
                 "4v4",
-                "5v5",
-                "3v3",
-                "4v4",
                 "5v5"
             ]
         },
@@ -1572,7 +1265,6 @@
     "Symmetry": {
         "gamemode": {
             "Conquest": [
-                "3v3",
                 "3v3"
             ]
         },
@@ -1584,13 +1276,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
-                "3v3v3",
-                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "FFA2",
-                "FFA3",
                 "FFA2",
                 "FFA3"
             ]
@@ -1603,12 +1291,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
-                "3v3v3",
-                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "FFA3",
                 "FFA3"
             ]
         },
@@ -1620,12 +1305,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
-                "3v3v3",
-                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "FFA3",
                 "FFA3"
             ]
         },
@@ -1636,7 +1318,6 @@
     "Triple Mansion": {
         "gamemode": {
             "Conquest": [
-                "3v3v3",
                 "3v3v3"
             ]
         },
@@ -1647,9 +1328,6 @@
     "Tropical Oasis": {
         "gamemode": {
             "Free For All": [
-                "FFA2",
-                "FFA3",
-                "FFA6",
                 "FFA2",
                 "FFA3",
                 "FFA6"
@@ -1663,13 +1341,9 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
-                "2v2v2",
-                "3v3",
                 "2v2v2"
             ],
             "King Of The Hill": [
-                "3v3",
-                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -1685,16 +1359,9 @@
                 "3v3",
                 "4v4",
                 "2v2v2",
-                "3v3v3",
-                "2v2",
-                "3v3",
-                "4v4",
-                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "FFA2",
-                "FFA3",
                 "FFA2",
                 "FFA3"
             ]
@@ -1706,11 +1373,9 @@
     "Two Islands Map": {
         "gamemode": {
             "Conquest": [
-                "3v3",
                 "3v3"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1724,14 +1389,9 @@
                 "2v2",
                 "3v3",
                 "4v4",
-                "5v5",
-                "2v2",
-                "3v3",
-                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1744,13 +1404,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
-                "4v4",
-                "2v2",
-                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1762,8 +1418,6 @@
         "gamemode": {
             "Free For All": [
                 "FFA3",
-                "FFA6",
-                "FFA3",
                 "FFA6"
             ]
         },
@@ -1774,7 +1428,6 @@
     "Void": {
         "gamemode": {
             "Free For All": [
-                "FFA4",
                 "FFA4"
             ]
         },
@@ -1785,8 +1438,6 @@
     "Void City": {
         "gamemode": {
             "Conquest": [
-                "4v4",
-                "5v5",
                 "4v4",
                 "5v5"
             ]
@@ -1799,12 +1450,9 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
-                "3v3",
-                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "FFA2",
                 "FFA2"
             ]
         },
@@ -1815,10 +1463,6 @@
     "World": {
         "gamemode": {
             "Conquest": [
-                "2v2",
-                "3v3",
-                "4v4",
-                "5v5",
                 "2v2",
                 "3v3",
                 "4v4",
