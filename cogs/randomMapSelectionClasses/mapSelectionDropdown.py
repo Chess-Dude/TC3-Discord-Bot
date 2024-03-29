@@ -4,45 +4,8 @@ from .mapSelectionUtilityMethods import MapSelectionUtilityMethods
 class MapSelectionDropdown(discord.ui.Select):
     def __init__(self):
         map_types = [
-            discord.SelectOption(
-                label="1v1", 
-                description="Generates A Random 1v1 Map"),
-            
-            discord.SelectOption(
-                label="2v2", 
-                description="Generates A Random 2v2 Map"),
-
-            discord.SelectOption(
-                label="3v3", 
-                description="Generates A Random 3v3 Map"),
-
-            discord.SelectOption(
-                label="4v4", 
-                description="Generates A Random 4v4 Map"),
-
-            discord.SelectOption(
-                label="5v5", 
-                description="Generates A Random 5v5 Map"),
-            
-            discord.SelectOption(
-                label="2v2v2", 
-                description="Generates A Random 2v2v2 Map"),
-            
-            discord.SelectOption(
-                label="3v3v3", 
-                description="Generates A Random 3v3v3 Map"),
-                                    
-            discord.SelectOption(
-                label="FFA3", 
-                description="Generates A Random FFA3 Map"),
-            
-            discord.SelectOption(
-                label="FFA4", 
-                description="Generates A Random FFA4 Map"),
-            
-            discord.SelectOption(
-                label="FFA6", 
-                description="Generates A Random FFA6 Map")]
+            discord.SelectOption(label=gamemode_name, description=f"Generates A Random {gamemode_name} Map") for gamemode_name in MapSelectionUtilityMethods.gamemodes
+            ]
 
         super().__init__(
             placeholder="Choose a different map type to randomize...", 

@@ -17,24 +17,19 @@ class AppCommandsMapSelection(commands.Cog):
     @group.command(
         name="map",
         description="A Command That Randomizes A Game Map!")
-    @app_commands.choices(game_mode=[
-        Choice(name="1v1", value=1),
-        Choice(name="2v2", value=2),
-        Choice(name="3v3", value=3),
-        Choice(name="4v4", value=4),
-        Choice(name="5v5", value=5),
-        Choice(name="2v2v2", value=6),
-        Choice(name="3v3v3", value=7),        
-        Choice(name="FFA3", value=8),
-        Choice(name="FFA4", value=9),
-        Choice(name="FFA6", value=10),
-        Choice(name="game_night_3v3", value=11)
-    ])
+    @app_commands.choices(game_mode=[Choice(name=gamemode_name, value=index+1) for index, gamemode_name in enumerate(MapSelectionUtilityMethods.gamemodes)])
+
     async def random_map(
         self,
         interaction: discord.Interaction,
-        game_mode: Choice[int]
+        game_mode: Choice[str]
     ):
+        game_mode = MapSelectionUtilityMethods.lowercase_gamodes.get(game_mode.lower(), None)
+
+        if game_mode is None:
+            await interaction.response.send_message("Error: That gamemode was not found! Try again or check the wiki.", ephemeral=True)
+            return
+        
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
         
