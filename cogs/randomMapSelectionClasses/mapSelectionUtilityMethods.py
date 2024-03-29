@@ -86,7 +86,6 @@ class MapSelectionUtilityMethods():
 
     @staticmethod
     def update_map_data():
-        MapSelectionUtilityMethods.get_map_data()
         with open('mapList.json', 'w') as json_file:
             json.dump(MapSelectionUtilityMethods.map_data, json_file, indent=4, sort_keys=True)
 
