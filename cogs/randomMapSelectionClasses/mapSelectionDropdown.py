@@ -1,5 +1,5 @@
 import discord, random
-from .mapSelectionUtilityMethods import MapSelectionUitilityMethods
+from .mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 class MapSelectionDropdown(discord.ui.Select):
     def __init__(self):
@@ -57,16 +57,14 @@ class MapSelectionDropdown(discord.ui.Select):
 
             if map_embed_author_name == interaction.user.display_name:
 
-                maps = MapSelectionUitilityMethods.determine_map_list(
+                maps = MapSelectionUtilityMethods.determine_map_list(
                     self=self,
                     game_mode=str(self.values[0])
                 )
-                map_images = MapSelectionUitilityMethods.get_map_image()
 
-                new_map_embed = MapSelectionUitilityMethods.create_map_embed(
+                new_map_embed = MapSelectionUtilityMethods.create_map_embed(
                     self=self,
                     selected_map=random.choice(maps),
-                    map_images=map_images,
                     map_type=str(self.values[0]),
                     interaction=interaction
                 )

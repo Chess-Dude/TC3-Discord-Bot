@@ -3,7 +3,7 @@ from discord import app_commands
 from discord.ext import commands
 from discord.app_commands import Choice
 from .randomMapSelectionClasses.mapSelectionDropdown import RerollDropdown
-from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUitilityMethods
+from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 class AppCommandsMapSelection(commands.Cog):
     def __init__(self, bot):
@@ -38,7 +38,7 @@ class AppCommandsMapSelection(commands.Cog):
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
         
-        map_embed = MapSelectionUitilityMethods.random_map_init(
+        map_embed = MapSelectionUtilityMethods.random_map_init(
             self=self,
             interaction=interaction,
             game_mode=game_mode.name

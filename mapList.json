@@ -1,103 +1,1476 @@
-{   
-    "Skymap v2": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Fantaziya": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Desert vs. Grass 7": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Europe v3": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Mexico v2": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Halloween2023Map": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Gulf of Mexico": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Triple Mansion": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "China": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Scandinavia": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Usa vs. Canada": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Spain": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Skymap": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/70/Skymap.png",
-    "Frosty Gear": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e0/MiniFFAIceMap.png",
-    "Magma Pools": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/b6/MiniFFAMagmaMap.png",
-    "Sandstone Cog":"https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/0e/MiniFFADesertMap.png",
-    "Tropical Oasis":"https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/b8/TropicalOasisRadar.png",
-    "Monument Park": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/f1/MonumentParkRadar.png",
-    "Sand City": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/4f/SandCityRadar.png",
-    "Underground Cog": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/0c/MiniFFACaveMap.png",
-    "Void [needtitle]": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a6/VoidNeedtitleRadar.png",
-    "Dalarna Island": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9c/DalarnaIslandRadar.png",
-    "Endceladus": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/02/EnceladusRadar.png",
-    "Tri Weather Reworked": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6f/TriWeatherReworkedRadar.png",
-    "Void City": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e4/VoidCityRadar.png",
-    "Desert vs. Grass 6": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/50/DvG6Radar.png",
-    "Arctic Canal Map": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/73/ArcticCanalRadar.png",
-    "British Isles": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/06/BritishIslesRadar.png",
-    "Ice Catalyst": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/34/IceCatalystRadar.png",
-    "Sandy Floors": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/bd/SandyFloorsRadar.png",
-    "Snow Battlefield": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/36/SnowBattlefieldRadar.png",
-    "Mars 4": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/0c/Radar_AIMap5.png",
-    "Mediterranean": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/f8/MiniMedMap.png",
-    "Desert vs. Grass Spiral":"https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6c/DesertVsGrassSpiralRadar.png", 
-    "Eygptian Expedition":"https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/95/EgyptRadar.png", 
-    "Last Red City": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/be/LastRedCityRadar.png", 
-    "Mars": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/d8/MarsFFARadar.png", 
-    "Medieval Grounds": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/ff/MedievalGroundsRadarBetterVersion.png", 
-    "Divided Metropolis": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/91/RadarMap9.png", 
-    "Middle East": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/38/MiddleEastMap.png", 
-    "Ryry's Oil Map": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/7a/Ryryradar.png", 
-    "Snowy Islands": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8f/RadarMap24.png", 
-    "Three Corner Cave": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c1/3cornercaveradar.png",
-    "Two Cave Map": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/4b/RadarMap2.png",
-    "Archipelago": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/96/Archipelagoradar.png", 
-    "Arctic Circle": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/7a/ARCTICCIRCLEMINI.png",
-    "Basalt Peninsula": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/4d/MagmaMap3.png", 
-    "Cave Map": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9f/CaveRadar.png", 
-    "Cavern": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/b9/Cavernradar.png", 
-    "City 3": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/4c/City_3_Radar.png", 
-    "City vs. Nature": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/96/RadarMap6.png", 
-    "Continent": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/09/RadarMap16.png", 
-    "Corners": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/91/Carners_Radar.png", 
-    "Desert vs. Grass": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/4f/DesertGrassMap.png", 
-    "Desert vs. Grass 2": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/48/DesertGrassMap2-0.png", 
-    "Desert vs. Grass 3": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c3/MiniDesVSGrass3.png", 
-    "Desert vs. Grass 4": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/18/Dvg4radar.png", 
-    "Double Mansion": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/ef/DoubleMansionRadar.png", 
-    "Europe": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/b6/EuropeV2Mini-Map.png", 
-    "Fantasy": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/41/Fantay.png", 
-    "Fantasy 2": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/b0/4vs4RadarMap4.png", 
-    "France": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c3/FranceMini.png", 
-    "Frozen River": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/68/SnowMap.png", 
-    "Gem Mine": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/56/CaveMap3Radar.png", 
-    "Germany Map": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/cc/GermanyMini.png", 
-    "Germany vs. France": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/ca/GermanyVsFranceMini.png", 
-    "Golf Course": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9d/MiniGolfCourse.png", 
-    "Golf Course 2": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8b/Golf2.png", 
-    "Igneous Islands/Magma": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/37/LavaMap1.png", 
-    "Korea": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c0/KoreaRadar.png", 
-    "Lake City Map": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6d/LakeCityMap.png", 
-    "Lakebed": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/31/LakebedRadar.png", 
-    "Lasers": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e1/LasersMiniMap.png", 
-    "Long Islands": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/d9/LongIslandsRadar.png", 
-    "Mainland": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9e/MainlandRadar.png", 
-    "Mansion": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/fa/RadarMap17.png", 
-    "Mansion: Flooded": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/97/Flooded_Mansion.png", 
-    "Mars Canyons": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/79/Mars6.png", 
-    "Mars Tunnels": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/90/MarsTunnelsRadar.png", 
-    "Maze": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/cf/MazeRadar.png", 
-    "Mesa": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6c/MiniMesa.png", 
-    "Mexico": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/19/MiniMexico.png", 
-    "Moon Surface": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/65/Moon_2.png", 
-    "Obsidian Atoll": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c2/MINIMagmaMap2.png", 
-    "Passage": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a1/PassageRadar.png", 
-    "Point Blank": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/f7/Pointblankradar.png", 
-    "RETRO: Cliffs": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/68/CliffsMap.png", 
-    "RETRO: Four Seasons": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/19/Retro4seasonsradar.png", 
-    "RETRO: Six Islands": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/46/Retrosixradar.png", 
-    "RETRO: The Moon": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/80/Retro_The_Moon_Radar.png", 
-    "River Banks": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/d9/Riverbanksradar.png", 
-    "Sand Bottom Forest": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/78/RadarPaths2.png", 
-    "Six Small Islands": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/ca/RadarMap18.png", 
-    "Soviet Union": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/33/SovietUnionRadar.png", 
-    "States": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/76/MINIUSAMAP.png", 
-    "Symmetry": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c0/Symmetryradar.png", 
-    "Twisting Isles": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/55/Islandsradar.png", 
-    "Two Islands Map": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/5c/2islandradar.png", 
-    "USA vs. Russia": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/71/RussiaAndUSAMap-1.png", 
-    "Void Map": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/2/23/VoidMapRadar.png", 
-    "World": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a4/WikiWorldmap.png"
+{
+    "Archipelago": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4",
+                "5v5"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/43/RADAR_Archipelago.png/revision/latest/scale-to-width-down/280?cb=20230927205147",
+        "map_size": "800x800",
+        "max_income": "$370"
+    },
+    "Arctic Canal Map": {
+        "gamemode": {
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/34/RADAR_Artic_Canal_Map.png/revision/latest/scale-to-width-down/280?cb=20230927205252",
+        "map_size": "800x800",
+        "max_income": "$600"
+    },
+    "Artic Canal Map": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/34/RADAR_Artic_Canal_Map.png/revision/latest/scale-to-width-down/280?cb=20230927205252",
+        "map_size": "800x800",
+        "max_income": "$600"
+    },
+    "Artic Circle": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a3/RADAR_Artic_Circle.png/revision/latest/scale-to-width-down/280?cb=20230927205329",
+        "map_size": "980x980",
+        "max_income": "$260"
+    },
+    "Basalt Peninsula": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6a/RADAR_Basalt_Peninsula.png/revision/latest/scale-to-width-down/280?cb=20230927205350",
+        "map_size": "800x800",
+        "max_income": "$330"
+    },
+    "British Isles": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/ff/RADAR_British_Isles.png/revision/latest/scale-to-width-down/280?cb=20230927205655",
+        "map_size": "900x900",
+        "max_income": "$365"
+    },
+    "Canada v2": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9e/RADAR_Canada_v2.png/revision/latest/scale-to-width-down/280?cb=20230927205707",
+        "map_size": "900x900",
+        "max_income": "$410"
+    },
+    "Cave map": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "2v2v2"
+            ],
+            "Free For All": [
+                "2FFA"
+            ],
+            "King Of The Hill": [
+                "3v3",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/17/RADAR_Cave_map.png/revision/latest/scale-to-width-down/280?cb=20230927205718",
+        "map_size": "766x766",
+        "max_income": "$240"
+    },
+    "Cavern": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/bb/RADAR_Cavern.png/revision/latest/scale-to-width-down/280?cb=20230927205832",
+        "map_size": "800x800",
+        "max_income": "$360"
+    },
+    "China": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/19/RADAR_China.png/revision/latest/scale-to-width-down/280?cb=20230927210207",
+        "map_size": "800x800",
+        "max_income": "$420"
+    },
+    "City 3": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "2v2v2"
+            ],
+            "Free For All": [
+                "2FFA",
+                "3FFA"
+            ],
+            "King Of The Hill": [
+                "3v3",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/33/RADAR_City_3.png/revision/latest/scale-to-width-down/280?cb=20230927210311",
+        "map_size": "600x600",
+        "max_income": "$315"
+    },
+    "City vs. Nature": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/ce/RADAR_City_vs._Nature.png/revision/latest/scale-to-width-down/280?cb=20230927210337",
+        "map_size": "600x600",
+        "max_income": "$230"
+    },
+    "Continent": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "2v2v2"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/d1/RADAR_Continent.png/revision/latest/scale-to-width-down/280?cb=20230927210343",
+        "map_size": "680x680",
+        "max_income": "$280"
+    },
+    "Corners": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "2v2v2"
+            ],
+            "King Of The Hill": [
+                "3v3",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/5a/RADAR_Corners.png/revision/latest/scale-to-width-down/280?cb=20230927210348",
+        "map_size": "600x600",
+        "max_income": "$210"
+    },
+    "Dalarna Island": {
+        "gamemode": {
+            "Conquest": [
+                "2v2v2",
+                "3v3v3"
+            ],
+            "Free For All": [
+                "3FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8e/RADAR_Dalarna_Island.png/revision/latest/scale-to-width-down/280?cb=20230927210353",
+        "map_size": "800x800",
+        "max_income": "$390"
+    },
+    "Desert vs. Grass": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a9/RADAR_Desert_vs._Grass.png/revision/latest/scale-to-width-down/280?cb=20230927210405",
+        "map_size": "800x800",
+        "max_income": "$480"
+    },
+    "Desert vs. Grass 2": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/10/RADAR_Desert_vs._Grass_2.png/revision/latest/scale-to-width-down/280?cb=20230927210410",
+        "map_size": "780x780",
+        "max_income": "$400"
+    },
+    "Desert vs. Grass 3": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/df/RADAR_Desert_vs._Grass_3.png/revision/latest/scale-to-width-down/280?cb=20230927210417",
+        "map_size": "800x800",
+        "max_income": "$370"
+    },
+    "Desert vs. Grass 4": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/62/RADAR_Desert_vs._Grass_4.png/revision/latest/scale-to-width-down/280?cb=20230927210423",
+        "map_size": "760x760",
+        "max_income": "$340"
+    },
+    "Desert vs. Grass 6": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/7b/RADAR_Desert_vs._Grass_6.png/revision/latest/scale-to-width-down/280?cb=20230927210428",
+        "map_size": "800x800",
+        "max_income": "$460"
+    },
+    "Desert vs. Grass 7": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c1/RADAR_Desert_vs._Grass_7.png/revision/latest/scale-to-width-down/280?cb=20240324193728",
+        "map_size": "800x800",
+        "max_income": "$600"
+    },
+    "Desert vs. Grass Spiral": {
+        "gamemode": {
+            "Conquest": [
+                "2v2"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/3c/RADAR_Desert_vs._Grass_Spiral.png/revision/latest/scale-to-width-down/280?cb=20230927210432",
+        "map_size": "800x800",
+        "max_income": "$430"
+    },
+    "Divided Metropolis": {
+        "gamemode": {
+            "Conquest": [
+                "2v2v2",
+                "3v3v3"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/03/RADAR_Divided_Metropolis.png/revision/latest/scale-to-width-down/280?cb=20230927210614",
+        "map_size": "600x600",
+        "max_income": "$235"
+    },
+    "Double Mansion": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/3f/RADAR_Double_Mansion.png/revision/latest/scale-to-width-down/280?cb=20230927210619",
+        "map_size": "600x600",
+        "max_income": "$270"
+    },
+    "Egyptian Expedition": {
+        "gamemode": {
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/92/RADAR_Egyptian_Expedition.png/revision/latest/scale-to-width-down/280?cb=20230927210639",
+        "map_size": "800x800",
+        "max_income": "$450"
+    },
+    "Enceladus": {
+        "gamemode": {
+            "Free For All": [
+                "3FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/1d/RADAR_Enceladus.png/revision/latest/scale-to-width-down/280?cb=20230927210645",
+        "map_size": "800x800",
+        "max_income": "$360"
+    },
+    "Europe": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/4e/RADAR_Europe.png/revision/latest/scale-to-width-down/280?cb=20230927210651",
+        "map_size": "850x850",
+        "max_income": "$400"
+    },
+    "Europe 3": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/3f/RADAR_Europe_3.png/revision/latest/scale-to-width-down/280?cb=20240203183440",
+        "map_size": "800x800",
+        "max_income": "$615"
+    },
+    "Fantasy": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/f9/RADAR_Fantasy.png/revision/latest/scale-to-width-down/280?cb=20230927210656",
+        "map_size": "800x800",
+        "max_income": "$300"
+    },
+    "Fantasy 2": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/ea/RADAR_Fantasy_2.png/revision/latest/scale-to-width-down/280?cb=20230927210702",
+        "map_size": "820x820",
+        "max_income": "$250"
+    },
+    "Fantasy Survival": {
+        "gamemode": {
+            "King Of The Hill": [
+                "3v3",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/7c/RADAR_Fantasy_Survival.png/revision/latest/scale-to-width-down/280?cb=20230927210708",
+        "map_size": "800x800",
+        "max_income": "$210"
+    },
+    "Fantaziya": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/db/RADAR_Fantaziya.png/revision/latest/scale-to-width-down/280?cb=20240324193736",
+        "map_size": "800x800",
+        "max_income": "$410"
+    },
+    "France": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/10/RADAR_France.png/revision/latest/scale-to-width-down/280?cb=20230927210715",
+        "map_size": "900x900",
+        "max_income": "$355"
+    },
+    "Frosty Gear": {
+        "gamemode": {
+            "Free For All": [
+                "6FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/05/RADAR_Frosty_Gear.png/revision/latest/scale-to-width-down/280?cb=20230927210721",
+        "map_size": "800x800",
+        "max_income": "$390"
+    },
+    "Frozen River": {
+        "gamemode": {
+            "Conquest": [
+                "3v3"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/be/RADAR_Frozen_River.png/revision/latest/scale-to-width-down/280?cb=20230927210726",
+        "map_size": "650x650",
+        "max_income": "$300"
+    },
+    "Gem Mine": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a0/RADAR_Gem_Mine.png/revision/latest/scale-to-width-down/279?cb=20230927210733",
+        "map_size": "800x800",
+        "max_income": "$480"
+    },
+    "Germany Map": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/b6/RADAR_Germany_Map.png/revision/latest/scale-to-width-down/280?cb=20230927210746",
+        "map_size": "900x900",
+        "max_income": "$340"
+    },
+    "Germany vs France": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/95/RADAR_Germany_vs_France.png/revision/latest/scale-to-width-down/280?cb=20230927210906",
+        "map_size": "1000x1000",
+        "max_income": "$350"
+    },
+    "Golf Course": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/89/RADAR_Golf_Course.png/revision/latest/scale-to-width-down/280?cb=20230927210911",
+        "map_size": "800x800",
+        "max_income": "$350"
+    },
+    "Golf Course 2": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9c/RADAR_Golf_Course_2.png/revision/latest/scale-to-width-down/280?cb=20230927210916",
+        "map_size": "800x800",
+        "max_income": "$390"
+    },
+    "Grass Cliff": {
+        "gamemode": {
+            "Conquest": [
+                "2v2v2",
+                "3v3v3"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/94/RADAR_Grass_Cliff.png/revision/latest/scale-to-width-down/280?cb=20230927210921",
+        "map_size": "800x800",
+        "max_income": "$180"
+    },
+    "Gulf of Mexico": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/74/RADAR_Gulf_of_Mexico.png/revision/latest/scale-to-width-down/280?cb=20230927210926",
+        "map_size": "900x900",
+        "max_income": "$635"
+    },
+    "Halloween FFA Map": {
+        "gamemode": {
+            "Conquest": [
+                "2v2v2",
+                "3v3v3"
+            ],
+            "Free For All": [
+                "6FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/2/25/RADAR_Halloween_FFA_Map.png/revision/latest/scale-to-width-down/280?cb=20231021180432",
+        "map_size": "800x800",
+        "max_income": "$360"
+    },
+    "Halloween2023Map": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/39/RADAR_Halloween2023Map.png/revision/latest/scale-to-width-down/280?cb=20231021180400",
+        "map_size": "800x800",
+        "max_income": "$210"
+    },
+    "Ice Catalyst": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/dc/RADAR_Ice_Catalyst.png/revision/latest/scale-to-width-down/280?cb=20230927210931",
+        "map_size": "800x800",
+        "max_income": "$460"
+    },
+    "Igneous Islands": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/45/RADAR_Igneous_Islands.png/revision/latest/scale-to-width-down/280?cb=20230927210937",
+        "map_size": "800x800",
+        "max_income": "$250"
+    },
+    "Italy": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/2/21/RADAR_Italy.png/revision/latest/scale-to-width-down/280?cb=20230927210942",
+        "map_size": "900x900",
+        "max_income": "$385"
+    },
+    "Korea": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/71/RADAR_Korea.png/revision/latest/scale-to-width-down/280?cb=20230927210947",
+        "map_size": "850x850",
+        "max_income": "$350"
+    },
+    "Lake City Map": {
+        "gamemode": {
+            "Conquest": [
+                "3v3"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/72/RADAR_Lake_City_Map.png/revision/latest/scale-to-width-down/280?cb=20230927210951",
+        "map_size": "780x780",
+        "max_income": "$380"
+    },
+    "Lakebed": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/ce/RADAR_Lakebed.png/revision/latest/scale-to-width-down/280?cb=20230927210957",
+        "map_size": "780x780",
+        "max_income": "$300"
+    },
+    "Lasers": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6b/RADAR_Lasers.png/revision/latest/scale-to-width-down/280?cb=20230927211002",
+        "map_size": "800x800",
+        "max_income": "$330"
+    },
+    "Last Red City": {
+        "gamemode": {
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/53/RADAR_Last_Red_City.png/revision/latest/scale-to-width-down/280?cb=20230927211007",
+        "map_size": "800x800",
+        "max_income": "$315"
+    },
+    "Long Islands": {
+        "gamemode": {
+            "Conquest": [
+                "3v3"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/af/RADAR_Long_Islands.png/revision/latest/scale-to-width-down/280?cb=20230927211011",
+        "map_size": "610x610",
+        "max_income": "$260"
+    },
+    "Magma Pools": {
+        "gamemode": {
+            "Free For All": [
+                "6FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/88/RADAR_Magma_Pools.png/revision/latest/scale-to-width-down/280?cb=20230927211021",
+        "map_size": "800x800",
+        "max_income": "$360"
+    },
+    "Mainland": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/79/RADAR_Mainland.png/revision/latest/scale-to-width-down/280?cb=20230927211025",
+        "map_size": "800x800",
+        "max_income": "$380"
+    },
+    "Mansion": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4",
+                "2v2v2"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/dc/RADAR_Mansion.png/revision/latest/scale-to-width-down/280?cb=20230927211032",
+        "map_size": "470x470",
+        "max_income": "$150"
+    },
+    "Mansion Flooded": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/52/RADAR_Mansion_Flooded.png/revision/latest/scale-to-width-down/280?cb=20230927211038",
+        "map_size": "700x700",
+        "max_income": "$225"
+    },
+    "Mars": {
+        "gamemode": {
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/48/RADAR_Mars.png/revision/latest/scale-to-width-down/280?cb=20230927211043",
+        "map_size": "500x500",
+        "max_income": "$270"
+    },
+    "Mars 4": {
+        "gamemode": {
+            "Conquest": [
+                "4v4"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6e/RADAR_Mars_4.png/revision/latest/scale-to-width-down/280?cb=20230927211047",
+        "map_size": "800x800",
+        "max_income": "$210"
+    },
+    "Mars Canyons": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/7f/RADAR_Mars_Canyons.png/revision/latest/scale-to-width-down/280?cb=20230927211051",
+        "map_size": "800x800",
+        "max_income": "$270"
+    },
+    "Mars Mole": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "2v2v2",
+                "3v3v3"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/1f/RADAR_Mars_Mole.png/revision/latest/scale-to-width-down/280?cb=20230927211055",
+        "map_size": "600x600",
+        "max_income": "$240"
+    },
+    "Mars Tunnels": {
+        "gamemode": {
+            "Conquest": [
+                "3v3"
+            ],
+            "Free For All": [
+                "6FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/ea/RADAR_Mars_Tunnels.png/revision/latest/scale-to-width-down/280?cb=20230927211059",
+        "map_size": "800x800",
+        "max_income": "$510"
+    },
+    "Maze": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/d0/RADAR_Maze.png/revision/latest/scale-to-width-down/280?cb=20230927211655",
+        "map_size": "800x800",
+        "max_income": "$360"
+    },
+    "Medieval Grounds": {
+        "gamemode": {
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/1c/RADAR_Medieval_Grounds.png/revision/latest/scale-to-width-down/280?cb=20230927211700",
+        "map_size": "500x500",
+        "max_income": "$270"
+    },
+    "Mediterranean": {
+        "gamemode": {
+            "Conquest": [
+                "5v5"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/86/RADAR_Mediterranean.png/revision/latest/scale-to-width-down/280?cb=20230927211704",
+        "map_size": "1400x700",
+        "max_income": "$490"
+    },
+    "Mesa": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/71/RADAR_Mesa.png/revision/latest/scale-to-width-down/280?cb=20230927211708",
+        "map_size": "800x800",
+        "max_income": "$400"
+    },
+    "Mexico": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/b9/RADAR_Mexico.png/revision/latest/scale-to-width-down/280?cb=20230927211713",
+        "map_size": "900x900",
+        "max_income": "$295"
+    },
+    "Middle East": {
+        "gamemode": {
+            "Conquest": [
+                "4v4",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/fd/RADAR_Middle_East.png/revision/latest/scale-to-width-down/280?cb=20230927211717",
+        "map_size": "1000x1000",
+        "max_income": "$325"
+    },
+    "Monument Park": {
+        "gamemode": {
+            "Free For All": [
+                "2FFA",
+                "4FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9a/RADAR_Monument_Park.png/revision/latest/scale-to-width-down/280?cb=20230927211722",
+        "map_size": "800x800",
+        "max_income": "$580"
+    },
+    "Moon Surface": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "2v2v2"
+            ],
+            "King Of The Hill": [
+                "3v3",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/bc/RADAR_Moon_Surface.png/revision/latest/scale-to-width-down/280?cb=20230927211726",
+        "map_size": "600x600",
+        "max_income": "$210"
+    },
+    "Obsidian Atoll": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/eb/RADAR_Obsidian_Atoll.png/revision/latest/scale-to-width-down/280?cb=20230927211730",
+        "map_size": "800x800",
+        "max_income": "$270"
+    },
+    "Passage": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/fb/RADAR_Passage.png/revision/latest/scale-to-width-down/280?cb=20230927211736",
+        "map_size": "800x800",
+        "max_income": "$490"
+    },
+    "Point Blank": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/f6/RADAR_Point_Blank.png/revision/latest/scale-to-width-down/280?cb=20230927211742",
+        "map_size": "800x800",
+        "max_income": "$400"
+    },
+    "RETRO Cliffs": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "2v2v2"
+            ],
+            "King Of The Hill": [
+                "3v3",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/98/RADAR_RETRO_Cliffs.png/revision/latest/scale-to-width-down/278?cb=20230927211755",
+        "map_size": "600x600",
+        "max_income": "$300"
+    },
+    "RETRO Four Seasons": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "2v2v2"
+            ],
+            "Free For All": [
+                "2FFA"
+            ],
+            "King Of The Hill": [
+                "3v3",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/5c/RADAR_RETRO_Four_Seasons.png/revision/latest/scale-to-width-down/280?cb=20230927211759",
+        "map_size": "520x512",
+        "max_income": "$195"
+    },
+    "RETRO Six Islands": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "2v2v2",
+                "3v3v3"
+            ],
+            "Free For All": [
+                "2FFA",
+                "3FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e9/RADAR_RETRO_Six_Islands.png/revision/latest/scale-to-width-down/280?cb=20230927211803",
+        "map_size": "650x650",
+        "max_income": "$370"
+    },
+    "RETRO The Moon": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "2v2v2"
+            ],
+            "King Of The Hill": [
+                "3v3",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/50/RADAR_RETRO_The_Moon.png/revision/latest/scale-to-width-down/280?cb=20230927211807",
+        "map_size": "520x512",
+        "max_income": "$180"
+    },
+    "River Banks": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8e/RADAR_River_Banks.png/revision/latest/scale-to-width-down/280?cb=20230927211812",
+        "map_size": "800x800",
+        "max_income": "$285"
+    },
+    "Ryry's Oil Map": {
+        "gamemode": {
+            "Conquest": [
+                "2v2v2",
+                "3v3v3"
+            ],
+            "Free For All": [
+                "2FFA",
+                "3FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/64/RADAR_Ryry%27s_Oil_Map.png/revision/latest/scale-to-width-down/277?cb=20230927211823",
+        "map_size": "686x692",
+        "max_income": "$295"
+    },
+    "Sand Botton Forest": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a7/RADAR_Sand_Botton_Forest.png/revision/latest/scale-to-width-down/280?cb=20230927211826",
+        "map_size": "800x800",
+        "max_income": "$270"
+    },
+    "Sand City": {
+        "gamemode": {
+            "Conquest": [
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA",
+                "4FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8c/RADAR_Sand_City.png/revision/latest/scale-to-width-down/280?cb=20230927211831",
+        "map_size": "800x800",
+        "max_income": "$480"
+    },
+    "Sandstone Cog": {
+        "gamemode": {
+            "Free For All": [
+                "6FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/33/RADAR_Sandstone_Cog.png/revision/latest/scale-to-width-down/280?cb=20230927211835",
+        "map_size": "800x800",
+        "max_income": "$450"
+    },
+    "Sandy Floors": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c4/RADAR_Sandy_Floors.png/revision/latest/scale-to-width-down/280?cb=20230927211840",
+        "map_size": "800x800",
+        "max_income": "$420"
+    },
+    "Scandinavia": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e4/RADAR_Scandinavia.png/revision/latest/scale-to-width-down/280?cb=20230927211844",
+        "map_size": "800x800",
+        "max_income": "$360"
+    },
+    "Six Small Islands": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "2v2v2"
+            ],
+            "Free For All": [
+                "2FFA",
+                "4FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c8/RADAR_Six_Small_Islands.png/revision/latest/scale-to-width-down/280?cb=20230927211959",
+        "map_size": "658x658",
+        "max_income": "$320"
+    },
+    "Skymap": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/73/RADAR_Skymap.png/revision/latest/scale-to-width-down/280?cb=20230927212004",
+        "map_size": "900x900",
+        "max_income": "$570"
+    },
+    "Skymap 2": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/48/RADAR_Skymap_2.png/revision/latest/scale-to-width-down/280?cb=20240324193741",
+        "map_size": "900x900",
+        "max_income": "$480"
+    },
+    "Snow Battlefield": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/38/RADAR_Snow_Battlefield.png/revision/latest/scale-to-width-down/280?cb=20230927212009",
+        "map_size": "1000x1000",
+        "max_income": "$390"
+    },
+    "Snowy Islands": {
+        "gamemode": {
+            "Conquest": [
+                "2v2v2",
+                "3v3v3"
+            ],
+            "Free For All": [
+                "3FFA"
+            ],
+            "King Of The Hill": [
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/95/RADAR_Snowy_Islands.png/revision/latest/scale-to-width-down/280?cb=20230927212013",
+        "map_size": "700x700",
+        "max_income": "$240"
+    },
+    "Soviet Union": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/07/RADAR_Soviet_Union.png/revision/latest/scale-to-width-down/280?cb=20230927212019",
+        "map_size": "1400x700",
+        "max_income": "$295"
+    },
+    "Spain": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/db/RADAR_Spain.png/revision/latest/scale-to-width-down/280?cb=20230927212023",
+        "map_size": "800x800",
+        "max_income": "$330"
+    },
+    "States": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "4v4",
+                "5v5"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/db/RADAR_States.png/revision/latest/scale-to-width-down/280?cb=20230927212028",
+        "map_size": "1400x700",
+        "max_income": "$345"
+    },
+    "Symmetry": {
+        "gamemode": {
+            "Conquest": [
+                "3v3"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/0e/RADAR_Symmetry.png/revision/latest/scale-to-width-down/280?cb=20230927212032",
+        "map_size": "800x800",
+        "max_income": "$360"
+    },
+    "Three Corner Cave": {
+        "gamemode": {
+            "Conquest": [
+                "2v2v2",
+                "3v3v3"
+            ],
+            "Free For All": [
+                "2FFA",
+                "3FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/99/RADAR_Three_Corner_Cave.png/revision/latest/scale-to-width-down/280?cb=20230927212114",
+        "map_size": "650x650",
+        "max_income": "$255"
+    },
+    "Three Corner Cave 2": {
+        "gamemode": {
+            "Conquest": [
+                "2v2v2",
+                "3v3v3"
+            ],
+            "Free For All": [
+                "3FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/91/RADAR_Three_Corner_Cave_2.png/revision/latest/scale-to-width-down/280?cb=20240324193746",
+        "map_size": "800x800",
+        "max_income": "$345"
+    },
+    "Tri Weather Reworked": {
+        "gamemode": {
+            "Conquest": [
+                "2v2v2",
+                "3v3v3"
+            ],
+            "Free For All": [
+                "3FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9d/RADAR_Tri_Weather_Reworked.png/revision/latest/scale-to-width-down/280?cb=20230927212120",
+        "map_size": "800x800",
+        "max_income": "$580"
+    },
+    "Triple Mansion": {
+        "gamemode": {
+            "Conquest": [
+                "3v3v3"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/af/RADAR_Triple_Mansion.png/revision/latest/scale-to-width-down/280?cb=20230927212124",
+        "map_size": "700x700",
+        "max_income": "$420"
+    },
+    "Tropical Oasis": {
+        "gamemode": {
+            "Free For All": [
+                "2FFA",
+                "3FFA",
+                "6FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/98/RADAR_Tropical_Oasis.png/revision/latest/scale-to-width-down/280?cb=20230927212129",
+        "map_size": "1000x1000",
+        "max_income": "$540"
+    },
+    "Twisting Isles": {
+        "gamemode": {
+            "Conquest": [
+                "3v3",
+                "2v2v2"
+            ],
+            "King Of The Hill": [
+                "3v3",
+                "2v2v2"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c6/RADAR_Twisting_Isles.png/revision/latest/scale-to-width-down/280?cb=20230927212136",
+        "map_size": "700x700",
+        "max_income": "$265"
+    },
+    "Two Cave Map": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "2v2v2",
+                "3v3v3"
+            ],
+            "Free For All": [
+                "2FFA",
+                "3FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a8/RADAR_Two_Cave_Map.png/revision/latest/scale-to-width-down/280?cb=20230927212145",
+        "map_size": "700x700",
+        "max_income": "$300"
+    },
+    "Two Islands Map": {
+        "gamemode": {
+            "Conquest": [
+                "3v3"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8d/RADAR_Two_Islands_Map.png/revision/latest/scale-to-width-down/280?cb=20230927212150",
+        "map_size": "740x668",
+        "max_income": "$210"
+    },
+    "USA vs Canada": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/5d/RADAR_USA_vs_Canada.png/revision/latest/scale-to-width-down/280?cb=20230927212159",
+        "map_size": "900x900",
+        "max_income": "$360"
+    },
+    "USA vs Russia": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/37/RADAR_USA_vs_Russia.png/revision/latest/scale-to-width-down/280?cb=20230927212204",
+        "map_size": "920x920",
+        "max_income": "$400"
+    },
+    "Underground Cog": {
+        "gamemode": {
+            "Free For All": [
+                "3FFA",
+                "6FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a6/RADAR_Underground_Cog.png/revision/latest/scale-to-width-down/280?cb=20230927212155",
+        "map_size": "840x840",
+        "max_income": "$450"
+    },
+    "Void": {
+        "gamemode": {
+            "Free For All": [
+                "4FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/81/RADAR_Void.png/revision/latest/scale-to-width-down/279?cb=20230927212209",
+        "map_size": "800x800",
+        "max_income": "$420"
+    },
+    "Void City": {
+        "gamemode": {
+            "Conquest": [
+                "4v4",
+                "5v5"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9c/RADAR_Void_City.png/revision/latest/scale-to-width-down/280?cb=20230927212214",
+        "map_size": "1000x1000",
+        "max_income": "$540"
+    },
+    "Void Map": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3"
+            ],
+            "Free For All": [
+                "2FFA"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/11/RADAR_Void_Map.png/revision/latest/scale-to-width-down/278?cb=20230927212218",
+        "map_size": "800x800",
+        "max_income": "$360"
+    },
+    "World": {
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/f1/RADAR_World.png/revision/latest/scale-to-width-down/280?cb=20230927212234",
+        "map_size": "1750x776",
+        "max_income": "$500"
+    }
 }
