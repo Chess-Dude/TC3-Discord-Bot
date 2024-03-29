@@ -26,7 +26,12 @@ class MapSelectionUtilityMethods():
                 sub_gamemode_pages = soup.find_all('div', class_='wds-tab__content')
 
                 data = zip(sub_gamemodes, sub_gamemode_pages)
+                
                 for sub_gamemode_name, sub_gamemode_page in data:
+                    
+                    if sub_gamemode_name.endswith('FFA'):
+                        sub_gamemode_name = 'FFA' + sub_gamemode_name[0]
+
                     table_rows = sub_gamemode_page.find_all("tr")
                     for row in table_rows[1:]:  # skip header
                         row_data = row.find_all("td")
@@ -80,8 +85,6 @@ class MapSelectionUtilityMethods():
         with open('mapList.json', 'w') as json_file:
             json.dump(MapSelectionUtilityMethods.map_data, json_file, indent=4, sort_keys=True)
 
-    get_map_data()
-    update_map_data()
     all_map_names = list(map_data.keys())
 
     def get_map_image():
@@ -94,27 +97,29 @@ class MapSelectionUtilityMethods():
         return maps
 
     def determine_map_list(game_mode):
-        if game_mode == "game_night_3v3":
-            maps = ["Basalt Peninsula", "Germany Map", "Lakebed", "Double Mansion", "Fantasy", "Germany vs. France", "Korea",] 
-        else:
-            maps = []
-            for map_data in MapSelectionUtilityMethods.map_data.items():
-                all_types = []
-                map_name = map_data[0]
-                map_data = map_data[1]
-                gamemodes = map_data['gamemode'].values()
-                for types in gamemodes:
-                    all_types.extend(list(types))
-                if game_mode in all_types:
-                    maps.append(map_name)
-        return maps
+            game_mode = game_mode.lower()
+            if game_mode == "game_night_3v3":
+                maps = ["Basalt Peninsula", "Germany Map", "Lakebed", "Double Mansion", "Fantasy", "Germany vs. France", "Korea",] 
+            else:
+                maps = []
+                for map_data in MapSelectionUtilityMethods.map_data.items():
+                    all_types = []
+                    map_name = map_data[0]
+                    map_data = map_data[1]
+                    gamemodes = map_data['gamemode'].values()
+                    for types in gamemodes:
+                        all_types.extend(list(types))
+                    all_types = map(lambda map_type: map_type.lower(), all_types)
+                    if game_mode in all_types:
+                        maps.append(map_name)
+            return maps
 
-    def create_map_embed(self,selected_map,map_type, interaction: discord.Interaction):
+    def create_map_embed(self, selected_map, map_type, interaction: discord.Interaction):
         map_embed = discord.Embed(title=f"Randomized {map_type} Map:", 
             description=f"{interaction.user.mention} Your randomized map is: {selected_map}!", 
             color=0x00ffff
             )
-            
+
         map_data = MapSelectionUtilityMethods.map_data[selected_map]
         cost = map_data['max_income']
         map_size = map_data['map_size']
@@ -143,23 +148,26 @@ class MapSelectionUtilityMethods():
         return map_embed
 
     def random_map_init(
-        self,
-        interaction: discord.Interaction,
-        game_mode
-    ):
+            self,
+            interaction: discord.Interaction,
+            game_mode
+        ):
+            real_name = game_mode
+            if game_mode == "1v1":
+                real_name = "FFA2"
 
-        maps = MapSelectionUtilityMethods.determine_map_list(
-            self=self,
-            game_mode=game_mode
-        )
-        if game_mode == '2FFA':
-            game_mode = '1v1'
-        map_embed = MapSelectionUtilityMethods.create_map_embed(
-            self=self,
-            selected_map=random.choice(maps),
-            map_type=game_mode,
-            interaction=interaction
-        )
+            maps = MapSelectionUtilityMethods.determine_map_list(
+                game_mode=real_name
+            )
 
-        return map_embed
+            map_embed = MapSelectionUtilityMethods.create_map_embed(
+                self=self,
+                selected_map=random.choice(maps),
+                map_type=game_mode,
+                interaction=interaction
+            )
 
+            return map_embed
+
+MapSelectionUtilityMethods.get_map_data()
+MapSelectionUtilityMethods.update_map_data()

@@ -15,6 +15,9 @@ client = gspread.authorize(creds)
 sheet = client.open("TC3 Stats for TC3 BOT").sheet1
 
 class InformationAppCommands(commands.Cog):
+    gamemodes = [
+     '1v1','2v2','3v3','4v4','5v5','2v2v2','3v3v3', 'FFA3', 'FFA4', 'FFA6', 'Survival'
+    ]    
     def __init__(self, bot):
         self.bot = bot
 
@@ -236,7 +239,9 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         map_embed.add_field(name="Map Size:", value=map_size, inline=True)
         all_types = []
         for gamemode, types in map_data['gamemode'].items():
-            all_types.extend(types)
+            for type in types:
+                if type not in all_types:
+                    all_types.append(type)
         map_embed.add_field(name='Playable Gamemodes', value=" / ".join(all_types), inline=False)
 
         await interaction.response.send_message(embed=map_embed)
@@ -247,11 +252,10 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         interaction: discord.Interaction,
         current: str,
     ) -> list[app_commands.Choice[str]]:
-        map = MapSelectionUtilityMethods.get_map_image()
-        map = list(map)
         return [
-            app_commands.Choice(name=map_image, value=map_image)
-            for map_image in map if current.lower() in map_image.lower()
+        app_commands.Choice(name=map_name, value=map_name)
+        for map_name in MapSelectionUtilityMethods.map_data.keys()
+        if current.lower() in map_name.lower()
         ][:10]
 
     @info_group.command(

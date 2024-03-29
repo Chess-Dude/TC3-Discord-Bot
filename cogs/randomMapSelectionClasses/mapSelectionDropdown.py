@@ -29,6 +29,10 @@ class MapSelectionDropdown(discord.ui.Select):
                 description="Generates A Random 2v2v2 Map"),
             
             discord.SelectOption(
+                label="3v3v3", 
+                description="Generates A Random 3v3v3 Map"),
+                                    
+            discord.SelectOption(
                 label="FFA3", 
                 description="Generates A Random FFA3 Map"),
             
@@ -56,16 +60,18 @@ class MapSelectionDropdown(discord.ui.Select):
             map_embed_author_name = map_embed_author['name']
 
             if map_embed_author_name == interaction.user.display_name:
+                real_name = str(self.values[0])
+                if str(self.values[0]) == "1v1":
+                    real_name = "FFA2"
 
                 maps = MapSelectionUtilityMethods.determine_map_list(
-                    self=self,
-                    game_mode=str(self.values[0])
+                    game_mode=real_name
                 )
 
                 new_map_embed = MapSelectionUtilityMethods.create_map_embed(
                     self=self,
                     selected_map=random.choice(maps),
-                    map_type=str(self.values[0]),
+                    map_type=real_name,
                     interaction=interaction
                 )
                 await interaction.response.send_message(

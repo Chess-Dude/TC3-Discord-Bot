@@ -4,6 +4,9 @@
             "Conquest": [
                 "3v3",
                 "4v4",
+                "5v5",
+                "3v3",
+                "4v4",
                 "5v5"
             ]
         },
@@ -14,7 +17,8 @@
     "Arctic Canal Map": {
         "gamemode": {
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/34/RADAR_Artic_Canal_Map.png/revision/latest/scale-to-width-down/280?cb=20230927205252",
@@ -24,6 +28,10 @@
     "Artic Canal Map": {
         "gamemode": {
             "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5",
                 "2v2",
                 "3v3",
                 "4v4",
@@ -38,6 +46,8 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "2v2v2",
+                "3v3",
                 "2v2v2"
             ]
         },
@@ -51,10 +61,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6a/RADAR_Basalt_Peninsula.png/revision/latest/scale-to-width-down/280?cb=20230927205350",
@@ -65,10 +80,13 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
+                "3v3",
+                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/ff/RADAR_British_Isles.png/revision/latest/scale-to-width-down/280?cb=20230927205655",
@@ -79,10 +97,13 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
+                "3v3",
+                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9e/RADAR_Canada_v2.png/revision/latest/scale-to-width-down/280?cb=20230927205707",
@@ -93,12 +114,17 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "2v2v2",
+                "3v3",
                 "2v2v2"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ],
             "King Of The Hill": [
+                "3v3",
+                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -112,10 +138,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/bb/RADAR_Cavern.png/revision/latest/scale-to-width-down/280?cb=20230927205832",
@@ -128,10 +158,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/19/RADAR_China.png/revision/latest/scale-to-width-down/280?cb=20230927210207",
@@ -142,13 +177,19 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "2v2v2",
+                "3v3",
                 "2v2v2"
             ],
             "Free For All": [
-                "2FFA",
-                "3FFA"
+                "FFA2",
+                "FFA3",
+                "FFA2",
+                "FFA3"
             ],
             "King Of The Hill": [
+                "3v3",
+                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -161,10 +202,13 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
+                "3v3",
+                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/ce/RADAR_City_vs._Nature.png/revision/latest/scale-to-width-down/280?cb=20230927210337",
@@ -176,10 +220,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "2v2v2",
+                "2v2",
+                "3v3",
                 "2v2v2"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/d1/RADAR_Continent.png/revision/latest/scale-to-width-down/280?cb=20230927210343",
@@ -190,9 +238,13 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "2v2v2",
+                "3v3",
                 "2v2v2"
             ],
             "King Of The Hill": [
+                "3v3",
+                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -205,10 +257,13 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
+                "3v3v3",
+                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "3FFA"
+                "FFA3",
+                "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8e/RADAR_Dalarna_Island.png/revision/latest/scale-to-width-down/280?cb=20230927210353",
@@ -221,10 +276,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a9/RADAR_Desert_vs._Grass.png/revision/latest/scale-to-width-down/280?cb=20230927210405",
@@ -237,10 +297,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/10/RADAR_Desert_vs._Grass_2.png/revision/latest/scale-to-width-down/280?cb=20230927210410",
@@ -253,10 +318,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/df/RADAR_Desert_vs._Grass_3.png/revision/latest/scale-to-width-down/280?cb=20230927210417",
@@ -267,10 +337,13 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "4v4",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/62/RADAR_Desert_vs._Grass_4.png/revision/latest/scale-to-width-down/280?cb=20230927210423",
@@ -282,10 +355,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/7b/RADAR_Desert_vs._Grass_6.png/revision/latest/scale-to-width-down/280?cb=20230927210428",
@@ -298,10 +375,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c1/RADAR_Desert_vs._Grass_7.png/revision/latest/scale-to-width-down/280?cb=20240324193728",
@@ -311,10 +393,12 @@
     "Desert vs. Grass Spiral": {
         "gamemode": {
             "Conquest": [
+                "2v2",
                 "2v2"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/3c/RADAR_Desert_vs._Grass_Spiral.png/revision/latest/scale-to-width-down/280?cb=20230927210432",
@@ -324,6 +408,8 @@
     "Divided Metropolis": {
         "gamemode": {
             "Conquest": [
+                "2v2v2",
+                "3v3v3",
                 "2v2v2",
                 "3v3v3"
             ]
@@ -337,10 +423,14 @@
             "Conquest": [
                 "3v3",
                 "4v4",
+                "5v5",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/3f/RADAR_Double_Mansion.png/revision/latest/scale-to-width-down/280?cb=20230927210619",
@@ -350,7 +440,8 @@
     "Egyptian Expedition": {
         "gamemode": {
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/92/RADAR_Egyptian_Expedition.png/revision/latest/scale-to-width-down/280?cb=20230927210639",
@@ -360,7 +451,8 @@
     "Enceladus": {
         "gamemode": {
             "Free For All": [
-                "3FFA"
+                "FFA3",
+                "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/1d/RADAR_Enceladus.png/revision/latest/scale-to-width-down/280?cb=20230927210645",
@@ -372,10 +464,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/4e/RADAR_Europe.png/revision/latest/scale-to-width-down/280?cb=20230927210651",
@@ -388,10 +484,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/3f/RADAR_Europe_3.png/revision/latest/scale-to-width-down/280?cb=20240203183440",
@@ -404,10 +505,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/f9/RADAR_Fantasy.png/revision/latest/scale-to-width-down/280?cb=20230927210656",
@@ -420,10 +526,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/ea/RADAR_Fantasy_2.png/revision/latest/scale-to-width-down/280?cb=20230927210702",
@@ -433,6 +544,8 @@
     "Fantasy Survival": {
         "gamemode": {
             "King Of The Hill": [
+                "3v3",
+                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -447,10 +560,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/db/RADAR_Fantaziya.png/revision/latest/scale-to-width-down/280?cb=20240324193736",
@@ -462,10 +580,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/10/RADAR_France.png/revision/latest/scale-to-width-down/280?cb=20230927210715",
@@ -475,7 +597,8 @@
     "Frosty Gear": {
         "gamemode": {
             "Free For All": [
-                "6FFA"
+                "FFA6",
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/05/RADAR_Frosty_Gear.png/revision/latest/scale-to-width-down/280?cb=20230927210721",
@@ -485,6 +608,7 @@
     "Frozen River": {
         "gamemode": {
             "Conquest": [
+                "3v3",
                 "3v3"
             ]
         },
@@ -497,10 +621,14 @@
             "Conquest": [
                 "3v3",
                 "4v4",
+                "5v5",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a0/RADAR_Gem_Mine.png/revision/latest/scale-to-width-down/279?cb=20230927210733",
@@ -512,10 +640,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/b6/RADAR_Germany_Map.png/revision/latest/scale-to-width-down/280?cb=20230927210746",
@@ -527,10 +659,14 @@
             "Conquest": [
                 "3v3",
                 "4v4",
+                "5v5",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/95/RADAR_Germany_vs_France.png/revision/latest/scale-to-width-down/280?cb=20230927210906",
@@ -542,10 +678,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/89/RADAR_Golf_Course.png/revision/latest/scale-to-width-down/280?cb=20230927210911",
@@ -556,10 +696,13 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "4v4",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9c/RADAR_Golf_Course_2.png/revision/latest/scale-to-width-down/280?cb=20230927210916",
@@ -569,6 +712,8 @@
     "Grass Cliff": {
         "gamemode": {
             "Conquest": [
+                "2v2v2",
+                "3v3v3",
                 "2v2v2",
                 "3v3v3"
             ]
@@ -583,10 +728,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/74/RADAR_Gulf_of_Mexico.png/revision/latest/scale-to-width-down/280?cb=20230927210926",
@@ -597,10 +747,13 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
+                "3v3v3",
+                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "6FFA"
+                "FFA6",
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/2/25/RADAR_Halloween_FFA_Map.png/revision/latest/scale-to-width-down/280?cb=20231021180432",
@@ -612,10 +765,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/39/RADAR_Halloween2023Map.png/revision/latest/scale-to-width-down/280?cb=20231021180400",
@@ -625,6 +782,9 @@
     "Ice Catalyst": {
         "gamemode": {
             "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
                 "2v2",
                 "3v3",
                 "4v4"
@@ -638,6 +798,8 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "4v4",
+                "3v3",
                 "4v4"
             ]
         },
@@ -648,6 +810,9 @@
     "Italy": {
         "gamemode": {
             "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
                 "2v2",
                 "3v3",
                 "4v4"
@@ -662,10 +827,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/71/RADAR_Korea.png/revision/latest/scale-to-width-down/280?cb=20230927210947",
@@ -675,6 +844,7 @@
     "Lake City Map": {
         "gamemode": {
             "Conquest": [
+                "3v3",
                 "3v3"
             ]
         },
@@ -687,10 +857,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/ce/RADAR_Lakebed.png/revision/latest/scale-to-width-down/280?cb=20230927210957",
@@ -703,10 +877,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6b/RADAR_Lasers.png/revision/latest/scale-to-width-down/280?cb=20230927211002",
@@ -716,7 +895,8 @@
     "Last Red City": {
         "gamemode": {
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/53/RADAR_Last_Red_City.png/revision/latest/scale-to-width-down/280?cb=20230927211007",
@@ -726,10 +906,12 @@
     "Long Islands": {
         "gamemode": {
             "Conquest": [
+                "3v3",
                 "3v3"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/af/RADAR_Long_Islands.png/revision/latest/scale-to-width-down/280?cb=20230927211011",
@@ -739,7 +921,8 @@
     "Magma Pools": {
         "gamemode": {
             "Free For All": [
-                "6FFA"
+                "FFA6",
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/88/RADAR_Magma_Pools.png/revision/latest/scale-to-width-down/280?cb=20230927211021",
@@ -751,10 +934,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/79/RADAR_Mainland.png/revision/latest/scale-to-width-down/280?cb=20230927211025",
@@ -766,10 +953,14 @@
             "Conquest": [
                 "3v3",
                 "4v4",
+                "2v2v2",
+                "3v3",
+                "4v4",
                 "2v2v2"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/dc/RADAR_Mansion.png/revision/latest/scale-to-width-down/280?cb=20230927211032",
@@ -780,10 +971,13 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
+                "3v3",
+                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/52/RADAR_Mansion_Flooded.png/revision/latest/scale-to-width-down/280?cb=20230927211038",
@@ -793,7 +987,8 @@
     "Mars": {
         "gamemode": {
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/48/RADAR_Mars.png/revision/latest/scale-to-width-down/280?cb=20230927211043",
@@ -803,6 +998,7 @@
     "Mars 4": {
         "gamemode": {
             "Conquest": [
+                "4v4",
                 "4v4"
             ]
         },
@@ -813,6 +1009,8 @@
     "Mars Canyons": {
         "gamemode": {
             "Conquest": [
+                "3v3",
+                "4v4",
                 "3v3",
                 "4v4"
             ]
@@ -826,6 +1024,9 @@
             "Conquest": [
                 "3v3",
                 "2v2v2",
+                "3v3v3",
+                "3v3",
+                "2v2v2",
                 "3v3v3"
             ]
         },
@@ -836,10 +1037,12 @@
     "Mars Tunnels": {
         "gamemode": {
             "Conquest": [
+                "3v3",
                 "3v3"
             ],
             "Free For All": [
-                "6FFA"
+                "FFA6",
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/ea/RADAR_Mars_Tunnels.png/revision/latest/scale-to-width-down/280?cb=20230927211059",
@@ -849,6 +1052,9 @@
     "Maze": {
         "gamemode": {
             "Conquest": [
+                "3v3",
+                "4v4",
+                "2v2v2",
                 "3v3",
                 "4v4",
                 "2v2v2"
@@ -861,7 +1067,8 @@
     "Medieval Grounds": {
         "gamemode": {
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/1c/RADAR_Medieval_Grounds.png/revision/latest/scale-to-width-down/280?cb=20230927211700",
@@ -871,6 +1078,7 @@
     "Mediterranean": {
         "gamemode": {
             "Conquest": [
+                "5v5",
                 "5v5"
             ]
         },
@@ -883,10 +1091,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/71/RADAR_Mesa.png/revision/latest/scale-to-width-down/280?cb=20230927211708",
@@ -898,10 +1110,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/b9/RADAR_Mexico.png/revision/latest/scale-to-width-down/280?cb=20230927211713",
@@ -911,6 +1127,8 @@
     "Middle East": {
         "gamemode": {
             "Conquest": [
+                "4v4",
+                "2v2v2",
                 "4v4",
                 "2v2v2"
             ]
@@ -922,8 +1140,10 @@
     "Monument Park": {
         "gamemode": {
             "Free For All": [
-                "2FFA",
-                "4FFA"
+                "FFA2",
+                "FFA4",
+                "FFA2",
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9a/RADAR_Monument_Park.png/revision/latest/scale-to-width-down/280?cb=20230927211722",
@@ -934,9 +1154,13 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "2v2v2",
+                "3v3",
                 "2v2v2"
             ],
             "King Of The Hill": [
+                "3v3",
+                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -948,6 +1172,8 @@
     "Obsidian Atoll": {
         "gamemode": {
             "Conquest": [
+                "3v3",
+                "4v4",
                 "3v3",
                 "4v4"
             ]
@@ -962,10 +1188,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/fb/RADAR_Passage.png/revision/latest/scale-to-width-down/280?cb=20230927211736",
@@ -976,10 +1207,13 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "4v4",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/f6/RADAR_Point_Blank.png/revision/latest/scale-to-width-down/280?cb=20230927211742",
@@ -990,9 +1224,13 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "2v2v2",
+                "3v3",
                 "2v2v2"
             ],
             "King Of The Hill": [
+                "3v3",
+                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -1005,12 +1243,17 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "2v2v2",
+                "3v3",
                 "2v2v2"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ],
             "King Of The Hill": [
+                "3v3",
+                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -1025,11 +1268,17 @@
                 "2v2",
                 "3v3",
                 "2v2v2",
+                "3v3v3",
+                "2v2",
+                "3v3",
+                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "2FFA",
-                "3FFA"
+                "FFA2",
+                "FFA3",
+                "FFA2",
+                "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e9/RADAR_RETRO_Six_Islands.png/revision/latest/scale-to-width-down/280?cb=20230927211803",
@@ -1040,9 +1289,13 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "2v2v2",
+                "3v3",
                 "2v2v2"
             ],
             "King Of The Hill": [
+                "3v3",
+                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -1056,6 +1309,9 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ]
         },
@@ -1067,11 +1323,15 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
+                "3v3v3",
+                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "2FFA",
-                "3FFA"
+                "FFA2",
+                "FFA3",
+                "FFA2",
+                "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/64/RADAR_Ryry%27s_Oil_Map.png/revision/latest/scale-to-width-down/277?cb=20230927211823",
@@ -1082,10 +1342,13 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "4v4",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a7/RADAR_Sand_Botton_Forest.png/revision/latest/scale-to-width-down/280?cb=20230927211826",
@@ -1095,11 +1358,14 @@
     "Sand City": {
         "gamemode": {
             "Conquest": [
+                "4v4",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA",
-                "4FFA"
+                "FFA2",
+                "FFA4",
+                "FFA2",
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8c/RADAR_Sand_City.png/revision/latest/scale-to-width-down/280?cb=20230927211831",
@@ -1109,7 +1375,8 @@
     "Sandstone Cog": {
         "gamemode": {
             "Free For All": [
-                "6FFA"
+                "FFA6",
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/33/RADAR_Sandstone_Cog.png/revision/latest/scale-to-width-down/280?cb=20230927211835",
@@ -1119,6 +1386,8 @@
     "Sandy Floors": {
         "gamemode": {
             "Conquest": [
+                "2v2",
+                "3v3",
                 "2v2",
                 "3v3"
             ]
@@ -1133,10 +1402,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e4/RADAR_Scandinavia.png/revision/latest/scale-to-width-down/280?cb=20230927211844",
@@ -1148,11 +1422,16 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "2v2v2",
+                "2v2",
+                "3v3",
                 "2v2v2"
             ],
             "Free For All": [
-                "2FFA",
-                "4FFA"
+                "FFA2",
+                "FFA4",
+                "FFA2",
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c8/RADAR_Six_Small_Islands.png/revision/latest/scale-to-width-down/280?cb=20230927211959",
@@ -1165,10 +1444,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/73/RADAR_Skymap.png/revision/latest/scale-to-width-down/280?cb=20230927212004",
@@ -1180,10 +1464,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/48/RADAR_Skymap_2.png/revision/latest/scale-to-width-down/280?cb=20240324193741",
@@ -1193,6 +1481,10 @@
     "Snow Battlefield": {
         "gamemode": {
             "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5",
                 "2v2",
                 "3v3",
                 "4v4",
@@ -1207,12 +1499,16 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
+                "3v3v3",
+                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "3FFA"
+                "FFA3",
+                "FFA3"
             ],
             "King Of The Hill": [
+                "2v2v2",
                 "2v2v2"
             ]
         },
@@ -1226,10 +1522,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/07/RADAR_Soviet_Union.png/revision/latest/scale-to-width-down/280?cb=20230927212019",
@@ -1240,10 +1541,13 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
+                "3v3",
+                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/db/RADAR_Spain.png/revision/latest/scale-to-width-down/280?cb=20230927212023",
@@ -1253,6 +1557,9 @@
     "States": {
         "gamemode": {
             "Conquest": [
+                "3v3",
+                "4v4",
+                "5v5",
                 "3v3",
                 "4v4",
                 "5v5"
@@ -1265,6 +1572,7 @@
     "Symmetry": {
         "gamemode": {
             "Conquest": [
+                "3v3",
                 "3v3"
             ]
         },
@@ -1276,11 +1584,15 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
+                "3v3v3",
+                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "2FFA",
-                "3FFA"
+                "FFA2",
+                "FFA3",
+                "FFA2",
+                "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/99/RADAR_Three_Corner_Cave.png/revision/latest/scale-to-width-down/280?cb=20230927212114",
@@ -1291,10 +1603,13 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
+                "3v3v3",
+                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "3FFA"
+                "FFA3",
+                "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/91/RADAR_Three_Corner_Cave_2.png/revision/latest/scale-to-width-down/280?cb=20240324193746",
@@ -1305,10 +1620,13 @@
         "gamemode": {
             "Conquest": [
                 "2v2v2",
+                "3v3v3",
+                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "3FFA"
+                "FFA3",
+                "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9d/RADAR_Tri_Weather_Reworked.png/revision/latest/scale-to-width-down/280?cb=20230927212120",
@@ -1318,6 +1636,7 @@
     "Triple Mansion": {
         "gamemode": {
             "Conquest": [
+                "3v3v3",
                 "3v3v3"
             ]
         },
@@ -1328,9 +1647,12 @@
     "Tropical Oasis": {
         "gamemode": {
             "Free For All": [
-                "2FFA",
-                "3FFA",
-                "6FFA"
+                "FFA2",
+                "FFA3",
+                "FFA6",
+                "FFA2",
+                "FFA3",
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/98/RADAR_Tropical_Oasis.png/revision/latest/scale-to-width-down/280?cb=20230927212129",
@@ -1341,9 +1663,13 @@
         "gamemode": {
             "Conquest": [
                 "3v3",
+                "2v2v2",
+                "3v3",
                 "2v2v2"
             ],
             "King Of The Hill": [
+                "3v3",
+                "2v2v2",
                 "3v3",
                 "2v2v2"
             ]
@@ -1359,11 +1685,18 @@
                 "3v3",
                 "4v4",
                 "2v2v2",
+                "3v3v3",
+                "2v2",
+                "3v3",
+                "4v4",
+                "2v2v2",
                 "3v3v3"
             ],
             "Free For All": [
-                "2FFA",
-                "3FFA"
+                "FFA2",
+                "FFA3",
+                "FFA2",
+                "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a8/RADAR_Two_Cave_Map.png/revision/latest/scale-to-width-down/280?cb=20230927212145",
@@ -1373,10 +1706,12 @@
     "Two Islands Map": {
         "gamemode": {
             "Conquest": [
+                "3v3",
                 "3v3"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8d/RADAR_Two_Islands_Map.png/revision/latest/scale-to-width-down/280?cb=20230927212150",
@@ -1389,10 +1724,15 @@
                 "2v2",
                 "3v3",
                 "4v4",
+                "5v5",
+                "2v2",
+                "3v3",
+                "4v4",
                 "5v5"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/5d/RADAR_USA_vs_Canada.png/revision/latest/scale-to-width-down/280?cb=20230927212159",
@@ -1404,10 +1744,14 @@
             "Conquest": [
                 "2v2",
                 "3v3",
+                "4v4",
+                "2v2",
+                "3v3",
                 "4v4"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/37/RADAR_USA_vs_Russia.png/revision/latest/scale-to-width-down/280?cb=20230927212204",
@@ -1417,8 +1761,10 @@
     "Underground Cog": {
         "gamemode": {
             "Free For All": [
-                "3FFA",
-                "6FFA"
+                "FFA3",
+                "FFA6",
+                "FFA3",
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a6/RADAR_Underground_Cog.png/revision/latest/scale-to-width-down/280?cb=20230927212155",
@@ -1428,7 +1774,8 @@
     "Void": {
         "gamemode": {
             "Free For All": [
-                "4FFA"
+                "FFA4",
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/81/RADAR_Void.png/revision/latest/scale-to-width-down/279?cb=20230927212209",
@@ -1438,6 +1785,8 @@
     "Void City": {
         "gamemode": {
             "Conquest": [
+                "4v4",
+                "5v5",
                 "4v4",
                 "5v5"
             ]
@@ -1450,10 +1799,13 @@
         "gamemode": {
             "Conquest": [
                 "2v2",
+                "3v3",
+                "2v2",
                 "3v3"
             ],
             "Free For All": [
-                "2FFA"
+                "FFA2",
+                "FFA2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/11/RADAR_Void_Map.png/revision/latest/scale-to-width-down/278?cb=20230927212218",
@@ -1463,6 +1815,10 @@
     "World": {
         "gamemode": {
             "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5",
                 "2v2",
                 "3v3",
                 "4v4",
