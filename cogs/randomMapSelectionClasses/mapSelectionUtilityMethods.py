@@ -6,7 +6,7 @@ class MapSelectionUtilityMethods():
     map_data = {}
     available_gamemodes  = {'Conquest':'Conquest', 'Free_for_All':'Free For All', 'King_of_the_Hill':'King Of The Hill', 'Survival':'Survival'}
     gamemodes = ['1v1','2v2','3v3','4v4','5v5','2v2v2','3v3v3', 'FFA3', 'FFA4', 'FFA6', 'Survival']
-    lowercase_gamodes = {} # dict mapping for lowercase to normal case
+    lowercase_game_modes = {} # dict mapping for lowercase to normal case
     lowercase_map_names = {} # dict mapping for lowercase to normal case
     #gamemodes.append('game_night_3v3') # add or remove gamemodes etc
 
@@ -162,6 +162,7 @@ class MapSelectionUtilityMethods():
         )
 
         map_embed = MapSelectionUtilityMethods.create_map_embed(
+            self=self,
             selected_map=random.choice(maps),
             map_type=game_mode,
             interaction=interaction
@@ -173,5 +174,5 @@ def update_load_map_data(): #updates all data and map information
     MapSelectionUtilityMethods.get_map_data()
     MapSelectionUtilityMethods.update_map_data()
     MapSelectionUtilityMethods.lowercase_map_names = {map_name.lower(): map_name for map_name in MapSelectionUtilityMethods.map_data.keys()}
-    MapSelectionUtilityMethods.lowercase_gamodes = {gamemode.lower(): gamemode for gamemode in MapSelectionUtilityMethods.gamemodes}
+    MapSelectionUtilityMethods.lowercase_game_modes = {gamemode.lower(): gamemode for gamemode in MapSelectionUtilityMethods.gamemodes}
 update_load_map_data()
