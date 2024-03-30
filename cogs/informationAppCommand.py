@@ -14,10 +14,7 @@ client = gspread.authorize(creds)
 
 sheet = client.open("TC3 Stats for TC3 BOT").sheet1
 
-class InformationAppCommands(commands.Cog):
-    gamemodes = [
-     '1v1','2v2','3v3','4v4','5v5','2v2v2','3v3v3', 'FFA3', 'FFA4', 'FFA6', 'Survival'
-    ]    
+class InformationAppCommands(commands.Cog): 
     def __init__(self, bot):
         self.bot = bot
 
@@ -197,27 +194,24 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         description="Get a map radar")
     @app_commands.describe(map="Pick a map you would like information on!")
     @app_commands.rename(map="map")    
-    async def map(
-        self, 
-        interaction: discord.Interaction,
-        map: str
-    ):  
+    async def map(self, interaction: discord.Interaction,map: str):  
         map_name = map
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
         
-        maps = MapSelectionUtilityMethods.map_data
-        if map_name not in maps:
+        original_map_name = MapSelectionUtilityMethods.lowercase_map_names.get(map_name.lower(), None)
+        if original_map_name is None:
             await interaction.response.send_message("Error: That map was not found! Try again or check the wiki.", ephemeral=True)
             return
 
-        map_data = maps[map_name]
+        map_data = MapSelectionUtilityMethods.map_data[original_map_name]
         cost = map_data['max_income']
         map_size = map_data['map_size']
         map_image = map_data.get('image', None)
 
+        # Use the original_map_name in the embed
         map_embed = discord.Embed(
-            title=f"{map_name} Map Information:",
+            title=f"{original_map_name} Map Information:",
             description=f"{interaction.user.mention}",
             color=0x00ffff
         )
@@ -253,10 +247,8 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         current: str,
     ) -> list[app_commands.Choice[str]]:
         return [
-        app_commands.Choice(name=map_name, value=map_name)
-        for map_name in MapSelectionUtilityMethods.map_data.keys()
-        if current.lower() in map_name.lower()
-        ][:10]
+        app_commands.Choice(name=map_name, value=map_name) 
+        for map_name in MapSelectionUtilityMethods.map_data.keys() if current.lower() in map_name.lower()][:10]
 
     @info_group.command(
         name="user", 

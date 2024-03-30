@@ -5,7 +5,11 @@ from bs4 import BeautifulSoup
 class MapSelectionUtilityMethods():
     map_data = {}
     available_gamemodes  = {'Conquest':'Conquest', 'Free_for_All':'Free For All', 'King_of_the_Hill':'King Of The Hill', 'Survival':'Survival'}
-    
+    gamemodes = ['1v1','2v2','3v3','4v4','5v5','2v2v2','3v3v3', 'FFA3', 'FFA4', 'FFA6', 'Survival']
+    lowercase_gamodes = {} # dict mapping for lowercase to normal case
+    lowercase_map_names = {} # dict mapping for lowercase to normal case
+    #gamemodes.append('game_night_3v3') # add or remove gamemodes etc
+
     @staticmethod
     def get_map_data():
         for gamemode_page_name in MapSelectionUtilityMethods.available_gamemodes.keys():
@@ -79,9 +83,9 @@ class MapSelectionUtilityMethods():
                     # In the case of Survival, there are no sub_gamemodes, so we just append the gamemode itself
                     MapSelectionUtilityMethods.map_data[map_name]['gamemode'][actual_gamemode_name].append(actual_gamemode_name)
 
+
     @staticmethod
     def update_map_data():
-        MapSelectionUtilityMethods.get_map_data()
         with open('mapList.json', 'w') as json_file:
             json.dump(MapSelectionUtilityMethods.map_data, json_file, indent=4, sort_keys=True)
 
@@ -147,27 +151,27 @@ class MapSelectionUtilityMethods():
         
         return map_embed
 
-    def random_map_init(
-            self,
-            interaction: discord.Interaction,
-            game_mode
-        ):
-            real_name = game_mode
-            if game_mode == "1v1":
-                real_name = "FFA2"
+    def random_map_init(self,interaction: discord.Interaction, game_mode: str):
+    
+        real_name = game_mode
+        if game_mode == "1v1":
+            real_name = "FFA2"
 
-            maps = MapSelectionUtilityMethods.determine_map_list(
-                game_mode=real_name
-            )
+        maps = MapSelectionUtilityMethods.determine_map_list(
+            game_mode=real_name
+        )
 
-            map_embed = MapSelectionUtilityMethods.create_map_embed(
-                self=self,
-                selected_map=random.choice(maps),
-                map_type=game_mode,
-                interaction=interaction
-            )
+        map_embed = MapSelectionUtilityMethods.create_map_embed(
+            selected_map=random.choice(maps),
+            map_type=game_mode,
+            interaction=interaction
+        )
 
-            return map_embed
+        return map_embed
 
-MapSelectionUtilityMethods.get_map_data()
-MapSelectionUtilityMethods.update_map_data()
+def update_load_map_data(): #updates all data and map information
+    MapSelectionUtilityMethods.get_map_data()
+    MapSelectionUtilityMethods.update_map_data()
+    MapSelectionUtilityMethods.lowercase_map_names = {map_name.lower(): map_name for map_name in MapSelectionUtilityMethods.map_data.keys()}
+    MapSelectionUtilityMethods.lowercase_gamodes = {gamemode.lower(): gamemode for gamemode in MapSelectionUtilityMethods.gamemodes}
+update_load_map_data()
