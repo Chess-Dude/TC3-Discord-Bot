@@ -2,7 +2,7 @@ import discord, typing, ast, asyncio
 from discord.ext import commands, tasks
 from discord import app_commands
 from .clanClasses.clanPointClassesREWORKED.clanPointBotMethods import ClanPointBotMethods
-from .clanClasses.clanPointClasses.clanPointReview import ReviewClanPoints
+from .clanClasses.clanPointClassesREWORKED.clanPointReview import ReviewClanPoints
 
 class ClanPointCommands(commands.Cog):
     def __init__(self, bot):
@@ -162,6 +162,9 @@ class ClanPointCommands(commands.Cog):
             sql = "UPDATE ClanPointLeaderboard SET weeklyClanPoints = 0"
             await connection.execute(sql)
 
+            sql = "UPDATE ClanPointTracker SET totalClanPoints = 0"
+            await connection.execute(sql)
+
         await interaction.channel.send(
             content="Successfully Reset Weekly Leaderboard. Please run the ``/manage clan_leaderboard_update`` command to view the updated leaderboard. Below is the finalized embeds for this" 
         )
@@ -171,7 +174,7 @@ class ClanPointCommands(commands.Cog):
         interaction: discord.Interaction,
         current: str,
     ) -> list[app_commands.Choice[str]]:
-        type_list = ["Conquest", "Survival", "Free For All", "King Of The Hill", "Territory Conquest", "Tournament Scrimmage/Match", "Clan Scrimmage"]
+        type_list = ["Tournament Scrimmage/Match", "Clan Scrimmage"]
         return [
             app_commands.Choice(name=type, value=type)
             for type in type_list if current.lower() in type.lower()
@@ -236,42 +239,15 @@ class ClanPointCommands(commands.Cog):
                 continue
 
         if len(clan_role_list) >= 1:
-            if game_mode.lower() == "conquest":
-                game_mode_multiplier = 2
-                game_mode_cap = 125
-                if damage_healed_bonus > 15:
-                    damage_healed_bonus = 15
-
-            elif ((game_mode.lower() == "territory conquest") or 
-                (game_mode.lower() == "tc")):
-                game_mode_multiplier = 1
-                game_mode_cap = 125
-                if damage_healed_bonus > 15:
-                    damage_healed_bonus = 15
-
-            elif game_mode.lower() == "survival":
-                game_mode_multiplier = 1
-                game_mode_cap = 250
-
-            elif ((game_mode.lower() == "king of the hill") or 
-                (game_mode.lower() == "koth")):
-                game_mode_multiplier = 1.5
-                game_mode_cap = 90
-
-            elif ((game_mode.lower() == "free for all") or 
-                (game_mode.lower() == "ffa")):
-                game_mode_multiplier = 2
-                game_mode_cap = 300
-
-            elif ((game_mode.lower() == "tournament scrimmage/match") or 
+            if ((game_mode.lower() == "tournament scrimmage/match") or 
                 (game_mode.lower() == "tournament scrimmage/match")):
-                game_mode_multiplier = 3
+                game_mode_multiplier = 0.5
                 game_mode_cap = 255
                 if damage_healed_bonus > 15:
                     damage_healed_bonus = 15
 
             elif game_mode.lower() == "clan scrimmage": 
-                game_mode_multiplier = 3
+                game_mode_multiplier = 0.5
                 game_mode_cap = 255
                 if damage_healed_bonus > 15:
                     damage_healed_bonus = 15
@@ -367,9 +343,9 @@ class ClanPointCommands(commands.Cog):
             
             await interaction.response.send_message(embed=success_embed)
             
-            view = ReviewClanPoints()            
+            view = ReviewClanPoints(self.bot)            
             await cp_sub_channel.send(
-                content=f"{int(total_clan_points)} {clan_role_list[0].name}",
+                content=f"{int(total_clan_points)} {clan_role_list[0].id}",
                 embed=log_embed,
                 view=view
             )
