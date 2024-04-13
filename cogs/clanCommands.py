@@ -342,149 +342,110 @@ class ClanCommands(commands.Cog):
                     embed=response_embed
                 )
     
-    @app_commands.describe(clan_role="clan_role")
+    @app_commands.describe(clan_role="Select the clan role to view the roster.")
     @app_commands.rename(clan_role="clan_role")      
-    @clan_group.command(
-        name="roster",
-        description="get the clans roster!")
-    async def send_clan_roster (
-        self,
-        interaction,
-        clan_role: discord.Role
-    ):
+    @clan_group.command(name="roster",description="Display the clan's roster!")
+    async def send_clan_roster(self, interaction: discord.Interaction, clan_role: discord.Role):
         generate_clan_roster_obj = GenerateClanRoster()
-        
-        clan_list = generate_clan_roster_obj.get_clans(
-            interaction=interaction
-        )
+        clan_list = generate_clan_roster_obj.get_clans(interaction=interaction)
 
         if clan_role in clan_list:
-            clan_info_list = generate_clan_roster_obj.get_clan_info(
-                interaction=interaction,
-                clan_role=clan_role
-            )
+            clan_info_list = generate_clan_roster_obj.get_clan_info(interaction=interaction, clan_role=clan_role)
 
-            clan_roster_embed = await generate_clan_roster_obj.send_clan_roster(
-                interaction=interaction,
-                clan_role=clan_role,
-                clan_info_list=clan_info_list
-            )
+            leader, co_leader, clan_members = clan_info_list[0], clan_info_list[1], clan_info_list[2]
+            member_text = ""
 
-            await interaction.response.send_message(
-                embed=clan_roster_embed
-            )
+            if leader:
+                leader_nick = leader.display_name
+                leader_real_name = leader.name
+                leader_entry = "{:<20} Real Name: {:>4}".format(f'• {leader_nick}', leader_real_name)
 
-            await generate_clan_roster_obj.clan_disband_check(
-                interaction=interaction,
-                clan_role=clan_role
-            )
+            if co_leader:
+                co_leader_nick = co_leader.display_name
+                co_leader_real_name = co_leader.name
+                co_leader_entry = "{:<20} Real Name: {:>4}".format(f'• {co_leader_nick}', co_leader_real_name)
 
-        else:
-            response_embed = discord.Embed(
-                title="Error: You did not specify a clan role",
-                color=0x2f3136
-            )
+            members = []
+            for member in clan_members:
+                member_nick = member.display_name
+                member_real_name = member.name 
+                members.append((member_nick, member_real_name))
 
-            await interaction.response.send_message(
-                embed=response_embed
-            )
-    
-    @app_commands.describe(clan_role="clan_role")
-    @app_commands.rename(clan_role="clan_role")      
-    @clan_group.command(
-        name="clan-point-roster",
-        description="Get the clans member point list!")
-    async def send_clan_point_roster (
-        self,
-        interaction,
-        clan_role: discord.Role
-    ):
-        generate_clan_roster_obj = GenerateClanRoster()
-        
-        clan_list = generate_clan_roster_obj.get_clans(
-            interaction=interaction
-        )
+            members.sort(key=lambda x: x[1])
+            for i, (member_nick, member_real_name) in enumerate(members):
+                member_text += "{:<20} Real Name: {:>4}\n".format(f'{i+1} {member_nick}', member_real_name)
 
-        if clan_role in clan_list:
-            clan_info_list = generate_clan_roster_obj.get_clan_info(
-                interaction=interaction,
-                clan_role=clan_role
-            )
-
-
-            clan_leader = clan_info_list[0]
-            clan_co_leader = clan_info_list[1]
-            clan_members = clan_info_list[2]
-            clan_leader_text = ''
-            co_leader_text = '' 
-            member_text = ''
-
-            leader_text = "• N/A"
-            co_leader_text = "• N/A"
-            member_text = f"\n• N/A"
-
-            async with self.bot.pool.acquire() as connection:
-
-                if len(clan_leader) != 0:
-                    leader_id = (clan_leader[0]).id
-                    sql = "SELECT * FROM ClanPointTracker WHERE discordUserID = $1"
-                    member_clan_point_data = await connection.fetch(sql, leader_id)
-                    if len(member_clan_point_data) != 0:
-                        points = member_clan_point_data[0][3]
-                    else:
-                        points = 0
-                    clan_leader_text = f"• {(clan_leader[0]).display_name}" + " - Points:" + points
-
-                if len(clan_co_leader) != 0:
-                    co_leader_id = (clan_co_leader[0]).id
-                    sql = "SELECT * FROM ClanPointTracker WHERE discordUserID = $1"
-                    member_clan_point_data = await connection.fetch(sql, co_leader_id)
-                    if len(member_clan_point_data) != 0:
-                        points = member_clan_point_data[0][3]
-                    else:
-                        points = 0
-
-                    co_leader_text = f"• {(clan_co_leader[0]).display_name}" + " - Points:" + points
-
-                if len(clan_members) != 0:
-                    for member in clan_members: # can implement batching for sql later maybe
-                        member_id = member.id
-                        sql = "SELECT * FROM ClanPointTracker WHERE discordUserID = $1"
-                        member_clan_point_data = await connection.fetch(sql, member_id)
-                        if len(member_clan_point_data) != 0:
-                            points = member_clan_point_data[0][3]
-                        else:
-                            points = 0
-                        member_text = member_text + f"\n• {member.display_name}" + " - Points:" + points
-
-            embed_text = f"``Leader:``\n{clan_leader_text}\n\n``Co-Leader:``\n{co_leader_text}\n\n``Members:``{member_text}\n\n``Total Members:``\n• {(len(clan_role.members))}/10"        
+            total_members = len(members)
+            embed_text = f"```Leader:\n{leader_entry}\n\nCo-Leader:\n{co_leader_entry}\n\nMembers:\n{member_text}Total Members:\n• {total_members}/10```"
             clan_roster_embed = discord.Embed(
-                title=f"``{clan_role.name}'s Roster:\n``",
+                title=f"{clan_role.name}'s Roster:",
                 description=embed_text,
-                color=int(clan_role.color),
+                color=discord.Color(int(clan_role.color)),
                 timestamp=interaction.created_at
             )
+            await interaction.response.send_message(embed=clan_roster_embed)
 
-            await interaction.response.send_message(
-                embed=clan_roster_embed
-            )
-
-            await generate_clan_roster_obj.clan_disband_check(
-                interaction=interaction,
-                clan_role=clan_role
-            )
-
+            await generate_clan_roster_obj.clan_disband_check(interaction=interaction, clan_role=clan_role)
         else:
             response_embed = discord.Embed(
                 title="Error: You did not specify a clan role",
                 color=0x2f3136
             )
-
-            await interaction.response.send_message(
-                embed=response_embed
-            )
+            await interaction.response.send_message(embed=response_embed)
 
     
+    @app_commands.describe(clan_role="Select the clan role to view points.")
+    @app_commands.rename(clan_role="clan_role")      
+    @clan_group.command(name="clan-point-roster",description="Display the clan's member points list!")
+    async def send_clan_point_roster(self, interaction: discord.Interaction, clan_role: discord.Role):
+        generate_clan_roster_obj = GenerateClanRoster()
+        clan_list = generate_clan_roster_obj.get_clans(interaction=interaction)
+
+        if clan_role in clan_list:
+            clan_info_list = generate_clan_roster_obj.get_clan_info(interaction=interaction, clan_role=clan_role)
+
+            leader_text, co_leader_text, clan_members = clan_info_list[0], clan_info_list[1], clan_info_list[2]
+            leader_points = co_leader_points = 0
+            member_text = ""
+
+            async with self.bot.pool.acquire() as connection:
+                if leader_text:
+                    sql = "SELECT points FROM ClanPointTracker WHERE discordUserID = $1"
+                    points = await connection.fetchval(sql, leader_text.id) or 0
+                    leader_entry = "{:<20} Points: {:>4}".format(f'• {leader_text.display_name}', points)
+
+                if co_leader_text:
+                    sql = "SELECT points FROM ClanPointTracker WHERE discordUserID = $1"
+                    points = await connection.fetchval(sql, co_leader_text.id) or 0
+                    co_leader_entry = "{:<20} Points: {:>4}".format(f'• {co_leader_text.display_name}', points)
+
+                members = []
+                for member in clan_members:
+                    sql = "SELECT points FROM ClanPointTracker WHERE discordUserID = $1"
+                    points = await connection.fetchval(sql, member.id) or 0
+                    members.append((member.display_name, points))
+
+                members.sort(key=lambda x: x[1], reverse=True)
+                for i, (member, points) in enumerate(members):
+                    member_text += "{:<20} Points: {:>4}\n".format(f'{i+1} {member}', points)
+
+            total_members = len(members)
+            embed_text = f"```Leader:\n{leader_entry}\n\nCo-Leader:\n{co_leader_entry}\n\nMembers:\n{member_text}Total Members:\n• {total_members}/10```"
+            clan_roster_embed = discord.Embed(
+                title=f"{clan_role.name}'s Roster:",
+                description=embed_text,
+                color=discord.Color(int(clan_role.color)),
+                timestamp=interaction.created_at
+            )
+            await interaction.response.send_message(embed=clan_roster_embed)
+
+            await generate_clan_roster_obj.clan_disband_check(interaction=interaction, clan_role=clan_role)
+        else:
+            response_embed = discord.Embed(
+                title="Error: You did not specify a clan role",
+                color=0x2f3136
+            )
+            await interaction.response.send_message(embed=response_embed)
 
     @clan_group.command(
         name="reverify",
