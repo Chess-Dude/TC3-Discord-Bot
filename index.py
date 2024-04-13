@@ -8,7 +8,7 @@ from cogs.teamApplicationClasses.teamApplicationDropdown import TournamentDropdo
 from cogs.mapSelectionCommands import RerollDropdown
 from cogs.informationChannels import ParentTournamentInformationViews, ParentClanInformationViews
 from cogs.informationEmbeds.childTournamentView import ChildTournamentInformationViews  
-from cogs.clanPointCommands import ReviewClanPoints
+from cogs.clanClasses.clanPointClassesREWORKED.clanPointReview import ReviewClanPoints
 from cogs.clanClasses.clanApplicationClasses.clanApplicationReview import ReviewClanApplication
 from cogs.redeemSystem import RedeemTicketPanel
 from cogs.redeemClasses.RedeemModalReview import RedeemModalReview 
@@ -35,23 +35,10 @@ class TC3Bot(commands.Bot):
         intents.members = True
         intents.reactions = True
         intents.presences = False
-        activity = discord.Activity(
-            name="Conquering Noobs on Roblox's best RTS - The Conquerors 3. Play now at: https://www.roblox.com/games/8377997",       # The game name
-            type=discord.ActivityType.playing,
-            details="Conquering Robloxians",  # Additional details
-            large_image="tc3Thumbnail"       # Use the name of the image without the file extension
-        )        
         super().__init__(
             command_prefix="!",
-            activity=activity,
             case_insensitive=True, 
             intents = intents,    
-            allowed_mentions=discord.AllowedMentions(
-                users=True,        
-                everyone=True,     
-                roles=True,         
-                replied_user=True, 
-            ),  
             application_id=953017055236456448
         )
 
@@ -68,7 +55,7 @@ class TC3Bot(commands.Bot):
         self.add_view(ParentTournamentInformationViews())
         self.add_view(ChildTournamentInformationViews())
         self.add_view(SkillDivisionDropdownView())
-        self.add_view(ReviewClanPoints())
+        self.add_view(ReviewClanPoints(bot))
         self.add_view(ReviewClanApplication(self.pool))
         self.add_view(ParentClanInformationViews())
         self.add_view(RedeemModalReview())
@@ -83,7 +70,7 @@ class TC3Bot(commands.Bot):
 
 bot = TC3Bot()
 bot.remove_command("help")
-
+    
 @commands.is_owner()
 @bot.command()
 async def shutdown(ctx):
@@ -217,6 +204,17 @@ async def report_user(
         ephemeral=True
     )
 
+@bot.command()
+@commands.is_owner()
+async def clear_weekly(ctx):
+    async with bot.pool.acquire() as connection:
+        sql = "UPDATE ClanPointLeaderboard SET weeklyClanPoints = 0"
+        await connection.execute(sql)
+
+        sql = "UPDATE ClanPointTracker SET totalClanPoints = 0"
+        await connection.execute(sql)
+
+    await ctx.send("done")
 
 @bot.command()
 @commands.is_owner()
