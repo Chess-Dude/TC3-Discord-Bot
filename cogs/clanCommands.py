@@ -399,95 +399,63 @@ class ClanCommands(commands.Cog):
     @clan_group.command(
         name="clan-point-roster",
         description="Get the clans member point list!")
-    async def send_clan_point_roster (
-        self,
-        interaction,
-        clan_role: discord.Role
-    ):
+    async def send_clan_point_roster(self,
+        interaction: discord.Interaction,
+            clan_role: discord.Role
+            ):
         generate_clan_roster_obj = GenerateClanRoster()
-
-        clan_list = generate_clan_roster_obj.get_clans(
-            interaction=interaction
-        )
+        clan_list = generate_clan_roster_obj.get_clans(interaction=interaction)
 
         if clan_role in clan_list:
-            clan_info_list = generate_clan_roster_obj.get_clan_info(
-                interaction=interaction,
-                clan_role=clan_role
-            )
-
-
-            clan_leader = clan_info_list[0]
-            clan_co_leader = clan_info_list[1]
-            clan_members = clan_info_list[2]
-            clan_leader_text = ''
-            co_leader_text = '' 
-            member_text = ''
+            clan_info_list = generate_clan_roster_obj.get_clan_info(interaction=interaction, clan_role=clan_role)
+            leader, co_leaders, clan_members = clan_info_list[0], clan_info_list[1], clan_info_list[2]
 
             leader_text = "• N/A"
             co_leader_text = "• N/A"
-            member_text = f"\n• N/A"
+            member_text = ""
 
             async with self.bot.pool.acquire() as connection:
+                if leader:
+                    leader_id = leader.id
+                    sql = "SELECT points FROM ClanPointTracker WHERE discordUserID = $1"
+                    points = await connection.fetchval(sql, leader_id) or 0
+                    leader_text = f"• {leader.display_name} - Points: {points}"
 
-                if len(clan_leader) != 0:
-                    leader_id = (clan_leader[0]).id
-                    sql = "SELECT * FROM ClanPointTracker WHERE discordUserID = $1"
-                    member_clan_point_data = await connection.fetch(sql, leader_id)
-                    if len(member_clan_point_data) != 0:
-                        points = member_clan_point_data[0][3]
-                    else:
-                        points = 0
-                    clan_leader_text = f"• {(clan_leader[0]).display_name}" + " - Points:" + points
+                if co_leaders:
+                    co_leader_text = ""
+                    for co_leader in co_leaders:
+                        co_leader_id = co_leader.id
+                        points = await connection.fetchval("SELECT points FROM ClanPointTracker WHERE discordUserID = $1", co_leader_id) or 0
+                        co_leader_text += f"• {co_leader.display_name} - Points: {points}\n"
+                    if not co_leader_text:
+                        co_leader_text = "• N/A"
 
-                if len(clan_co_leader) != 0:
-                    co_leader_id = (clan_co_leader[0]).id
-                    sql = "SELECT * FROM ClanPointTracker WHERE discordUserID = $1"
-                    member_clan_point_data = await connection.fetch(sql, co_leader_id)
-                    if len(member_clan_point_data) != 0:
-                        points = member_clan_point_data[0][3]
-                    else:
-                        points = 0
-
-                    co_leader_text = f"• {(clan_co_leader[0]).display_name}" + " - Points:" + points
-
-                if len(clan_members) != 0:
-                    for member in clan_members: # can implement batching for sql later maybe
+                if clan_members:
+                    for member in clan_members:
                         member_id = member.id
-                        sql = "SELECT * FROM ClanPointTracker WHERE discordUserID = $1"
-                        member_clan_point_data = await connection.fetch(sql, member_id)
-                        if len(member_clan_point_data) != 0:
-                            points = member_clan_point_data[0][3]
-                        else:
-                            points = 0
-                        member_text = member_text + f"\n• {member.display_name}" + " - Points:" + points
+                        points = await connection.fetchval("SELECT points FROM ClanPointTracker WHERE discordUserID = $1", member_id) or 0
+                        member_text += f"• {member.display_name} - Points: {points}\n"
+                if not member_text:
+                    member_text = "No members currently registered."# added this in case there are no members instead of just an empty list
 
-            embed_text = f"``Leader:``\n{clan_leader_text}\n\n``Co-Leader:``\n{co_leader_text}\n\n``Members:``{member_text}\n\n``Total Members:``\n• {(len(clan_role.members))}/10"        
+            total_members = len(clan_members) if clan_members else 0
+            embed_text = f"**Leader:**\n{leader_text}\n\n**Co-Leaders:**\n{co_leader_text}\n**Members:**\n{member_text}\n**Total Members:**\n• {total_members}/10"        
             clan_roster_embed = discord.Embed(
-                title=f"``{clan_role.name}'s Roster:\n``",
+                title=f"{clan_role.name}'s Roster:",
                 description=embed_text,
-                color=int(clan_role.color),
+                color=discord.Color(int(clan_role.color)),
                 timestamp=interaction.created_at
             )
 
-            await interaction.response.send_message(
-                embed=clan_roster_embed
-            )
-
-            await generate_clan_roster_obj.clan_disband_check(
-                interaction=interaction,
-                clan_role=clan_role
-            )
-
+            await interaction.response.send_message(embed=clan_roster_embed)
+            await generate_clan_roster_obj.clan_disband_check(interaction=interaction, clan_role=clan_role)
         else:
             response_embed = discord.Embed(
                 title="Error: You did not specify a clan role",
                 color=0x2f3136
             )
+            await interaction.response.send_message(embed=response_embed)
 
-            await interaction.response.send_message(
-                embed=response_embed
-            )
 
     @clan_group.command(
         name="reverify",
