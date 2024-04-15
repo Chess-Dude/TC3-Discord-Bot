@@ -103,7 +103,7 @@ class MapSelectionUtilityMethods():
     def determine_map_list(game_mode):
             game_mode = game_mode.lower()
             if game_mode == "game_night_3v3":
-                maps = ["Basalt Peninsula", "Germany Map", "Lakebed", "Double Mansion", "Fantasy", "Germany vs. France", "Korea",] 
+                maps = ["Basalt Peninsula", "Germany Map", "Lakebed", "Double Mansion", "Fantasy", "Germany vs France", "Korea",] 
             else:
                 maps = []
                 for map_data in MapSelectionUtilityMethods.map_data.items():

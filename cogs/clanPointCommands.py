@@ -3,6 +3,7 @@ from discord.ext import commands, tasks
 from discord import app_commands
 from .clanClasses.clanPointClassesREWORKED.clanPointBotMethods import ClanPointBotMethods
 from .clanClasses.clanPointClassesREWORKED.clanPointReview import ReviewClanPoints
+from .informationEmbeds.parentTournamentView import ParentTournamentInformationViews
 
 class ClanPointCommands(commands.Cog):
     def __init__(self, bot):
@@ -29,6 +30,22 @@ class ClanPointCommands(commands.Cog):
     async def looped_send_clan_point_notif(
         self
     ):
+        TOURNAMENT_INFO_CHANNEL = self.bot.get_channel(1047726075221901383)
+        await TOURNAMENT_INFO_CHANNEL.purge(limit=5)
+        information_embed = discord.Embed(
+            title=f"Tournament Information",
+            description=f"This section will cover everything there is to know about tournaments for The Conquerors 3.",
+            color=0x00ffff
+        )
+
+        information_embed.set_image(
+            url="https://media.discordapp.net/attachments/350068992045744142/1047732656508510299/IMG_3001.png?width=1193&height=671"
+        )
+        
+        await TOURNAMENT_INFO_CHANNEL.send(
+            embed=information_embed, 
+            view=ParentTournamentInformationViews()
+        )
         # print("running looped_send_clan_point_notif")
         end_of_round_bonus_results = await self.clan_point_bot_methods_obj.get_end_of_round_bonus(
             bot=self.bot
