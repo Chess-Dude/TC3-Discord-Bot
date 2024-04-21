@@ -233,7 +233,9 @@ class ModeratorCommands(commands.Cog):
             pass
 
         member = discord.Object(id=member.id)
-        await interaction.guild.ban(user=member, reason=reason)       
+        await interaction.guild.ban(user=member, reason=reason)
+        COIN_SERVER = self.bot.get_guild(676112926918049813)
+        await COIN_SERVER.ban(user=member, reason=reason)        
 
     @app_commands.checks.has_permissions(ban_members=True)
     @app_commands.checks.cooldown(1, 5, key=lambda i: (i.guild_id))

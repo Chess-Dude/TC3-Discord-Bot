@@ -448,6 +448,7 @@ class ClanCommands(commands.Cog):
                     co_leader_text = f"• {(clan_co_leader[0]).display_name} - Points: {points}"
 
                 if len(clan_members) != 0:
+                    member_text = ""                    
                     for member in clan_members: # can implement batching for sql later maybe
                         member_id = member.id
                         sql = "SELECT * FROM ClanPointTracker WHERE discordUserID = $1"
@@ -456,7 +457,6 @@ class ClanCommands(commands.Cog):
                             points = member_clan_point_data[0][3]
                         else:
                             points = 0
-                        member_text = ""
                         member_text = member_text + f"\n• {member.display_name} - Points: {points}"
 
             embed_text = f"``Leader:``\n{clan_leader_text}\n\n``Co-Leader:``\n{co_leader_text}\n\n``Members:``{member_text}\n\n``Total Members:``\n• {(len(clan_role.members))}/10"        
