@@ -212,7 +212,7 @@ class RedeemModal(discord.ui.Modal, title="The Conquerors 3 Prize Redeem Form"):
             color=0x00ffff
         )
 
-        await interaction.response.send_message(
+        await interaction.channel.send(
             embed=approved_embed,
-            ephemeral=True
+            delete_after=10
         )

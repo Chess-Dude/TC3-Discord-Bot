@@ -58,13 +58,9 @@ class ClanChangesMethods():
         remove_clan_member,
         pool
     ):
-        if roles_to_remove[-1] not in interaction.user.roles:
-            for role in roles_to_remove:
-                await interaction.user.remove_roles(role)              
 
-        else:
-            for role in roles_to_remove:
-                await remove_clan_member.remove_roles(role)              
+        for role in roles_to_remove:
+            await remove_clan_member.remove_roles(role)              
 
 
         async with pool.acquire() as connection:

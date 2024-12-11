@@ -293,7 +293,7 @@ class ModeratorCommands(commands.Cog):
         )
 
         if interaction.guild.id == 350068992045744141:
-            appeal_message = "You may appeal this ban here: https://goo.gl/forms/40zjxwBgD9RaV4Lh1."
+            appeal_message = "You may appeal this ban here: https://forms.gle/xDDCFNr9xUgKkzxX9."
             log_channel = self.bot.get_channel(1028869177798295632)
             await log_channel.send(embed=log_embed)
 

@@ -206,13 +206,16 @@ class ClanCommands(commands.Cog):
                         value=f"Changed to {new_clan_leader.mention}"
                     )
 
+                    update_embed.title = f"You have been added to {clan_role.name}"
+                    await new_clan_leader.send(embed=update_embed)
+
                 else:
                     await interaction.channel.send("Error: The new clan leader must be an existing clan member.")
                     return                
             
             if new_clan_co_leader != None and all_members_verified:
                 if clan_role in new_clan_co_leader.roles:
-                    roles_to_add = [clan_role, clan_co_leader_role, clan_leader_role, clans_role_ping]            
+                    roles_to_add = [clan_role, clan_co_leader_role, clans_role_ping]            
 
                     await ClanChangesMethods.update_clan_co_leader(
                         self=self,
@@ -224,6 +227,9 @@ class ClanCommands(commands.Cog):
                         name="New Co-Leader:",
                         value=f"Changed to {new_clan_co_leader.mention}"
                     )
+
+                    update_embed.title = f"You have been added to {clan_role.name}"
+                    await new_clan_co_leader.send(embed=update_embed)
 
                 else:
                     await interaction.channel.send("Error: The new clan leader must be an existing clan member.")
@@ -243,6 +249,9 @@ class ClanCommands(commands.Cog):
                         name="New Member:",
                         value=f"Added {new_clan_member.mention}"
                     )
+                    
+                    update_embed.title = f"You have been added to {clan_role.name}"
+                    await new_clan_member.send(embed=update_embed)            
                 
                 else:
                     await interaction.channel.send(content="Error: You have 10 People in your clan. Please remove a member and retry")
@@ -259,12 +268,14 @@ class ClanCommands(commands.Cog):
                     remove_clan_member=remove_clan_member,
                     pool=self.bot.pool
                 )
-                
+
                 update_embed.add_field(
                     name="Remove Member:",
                     value=f"Removed {remove_clan_member.mention}"
                 )
-            
+
+                update_embed.title = f"You have been removed from {clan_role.name}"
+                await remove_clan_member.send(embed=update_embed)            
             else:
                 await interaction.channel.send(content="Error: You cannot remove a clan member that is not in your clan.")
         

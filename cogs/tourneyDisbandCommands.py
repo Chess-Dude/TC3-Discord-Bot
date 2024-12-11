@@ -1,6 +1,7 @@
 import discord
 from discord import app_commands
 from discord.ext import commands
+from .clanClasses.clanApplicationClasses.clanChangeMethods import ClanChangesMethods
 
 class TournamentDisbandCommands(commands.Cog):
     def __init__(self, bot):
@@ -93,6 +94,30 @@ class TournamentDisbandCommands(commands.Cog):
             tournament_type=type,
             tournament_team_name=team_name
         )
+
+    @is_bots
+    @team_group.command(
+        name="roster",
+        description="View a team's roster")
+    @app_commands.autocomplete(type=type_autocomplete)
+    @app_commands.describe(team_role="Enter team name here")
+    @app_commands.rename(team_role="team_role")
+    async def view_roster(
+        self,
+        interaction: discord.Interaction,
+        type: str,
+        team_role: discord.Role
+    ):        
+        
+        team_roster_str = ''
+        for team_member in team_role.members:
+            team_roster_str = team_roster_str + team_member.name + "\n"
+        
+        await interaction.response.send_message(content=team_roster_str)
+        
+        
+
+
 
 async def setup(bot):
     await bot.add_cog(TournamentDisbandCommands(bot))

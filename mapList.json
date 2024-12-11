@@ -986,6 +986,20 @@
         "map_size": "800x800",
         "max_income": "$400"
     },
+    "Poland": {
+        "gamemode": {
+            "Conquest": [
+                "2v2v2",
+                "3v3v3"
+            ],
+            "Free For All": [
+                "FFA3"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e2/RADAR_Poland.png/revision/latest/scale-to-width-down/280?cb=20240420044123",
+        "map_size": "800x800",
+        "max_income": "$495"
+    },
     "RETRO Cliffs": {
         "gamemode": {
             "Conquest": [
