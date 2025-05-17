@@ -36,24 +36,66 @@ class AppCommandsMapSelection(commands.Cog):
         game_mode: Choice[int]
     ):
         game_mode_name = game_mode.name
-        game_mode = MapSelectionUtilityMethods.lowercase_game_modes.get(game_mode_name.lower(), None)
-
-        if game_mode is None:
-            await interaction.response.send_message("Error: That gamemode was not found! Try again or check the wiki.", ephemeral=True)
+        
+        if interaction.guild and interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
+            await interaction.response.send_message("Please use the designated channel for map randomization.", ephemeral=True)
             return
         
-        if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
-            raise app_commands.errors.CheckFailure
-        
-        map_embed = MapSelectionUtilityMethods.random_map_init(
-            self=self,
-            interaction=interaction,
-            game_mode=game_mode_name
-        )
+        try:
+            real_mode = game_mode_name
+            if game_mode_name == "1v1":
+                real_mode = "FFA2"
+                
+            maps = MapSelectionUtilityMethods.determine_map_list(game_mode=real_mode)
+            
+            if not maps:
+                await interaction.response.send_message(f"No maps found for {game_mode_name} mode. Please select a different mode or contact an administrator.", ephemeral=True)
+                return
+            
+            map_embed = MapSelectionUtilityMethods.random_map_init(
+                interaction=interaction,
+                game_mode=game_mode_name
+            )
+            
+            await interaction.response.send_message(
+                embed=map_embed, 
+                view=RerollDropdown()
+            )
+            
+        except Exception as e:
+            print(f"Error in random_map command: {str(e)}")
+            await interaction.response.send_message(
+                f"An error occurred while generating a random map: {str(e)}",
+                ephemeral=True
+            )
 
-        await interaction.response.send_message(
-            embed=map_embed, 
-            view=RerollDropdown())
+    @group.command(
+        name="update_maps",
+        description="Update the map database from the wiki (Admin only)"
+    )
+    @app_commands.checks.has_permissions(administrator=True)
+    async def update_maps(self, interaction: discord.Interaction):
+        await interaction.response.defer(ephemeral=True)
+        
+        try:
+            old_count = len(MapSelectionUtilityMethods.map_data)
+            
+            from .randomMapSelectionClasses.mapSelectionUtilityMethods import update_load_map_data
+            update_load_map_data()
+            
+            new_count = len(MapSelectionUtilityMethods.map_data)
+            await interaction.followup.send(
+                f"✅ Map data updated successfully!\n"
+                f"Total maps: {new_count}\n"
+                f"New maps: {max(0, new_count - old_count)}",
+                ephemeral=True
+            )
+            
+        except Exception as e:
+            await interaction.followup.send(
+                f"❌ Error updating map data: {str(e)}",
+                ephemeral=True
+            )
 
 async def setup(bot):
     await bot.add_cog(AppCommandsMapSelection(bot))
