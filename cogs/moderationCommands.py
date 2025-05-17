@@ -66,50 +66,50 @@ class ModeratorCommands(commands.Cog):
             log_channel = self.bot.get_channel(1028869177798295632)
             await log_channel.send(embed=log_embed)
 
-    async def time_type_autocomplete(
-        self, 
-        interaction: discord.Interaction,
-        current: str,
-    ) -> list[app_commands.Choice[str]]:
-        time_type_list = ["minutes", "hours"]
-        return [
-            app_commands.Choice(name=time_type, value=time_type)
-            for time_type in time_type_list if current.lower() in time_type.lower()
-        ]
+    # async def time_type_autocomplete(
+    #     self, 
+    #     interaction: discord.Interaction,
+    #     current: str,
+    # ) -> list[app_commands.Choice[str]]:
+    #     time_type_list = ["minutes", "hours"]
+    #     return [
+    #         app_commands.Choice(name=time_type, value=time_type)
+    #         for time_type in time_type_list if current.lower() in time_type.lower()
+    #     ]
 
-    @app_commands.checks.has_permissions(manage_messages=True)
-    @app_commands.checks.cooldown(1, 5, key=lambda i: (i.guild_id))
-    @app_commands.command(
-        name="mute",
-        description="A Command that allows moderators to mute a member")
-    @app_commands.describe(member="specify which member to mute")
-    @app_commands.describe(duration="specify mute duration")
-    @app_commands.autocomplete(time_type=time_type_autocomplete)
-    @app_commands.describe(reason="specify reason of mute")
-    @app_commands.rename(member="member")
-    @app_commands.rename(duration="duration")
-    @app_commands.rename(time_type="time_type")
-    @app_commands.rename(reason="reason")
-    async def mute_command(        
-        self,
-        interaction: discord.Interaction,
-        member: discord.User,
-        duration: int,
-        time_type: str,
-        reason: str
-    ):
-        mute_utility_obj = MuteUtility(
-            member=member,
-            duration=duration,
-            interaction=interaction,
-            time_type=time_type,
-            reason=reason
-        )
+    # @app_commands.checks.has_permissions(manage_messages=True)
+    # @app_commands.checks.cooldown(1, 5, key=lambda i: (i.guild_id))
+    # @app_commands.command(
+    #     name="mute",
+    #     description="A Command that allows moderators to mute a member")
+    # @app_commands.describe(member="specify which member to mute")
+    # @app_commands.describe(duration="specify mute duration")
+    # @app_commands.autocomplete(time_type=time_type_autocomplete)
+    # @app_commands.describe(reason="specify reason of mute")
+    # @app_commands.rename(member="member")
+    # @app_commands.rename(duration="duration")
+    # @app_commands.rename(time_type="time_type")
+    # @app_commands.rename(reason="reason")
+    # async def mute_command(        
+    #     self,
+    #     interaction: discord.Interaction,
+    #     member: discord.User,
+    #     duration: int,
+    #     time_type: str,
+    #     reason: str
+    # ):
+    #     mute_utility_obj = MuteUtility(
+    #         member=member,
+    #         duration=duration,
+    #         interaction=interaction,
+    #         time_type=time_type,
+    #         reason=reason
+    #     )
 
-        if not await mute_utility_obj.is_staff():
-            duration_seconds = await mute_utility_obj.mute_user()
-            await asyncio.sleep(duration_seconds)
-            await mute_utility_obj.unmute_user()
+    #     if not await mute_utility_obj.is_staff():
+    #         duration_seconds = await mute_utility_obj.mute_user()
+    #         await asyncio.sleep(duration_seconds)
+    #         await mute_utility_obj.unmute_user()
 
     perm_mute_command_group = app_commands.Group(
         name="perm", 
@@ -165,147 +165,147 @@ class ModeratorCommands(commands.Cog):
 
         await mute_utility_obj.unmute_user()
 
-    @app_commands.checks.has_permissions(ban_members=True)
-    @app_commands.checks.cooldown(1, 5, key=lambda i: (i.guild_id))
-    @app_commands.command(
-        name="ban",
-        description="A Command that allows moderators to ban a member")
-    @app_commands.describe(member="specify which member to ban")
-    @app_commands.describe(reason="specify reason of ban")
-    @app_commands.rename(member="member")
-    @app_commands.rename(reason="reason")
-    async def ban_command(        
-        self,
-        interaction: discord.Interaction,
-        member: discord.User,
-        reason: str
-    ):
-        response_embed = discord.Embed(
-            description=f"✅ {member.display_name} has been banned | {reason}", 
-            colour=0xff0000
-        )
+    # @app_commands.checks.has_permissions(ban_members=True)
+    # @app_commands.checks.cooldown(1, 5, key=lambda i: (i.guild_id))
+    # @app_commands.command(
+    #     name="ban",
+    #     description="A Command that allows moderators to ban a member")
+    # @app_commands.describe(member="specify which member to ban")
+    # @app_commands.describe(reason="specify reason of ban")
+    # @app_commands.rename(member="member")
+    # @app_commands.rename(reason="reason")
+    # async def ban_command(        
+    #     self,
+    #     interaction: discord.Interaction,
+    #     member: discord.User,
+    #     reason: str
+    # ):
+    #     response_embed = discord.Embed(
+    #         description=f"✅ {member.display_name} has been banned | {reason}", 
+    #         colour=0xff0000
+    #     )
         
-        success_message = await interaction.channel.send(embed=response_embed)
-        appeal_message = ''
+    #     success_message = await interaction.channel.send(embed=response_embed)
+    #     appeal_message = ''
 
-        log_embed = discord.Embed(color=0x00ffff, timestamp=interaction.created_at)
+    #     log_embed = discord.Embed(color=0x00ffff, timestamp=interaction.created_at)
         
-        log_embed.set_author(
-            name=f"{interaction.guild.name}",
-            icon_url=f"{interaction.guild.icon}"
-        )
+    #     log_embed.set_author(
+    #         name=f"{interaction.guild.name}",
+    #         icon_url=f"{interaction.guild.icon}"
+    #     )
 
-        log_embed.add_field(
-            name="Moderator",
-            value=f"{interaction.user.mention}, ``{interaction.user.id}``",
-            inline=False
-        )
+    #     log_embed.add_field(
+    #         name="Moderator",
+    #         value=f"{interaction.user.mention}, ``{interaction.user.id}``",
+    #         inline=False
+    #     )
 
-        log_embed.add_field(
-            name="Member Banned",
-            value=f"{member.mention}, ``{member.id}``",
-            inline=False
-        )           
+    #     log_embed.add_field(
+    #         name="Member Banned",
+    #         value=f"{member.mention}, ``{member.id}``",
+    #         inline=False
+    #     )           
 
-        log_embed.add_field(
-            name="Reason Of Ban",
-            value=f"``{reason}``",
-            inline=False
-        )           
+    #     log_embed.add_field(
+    #         name="Reason Of Ban",
+    #         value=f"``{reason}``",
+    #         inline=False
+    #     )           
         
-        log_embed.add_field(
-            name="Jump", 
-            value = f"[Go to message!]({success_message.jump_url})",
-            inline=False
-        )
+    #     log_embed.add_field(
+    #         name="Jump", 
+    #         value = f"[Go to message!]({success_message.jump_url})",
+    #         inline=False
+    #     )
 
-        if interaction.guild.id == 350068992045744141:
-            appeal_message = "You may appeal this ban here: https://goo.gl/forms/40zjxwBgD9RaV4Lh1."
-            log_channel = self.bot.get_channel(1028869177798295632)
-            await log_channel.send(embed=log_embed)
+    #     if interaction.guild.id == 350068992045744141:
+    #         appeal_message = "You may appeal this ban here: https://discord.gg/YkcvK7P2zt."
+    #         log_channel = self.bot.get_channel(1028869177798295632)
+    #         await log_channel.send(embed=log_embed)
 
-        try:
-            await member.send(
-                content=f"You have been banned from ``{interaction.guild.name}``. {appeal_message}",
-                embed=log_embed
-            )
-        except:
-            pass
+    #     try:
+    #         await member.send(
+    #             content=f"You have been banned from ``{interaction.guild.name}``. {appeal_message}",
+    #             embed=log_embed
+    #         )
+    #     except:
+    #         pass
 
-        member = discord.Object(id=member.id)
-        await interaction.guild.ban(user=member, reason=reason)
-        COIN_SERVER = self.bot.get_guild(676112926918049813)
-        await COIN_SERVER.ban(user=member, reason=reason)        
+    #     member = discord.Object(id=member.id)
+    #     await interaction.guild.ban(user=member, reason=reason)
+    #     COIN_SERVER = self.bot.get_guild(676112926918049813)
+    #     await COIN_SERVER.ban(user=member, reason=reason)        
 
-    @app_commands.checks.has_permissions(ban_members=True)
-    @app_commands.checks.cooldown(1, 5, key=lambda i: (i.guild_id))
-    @app_commands.command(
-        name="kick",
-        description="A Command that allows moderators to ban a member")
-    @app_commands.describe(member="specify which member to ban")
-    @app_commands.describe(reason="specify reason of ban")
-    @app_commands.rename(member="member")
-    @app_commands.rename(reason="reason")
-    async def kick_command(        
-        self,
-        interaction: discord.Interaction,
-        member: discord.User,
-        reason: str
-    ):
+    # @app_commands.checks.has_permissions(ban_members=True)
+    # @app_commands.checks.cooldown(1, 5, key=lambda i: (i.guild_id))
+    # @app_commands.command(
+    #     name="kick",
+    #     description="A Command that allows moderators to ban a member")
+    # @app_commands.describe(member="specify which member to ban")
+    # @app_commands.describe(reason="specify reason of ban")
+    # @app_commands.rename(member="member")
+    # @app_commands.rename(reason="reason")
+    # async def kick_command(        
+    #     self,
+    #     interaction: discord.Interaction,
+    #     member: discord.User,
+    #     reason: str
+    # ):
 
-        response_embed = discord.Embed(
-            description=f"✅ {member.display_name} has been kicked | {reason}", 
-            colour=0xff0000
-        )
+    #     response_embed = discord.Embed(
+    #         description=f"✅ {member.display_name} has been kicked | {reason}", 
+    #         colour=0xff0000
+    #     )
 
-        success_message = await interaction.channel.send(embed=response_embed)
-        appeal_message = ''
+    #     success_message = await interaction.channel.send(embed=response_embed)
+    #     appeal_message = ''
 
-        log_embed = discord.Embed(color=0x00ffff, timestamp=interaction.created_at)
+    #     log_embed = discord.Embed(color=0x00ffff, timestamp=interaction.created_at)
         
-        log_embed.set_author(
-            name=f"{interaction.guild.name}",
-            icon_url=f"{interaction.guild.icon}"
-        )
+    #     log_embed.set_author(
+    #         name=f"{interaction.guild.name}",
+    #         icon_url=f"{interaction.guild.icon}"
+    #     )
 
-        log_embed.add_field(
-            name="Moderator",
-            value=f"{interaction.user.mention}, ``{interaction.user.id}``",
-            inline=False
-        )
+    #     log_embed.add_field(
+    #         name="Moderator",
+    #         value=f"{interaction.user.mention}, ``{interaction.user.id}``",
+    #         inline=False
+    #     )
 
-        log_embed.add_field(
-            name="Member Kicked",
-            value=f"{member.mention}, ``{member.id}``",
-            inline=False
-        )           
+    #     log_embed.add_field(
+    #         name="Member Kicked",
+    #         value=f"{member.mention}, ``{member.id}``",
+    #         inline=False
+    #     )           
 
-        log_embed.add_field(
-            name="Reason Of Kick",
-            value=f"``{reason}``",
-            inline=False
-        )           
+    #     log_embed.add_field(
+    #         name="Reason Of Kick",
+    #         value=f"``{reason}``",
+    #         inline=False
+    #     )           
         
-        log_embed.add_field(
-            name="Jump", 
-            value = f"[Go to message!]({success_message.jump_url})",
-            inline=False
-        )
+    #     log_embed.add_field(
+    #         name="Jump", 
+    #         value = f"[Go to message!]({success_message.jump_url})",
+    #         inline=False
+    #     )
 
-        if interaction.guild.id == 350068992045744141:
-            appeal_message = "You may appeal this ban here: https://forms.gle/xDDCFNr9xUgKkzxX9."
-            log_channel = self.bot.get_channel(1028869177798295632)
-            await log_channel.send(embed=log_embed)
+    #     if interaction.guild.id == 350068992045744141:
+    #         appeal_message = "You may appeal this ban here: https://forms.gle/xDDCFNr9xUgKkzxX9."
+    #         log_channel = self.bot.get_channel(1028869177798295632)
+    #         await log_channel.send(embed=log_embed)
 
-        try:
-            await member.send(
-                content=f"You have been kicked from: ``{interaction.guild.name}``. {appeal_message}",
-                embed=log_embed
-            )
-        except:
-            pass
+    #     try:
+    #         await member.send(
+    #             content=f"You have been kicked from: ``{interaction.guild.name}``. {appeal_message}",
+    #             embed=log_embed
+    #         )
+    #     except:
+    #         pass
 
-        await interaction.guild.kick(user=member, reason=reason)       
+    #     await interaction.guild.kick(user=member, reason=reason)       
 
 
 async def setup(bot):

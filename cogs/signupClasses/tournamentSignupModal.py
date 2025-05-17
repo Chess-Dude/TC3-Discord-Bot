@@ -14,7 +14,7 @@ class TournamentSignupModal(discord.ui.Modal, title="Tournament Sign-up"):
     )
 
     available = discord.ui.TextInput(
-        label="Free during 2:00pm-4:00pm (EST)? (Y/N)",
+        label="Free during 3:30pm-5:00pm (EST)? (Y/N)",
         style=discord.TextStyle.short,
         placeholder="Yes/No Here...",
         required=True,

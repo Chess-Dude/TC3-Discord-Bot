@@ -187,7 +187,7 @@ class InformationEmbeds(commands.Cog):
     ):
         information_embed = discord.Embed(
             title=f"Clan Information",
-            description=f"This section will cover everything there is to know about Clans for The Conquerors 3.\n\nClans are a group of 4-10 people that compete competitively for rewards and leaderboard positions. These groups of people advance themselves up the leaderboards by earning clan/conquering points from submitting end of round bonuses via a command. There are 2 types of leaderboards weekly and yearly, clans will be rewarded based on weekly leaderboards.",
+            description=f"This section will cover everything there is to know about Clans for The Conquerors 3.\n\nClans are a group of 4-10 people that compete competitively for rewards and leaderboard positions. These groups of people advance themselves up the leaderboards by earning clan/conquering points from completing normal TC3 rounds.Clans will be rewarded based on weekly leaderboards positions.",
             color=0x00ffff
         )
 

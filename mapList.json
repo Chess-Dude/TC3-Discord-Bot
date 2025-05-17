@@ -849,6 +849,7 @@
     "Maze": {
         "gamemode": {
             "Conquest": [
+                "FFA2",
                 "3v3",
                 "4v4",
                 "2v2v2"

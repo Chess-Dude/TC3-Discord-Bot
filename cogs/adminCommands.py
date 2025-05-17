@@ -348,16 +348,6 @@ class AdminCommands(commands.Cog):
         
         await ctx.send(total_members)
 
-    @commands.is_owner()
-    @commands.command(aliases=["getChannels"])
-    async def get_channels(
-        self,
-        ctx,
-    ):
-        rd_server = self.bot.get_guild(1170851599485239437)
-        for channel in rd_server.channels:
-            await ctx.send(channel.name)
-
 
 async def setup(bot):
     await bot.add_cog(AdminCommands(bot))

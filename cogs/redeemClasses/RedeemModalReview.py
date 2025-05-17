@@ -158,7 +158,7 @@ class RedeemModalReview(discord.ui.View):
             user = interaction.guild.get_member(int(user_redeeming.replace("<@", "").replace(">", "")))
 
             rejection_embed = discord.Embed(
-                title=f"Your prize redeem was denied and closed by {interaction.user.mention}",
+                title=f"Your prize redeem was denied and closed by {interaction.user.name}",
                 color=0x00ffff
             )
 

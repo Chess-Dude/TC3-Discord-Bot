@@ -102,6 +102,80 @@ async def ram(ctx):
     await ctx.send(f"Current RAM usage: {memory_usage:.2f} MB")
 
 @bot.command()
+async def ping(ctx):
+    await ctx.send(f"{bot.latency*1000}")
+
+@bot.command()
+@commands.is_owner()
+async def check_connections(ctx):
+    async with bot.pool.acquire() as connection:
+        # Get active connections
+        sql_active = """
+        SELECT count(*) FROM pg_stat_activity;
+        """
+        active_connections = await connection.fetchval(sql_active)
+
+        # Get connection limit
+        sql_limit = """
+        SELECT setting::int FROM pg_settings WHERE name = 'max_connections';
+        """
+        max_connections = await connection.fetchval(sql_limit)
+
+    await ctx.send(f"🔌 **Active Connections:** {active_connections}\n📈 **Max Connections Allowed:** {max_connections}")
+
+@bot.command()
+@commands.is_owner()
+async def db_status(ctx):
+    """Fetch detailed database connection info."""
+    async with bot.pool.acquire() as connection:
+        # Count total active connections
+        sql_active = "SELECT count(*) FROM pg_stat_activity;"
+        active_connections = await connection.fetchval(sql_active)
+
+        # Count max connections allowed
+        sql_max = "SELECT setting::int FROM pg_settings WHERE name = 'max_connections';"
+        max_connections = await connection.fetchval(sql_max)
+
+        # Count connections used by the bot
+        sql_bot = """
+        SELECT count(*) FROM pg_stat_activity WHERE application_name = 'asyncpg';
+        """
+        bot_connections = await connection.fetchval(sql_bot)
+
+        # Count idle vs active connections
+        sql_idle = "SELECT count(*) FROM pg_stat_activity WHERE state = 'idle';"
+        idle_connections = await connection.fetchval(sql_idle)
+
+        sql_active_only = "SELECT count(*) FROM pg_stat_activity WHERE state != 'idle';"
+        active_only_connections = await connection.fetchval(sql_active_only)
+
+        # Get details on all connected applications
+        sql_apps = """
+        SELECT usename, application_name, state, query
+        FROM pg_stat_activity
+        WHERE application_name IS NOT NULL;
+        """
+        app_connections = await connection.fetch(sql_apps)
+
+    # Build the response message
+    embed = discord.Embed(title="📊 Database Connection Status", color=discord.Color.blue())
+    embed.add_field(name="🔌 Active Connections", value=str(active_connections), inline=True)
+    embed.add_field(name="📈 Max Allowed", value=str(max_connections), inline=True)
+    embed.add_field(name="🤖 Bot Connections", value=str(bot_connections), inline=True)
+    embed.add_field(name="🛑 Idle Connections", value=str(idle_connections), inline=True)
+    embed.add_field(name="🚀 Active Queries", value=str(active_only_connections), inline=True)
+
+    # Add connection details from other apps
+    if app_connections:
+        app_details = "\n".join(
+            [f"👤 `{r['usename']}` | 🏷 `{r['application_name']}` | 📌 `{r['state']}`" for r in app_connections]
+        )
+        embed.add_field(name="🔍 Other Applications Using DB", value=app_details[:1024], inline=False)
+
+    await ctx.send(embed=embed)
+
+
+@bot.command()
 @commands.is_owner()
 async def sync(ctx, guilds: Greedy[Object], spec: Optional[Literal["~", "*"]] = None):
     if not guilds:
@@ -178,7 +252,7 @@ async def report_user(
     log_channel = interaction.guild.get_channel(442447501325369345)
 
     log_embed = discord.Embed(
-        title=f"User Report: {message.author}", 
+        title=f"User Report: {message.author}",     
         description=f"{message.content}", 
         color=0x00ffff
         )        
@@ -274,7 +348,7 @@ async def print_clan_databases(ctx):
             print(row)
 
         # print("\n\n")
-        # sql = "SELECT * FROM ClanPointTracker"
+        # sql = "SELECT * FROM ClanPointTracker"  
         # result = await connection.fetch(sql)
         
         for row in result:

@@ -134,7 +134,7 @@ class MuteUtility:
 
         if self.interaction.guild.id == 350068992045744141:
             log_channel = self.interaction.guild.get_channel(1028869177798295632)
-            appeal_message = "You may appeal this mute here: https://goo.gl/forms/40zjxwBgD9RaV4Lh1"
+            appeal_message = "You may appeal this mute here: https://discord.gg/YkcvK7P2zt"
             self.log_embed_message = await log_channel.send(embed=log_embed)
             
         try:
