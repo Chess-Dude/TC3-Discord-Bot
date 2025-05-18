@@ -70,8 +70,8 @@ class TC3Bot(commands.Bot):
         
         # Load map data
         # Load map data once bot starts.
-        from cogs.randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUtilityMethods
-        MapSelectionUtilityMethods.load_map_data()
+        from cogs.randomMapSelectionClasses.mapSelectionUtilityMethods import update_load_map_data
+        update_load_map_data(force_update=True)
         print("Map data loaded successfully")
 
 bot = TC3Bot()
