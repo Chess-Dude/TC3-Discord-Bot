@@ -47,7 +47,6 @@ class AppCommandsMapSelection(commands.Cog):
                 real_mode = "FFA2"
                 
             maps = MapSelectionUtilityMethods.determine_map_list(game_mode=real_mode)
-            
             if not maps:
                 await interaction.response.send_message(f"No maps found for {game_mode_name} mode. Please select a different mode or contact an administrator.", ephemeral=True)
                 return

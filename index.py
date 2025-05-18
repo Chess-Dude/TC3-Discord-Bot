@@ -67,12 +67,6 @@ class TC3Bot(commands.Bot):
         self.add_view(BugReportTicketPanel())
         self.add_view(BugModalReview())
         print("views loaded successfully")
-        
-        # Load map data
-        # Load map data once bot starts.
-        from cogs.randomMapSelectionClasses.mapSelectionUtilityMethods import update_load_map_data
-        update_load_map_data(force_update=True)
-        print("Map data loaded successfully")
 
 bot = TC3Bot()
 bot.remove_command("help")

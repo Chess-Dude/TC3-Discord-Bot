@@ -6,7 +6,7 @@ import time
 class MapSelectionUtilityMethods():
     map_data = {}
     available_gamemodes = {'Conquest':'Conquest', 'Free_for_All':'Free For All', 'King_of_the_Hill':'King Of The Hill', 'Survival':'Survival'}
-    gamemodes = ['1v1','2v2','3v3','4v4','5v5','2v2v2','3v3v3', 'FFA3', 'FFA4', 'FFA6', 'Survival']
+    gamemodes = ['2v2','3v3','4v4','5v5','2v2v2','3v3v3', 'FFA2', 'FFA3', 'FFA4', 'FFA6', 'Survival']
     lowercase_game_modes = {}
     lowercase_map_names = {}
     all_map_names = []
@@ -81,8 +81,8 @@ class MapSelectionUtilityMethods():
                     image_url = thumbnail.get('data-src') or thumbnail.get('src')
                     MapSelectionUtilityMethods.map_data[map_name]['image'] = image_url
 
-                MapSelectionUtilityMethods.map_data[map_name]['map_size'] = extract_text_data(soup, 'size')
-                MapSelectionUtilityMethods.map_data[map_name]['max_income'] = extract_text_data(soup, 'max_eco')
+                MapSelectionUtilityMethods.map_data[map_name]['map_size'] = MapSelectionUtilityMethods.extract_text_data(soup, 'size')
+                MapSelectionUtilityMethods.map_data[map_name]['max_income'] = MapSelectionUtilityMethods.extract_text_data(soup, 'max_eco')
                 
             except Exception as e:
                 print(f"Error processing map {map_name}: {e}")
@@ -279,7 +279,7 @@ class MapSelectionUtilityMethods():
             interaction=interaction
         )
 
-def update_load_map_data(force_update=False):
+def update_load_map_data(force_update=True):
     old_count = len(MapSelectionUtilityMethods.map_data)
     
     if not force_update and MapSelectionUtilityMethods.load_map_data():
