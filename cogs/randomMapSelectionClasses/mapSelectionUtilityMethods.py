@@ -10,6 +10,20 @@ class MapSelectionUtilityMethods():
     lowercase_map_names = {}
     
     @staticmethod
+    def load_map_data():
+        """Loads map data from the JSON file"""
+        try:
+            with open('TC3-Discord-Bot/mapList.json', 'r') as json_file:
+                MapSelectionUtilityMethods.map_data = json.load(json_file)
+                MapSelectionUtilityMethods.lowercase_map_names = {map_name.lower(): map_name for map_name in MapSelectionUtilityMethods.map_data.keys()}
+                MapSelectionUtilityMethods.lowercase_game_modes = {gamemode.lower(): gamemode for gamemode in MapSelectionUtilityMethods.gamemodes}
+        except FileNotFoundError:
+            print("Map data file not found. Initializing with empty data.")
+            MapSelectionUtilityMethods.map_data = {}
+            MapSelectionUtilityMethods.lowercase_map_names = {}
+            MapSelectionUtilityMethods.lowercase_game_modes = {gamemode.lower(): gamemode for gamemode in MapSelectionUtilityMethods.gamemodes}
+
+    @staticmethod
     def get_map_data():
         """Scrapes map data from The Conquerors wiki"""
         MapSelectionUtilityMethods.map_data = {}
@@ -118,7 +132,7 @@ class MapSelectionUtilityMethods():
     @staticmethod
     def update_map_data():
         """Saves map data to a JSON file"""
-        with open('mapList.json', 'w') as json_file:
+        with open('TC3-Discord-Bot\mapList.json', 'w') as json_file:
             json.dump(MapSelectionUtilityMethods.map_data, json_file, indent=4, sort_keys=True)
 
     @staticmethod
@@ -193,7 +207,9 @@ class MapSelectionUtilityMethods():
         )
 
 def update_load_map_data():
+    old_count = len(MapSelectionUtilityMethods.map_data)
     MapSelectionUtilityMethods.get_map_data()
     MapSelectionUtilityMethods.update_map_data()
     MapSelectionUtilityMethods.lowercase_map_names = {map_name.lower(): map_name for map_name in MapSelectionUtilityMethods.map_data.keys()}
     MapSelectionUtilityMethods.lowercase_game_modes = {gamemode.lower(): gamemode for gamemode in MapSelectionUtilityMethods.gamemodes}
+    return len(MapSelectionUtilityMethods.map_data), old_count
