@@ -78,12 +78,9 @@ class AppCommandsMapSelection(commands.Cog):
         await interaction.response.defer(ephemeral=True)
         
         try:
-            old_count = len(MapSelectionUtilityMethods.map_data)
-            
             from .randomMapSelectionClasses.mapSelectionUtilityMethods import update_load_map_data
-            update_load_map_data()
+            new_count, old_count = update_load_map_data()
             
-            new_count = len(MapSelectionUtilityMethods.map_data)
             await interaction.followup.send(
                 f"✅ Map data updated successfully!\n"
                 f"Total maps: {new_count}\n"
