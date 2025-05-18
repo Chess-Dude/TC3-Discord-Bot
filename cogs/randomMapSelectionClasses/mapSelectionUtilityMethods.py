@@ -81,8 +81,8 @@ class MapSelectionUtilityMethods():
                     image_url = thumbnail.get('data-src') or thumbnail.get('src')
                     MapSelectionUtilityMethods.map_data[map_name]['image'] = image_url
 
-                MapSelectionUtilityMethods.map_data[map_name]['map_size'] = extract_text_data(soup, 'size')
-                MapSelectionUtilityMethods.map_data[map_name]['max_income'] = extract_text_data(soup, 'max_eco')
+                MapSelectionUtilityMethods.map_data[map_name]['map_size'] = MapSelectionUtilityMethods.extract_text_data(soup, 'size')
+                MapSelectionUtilityMethods.map_data[map_name]['max_income'] = MapSelectionUtilityMethods.extract_text_data(soup, 'max_eco')
                 
             except Exception as e:
                 print(f"Error processing map {map_name}: {e}")
