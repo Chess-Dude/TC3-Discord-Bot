@@ -2,6 +2,7 @@ import discord, json, random
 import time
 import requests
 from bs4 import BeautifulSoup
+from alive_progress import alive_bar
 
 def get_text_data(soup, search_text, child_index=3):
     try:
@@ -42,117 +43,141 @@ def get_map_data():
         map_name = href[index:]
         map_names.append(map_name)
 
-    text_fields = {
-        'map_size': 'size',
-        'date_created': 'data created',
-        'max_income': 'max eco',
-        'oil_spots': 'total oil spots',
-        'total_crystals': 'total crystals',
-        'chokepoints': 'chokepoints',
-        'symmetrical': 'symmetrical'
-    }
+    with alive_bar(len(maps)) as bar:
 
-    # Visit each map page
-    for map_name in map_names:
-        if map_name != 'Mars_4':
-            continue
-        response = requests.get(f"https://theconquerors.fandom.com/wiki/{map_name}")
-        
-        if response.status_code != 200:
-            print(f"Failed to load wiki page for Map Name: {map_name}")
-            continue
 
-        soup = BeautifulSoup(response.content, "html.parser")
-    
-        current_map = {
-            'gamemode': {},
-            'image': '',
-            'map_types': [],
-            'map_size': '',
-            'date_created': '',
-            'max_income': '',
-            'oil_spots': '',
-            'total_crystals': '',
-            'chokepoints': '',
-            'symmetrical': ''
+        text_fields = {
+            'map_size': 'size',
+            'date_created': 'data created',
+            'max_income': 'max eco',
+            'oil_spots': 'total oil spots',
+            'total_crystals': 'total crystals',
+            'chokepoints': 'chokepoints',
+            'symmetrical': 'symmetrical'
         }
 
-        # Get image
-        try:
-            image_data = soup.find_all('img')[1]
-            current_map['image'] = image_data.get('src', '')
-        except (IndexError, AttributeError):
-            current_map['image'] = ''
-
-        # Extract all text fields
-        for field_name, search_text in text_fields.items():
-            data = get_text_data(soup, search_text)
-
-            # fix formatting
-            if field_name in ['oil_spots', 'total_crystals']:
-                string = data.strip()
-                data = string[:2]
-
-            current_map[field_name] = data
-
-        # Get General section for map types
-        general_parent = soup.find(string=lambda text: text and "general" in text.lower()).parent.parent
-        map_types = get_category_links("Map Type", general_parent)
-
-        current_map['map_types'] = map_types
-
-        # Get gameplay section for gamemodes and alliances
-        try:
-            gameplay_parent = soup.find(string=lambda text: text and "gameplay" in text.lower()).parent.parent
+        # Visit each map page
+        for map_name in map_names:
+            bar.text = f'Scraping: {map_name}'
+            response = requests.get(f"https://theconquerors.fandom.com/wiki/{map_name}")
             
-            # gamemodes
-            gamemodes = get_category_links("gamemodes", gameplay_parent)
-            if 'Conquest' in gamemodes:
-                gamemodes.remove('Lightning Conquest')
-            if 'FFA' in gamemodes:
-                gamemodes.remove('Lightning FFA')
-                gamemodes[gamemodes.index('FFA')] = 'Free For All'
-            
+            if response.status_code != 200:
+                print(f"Failed to load wiki page for Map Name: {map_name}")
+                continue
 
-            # Convert from list to dict
-            gamemodes = {gamemode: [] for gamemode in gamemodes}
-            current_map['gamemode'] = gamemodes
-            
-            # alliances
-            current_map['alliances'] = get_category_links("alliance sizes", gameplay_parent)
-            
-        except AttributeError:
-            print(f"Could not find gameplay section for {map_name}")
+            soup = BeautifulSoup(response.content, "html.parser")
+        
+            current_map = {
+                'gamemode': {},
+                'image': '',
+                'map_types': [],
+                'map_size': '',
+                'date_created': '',
+                'max_income': '',
+                'oil_spots': '',
+                'total_crystals': '',
+                'chokepoints': '',
+                'symmetrical': ''
+            }
 
-        # Finicky magic to get the alliances into the gamemode structure. 
-        # Edge cases: 
-        #             - Survival #vAI
-        #             - Free build
-        #             - FFA2 (1v1)
-        alliances = current_map['alliances']
-        for alliance in alliances:
-            if alliance == 'FFA2':
-                current_map['gamemode']['Free For All'].append('1v1')
-            elif 'AI' in alliance: # Eg: 6vAI for Survival from wiki
-                current_map['gamemode']['Survival'].append(alliance)
-            else:
-                current_map['gamemode']['Conquest'].append(alliance)
+            # Get image
+            try:
+                image_data = soup.find_all('img')[2]
+                current_map['image'] = image_data.get('src', '')
+            except (IndexError, AttributeError):
+                current_map['image'] = ''
+
+            # Extract all text fields
+            for field_name, search_text in text_fields.items():
+                data = get_text_data(soup, search_text)
+
+                # fix formatting
+                if field_name in ['oil_spots', 'total_crystals']:
+                    string = data.strip()
+                    data = string[:2]
+
+                current_map[field_name] = data
+
+            # Get General section for map types
+            general_parent = soup.find(string=lambda text: text and "general" in text.lower()).parent.parent
+            map_types = get_category_links("Map Type", general_parent)
+
+            current_map['map_types'] = map_types
+
+            # Get gameplay section for gamemodes and alliances
+            try:
+                gameplay_parent = soup.find(string=lambda text: text and "gameplay" in text.lower()).parent.parent
+                
+                # gamemodes
+                gamemodes = get_category_links("gamemodes", gameplay_parent)
+                if 'Conquest' in gamemodes:
+                    gamemodes.remove('Lightning Conquest')
+                if 'FFA' in gamemodes:
+                    gamemodes.remove('Lightning FFA')
+                    gamemodes[gamemodes.index('FFA')] = 'Free For All'
+                # stupid wiki person named it 'KOTH' instead King Of The Hill
+                if 'KOTH' in gamemodes:
+                    gamemodes.remove('KOTH')
+                    gamemodes.append('King Of The Hill')
 
 
-        # Account for free build alliance size
-        if 'Free Build' in current_map['gamemode']:
-            # just find the highest gamemode and double it. If it has AI included it it, dont double it
-            alliances.sort()
-            alliance = alliances[0]
-            if 'AI' not in alliance:
-                highest = str(int(alliance[0])*2) # 4v4
-            else:
-                highest = alliance[0] # 8vAI   (for example)
-            current_map['gamemode']['Free Build'].append(f'FFA{highest}')
+                # Convert from list to dict
+                gamemodes = {gamemode: [] for gamemode in gamemodes}
+                current_map['gamemode'] = gamemodes
+                
+                # alliances
+                current_map['alliances'] = get_category_links("alliance sizes", gameplay_parent)
+                
+            except AttributeError:
+                print(f"Could not find gameplay section for {map_name}")
 
-        del current_map['alliances']
+            # Finicky magic to get the alliances into the gamemode structure. 
+            # Edge cases: 
+            #             - Survival #vAI
+            #             - Free build
+            #             - FFA2 (1v1)
+            alliances = current_map['alliances']
+            for alliance in alliances:
+                if alliance == 'FFA2':
+                    current_map['gamemode']['Free For All'].append('1v1')
+                elif 'AI' in alliance: # Eg: 6vAI for Survival from wiki
+                    current_map['gamemode']['Survival'].append(alliance)
+                elif 'FFA' in alliance:
+                    current_map['gamemode']['Free For All'].append(alliance)
+                elif 'KOTH' in alliance: # I hate you wiki person
+                    alliance = alliance.replace(' (KOTH)', '')
+                    current_map['gamemode']['King Of The Hill'].append(alliance)
+                else:
+                    # From what ive seen the Territory Conquest maps are seperate.
+                    try:
+                        if 'Territory Conquest' in current_map['gamemode']:
+                            current_map['gamemode']['Territory Conquest'].append(alliance)
+                        else:
+                            current_map['gamemode']['Conquest'].append(alliance)
+                    except Exception as e:
+                        print(e, current_map, alliance, map_name)
+                        exit()
 
-        map_data[map_name] = current_map
+
+
+            # Account for free build alliance size
+            if 'Free Build' in current_map['gamemode']:
+                # just find the highest gamemode and double it. If it has AI included it it, dont double it
+                alliances.sort()
+                highest = alliances[0]
+                if 'FFA' in highest:
+                    highest = highest[3]
+                elif 'AI' in highest:
+                    highest = alliance[0] # 8vAI
+                else:
+                    highest = str(int(highest[0])*2) # 4v4  (for example)
+                current_map['gamemode']['Free Build'].append(f'FFA{highest}')
+
+            del current_map['alliances']
+
+            map_data[map_name] = current_map
+            time.sleep(0.001)
+            bar()
     
     return map_data
 
@@ -189,7 +214,6 @@ class MapSelectionUtilityMethods():
         MapSelectionUtilityMethods.map_data = map_data
 
         t_f = time.time()
-        print(f'Web scraping took: {t_f-t_i} seconds.')
         print(f'Scanned: {len(MapSelectionUtilityMethods.map_data)} maps.')
         
 
@@ -291,3 +315,6 @@ def update_load_map_data(force_update=False):
     
     new_count = len(MapSelectionUtilityMethods.map_data)
     return new_count, old_count
+
+x = MapSelectionUtilityMethods()
+update_load_map_data(force_update=True)

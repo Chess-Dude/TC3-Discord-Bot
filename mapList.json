@@ -1,216 +1,450 @@
 {
-    "Another Cave Map": {
+    "Another_Cave_Map": {
+        "chokepoints": "Yes",
+        "date_created": "10/2024",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/31/Radar-Another-Cave.png/revision/latest/scale-to-width-down/268?cb=20250517101521",
         "map_size": "800x800",
-        "max_income": "$615"
+        "map_types": [
+            "Cave"
+        ],
+        "max_income": "$615",
+        "oil_spots": "12",
+        "symmetrical": "Yes",
+        "total_crystals": "27"
     },
     "Archipelago": {
+        "chokepoints": "Yes",
+        "date_created": "7/2020",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/43/RADAR_Archipelago.png/revision/latest/scale-to-width-down/268?cb=20230927205147",
         "map_size": "800x800",
-        "max_income": "$370"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$370",
+        "oil_spots": "4 ",
+        "symmetrical": "No",
+        "total_crystals": "18"
     },
-    "Arctic Canal Map": {
+    "Arctic_Canal_Map": {
+        "chokepoints": "Yes",
+        "date_created": "3/2022",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/34/RADAR_Artic_Canal_Map.png/revision/latest/scale-to-width-down/268?cb=20230927205252",
         "map_size": "800x800",
-        "max_income": "$600"
+        "map_types": [
+            "Winter"
+        ],
+        "max_income": "$600",
+        "oil_spots": "6 ",
+        "symmetrical": "Yes",
+        "total_crystals": "28"
     },
-    "Arctic Circle": {
+    "Arctic_Circle": {
+        "chokepoints": "No",
+        "date_created": "12/2017",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "2v2v2"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a3/RADAR_Artic_Circle.png/revision/latest/scale-to-width-down/268?cb=20230927205329",
         "map_size": "980x980",
-        "max_income": "$260"
+        "map_types": [
+            "Political",
+            "Winter"
+        ],
+        "max_income": "$260",
+        "oil_spots": "5 ",
+        "symmetrical": "No",
+        "total_crystals": "14"
     },
-    "Basalt Peninsula": {
+    "Basalt_Peninsula": {
+        "chokepoints": "Yes",
+        "date_created": "4/2018",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6a/RADAR_Basalt_Peninsula.png/revision/latest/scale-to-width-down/268?cb=20230927205350",
         "map_size": "800x800",
-        "max_income": "$330"
+        "map_types": [
+            "Magma"
+        ],
+        "max_income": "$330",
+        "oil_spots": "6 ",
+        "symmetrical": "Yes",
+        "total_crystals": "13"
     },
     "Beaches": {
+        "chokepoints": "No",
+        "date_created": "11/2016",
         "gamemode": {
             "Survival": [
-                "Survival"
+                "6vAI"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/63/RADAR_Beaches.png/revision/latest/scale-to-width-down/268?cb=20230927205408",
         "map_size": "800x800",
-        "max_income": "$235"
+        "map_types": [],
+        "max_income": "$235",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "13"
     },
-    "Brazil Vs Argentina": {
+    "Brazil_Vs_Argentina": {
+        "chokepoints": "Yes",
+        "date_created": "5/2024",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e8/Radar-Brazil-Vs-Argentina.png/revision/latest/scale-to-width-down/268?cb=20250517101612",
         "map_size": "800x800",
-        "max_income": "$440"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$440",
+        "oil_spots": "8 ",
+        "symmetrical": "Yes",
+        "total_crystals": "24"
     },
-    "British Isles": {
+    "British_Isles": {
+        "chokepoints": "No",
+        "date_created": "3/2022",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/ff/RADAR_British_Isles.png/revision/latest/scale-to-width-down/268?cb=20230927205655",
         "map_size": "900x900",
-        "max_income": "$365"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$365",
+        "oil_spots": "8 ",
+        "symmetrical": "Almost",
+        "total_crystals": "13"
     },
-    "Canada v2": {
+    "Canada_v2": {
+        "chokepoints": "Yes",
+        "date_created": "3/2023",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9e/RADAR_Canada_v2.png/revision/latest/scale-to-width-down/268?cb=20230927205707",
         "map_size": "900x900",
-        "max_income": "$410"
+        "map_types": [
+            "Grass",
+            "Political",
+            "Winter"
+        ],
+        "max_income": "$410",
+        "oil_spots": "5 ",
+        "symmetrical": "Almost",
+        "total_crystals": "18"
     },
     "Candyland": {
+        "chokepoints": "No",
+        "date_created": "10/2024",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/84/Radar-Candyland.png/revision/latest/scale-to-width-down/268?cb=20250517101903",
         "map_size": "800x800",
-        "max_income": "$435"
+        "map_types": [
+            "Misc"
+        ],
+        "max_income": "$435",
+        "oil_spots": "6 ",
+        "symmetrical": "Almost",
+        "total_crystals": "21"
     },
-    "Cave Map": {
+    "Cave_Map": {
+        "chokepoints": "No",
+        "date_created": "3/2016",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "2v2v2"
-            ]
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
+            ],
+            "King Of The Hill": []
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/17/RADAR_Cave_map.png/revision/latest/scale-to-width-down/268?cb=20230927205718",
         "map_size": "766x766",
-        "max_income": "$240"
+        "map_types": [
+            "Cave"
+        ],
+        "max_income": "$240",
+        "oil_spots": "3 ",
+        "symmetrical": "Almost",
+        "total_crystals": "14"
     },
     "Cavern": {
+        "chokepoints": "Yes",
+        "date_created": "2/2021",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/bb/RADAR_Cavern.png/revision/latest/scale-to-width-down/268?cb=20230927205832",
         "map_size": "800x800",
-        "max_income": "$360"
+        "map_types": [
+            "Cave"
+        ],
+        "max_income": "$360",
+        "oil_spots": "6 ",
+        "symmetrical": "Yes",
+        "total_crystals": "20"
     },
     "China": {
+        "chokepoints": "Yes",
+        "date_created": "7/2023",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/19/RADAR_China.png/revision/latest/scale-to-width-down/268?cb=20230927210207",
         "map_size": "800x800",
-        "max_income": "$420"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$420",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "22"
     },
-    "City 3": {
+    "City_3": {
+        "chokepoints": "No",
+        "date_created": "6/2016",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "2v2v2"
             ],
+            "Free Build": [
+                "FFA4"
+            ],
             "Free For All": [
+                "1v1",
                 "FFA3"
-            ]
+            ],
+            "King Of The Hill": []
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/33/RADAR_City_3.png/revision/latest/scale-to-width-down/268?cb=20230927210311",
         "map_size": "600x600",
-        "max_income": "$315"
+        "map_types": [
+            "Grass",
+            "City"
+        ],
+        "max_income": "$315",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "21"
     },
-    "City Vs Nature": {
+    "City_Vs_Nature": {
+        "chokepoints": "No",
+        "date_created": "3/2016",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/ce/RADAR_City_vs._Nature.png/revision/latest/scale-to-width-down/268?cb=20230927210337",
         "map_size": "600x600",
-        "max_income": "$230"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$230",
+        "oil_spots": "2 ",
+        "symmetrical": "Almost",
+        "total_crystals": "14"
     },
     "Continent": {
+        "chokepoints": "No",
+        "date_created": "7/2016",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "2v2v2"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/d1/RADAR_Continent.png/revision/latest/scale-to-width-down/268?cb=20230927210343",
         "map_size": "680x680",
-        "max_income": "$280"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$280",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "16"
     },
     "Corners": {
+        "chokepoints": "Yes",
+        "date_created": "7/2016",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "2v2v2"
-            ]
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "King Of The Hill": []
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/5a/RADAR_Corners.png/revision/latest/scale-to-width-down/268?cb=20230927210348",
         "map_size": "600x600",
-        "max_income": "$210"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$210",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "14"
     },
-    "Dalarna Island": {
+    "Dalarna_Island": {
+        "chokepoints": "Yes",
+        "date_created": "9/2021",
         "gamemode": {
             "Conquest": [
                 "2v2v2",
                 "3v3v3"
+            ],
+            "Free Build": [
+                "FFA4"
             ],
             "Free For All": [
                 "FFA3"
@@ -218,362 +452,781 @@
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8e/RADAR_Dalarna_Island.png/revision/latest/scale-to-width-down/268?cb=20230927210353",
         "map_size": "800x800",
-        "max_income": "$390"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$390",
+        "oil_spots": "3 ",
+        "symmetrical": "Yes",
+        "total_crystals": "18"
     },
     "Desert": {
+        "chokepoints": "No",
+        "date_created": "11/2016",
         "gamemode": {
             "Survival": [
-                "Survival"
+                "6vAI"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/65/RADAR_Desert.png/revision/latest/scale-to-width-down/268?cb=20230927210359",
         "map_size": "800x800",
-        "max_income": "$180"
+        "map_types": [
+            "Desert"
+        ],
+        "max_income": "$180",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "12"
     },
-    "Desert Vs Grass": {
+    "Desert_Vs_Grass": {
+        "chokepoints": "Yes",
+        "date_created": "10/2017",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a9/RADAR_Desert_vs._Grass.png/revision/latest/scale-to-width-down/268?cb=20230927210405",
         "map_size": "800x800",
-        "max_income": "$480"
+        "map_types": [
+            "Multi-Seasonal"
+        ],
+        "max_income": "$480",
+        "oil_spots": "6 ",
+        "symmetrical": "Yes",
+        "total_crystals": "20"
     },
-    "Desert Vs Grass 2": {
+    "Desert_Vs_Grass_2": {
+        "chokepoints": "Yes",
+        "date_created": "11/2017",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/10/RADAR_Desert_vs._Grass_2.png/revision/latest/scale-to-width-down/268?cb=20230927210410",
         "map_size": "780x780",
-        "max_income": "$400"
+        "map_types": [
+            "Multi-Seasonal"
+        ],
+        "max_income": "$400",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "17"
     },
-    "Desert Vs Grass 3": {
+    "Desert_Vs_Grass_3": {
+        "chokepoints": "No",
+        "date_created": "12/2018",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/df/RADAR_Desert_vs._Grass_3.png/revision/latest/scale-to-width-down/268?cb=20230927210417",
         "map_size": "800x800",
-        "max_income": "$370"
+        "map_types": [
+            "Multi-Seasonal"
+        ],
+        "max_income": "$370",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "16"
     },
-    "Desert Vs Grass 4": {
+    "Desert_Vs_Grass_4": {
+        "chokepoints": "No",
+        "date_created": "11/2020",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA6"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/62/RADAR_Desert_vs._Grass_4.png/revision/latest/scale-to-width-down/268?cb=20230927210423",
         "map_size": "760x760",
-        "max_income": "$340"
+        "map_types": [
+            "Multi-Seasonal"
+        ],
+        "max_income": "$340",
+        "oil_spots": "4 ",
+        "symmetrical": "Almost",
+        "total_crystals": "12"
     },
-    "Desert Vs Grass 6": {
+    "Desert_Vs_Grass_6": {
+        "chokepoints": "No",
+        "date_created": "5/2022",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/7b/RADAR_Desert_vs._Grass_6.png/revision/latest/scale-to-width-down/268?cb=20230927210428",
         "map_size": "800x800",
-        "max_income": "$460"
+        "map_types": [
+            "Multi-Seasonal"
+        ],
+        "max_income": "$460",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "22"
     },
-    "Desert Vs Grass 7": {
+    "Desert_Vs_Grass_7": {
+        "chokepoints": "No",
+        "date_created": "3/2024",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c1/RADAR_Desert_vs._Grass_7.png/revision/latest/scale-to-width-down/268?cb=20240324193728",
         "map_size": "800x800",
-        "max_income": "$600"
+        "map_types": [
+            "Multi-Seasonal"
+        ],
+        "max_income": "$600",
+        "oil_spots": "6 ",
+        "symmetrical": "Yes",
+        "total_crystals": "28"
     },
-    "Desert Vs Grass Spiral": {
+    "Desert_Vs_Grass_Spiral": {
+        "chokepoints": "No",
+        "date_created": "9/2021",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/3c/RADAR_Desert_vs._Grass_Spiral.png/revision/latest/scale-to-width-down/268?cb=20230927210432",
         "map_size": "800x800",
-        "max_income": "$430"
+        "map_types": [
+            "Multi-Seasonal"
+        ],
+        "max_income": "$430",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "18"
     },
-    "Divided Metropolis": {
+    "Divided_Metropolis": {
+        "chokepoints": "Yes",
+        "date_created": "3/2016",
         "gamemode": {
             "Conquest": [
                 "2v2v2",
                 "3v3v3"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/03/RADAR_Divided_Metropolis.png/revision/latest/scale-to-width-down/268?cb=20230927210614",
         "map_size": "600x600",
-        "max_income": "$235"
+        "map_types": [
+            "City"
+        ],
+        "max_income": "$235",
+        "oil_spots": "1",
+        "symmetrical": "Yes",
+        "total_crystals": "15"
     },
-    "Double Mansion": {
+    "Double_Mansion": {
+        "chokepoints": "Yes",
+        "date_created": "5/2019",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA6"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/3f/RADAR_Double_Mansion.png/revision/latest/scale-to-width-down/268?cb=20230927210619",
         "map_size": "600x600",
-        "max_income": "$270"
+        "map_types": [
+            "Indoors"
+        ],
+        "max_income": "$270",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "16"
     },
-    "Double Mansion Survival": {
+    "Double_Mansion_Survival": {
+        "chokepoints": "Yes",
+        "date_created": "5/2019",
         "gamemode": {
             "Survival": [
-                "Survival"
+                "6vAI"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/cc/RADAR_Double_Mansion_Survival.png/revision/latest/scale-to-width-down/268?cb=20230927210633",
         "map_size": "600x600",
-        "max_income": "$210"
+        "map_types": [
+            "Indoors"
+        ],
+        "max_income": "$210",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "12"
     },
-    "Egyptian Expedition": {
+    "Egyptian_Expedition": {
+        "chokepoints": "Yes",
+        "date_created": "10/2021",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/92/RADAR_Egyptian_Expedition.png/revision/latest/scale-to-width-down/268?cb=20230927210639",
         "map_size": "800x800",
-        "max_income": "$450"
+        "map_types": [
+            "Desert"
+        ],
+        "max_income": "$450",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "22"
     },
     "Enceladus": {
+        "chokepoints": "No",
+        "date_created": "10/2021",
         "gamemode": {
+            "Free Build": [
+                "FFA3"
+            ],
             "Free For All": [
                 "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/1d/RADAR_Enceladus.png/revision/latest/scale-to-width-down/268?cb=20230927210645",
         "map_size": "800x800",
-        "max_income": "$360"
+        "map_types": [
+            "Misc"
+        ],
+        "max_income": "$360",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "18"
     },
     "Europe": {
+        "chokepoints": "Yes",
+        "date_created": "9/2018",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/4e/RADAR_Europe.png/revision/latest/scale-to-width-down/268?cb=20230927210651",
         "map_size": "850x850",
-        "max_income": "$400"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$400",
+        "oil_spots": "7 ",
+        "symmetrical": "No",
+        "total_crystals": "18"
     },
-    "Europe 3": {
+    "Europe_3": {
+        "chokepoints": "Yes",
+        "date_created": "2/2024",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/3f/RADAR_Europe_3.png/revision/latest/scale-to-width-down/268?cb=20240203183440",
         "map_size": "800x800",
-        "max_income": "$615"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$615",
+        "oil_spots": "12",
+        "symmetrical": "Almost",
+        "total_crystals": "31"
     },
     "Fantasy": {
+        "chokepoints": "Yes",
+        "date_created": "7/2017",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/f9/RADAR_Fantasy.png/revision/latest/scale-to-width-down/268?cb=20230927210656",
         "map_size": "800x800",
-        "max_income": "$300"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$300",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "16"
     },
-    "Fantasy 2": {
+    "Fantasy_2": {
+        "chokepoints": "Yes",
+        "date_created": "10/2017",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/ea/RADAR_Fantasy_2.png/revision/latest/scale-to-width-down/268?cb=20230927210702",
-        "map_size": "820x820",
-        "max_income": "$250"
+        "map_size": "Fantasy 2 | The Conquerors Wiki | Fandom",
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$250",
+        "oil_spots": "4 ",
+        "symmetrical": "Almost",
+        "total_crystals": "14"
     },
-    "Fantasy Survival": {
+    "Fantasy_Survival": {
+        "chokepoints": "No",
+        "date_created": "11/2017",
         "gamemode": {
+            "King Of The Hill": [
+                "2v2v2"
+            ],
             "Survival": [
-                "Survival"
+                "6vAI"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/7c/RADAR_Fantasy_Survival.png/revision/latest/scale-to-width-down/268?cb=20230927210708",
         "map_size": "800x800",
-        "max_income": "$210"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$210",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "14"
     },
     "Fantaziya": {
+        "chokepoints": "Yes",
+        "date_created": "3/2024",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/db/RADAR_Fantaziya.png/revision/latest/scale-to-width-down/268?cb=20240324193736",
         "map_size": "800x800",
-        "max_income": "$410"
+        "map_types": [
+            "Grass",
+            "Multi-Seasonal"
+        ],
+        "max_income": "$410",
+        "oil_spots": "8 ",
+        "symmetrical": "Yes",
+        "total_crystals": "22"
     },
     "France": {
+        "chokepoints": "Yes",
+        "date_created": "6/2018",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/10/RADAR_France.png/revision/latest/scale-to-width-down/268?cb=20230927210715",
         "map_size": "900x900",
-        "max_income": "$355"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$355",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "13"
     },
-    "Frosty Gear": {
+    "Frosty_Gear": {
+        "chokepoints": "Yes",
+        "date_created": "8/2018",
         "gamemode": {
+            "Free Build": [
+                "FFA6"
+            ],
             "Free For All": [
                 "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/05/RADAR_Frosty_Gear.png/revision/latest/scale-to-width-down/268?cb=20230927210721",
         "map_size": "800x800",
-        "max_income": "$390"
+        "map_types": [
+            "Winter"
+        ],
+        "max_income": "$390",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "20"
     },
-    "Frozen River": {
+    "Frozen_River": {
+        "chokepoints": "No",
+        "date_created": "9/2017",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/be/RADAR_Frozen_River.png/revision/latest/scale-to-width-down/268?cb=20230927210726",
         "map_size": "650x650",
-        "max_income": "$300"
+        "map_types": [
+            "Winter"
+        ],
+        "max_income": "$300",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "20"
     },
-    "Gem Mine": {
+    "Gem_Mine": {
+        "chokepoints": "Yes",
+        "date_created": "8/2019",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA6"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a0/RADAR_Gem_Mine.png/revision/latest/scale-to-width-down/268?cb=20230927210733",
         "map_size": "800x800",
-        "max_income": "$480"
+        "map_types": [
+            "Cave"
+        ],
+        "max_income": "$480",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "24"
     },
-    "Germany Map": {
+    "Germany_Map": {
+        "chokepoints": "Yes",
+        "date_created": "6/2018",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/b6/RADAR_Germany_Map.png/revision/latest/scale-to-width-down/268?cb=20230927210746",
         "map_size": "900x900",
-        "max_income": "$340"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$340",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "(6"
     },
-    "Germany Vs France": {
+    "Germany_Vs_France": {
+        "chokepoints": "Yes",
+        "date_created": "6/2018",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA6"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/95/RADAR_Germany_vs_France.png/revision/latest/scale-to-width-down/268?cb=20230927210906",
         "map_size": "1000x1000",
-        "max_income": "$350"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$350",
+        "oil_spots": "5 ",
+        "symmetrical": "Almost",
+        "total_crystals": "13"
     },
-    "Golf Course": {
+    "Golf_Course": {
+        "chokepoints": "Yes",
+        "date_created": "11/2018",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/89/RADAR_Golf_Course.png/revision/latest/scale-to-width-down/268?cb=20230927210911",
         "map_size": "800x800",
-        "max_income": "$350"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$350",
+        "oil_spots": "2 ",
+        "symmetrical": "Yes",
+        "total_crystals": "18"
     },
-    "Golf Course 2": {
+    "Golf_Course_2": {
+        "chokepoints": "Yes",
+        "date_created": "1/2021",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA6"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9c/RADAR_Golf_Course_2.png/revision/latest/scale-to-width-down/268?cb=20230927210916",
         "map_size": "800x800",
-        "max_income": "$390"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$390",
+        "oil_spots": "3 ",
+        "symmetrical": "Almost",
+        "total_crystals": "18"
     },
-    "Grass Cliff": {
+    "Grass_Cliff": {
+        "chokepoints": "No",
+        "date_created": "11/2016",
         "gamemode": {
             "Conquest": [
                 "2v2v2",
                 "3v3v3"
             ],
+            "Free Build": [
+                "FFA4"
+            ],
             "Survival": [
-                "Survival"
+                "6vAI"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/94/RADAR_Grass_Cliff.png/revision/latest/scale-to-width-down/268?cb=20230927210921",
         "map_size": "800x800",
-        "max_income": "$180"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$180",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "12"
     },
-    "Gulf of America": {
+    "Gulf_of_America": {
+        "chokepoints": "Yes",
+        "date_created": "8/2023",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/74/RADAR_Gulf_of_Mexico.png/revision/latest/scale-to-width-down/268?cb=20230927210926",
         "map_size": "900x900",
-        "max_income": "$635"
+        "map_types": [
+            "Misc"
+        ],
+        "max_income": "$635",
+        "oil_spots": "8 ",
+        "symmetrical": "Almost",
+        "total_crystals": "31"
     },
-    "Halloween FFA Map": {
+    "Halloween2023Map": {
+        "chokepoints": "Yes",
+        "date_created": "10/2023",
+        "gamemode": {
+            "Conquest": [
+                "2v2",
+                "3v3",
+                "4v4",
+                "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
+            ]
+        },
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/39/RADAR_Halloween2023Map.png/revision/latest/scale-to-width-down/268?cb=20231021180400",
+        "map_size": "800x800",
+        "map_types": [
+            "Misc"
+        ],
+        "max_income": "$210",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "14"
+    },
+    "Halloween_FFA_Map": {
+        "chokepoints": "No",
+        "date_created": "10/2023",
         "gamemode": {
             "Conquest": [
                 "2v2v2",
                 "3v3v3"
+            ],
+            "Free Build": [
+                "FFA4"
             ],
             "Free For All": [
                 "FFA6"
@@ -581,227 +1234,453 @@
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/2/25/RADAR_Halloween_FFA_Map.png/revision/latest/scale-to-width-down/268?cb=20231021180432",
         "map_size": "800x800",
-        "max_income": "$360"
+        "map_types": [
+            "Misc"
+        ],
+        "max_income": "$360",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "24"
     },
-    "Halloween2023Map": {
-        "gamemode": {
-            "Conquest": [
-                "2v2",
-                "3v3",
-                "4v4",
-                "5v5"
-            ]
-        },
-        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/39/RADAR_Halloween2023Map.png/revision/latest/scale-to-width-down/268?cb=20231021180400",
-        "map_size": "800x800",
-        "max_income": "$210"
-    },
-    "Ice Catalyst": {
+    "Ice_Catalyst": {
+        "chokepoints": "No",
+        "date_created": "3/2022",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/dc/RADAR_Ice_Catalyst.png/revision/latest/scale-to-width-down/268?cb=20230927210931",
         "map_size": "800x800",
-        "max_income": "$460"
+        "map_types": [
+            "Winter"
+        ],
+        "max_income": "$460",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "22"
     },
-    "Igneous Islands": {
+    "Igneous_Islands": {
+        "chokepoints": "Yes",
+        "date_created": "3/2018",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/45/RADAR_Igneous_Islands.png/revision/latest/scale-to-width-down/268?cb=20230927210937",
         "map_size": "800x800",
-        "max_income": "$250"
+        "map_types": [
+            "Magma"
+        ],
+        "max_income": "$250",
+        "oil_spots": "4 ",
+        "symmetrical": "Almost",
+        "total_crystals": "13"
     },
     "Italy": {
+        "chokepoints": "No",
+        "date_created": "4/2023",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/2/21/RADAR_Italy.png/revision/latest/scale-to-width-down/268?cb=20230927210942",
         "map_size": "900x900",
-        "max_income": "$385"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$385",
+        "oil_spots": "7 ",
+        "symmetrical": "Almost",
+        "total_crystals": "17"
     },
     "Korea": {
+        "chokepoints": "No",
+        "date_created": "8/2019",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/71/RADAR_Korea.png/revision/latest/scale-to-width-down/268?cb=20230927210947",
         "map_size": "850x850",
-        "max_income": "$350"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$350",
+        "oil_spots": "8 ",
+        "symmetrical": "No",
+        "total_crystals": "14"
     },
-    "Lake City Map": {
+    "Lake_City_Map": {
+        "chokepoints": "No",
+        "date_created": "11/2017",
         "gamemode": {
             "Conquest": [
                 "3v3"
+            ],
+            "Free Build": [
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/72/RADAR_Lake_City_Map.png/revision/latest/scale-to-width-down/268?cb=20230927210951",
         "map_size": "780x780",
-        "max_income": "$380"
+        "map_types": [
+            "City"
+        ],
+        "max_income": "$380",
+        "oil_spots": "2 ",
+        "symmetrical": "Yes",
+        "total_crystals": "24"
     },
     "Lakebed": {
+        "chokepoints": "No",
+        "date_created": "12/2017",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/ce/RADAR_Lakebed.png/revision/latest/scale-to-width-down/268?cb=20230927210957",
         "map_size": "780x780",
-        "max_income": "$300"
+        "map_types": [
+            "Desert"
+        ],
+        "max_income": "$300",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "14"
     },
     "Lasers": {
+        "chokepoints": "Yes",
+        "date_created": "9/2018",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6b/RADAR_Lasers.png/revision/latest/scale-to-width-down/268?cb=20230927211002",
         "map_size": "800x800",
-        "max_income": "$330"
+        "map_types": [
+            "Misc"
+        ],
+        "max_income": "$330",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "16"
     },
-    "Last Red City": {
+    "Last_Red_City": {
+        "chokepoints": "Yes",
+        "date_created": "9/2021",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/53/RADAR_Last_Red_City.png/revision/latest/scale-to-width-down/268?cb=20230927211007",
         "map_size": "800x800",
-        "max_income": "$315"
+        "map_types": [
+            "City",
+            "Misc"
+        ],
+        "max_income": "$315",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "15"
     },
-    "Long Islands": {
+    "Long_Islands": {
+        "chokepoints": "No",
+        "date_created": "4/2016",
         "gamemode": {
             "Conquest": [
                 "3v3"
+            ],
+            "Free Build": [
+                "FFA6"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/af/RADAR_Long_Islands.png/revision/latest/scale-to-width-down/268?cb=20230927211011",
         "map_size": "610x610",
-        "max_income": "$260"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$260",
+        "oil_spots": "2 ",
+        "symmetrical": "Yes",
+        "total_crystals": "16"
     },
-    "Lunar Spiral": {
+    "Lunar_Spiral": {
+        "chokepoints": "No",
+        "date_created": "10/2017",
         "gamemode": {
             "Survival": [
-                "Survival"
+                "6vAI"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c2/RADAR_Lunar_Spiral.png/revision/latest/scale-to-width-down/268?cb=20230927211016",
         "map_size": "800x800",
-        "max_income": "$225"
+        "map_types": [
+            "Moon"
+        ],
+        "max_income": "$225",
+        "oil_spots": "0",
+        "symmetrical": "No",
+        "total_crystals": "15"
     },
-    "Magma Pools": {
+    "Magma_Pools": {
+        "chokepoints": "No",
+        "date_created": "8/2018",
         "gamemode": {
+            "Free Build": [
+                "FFA6"
+            ],
             "Free For All": [
                 "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/88/RADAR_Magma_Pools.png/revision/latest/scale-to-width-down/268?cb=20230927211021",
         "map_size": "800x800",
-        "max_income": "$360"
+        "map_types": [
+            "Magma"
+        ],
+        "max_income": "$360",
+        "oil_spots": "0",
+        "symmetrical": "No",
+        "total_crystals": "18"
     },
     "Mainland": {
+        "chokepoints": "No",
+        "date_created": "4/2019",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/79/RADAR_Mainland.png/revision/latest/scale-to-width-down/268?cb=20230927211025",
         "map_size": "800x800",
-        "max_income": "$380"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$380",
+        "oil_spots": "5 ",
+        "symmetrical": "No",
+        "total_crystals": "18"
     },
     "Mansion": {
+        "chokepoints": "Yes",
+        "date_created": "7/2012",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4",
                 "2v2v2"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/dc/RADAR_Mansion.png/revision/latest/scale-to-width-down/268?cb=20230927211032",
         "map_size": "470x470",
-        "max_income": "$150"
+        "map_types": [
+            "Indoors",
+            "Old School"
+        ],
+        "max_income": "$150",
+        "oil_spots": "0",
+        "symmetrical": "No",
+        "total_crystals": "10"
     },
-    "Mansion Flooded": {
+    "Mansion_Flooded": {
+        "chokepoints": "Yes",
+        "date_created": "4/2020",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/52/RADAR_Mansion_Flooded.png/revision/latest/scale-to-width-down/268?cb=20230927211038",
         "map_size": "700x700",
-        "max_income": "$225"
+        "map_types": [
+            "Indoors"
+        ],
+        "max_income": "$225",
+        "oil_spots": "6 ",
+        "symmetrical": "Almost",
+        "total_crystals": "9 "
     },
     "Mars": {
-        "gamemode": {},
+        "chokepoints": "No",
+        "date_created": "9/2021",
+        "gamemode": {
+            "Conquest": [],
+            "Free Build": [
+                "FFA2"
+            ],
+            "Free For All": [
+                "1v1"
+            ]
+        },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/48/RADAR_Mars.png/revision/latest/scale-to-width-down/268?cb=20230927211043",
         "map_size": "500x500",
-        "max_income": "$270"
+        "map_types": [
+            "Mars"
+        ],
+        "max_income": "$270",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "12"
     },
-    "Mars 4": {
+    "Mars_4": {
+        "chokepoints": "No",
+        "date_created": "5/2017",
         "gamemode": {
             "Conquest": [
                 "4v4"
             ],
+            "Free Build": [
+                "FFA8"
+            ],
             "Survival": [
-                "Survival"
+                "6vAI"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/6e/RADAR_Mars_4.png/revision/latest/scale-to-width-down/268?cb=20230927211047",
         "map_size": "800x800",
-        "max_income": "$210"
+        "map_types": [
+            "Mars"
+        ],
+        "max_income": "$210",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "14"
     },
-    "Mars Canyons": {
+    "Mars_Canyons": {
+        "chokepoints": "No",
+        "date_created": "5/2020",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/7f/RADAR_Mars_Canyons.png/revision/latest/scale-to-width-down/268?cb=20230927211051",
         "map_size": "800x800",
-        "max_income": "$270"
+        "map_types": [
+            "Mars"
+        ],
+        "max_income": "$270",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "13"
     },
-    "Mars Mole": {
+    "Mars_Mole": {
+        "chokepoints": "Yes",
+        "date_created": "Not found",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "2v2v2",
                 "3v3v3"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/1f/RADAR_Mars_Mole.png/revision/latest/scale-to-width-down/268?cb=20230927211055",
         "map_size": "600x600",
-        "max_income": "$240"
+        "map_types": [
+            "Mars"
+        ],
+        "max_income": "$240",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "16"
     },
-    "Mars Tunnels": {
+    "Mars_Tunnels": {
+        "chokepoints": "Yes",
+        "date_created": "5/2020",
         "gamemode": {
             "Conquest": [
                 "3v3"
+            ],
+            "Free Build": [
+                "FFA6"
             ],
             "Free For All": [
                 "FFA6"
@@ -809,154 +1688,330 @@
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/ea/RADAR_Mars_Tunnels.png/revision/latest/scale-to-width-down/268?cb=20230927211059",
         "map_size": "800x800",
-        "max_income": "$510"
+        "map_types": [
+            "Mars"
+        ],
+        "max_income": "$510",
+        "oil_spots": "0",
+        "symmetrical": "No",
+        "total_crystals": "26"
     },
     "Maze": {
+        "chokepoints": "No",
+        "date_created": "7/2017",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4",
                 "2v2v2"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/d0/RADAR_Maze.png/revision/latest/scale-to-width-down/268?cb=20230927211655",
         "map_size": "800x800",
-        "max_income": "$360"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$360",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "16"
     },
-    "Medieval Grounds": {
+    "Medieval_Grounds": {
+        "chokepoints": "No",
+        "date_created": "9/2021",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/1c/RADAR_Medieval_Grounds.png/revision/latest/scale-to-width-down/268?cb=20230927211700",
         "map_size": "500x500",
-        "max_income": "$270"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$270",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "14"
     },
     "Mediterranean": {
+        "chokepoints": "No",
+        "date_created": "1/2019",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/86/RADAR_Mediterranean.png/revision/latest/scale-to-width-down/268?cb=20230927211704",
         "map_size": "1400x700",
-        "max_income": "$490"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$490",
+        "oil_spots": "7 ",
+        "symmetrical": "Almost",
+        "total_crystals": "22"
     },
     "Mesa": {
+        "chokepoints": "No",
+        "date_created": "11/2018",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/71/RADAR_Mesa.png/revision/latest/scale-to-width-down/268?cb=20230927211708",
         "map_size": "800x800",
-        "max_income": "$400"
+        "map_types": [
+            "Misc"
+        ],
+        "max_income": "$400",
+        "oil_spots": "4 ",
+        "symmetrical": "Almost",
+        "total_crystals": "18"
     },
     "Mexico": {
+        "chokepoints": "Yes",
+        "date_created": "3/2019",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/b9/RADAR_Mexico.png/revision/latest/scale-to-width-down/268?cb=20230927211713",
         "map_size": "900x900",
-        "max_income": "$295"
+        "map_types": [
+            "Political",
+            "Multi-Seasonal"
+        ],
+        "max_income": "$295",
+        "oil_spots": "7 ",
+        "symmetrical": "No",
+        "total_crystals": "11"
     },
-    "Mexico Map 2": {
+    "Mexico_Map_2": {
+        "chokepoints": "Yes",
+        "date_created": "12/2023",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/dc/Radar-Mexico-2.png/revision/latest/scale-to-width-down/268?cb=20250517101659",
         "map_size": "1000x700",
-        "max_income": "$380"
+        "map_types": [
+            "Political",
+            "Multi-Seasonal"
+        ],
+        "max_income": "$380",
+        "oil_spots": "5 ",
+        "symmetrical": "Almost",
+        "total_crystals": "20"
     },
-    "Middle East": {
+    "Middle_East": {
+        "chokepoints": "No",
+        "date_created": "12/2017",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "4v4",
                 "2v2v2"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/fd/RADAR_Middle_East.png/revision/latest/scale-to-width-down/268?cb=20230927211717",
         "map_size": "1000x1000",
-        "max_income": "$325"
+        "map_types": [
+            "Desert",
+            "Political"
+        ],
+        "max_income": "$325",
+        "oil_spots": "10",
+        "symmetrical": "Almost",
+        "total_crystals": "15"
     },
-    "Monument Park": {
+    "Monument_Park": {
+        "chokepoints": "No",
+        "date_created": "9/2021",
         "gamemode": {
+            "Free Build": [
+                "FFA2"
+            ],
             "Free For All": [
+                "1v1",
                 "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9a/RADAR_Monument_Park.png/revision/latest/scale-to-width-down/268?cb=20230927211722",
         "map_size": "800x800",
-        "max_income": "$580"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$580",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "28"
     },
-    "Moon Surface": {
+    "Moon_Surface": {
+        "chokepoints": "No",
+        "date_created": "4/2012",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "2v2v2"
-            ]
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "King Of The Hill": []
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/bc/RADAR_Moon_Surface.png/revision/latest/scale-to-width-down/268?cb=20230927211726",
         "map_size": "600x600",
-        "max_income": "$210"
+        "map_types": [
+            "Moon"
+        ],
+        "max_income": "$210",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "14"
     },
-    "Obsidian Atoll": {
+    "Obsidian_Atoll": {
+        "chokepoints": "Yes",
+        "date_created": "4/2018",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/eb/RADAR_Obsidian_Atoll.png/revision/latest/scale-to-width-down/268?cb=20230927211730",
         "map_size": "800x800",
-        "max_income": "$270"
+        "map_types": [
+            "Magma"
+        ],
+        "max_income": "$270",
+        "oil_spots": "6 ",
+        "symmetrical": "Yes",
+        "total_crystals": "14"
     },
     "Passage": {
+        "chokepoints": "Yes",
+        "date_created": "3/2021",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/fb/RADAR_Passage.png/revision/latest/scale-to-width-down/268?cb=20230927211736",
         "map_size": "800x800",
-        "max_income": "$490"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$490",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "24"
     },
-    "Point Blank": {
+    "Point_Blank": {
+        "chokepoints": "No",
+        "date_created": "10/2020",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/f6/RADAR_Point_Blank.png/revision/latest/scale-to-width-down/268?cb=20230927211742",
         "map_size": "800x800",
-        "max_income": "$400"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$400",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "20"
     },
     "Poland": {
+        "chokepoints": "Yes",
+        "date_created": "4/2024",
         "gamemode": {
             "Conquest": [
                 "2v2v2",
                 "3v3v3"
+            ],
+            "Free Build": [
+                "FFA4"
             ],
             "Free For All": [
                 "FFA3"
@@ -964,42 +2019,88 @@
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e2/RADAR_Poland.png/revision/latest/scale-to-width-down/268?cb=20240420044123",
         "map_size": "800x800",
-        "max_income": "$495"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$495",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "27"
     },
-    "Polar Trail": {
+    "Polar_Trail": {
+        "chokepoints": "No",
+        "date_created": "5/2017",
         "gamemode": {
             "Survival": [
-                "Survival"
+                "6vAI"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/2/25/RADAR_Polar_Trail.png/revision/latest/scale-to-width-down/268?cb=20230927211748",
         "map_size": "800x800",
-        "max_income": "$195"
+        "map_types": [
+            "Winter"
+        ],
+        "max_income": "$195",
+        "oil_spots": "0",
+        "symmetrical": "No",
+        "total_crystals": "13"
     },
-    "RETRO Cliffs": {
+    "RETRO_Cliffs": {
+        "chokepoints": "Yes",
+        "date_created": "3/2013",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "2v2v2"
-            ]
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "King Of The Hill": []
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/98/RADAR_RETRO_Cliffs.png/revision/latest/scale-to-width-down/268?cb=20230927211755",
         "map_size": "600x600",
-        "max_income": "$300"
+        "map_types": [
+            "Grass",
+            "Old School"
+        ],
+        "max_income": "$300",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "20"
     },
-    "RETRO Four Seasons": {
+    "RETRO_Four_Seasons": {
+        "chokepoints": "No",
+        "date_created": "4/2012",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "2v2v2"
-            ]
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
+            ],
+            "King Of The Hill": []
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/5c/RADAR_RETRO_Four_Seasons.png/revision/latest/scale-to-width-down/268?cb=20230927211759",
         "map_size": "520x512",
-        "max_income": "$195"
+        "map_types": [
+            "Multi-Seasonal",
+            "Old School"
+        ],
+        "max_income": "$195",
+        "oil_spots": "0",
+        "symmetrical": "No",
+        "total_crystals": "13"
     },
-    "RETRO Six Islands": {
+    "RETRO_Six_Islands": {
+        "chokepoints": "No",
+        "date_created": "3/2013",
         "gamemode": {
             "Conquest": [
                 "2v2",
@@ -1007,61 +2108,121 @@
                 "2v2v2",
                 "3v3v3"
             ],
+            "Free Build": [
+                "FFA4"
+            ],
             "Free For All": [
+                "1v1",
                 "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e9/RADAR_RETRO_Six_Islands.png/revision/latest/scale-to-width-down/268?cb=20230927211803",
         "map_size": "650x650",
-        "max_income": "$370"
+        "map_types": [
+            "Grass",
+            "Old School"
+        ],
+        "max_income": "$370",
+        "oil_spots": "1",
+        "symmetrical": "Yes",
+        "total_crystals": "24"
     },
-    "RETRO The Moon": {
+    "RETRO_The_Moon": {
+        "chokepoints": "No",
+        "date_created": "4/2012",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "2v2v2"
-            ]
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "King Of The Hill": []
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/50/RADAR_RETRO_The_Moon.png/revision/latest/scale-to-width-down/268?cb=20230927211807",
         "map_size": "520x512",
-        "max_income": "$180"
+        "map_types": [
+            "Moon",
+            "Old School"
+        ],
+        "max_income": "$180",
+        "oil_spots": "0",
+        "symmetrical": "No",
+        "total_crystals": "12"
     },
-    "River Banks": {
+    "River_Banks": {
+        "chokepoints": "Yes",
+        "date_created": "4/2019",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8e/RADAR_River_Banks.png/revision/latest/scale-to-width-down/268?cb=20230927211812",
         "map_size": "800x800",
-        "max_income": "$285"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$285",
+        "oil_spots": "0",
+        "symmetrical": "No",
+        "total_crystals": "15"
     },
-    "River Corners": {
+    "River_Corners": {
+        "chokepoints": "No",
+        "date_created": "5/2017",
         "gamemode": {
             "Survival": [
-                "Survival"
+                "6vAI"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/98/RADAR_River_Corners.png/revision/latest/scale-to-width-down/268?cb=20230927211818",
         "map_size": "800x800",
-        "max_income": "$195"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$195",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "13"
     },
     "Russia": {
+        "chokepoints": "No",
+        "date_created": "5/2024",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/05/Radar-Russia.png/revision/latest/scale-to-width-down/268?cb=20250517102111",
         "map_size": "900x500",
-        "max_income": "$415"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$415",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "21"
     },
-    "Ryry's Oil Map": {
+    "Ryry%27s_Oil_Map": {
+        "chokepoints": "No",
+        "date_created": "3/2016",
         "gamemode": {
             "Conquest": [
                 "2v2",
@@ -1071,235 +2232,467 @@
                 "2v2v2",
                 "3v3v3"
             ],
+            "Free Build": [
+                "FFA4"
+            ],
             "Free For All": [
+                "1v1",
                 "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/64/RADAR_Ryry%27s_Oil_Map.png/revision/latest/scale-to-width-down/267?cb=20230927211823",
         "map_size": "686x692",
-        "max_income": "$295"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$295",
+        "oil_spots": "4 ",
+        "symmetrical": "Almost",
+        "total_crystals": "12"
     },
-    "Sand Bottom Forest": {
+    "Sand_Bottom_Forest": {
+        "chokepoints": "Yes",
+        "date_created": "4/2018",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA6"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a7/RADAR_Sand_Botton_Forest.png/revision/latest/scale-to-width-down/268?cb=20230927211826",
         "map_size": "800x800",
-        "max_income": "$270"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$270",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "12"
     },
-    "Sand City": {
+    "Sand_City": {
+        "chokepoints": "No",
+        "date_created": "10/2021",
         "gamemode": {
+            "Free Build": [
+                "FFA2"
+            ],
             "Free For All": [
+                "1v1",
                 "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8c/RADAR_Sand_City.png/revision/latest/scale-to-width-down/268?cb=20230927211831",
         "map_size": "800x800",
-        "max_income": "$480"
+        "map_types": [
+            "Desert",
+            "City"
+        ],
+        "max_income": "$480",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "24"
     },
-    "Sandstone Cog": {
+    "Sandstone_Cog": {
+        "chokepoints": "No",
+        "date_created": "8/2018",
         "gamemode": {
+            "Free Build": [
+                "FFA6"
+            ],
             "Free For All": [
                 "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/33/RADAR_Sandstone_Cog.png/revision/latest/scale-to-width-down/268?cb=20230927211835",
         "map_size": "800x800",
-        "max_income": "$450"
+        "map_types": [
+            "Desert"
+        ],
+        "max_income": "$450",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "24"
     },
-    "Sandy Floors": {
+    "Sandy_Floors": {
+        "chokepoints": "No",
+        "date_created": "3/2022",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c4/RADAR_Sandy_Floors.png/revision/latest/scale-to-width-down/268?cb=20230927211840",
         "map_size": "800x800",
-        "max_income": "$420"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$420",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "20"
     },
     "Scandinavia": {
+        "chokepoints": "Yes",
+        "date_created": "7/2023",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e4/RADAR_Scandinavia.png/revision/latest/scale-to-width-down/268?cb=20230927211844",
         "map_size": "800x800",
-        "max_income": "$360"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$360",
+        "oil_spots": "6 ",
+        "symmetrical": "Almost",
+        "total_crystals": "16"
     },
-    "Six Small Islands": {
+    "Six_Small_Islands": {
+        "chokepoints": "No",
+        "date_created": "8/2016",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "2v2v2"
             ],
+            "Free Build": [
+                "FFA4"
+            ],
             "Free For All": [
+                "1v1",
                 "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c8/RADAR_Six_Small_Islands.png/revision/latest/scale-to-width-down/268?cb=20230927211959",
         "map_size": "658x658",
-        "max_income": "$320"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$320",
+        "oil_spots": "8 ",
+        "symmetrical": "Yes",
+        "total_crystals": "16"
     },
     "Skymap": {
+        "chokepoints": "Yes",
+        "date_created": "9/2022",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/73/RADAR_Skymap.png/revision/latest/scale-to-width-down/268?cb=20230927212004",
         "map_size": "900x900",
-        "max_income": "$570"
+        "map_types": [
+            "Misc",
+            "Skymap"
+        ],
+        "max_income": "$570",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "32"
     },
-    "Skymap 2": {
+    "Skymap_2": {
+        "chokepoints": "No",
+        "date_created": "3/2024",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/4/48/RADAR_Skymap_2.png/revision/latest/scale-to-width-down/268?cb=20240324193741",
         "map_size": "900x900",
-        "max_income": "$480"
+        "map_types": [
+            "Misc",
+            "Skymap"
+        ],
+        "max_income": "$480",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "26"
     },
-    "Snow Battlefield": {
+    "Snow_Battlefield": {
+        "chokepoints": "Yes",
+        "date_created": "3/2022",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/38/RADAR_Snow_Battlefield.png/revision/latest/scale-to-width-down/268?cb=20230927212009",
         "map_size": "1000x1000",
-        "max_income": "$390"
+        "map_types": [
+            "Winter",
+            "City"
+        ],
+        "max_income": "$390",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "20"
     },
-    "Snowy Islands": {
+    "Snowy_Islands": {
+        "chokepoints": "No",
+        "date_created": "3/2017",
         "gamemode": {
             "Conquest": [
                 "2v2v2",
                 "3v3v3"
             ],
+            "Free Build": [
+                "FFA4"
+            ],
             "Free For All": [
                 "FFA3"
-            ]
+            ],
+            "King Of The Hill": []
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/95/RADAR_Snowy_Islands.png/revision/latest/scale-to-width-down/268?cb=20230927212013",
         "map_size": "700x700",
-        "max_income": "$240"
+        "map_types": [
+            "Winter"
+        ],
+        "max_income": "$240",
+        "oil_spots": "3 ",
+        "symmetrical": "Almost",
+        "total_crystals": "14"
     },
-    "Soviet Union": {
+    "Soviet_Union": {
+        "chokepoints": "No",
+        "date_created": "3/2020",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/07/RADAR_Soviet_Union.png/revision/latest/scale-to-width-down/268?cb=20230927212019",
         "map_size": "1400x700",
-        "max_income": "$295"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$295",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "13"
     },
     "Spain": {
+        "chokepoints": "No",
+        "date_created": "5/2023",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/db/RADAR_Spain.png/revision/latest/scale-to-width-down/268?cb=20230927212023",
         "map_size": "800x800",
-        "max_income": "$330"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$330",
+        "oil_spots": "6 ",
+        "symmetrical": "Almost",
+        "total_crystals": "13"
     },
     "States": {
+        "chokepoints": "No",
+        "date_created": "3/2019",
         "gamemode": {
             "Conquest": [
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/d/db/RADAR_States.png/revision/latest/scale-to-width-down/268?cb=20230927212028",
         "map_size": "1400x700",
-        "max_income": "$345"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$345",
+        "oil_spots": "0",
+        "symmetrical": "No",
+        "total_crystals": "19"
     },
     "Symmetry": {
+        "chokepoints": "No",
+        "date_created": "2/2021",
         "gamemode": {
             "Conquest": [
                 "3v3"
+            ],
+            "Free Build": [
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/0e/RADAR_Symmetry.png/revision/latest/scale-to-width-down/268?cb=20230927212032",
         "map_size": "800x800",
-        "max_income": "$360"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$360",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "24"
     },
-    "Territory Map 1": {
+    "Territory_Map_1": {
+        "chokepoints": "No",
+        "date_created": "12/2016",
         "gamemode": {
-            "Conquest": [
+            "Territory Conquest": [
                 "3v3",
                 "2v2v2"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/0/08/RADAR_Territory_Map_1.png/revision/latest/scale-to-width-down/268?cb=20230927212038",
         "map_size": "740x740",
-        "max_income": "$240"
+        "map_types": [
+            "Territory"
+        ],
+        "max_income": "$240",
+        "oil_spots": "0",
+        "symmetrical": "No",
+        "total_crystals": "16"
     },
-    "Territory Map 3": {
+    "Territory_Map_3": {
+        "chokepoints": "No",
+        "date_created": "12/2016",
         "gamemode": {
-            "Conquest": [
+            "Territory Conquest": [
                 "3v3"
             ]
         },
-        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/11/Territory_Map_3.png/revision/latest/scale-to-width-down/268?cb=20210722213900",
+        "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/33/RADAR_Territory_Map_3.png/revision/latest/scale-to-width-down/268?cb=20230927212046",
         "map_size": "800x800",
-        "max_income": "$280"
+        "map_types": [
+            "Territory"
+        ],
+        "max_income": "$280",
+        "oil_spots": "4 ",
+        "symmetrical": "Almost",
+        "total_crystals": "16"
     },
-    "Territory Map 4": {
+    "Territory_Map_4": {
+        "chokepoints": "Yes",
+        "date_created": "12/2016",
         "gamemode": {
-            "Conquest": [
+            "Territory Conquest": [
                 "3v3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/10/RADAR_Territory_Map_4.png/revision/latest/scale-to-width-down/268?cb=20230927212053",
         "map_size": "680x680",
-        "max_income": "$180"
+        "map_types": [
+            "Territory"
+        ],
+        "max_income": "$180",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "12"
     },
-    "Territory Map 5": {
+    "Territory_Map_5": {
+        "chokepoints": "No",
+        "date_created": "1/2017",
         "gamemode": {
-            "Conquest": [
+            "Territory Conquest": [
                 "3v3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/e/e3/RADAR_Territory_Map_5.png/revision/latest/scale-to-width-down/268?cb=20230927212102",
         "map_size": "800x800",
-        "max_income": "$270"
+        "map_types": [
+            "Territory"
+        ],
+        "max_income": "$270",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "18"
     },
-    "Territory Map 6": {
+    "Territory_Map_6": {
+        "chokepoints": "Yes",
+        "date_created": "Not found",
         "gamemode": {
-            "Conquest": [
+            "Territory Conquest": [
                 "3v3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/b/bd/RADAR_Territory_Map_6.png/revision/latest/scale-to-width-down/268?cb=20230927212108",
         "map_size": "800x800",
-        "max_income": "$265"
+        "map_types": [
+            "Territory"
+        ],
+        "max_income": "$265",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "15"
     },
-    "Three Corner Cave": {
+    "Three_Corner_Cave": {
+        "chokepoints": "Yes",
+        "date_created": "5/2016",
         "gamemode": {
             "Conquest": [
                 "2v2",
@@ -1308,19 +2701,34 @@
                 "2v2v2",
                 "3v3v3"
             ],
+            "Free Build": [
+                "FFA4"
+            ],
             "Free For All": [
+                "1v1",
                 "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/99/RADAR_Three_Corner_Cave.png/revision/latest/scale-to-width-down/268?cb=20230927212114",
         "map_size": "650x650",
-        "max_income": "$255"
+        "map_types": [
+            "Cave"
+        ],
+        "max_income": "$255",
+        "oil_spots": "3 ",
+        "symmetrical": "Almost",
+        "total_crystals": "15"
     },
-    "Three Corner Cave 2": {
+    "Three_Corner_Cave_2": {
+        "chokepoints": "Yes",
+        "date_created": "3/2024",
         "gamemode": {
             "Conquest": [
                 "2v2v2",
                 "3v3v3"
+            ],
+            "Free Build": [
+                "FFA4"
             ],
             "Free For All": [
                 "FFA3"
@@ -1328,13 +2736,24 @@
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/91/RADAR_Three_Corner_Cave_2.png/revision/latest/scale-to-width-down/268?cb=20240324193746",
         "map_size": "800x800",
-        "max_income": "$345"
+        "map_types": [
+            "Cave"
+        ],
+        "max_income": "$345",
+        "oil_spots": "3 ",
+        "symmetrical": "Yes",
+        "total_crystals": "18"
     },
-    "Tri Weather Reworked": {
+    "Tri_Weather_Reworked": {
+        "chokepoints": "Yes",
+        "date_created": "5/2022",
         "gamemode": {
             "Conquest": [
                 "2v2v2",
                 "3v3v3"
+            ],
+            "Free Build": [
+                "FFA4"
             ],
             "Free For All": [
                 "FFA3"
@@ -1342,34 +2761,63 @@
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9d/RADAR_Tri_Weather_Reworked.png/revision/latest/scale-to-width-down/268?cb=20230927212120",
         "map_size": "800x800",
-        "max_income": "$580"
+        "map_types": [
+            "Multi-Seasonal"
+        ],
+        "max_income": "$580",
+        "oil_spots": "4 ",
+        "symmetrical": "Yes",
+        "total_crystals": "30"
     },
-    "Triple Mansion": {
+    "Triple_Mansion": {
+        "chokepoints": "Yes",
+        "date_created": "8/2023",
         "gamemode": {
             "Conquest": [
                 "3v3v3"
+            ],
+            "Free Build": [
+                "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/af/RADAR_Triple_Mansion.png/revision/latest/scale-to-width-down/268?cb=20230927212124",
         "map_size": "700x700",
-        "max_income": "$420"
+        "map_types": [
+            "Indoors"
+        ],
+        "max_income": "$420",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "28"
     },
-    "Tropical Oasis": {
+    "Tropical_Oasis": {
+        "chokepoints": "No",
+        "date_created": "9/2021",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3"
             ],
+            "Free Build": [
+                "FFA4"
+            ],
             "Free For All": [
+                "1v1",
                 "FFA3",
                 "FFA6"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/98/RADAR_Tropical_Oasis.png/revision/latest/scale-to-width-down/268?cb=20230927212129",
         "map_size": "1000x1000",
-        "max_income": "$540"
+        "map_types": [],
+        "max_income": "$540",
+        "oil_spots": "6 ",
+        "symmetrical": "Almost",
+        "total_crystals": "31"
     },
-    "Twisting Isles": {
+    "Twisting_Isles": {
+        "chokepoints": "No",
+        "date_created": "2/2017",
         "gamemode": {
             "Conquest": [
                 "2v2",
@@ -1377,13 +2825,28 @@
                 "4v4",
                 "5v5",
                 "2v2v2"
-            ]
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
+            ],
+            "King Of The Hill": []
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/c/c6/RADAR_Twisting_Isles.png/revision/latest/scale-to-width-down/268?cb=20230927212136",
         "map_size": "700x700",
-        "max_income": "$265"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$265",
+        "oil_spots": "4 ",
+        "symmetrical": "Almost",
+        "total_crystals": "15"
     },
-    "Two Cave Map": {
+    "Two_Cave_Map": {
+        "chokepoints": "Yes",
+        "date_created": "3/2016",
         "gamemode": {
             "Conquest": [
                 "2v2",
@@ -1392,65 +2855,139 @@
                 "2v2v2",
                 "3v3v3"
             ],
+            "Free Build": [
+                "FFA4"
+            ],
             "Free For All": [
+                "1v1",
                 "FFA3"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a8/RADAR_Two_Cave_Map.png/revision/latest/scale-to-width-down/268?cb=20230927212145",
         "map_size": "700x700",
-        "max_income": "$300"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$300",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "15"
     },
-    "Two Islands Map": {
+    "Two_Islands_Map": {
+        "chokepoints": "Yes",
+        "date_created": "3/2016",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/8d/RADAR_Two_Islands_Map.png/revision/latest/scale-to-width-down/268?cb=20230927212150",
         "map_size": "740x668",
-        "max_income": "$210"
+        "map_types": [
+            "Grass"
+        ],
+        "max_income": "$210",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "14"
     },
-    "USA Map 2": {
+    "USA_Map_2": {
+        "chokepoints": "No",
+        "date_created": "7/2024",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/39/Radar-USA-2.png/revision/latest/scale-to-width-down/268?cb=20250517102359",
         "map_size": "1400x900",
-        "max_income": "$715"
+        "map_types": [
+            "Multi-Seasonal",
+            "Political"
+        ],
+        "max_income": "$715",
+        "oil_spots": "10",
+        "symmetrical": "No",
+        "total_crystals": "35"
     },
-    "USA Vs Canada": {
+    "USA_Vs_Canada": {
+        "chokepoints": "Yes",
+        "date_created": "7/2023",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/5/5d/RADAR_USA_vs_Canada.png/revision/latest/scale-to-width-down/268?cb=20230927212159",
         "map_size": "900x900",
-        "max_income": "$360"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$360",
+        "oil_spots": "6 ",
+        "symmetrical": "Almost",
+        "total_crystals": "18"
     },
-    "USA Vs Russia": {
+    "USA_Vs_Russia": {
+        "chokepoints": "No",
+        "date_created": "3/2018",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/3/37/RADAR_USA_vs_Russia.png/revision/latest/scale-to-width-down/268?cb=20230927212204",
         "map_size": "920x920",
-        "max_income": "$400"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$400",
+        "oil_spots": "7 ",
+        "symmetrical": "Almost",
+        "total_crystals": "18"
     },
-    "Underground Cog": {
+    "Underground_Cog": {
+        "chokepoints": "Yes",
+        "date_created": "8/2018",
         "gamemode": {
+            "Free Build": [
+                "FFA3"
+            ],
             "Free For All": [
                 "FFA3",
                 "FFA6"
@@ -1458,98 +2995,196 @@
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/a/a6/RADAR_Underground_Cog.png/revision/latest/scale-to-width-down/268?cb=20230927212155",
         "map_size": "840x840",
-        "max_income": "$450"
+        "map_types": [
+            "Cave"
+        ],
+        "max_income": "$450",
+        "oil_spots": "6 ",
+        "symmetrical": "Yes",
+        "total_crystals": "19"
     },
     "Vietnam": {
+        "chokepoints": "Yes",
+        "date_created": "4/2025",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9d/Radar-Vietnam.png/revision/latest/scale-to-width-down/268?cb=20250517101733",
         "map_size": "800x800",
-        "max_income": "$320"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$320",
+        "oil_spots": "5 ",
+        "symmetrical": "Almost",
+        "total_crystals": "14"
     },
     "Void": {
+        "chokepoints": "No",
+        "date_created": "9/2021",
         "gamemode": {
+            "Free Build": [
+                "FFA4"
+            ],
             "Free For All": [
                 "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/81/RADAR_Void.png/revision/latest/scale-to-width-down/268?cb=20230927212209",
         "map_size": "800x800",
-        "max_income": "$420"
+        "map_types": [
+            "Misc"
+        ],
+        "max_income": "$420",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "14"
     },
-    "Void City": {
+    "Void_City": {
+        "chokepoints": "No",
+        "date_created": "5/2022",
         "gamemode": {
             "Conquest": [
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA8"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/9/9c/RADAR_Void_City.png/revision/latest/scale-to-width-down/268?cb=20230927212214",
         "map_size": "1000x1000",
-        "max_income": "$540"
+        "map_types": [
+            "Misc",
+            "City"
+        ],
+        "max_income": "$540",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "18"
     },
-    "Void Map": {
+    "Void_Map": {
+        "chokepoints": "No",
+        "date_created": "8/2019",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/1/11/RADAR_Void_Map.png/revision/latest/scale-to-width-down/268?cb=20230927212218",
         "map_size": "800x800",
-        "max_income": "$360"
+        "map_types": [
+            "Misc"
+        ],
+        "max_income": "$360",
+        "oil_spots": "0",
+        "symmetrical": "Yes",
+        "total_crystals": "12"
     },
-    "Wheel of War": {
+    "Wheel_of_War": {
+        "chokepoints": "Yes",
+        "date_created": "5/2017",
         "gamemode": {
             "Survival": [
-                "Survival"
+                "6vAI"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/8/83/RADAR_Wheel_of_War.png/revision/latest/scale-to-width-down/268?cb=20230927212224",
         "map_size": "860x860",
-        "max_income": "$180"
+        "map_types": [
+            "Desert"
+        ],
+        "max_income": "$180",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "12"
     },
     "Whiteout": {
+        "chokepoints": "No",
+        "date_created": "11/2016",
         "gamemode": {
             "Survival": [
-                "Survival"
+                "6vAI"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/7/72/RADAR_Whiteout.png/revision/latest/scale-to-width-down/268?cb=20230927212229",
         "map_size": "800x800",
-        "max_income": "$195"
+        "map_types": [
+            "Winter"
+        ],
+        "max_income": "$195",
+        "oil_spots": "0",
+        "symmetrical": "No",
+        "total_crystals": "13"
     },
     "World": {
+        "chokepoints": "Yes",
+        "date_created": "12/2018",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4",
                 "5v5"
+            ],
+            "Free Build": [
+                "FFA4"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/f/f1/RADAR_World.png/revision/latest/scale-to-width-down/268?cb=20230927212234",
         "map_size": "1750x776",
-        "max_income": "$500"
+        "map_types": [
+            "Multi-Seasonal",
+            "Political"
+        ],
+        "max_income": "$500",
+        "oil_spots": "8 ",
+        "symmetrical": "No",
+        "total_crystals": "20"
     },
     "Yugoslavia": {
+        "chokepoints": "Yes",
+        "date_created": "11/2024",
         "gamemode": {
             "Conquest": [
                 "2v2",
                 "3v3",
                 "4v4"
+            ],
+            "Free Build": [
+                "FFA4"
+            ],
+            "Free For All": [
+                "1v1"
             ]
         },
         "image": "https://static.wikia.nocookie.net/the-roblox-conquerors-3/images/6/62/Radar-Yugoslavia.png/revision/latest/scale-to-width-down/268?cb=20250517101833",
         "map_size": "800x800",
-        "max_income": "$330"
+        "map_types": [
+            "Grass",
+            "Political"
+        ],
+        "max_income": "$330",
+        "oil_spots": "0",
+        "symmetrical": "Almost",
+        "total_crystals": "16"
     }
 }
