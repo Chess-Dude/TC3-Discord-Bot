@@ -1,15 +1,192 @@
 import discord, json, random
+import time
 import requests
 from bs4 import BeautifulSoup
-import time
+from alive_progress import alive_bar
+
+def get_text_data(soup, search_text, child_index=3):
+    try:
+        parent = soup.find(string=lambda text: text and search_text.lower() in text.lower()).parent.parent
+        children = list(parent)
+        return children[child_index].get_text(strip=True)
+    except (AttributeError, IndexError):
+        return "Not found"
+
+def get_category_links(search_text, parent_element):
+    try:
+        section = parent_element.find(string=lambda text: text and search_text.lower() in text.lower()).parent.parent
+        links = section.find_all('a', class_='newcategory')
+        return [link.get_text(strip=True) for link in links]
+    except AttributeError:
+        return []
+
+def get_map_data():
+    map_data = {}
+    map_names = []
+
+    session = requests.Session()
+    
+    # Get all map names from category page
+    response = session.get(f"https://theconquerors.fandom.com/wiki/Category:Maps")
+    if response.status_code != 200:
+        print(f"Failed to load page /wiki/Category:Maps")
+        return map_data
+    
+    soup = BeautifulSoup(response.content, "html.parser")
+    maps = soup.find_all('a', class_='category-page__member-link')
+    
+    for link in maps:
+        if isinstance(link, str):
+            continue
+        href = link.get('href')
+        index = href.rfind('/') + 1
+        map_name = href[index:]
+        map_names.append(map_name)
+
+    with alive_bar(len(maps)) as bar:
+
+
+        text_fields = {
+            'map_size': 'size',
+            'date_created': 'data created',
+            'max_income': 'max eco',
+            'oil_spots': 'total oil spots',
+            'total_crystals': 'total crystals',
+            'chokepoints': 'chokepoints',
+            'symmetrical': 'symmetrical'
+        }
+
+        # Visit each map page
+        for map_name in map_names:
+            bar.text = f'Scraping: {map_name}'
+            response = requests.get(f"https://theconquerors.fandom.com/wiki/{map_name}")
+            
+            if response.status_code != 200:
+                print(f"Failed to load wiki page for Map Name: {map_name}")
+                continue
+
+            soup = BeautifulSoup(response.content, "html.parser")
+        
+            current_map = {
+                'gamemode': {},
+                'image': '',
+                'map_types': [],
+                'map_size': '',
+                'date_created': '',
+                'max_income': '',
+                'oil_spots': '',
+                'total_crystals': '',
+                'chokepoints': '',
+                'symmetrical': ''
+            }
+
+            # Get image
+            try:
+                image_data = soup.find_all('img')[2]
+                current_map['image'] = image_data.get('src', '')
+            except (IndexError, AttributeError):
+                current_map['image'] = ''
+
+            # Extract all text fields
+            for field_name, search_text in text_fields.items():
+                data = get_text_data(soup, search_text)
+
+                # fix formatting
+                if field_name in ['oil_spots', 'total_crystals']:
+                    string = data.strip()
+                    data = string[:2]
+
+                current_map[field_name] = data
+
+            # Get General section for map types
+            general_parent = soup.find(string=lambda text: text and "general" in text.lower()).parent.parent
+            map_types = get_category_links("Map Type", general_parent)
+
+            current_map['map_types'] = map_types
+
+            # Get gameplay section for gamemodes and alliances
+            try:
+                gameplay_parent = soup.find(string=lambda text: text and "gameplay" in text.lower()).parent.parent
+                
+                # gamemodes
+                gamemodes = get_category_links("gamemodes", gameplay_parent)
+                if 'Conquest' in gamemodes:
+                    gamemodes.remove('Lightning Conquest')
+                if 'FFA' in gamemodes:
+                    gamemodes.remove('Lightning FFA')
+                    gamemodes[gamemodes.index('FFA')] = 'Free For All'
+                # stupid wiki person named it 'KOTH' instead King Of The Hill
+                if 'KOTH' in gamemodes:
+                    gamemodes.remove('KOTH')
+                    gamemodes.append('King Of The Hill')
+
+
+                # Convert from list to dict
+                gamemodes = {gamemode: [] for gamemode in gamemodes}
+                current_map['gamemode'] = gamemodes
+                
+                # alliances
+                current_map['alliances'] = get_category_links("alliance sizes", gameplay_parent)
+                
+            except AttributeError:
+                print(f"Could not find gameplay section for {map_name}")
+
+            # Finicky magic to get the alliances into the gamemode structure. 
+            # Edge cases: 
+            #             - Survival #vAI
+            #             - Free build
+            #             - FFA2 (1v1)
+            alliances = current_map['alliances']
+            for alliance in alliances:
+                if alliance == 'FFA2':
+                    current_map['gamemode']['Free For All'].append('1v1')
+                elif 'AI' in alliance: # Eg: 6vAI for Survival from wiki
+                    current_map['gamemode']['Survival'].append(alliance)
+                elif 'FFA' in alliance:
+                    current_map['gamemode']['Free For All'].append(alliance)
+                elif 'KOTH' in alliance: # I hate you wiki person
+                    alliance = alliance.replace(' (KOTH)', '')
+                    current_map['gamemode']['King Of The Hill'].append(alliance)
+                else:
+                    # From what ive seen the Territory Conquest maps are seperate.
+                    try:
+                        if 'Territory Conquest' in current_map['gamemode']:
+                            current_map['gamemode']['Territory Conquest'].append(alliance)
+                        else:
+                            current_map['gamemode']['Conquest'].append(alliance)
+                    except Exception as e:
+                        print(e, current_map, alliance, map_name)
+                        exit()
+
+
+
+            # Account for free build alliance size
+            if 'Free Build' in current_map['gamemode']:
+                # just find the highest gamemode and double it. If it has AI included it it, dont double it
+                alliances.sort()
+                highest = alliances[0]
+                if 'FFA' in highest:
+                    highest = highest[3]
+                elif 'AI' in highest:
+                    highest = alliance[0] # 8vAI
+                else:
+                    highest = str(int(highest[0])*2) # 4v4  (for example)
+                current_map['gamemode']['Free Build'].append(f'FFA{highest}')
+
+            del current_map['alliances']
+
+            map_data[map_name] = current_map
+            time.sleep(0.001)
+            bar()
+    
+    return map_data
+
 
 class MapSelectionUtilityMethods():
-    map_data = {}
-    available_gamemodes = {'Conquest':'Conquest', 'Free_for_All':'Free For All', 'King_of_the_Hill':'King Of The Hill', 'Survival':'Survival'}
-    gamemodes = ['2v2','3v3','4v4','5v5','2v2v2','3v3v3', 'FFA2', 'FFA3', 'FFA4', 'FFA6', 'Survival']
-    lowercase_game_modes = {}
-    lowercase_map_names = {}
+    map_data = {} # cache of the map data
+    gamemodes = ['1v1','2v2','3v3','4v4','5v5','2v2v2','3v3v3', 'FFA3', 'FFA4', 'FFA6', 'Survival', 'Free Build']
     all_map_names = []
+    
     
     @staticmethod
     def load_map_data():
@@ -21,177 +198,24 @@ class MapSelectionUtilityMethods():
                     raise ValueError("Empty JSON file")
                 MapSelectionUtilityMethods.map_data = json.loads(content)
                 MapSelectionUtilityMethods.all_map_names = list(MapSelectionUtilityMethods.map_data.keys())
-                MapSelectionUtilityMethods.lowercase_map_names = {map_name.lower(): map_name for map_name in MapSelectionUtilityMethods.map_data.keys()}
-                MapSelectionUtilityMethods.lowercase_game_modes = {gamemode.lower(): gamemode for gamemode in MapSelectionUtilityMethods.gamemodes}
                 print(f"Map data file loaded successfully with {len(MapSelectionUtilityMethods.map_data)} maps.")
                 return True
         except (FileNotFoundError, ValueError, json.JSONDecodeError) as e:
             print(f"Map data file not found or invalid: {e}. Will need to scrape data.")
             MapSelectionUtilityMethods.map_data = {}
             MapSelectionUtilityMethods.all_map_names = []
-            MapSelectionUtilityMethods.lowercase_map_names = {}
-            MapSelectionUtilityMethods.lowercase_game_modes = {gamemode.lower(): gamemode for gamemode in MapSelectionUtilityMethods.gamemodes}
             return False
-
-    @staticmethod
-    def extract_text_data(soup, data_source):
-        div = soup.find('div', class_='pi-item pi-data pi-item-spacing pi-border-color', attrs={'data-source': data_source})
-        if div and (value_div := div.find('div', class_='pi-data-value')):
-            return value_div.get_text(strip=True)
-        return None
     
     @staticmethod
-    def get_map_data():
-        """Scrapes map data from The Conquerors wiki without threading"""
-        print("Starting web scraping for map data...")
-        start_time = time.time()
-        MapSelectionUtilityMethods.map_data = {}
-        session = requests.Session()
+    def scrape_map_data():
+        t_i = time.time()
 
+        map_data = get_map_data()
+        MapSelectionUtilityMethods.map_data = map_data
 
-        try:
-            response = session.get("https://theconquerors.fandom.com/wiki/Category:Maps")
-            soup = BeautifulSoup(response.content, "html.parser")
-            map_links = soup.find_all('a', class_='category-page__member-link')
-            map_names = [link.get_text(strip=True) for link in map_links]
-            print(f"Found {len(map_names)} maps in category page")
-        except Exception as e:
-            print(f"Error retrieving map list: {e}")
-            return MapSelectionUtilityMethods.map_data
-
-        for map_name in map_names:
-            MapSelectionUtilityMethods.map_data[map_name] = {
-                'max_income': None,
-                'map_size': None,
-                'gamemode': {},
-                'image': None
-            }
-
-        for map_name in map_names:
-            try:
-                map_url = f"https://theconquerors.fandom.com/wiki/{map_name.replace(' ', '_')}"
-                response = session.get(map_url)
-                if response.status_code != 200:
-                    continue
-                    
-                soup = BeautifulSoup(response.content, "html.parser")
-                
-                thumbnail = soup.find('img', class_='pi-image-thumbnail')
-                if thumbnail:
-                    image_url = thumbnail.get('data-src') or thumbnail.get('src')
-                    MapSelectionUtilityMethods.map_data[map_name]['image'] = image_url
-
-                MapSelectionUtilityMethods.map_data[map_name]['map_size'] = MapSelectionUtilityMethods.extract_text_data(soup, 'size')
-                MapSelectionUtilityMethods.map_data[map_name]['max_income'] = MapSelectionUtilityMethods.extract_text_data(soup, 'max_eco')
-                
-            except Exception as e:
-                print(f"Error processing map {map_name}: {e}")
-
-        for gamemode_page_name, display_name in MapSelectionUtilityMethods.available_gamemodes.items():
-            try:
-                gamemode_url = f"https://theconquerors.fandom.com/wiki/{gamemode_page_name}"
-                response = session.get(gamemode_url)
-                if response.status_code != 200:
-                    continue
-                    
-                soup = BeautifulSoup(response.content, "html.parser")
-                
-                # Skip Survival as it has a different layout
-                if gamemode_page_name != "Survival":
-                    wds_tabber_wrapper = soup.find('div', class_='wds-tabs__wrapper')
-                    if not wds_tabber_wrapper:
-                        continue
-                        
-                    wds_tabs = wds_tabber_wrapper.find('ul', class_='wds-tabs')
-                    if not wds_tabs:
-                        continue
-                        
-                    sub_gamemodes_raw = wds_tabs.find_all('li', class_='wds-tabs__tab')
-                    
-                    sub_gamemodes = []
-                    for sub_gamemode_raw in sub_gamemodes_raw:
-                        sub_gamemode = sub_gamemode_raw['data-hash'].strip().replace('_', '')
-                        sub_gamemodes.append(sub_gamemode)
-                    
-                    sub_gamemode_pages = soup.find_all('div', class_='wds-tab__content')
-                    
-                    for sub_gamemode_name, sub_gamemode_page in zip(sub_gamemodes, sub_gamemode_pages):
-                        if sub_gamemode_name.endswith('FFA'):
-                            sub_gamemode_name = 'FFA' + sub_gamemode_name[0]
-                        
-                        table_rows = sub_gamemode_page.find_all("tr")
-                        for row in table_rows[1:]: 
-                            row_data = row.find_all("td")
-                            if not row_data or len(row_data) < 1:
-                                continue
-                            
-                            map_name = row_data[0].get_text(strip=True)
-                            
-                            if map_name in MapSelectionUtilityMethods.map_data:
-                                if display_name not in MapSelectionUtilityMethods.map_data[map_name]['gamemode']:
-                                    MapSelectionUtilityMethods.map_data[map_name]['gamemode'][display_name] = []
-                                
-                                if sub_gamemode_name not in MapSelectionUtilityMethods.map_data[map_name]['gamemode'][display_name]:
-                                    MapSelectionUtilityMethods.map_data[map_name]['gamemode'][display_name].append(sub_gamemode_name)
-                else:
-                    # Handle Survival mode specifically
-                    survival_table = soup.find("tbody")
-                    if not survival_table:
-                        continue
-                        
-                    table_rows = survival_table.find_all("tr")
-                    for row in table_rows[1:]:  # skip header
-                        row_data = row.find_all("td")
-                        if not row_data or len(row_data) < 1:
-                            continue
-                        
-                        map_name = row_data[0].get_text(strip=True)
-                        
-                        if map_name in MapSelectionUtilityMethods.map_data:
-                            if display_name not in MapSelectionUtilityMethods.map_data[map_name]['gamemode']:
-                                MapSelectionUtilityMethods.map_data[map_name]['gamemode'][display_name] = []
-                            
-                            if "Survival" not in MapSelectionUtilityMethods.map_data[map_name]['gamemode'][display_name]:
-                                MapSelectionUtilityMethods.map_data[map_name]['gamemode'][display_name].append("Survival")
-            
-            except Exception as e:
-                print(f"Error processing gamemode {gamemode_page_name}: {e}")
+        t_f = time.time()
+        print(f'Scanned: {len(MapSelectionUtilityMethods.map_data)} maps.')
         
-        # Step 4: As a fallback, check category pages for each gamemode
-        for gamemode in MapSelectionUtilityMethods.gamemodes:
-            try:
-                category_url = f"https://theconquerors.fandom.com/wiki/Category:{gamemode}"
-                response = session.get(category_url)
-                if response.status_code != 200:
-                    continue
-                    
-                soup = BeautifulSoup(response.content, "html.parser")
-                map_links = soup.find_all('a', class_='category-page__member-link')
-                
-                for link in map_links:
-                    map_name = link.get_text(strip=True)
-                    
-                    if map_name in MapSelectionUtilityMethods.map_data:
-                        gamemode_type = "Conquest"
-                        if "FFA" in gamemode:
-                            gamemode_type = "Free For All"
-                        elif "Survival" in gamemode:
-                            gamemode_type = "Survival"
-                        
-                        if gamemode_type not in MapSelectionUtilityMethods.map_data[map_name]['gamemode']:
-                            MapSelectionUtilityMethods.map_data[map_name]['gamemode'][gamemode_type] = []
-                        
-                        if gamemode not in MapSelectionUtilityMethods.map_data[map_name]['gamemode'][gamemode_type]:
-                            MapSelectionUtilityMethods.map_data[map_name]['gamemode'][gamemode_type].append(gamemode)
-                            
-            except Exception as e:
-                print(f"Error processing gamemode category {gamemode}: {e}")
-        
-        MapSelectionUtilityMethods.all_map_names = list(MapSelectionUtilityMethods.map_data.keys())
-        
-        elapsed = time.time() - start_time
-        print(f"Web scraping completed in {elapsed:.2f} seconds. Found {len(MapSelectionUtilityMethods.map_data)} maps.")
-        return MapSelectionUtilityMethods.map_data
 
     @staticmethod
     def update_map_data():
@@ -279,22 +303,15 @@ class MapSelectionUtilityMethods():
             interaction=interaction
         )
 
-def update_load_map_data(force_update=True):
+def update_load_map_data(force_update=False):
     old_count = len(MapSelectionUtilityMethods.map_data)
     
     if not force_update and MapSelectionUtilityMethods.load_map_data():
         print("Using existing map data from file.")
     else:
         print("Scraping new map data from wiki...")
-        MapSelectionUtilityMethods.get_map_data()
+        MapSelectionUtilityMethods.scrape_map_data()
         MapSelectionUtilityMethods.update_map_data()
-    
-    MapSelectionUtilityMethods.lowercase_map_names = {
-        map_name.lower(): map_name for map_name in MapSelectionUtilityMethods.map_data.keys()
-    }
-    MapSelectionUtilityMethods.lowercase_game_modes = {
-        gamemode.lower(): gamemode for gamemode in MapSelectionUtilityMethods.gamemodes
-    }
     
     new_count = len(MapSelectionUtilityMethods.map_data)
     return new_count, old_count
