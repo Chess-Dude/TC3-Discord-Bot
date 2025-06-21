@@ -1,7 +1,7 @@
 import discord, typing
 from discord import app_commands
 from discord.ext import commands
-from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUtilityMethods
+from .mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 class ChannelUtilityCommands(commands.Cog):
     def __init__(self, bot):
@@ -59,7 +59,7 @@ class ChannelUtilityCommands(commands.Cog):
         )
 
         new_channel = await interaction.guild.create_text_channel(
-            name=f"{role_1.name}-vs-{role_2.name}", 
+            name=f"{role_1.name} -vs- {role_2.name}", 
             overwrites=overwrites, 
             category=category
         )
