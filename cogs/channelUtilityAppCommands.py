@@ -29,7 +29,7 @@ class ChannelUtilityCommands(commands.Cog):
     @create_command_group.command(
         name="game_night",
         description="A Command That Allows You To Create A Server Channel!")
-    @app_commands.describe(role_1="P1`ing a role to be added to the channel here!")
+    @app_commands.describe(role_1="Ping a role to be added to the channel here!")
     @app_commands.describe(role_2="Ping a role to be added to the channel here!")
     @app_commands.rename(role_1="role_1")
     @app_commands.rename(role_2="role_2")
@@ -68,7 +68,6 @@ class ChannelUtilityCommands(commands.Cog):
         await new_channel.send(f"{role_1.mention} vs {role_2.mention} Please Join the lobby and create a party. Here is the map you will play:")
         
         map_embed = MapSelectionUtilityMethods.random_map_init(
-            self=self,
             interaction=interaction,
             game_mode="game_night_3v3"
         )
@@ -117,7 +116,6 @@ class ChannelUtilityCommands(commands.Cog):
         await new_channel.send(f"{player_1.mention} vs {player_2.mention} Please Join the lobby and create a party. Here is the map you will play:")
         
         map_embed = MapSelectionUtilityMethods.random_map_init(
-            self=self,
             interaction=interaction,
             game_mode="1v1"
         )

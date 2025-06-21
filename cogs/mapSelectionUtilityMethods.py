@@ -241,7 +241,7 @@ class MapSelectionUtilityMethods():
     gamemodes = get_all_gamemodes(map_data)
 
     @staticmethod
-    def determine_map_list(game_mode):
+    def determine_map_list(game_mode: str):
         """Returns a list of maps that support the given game mode"""
         game_mode = game_mode.lower()
         if game_mode == "game_night_3v3":
@@ -259,7 +259,7 @@ class MapSelectionUtilityMethods():
         return maps
     
     @staticmethod
-    def create_map_embed(selected_map, interaction: discord.Interaction):
+    def create_map_embed(selected_map: str, interaction: discord.Interaction):
         map_data = MapSelectionUtilityMethods.map_data[selected_map]
 
         chokepoints = map_data.get('chokepoints', 'Unknown')
@@ -323,12 +323,11 @@ class MapSelectionUtilityMethods():
         return map_embed
     
     @staticmethod
-    def create_random_map_embed(map_type, interaction: discord.Interaction):
+    def create_random_map_embed(map_type: str, interaction: discord.Interaction):
         """Creates a Discord embed with map information"""
-        maps = []
-        for map_name in MapSelectionUtilityMethods.all_map_names:
-            if map_type in MapSelectionUtilityMethods.map_data[map_name]:
-                maps.append(map_name)
+        maps = MapSelectionUtilityMethods.determine_map_list(game_mode=map_type)
+        if not maps:
+            return discord.Embed(title="Error", description=f"No maps found for {map_type} mode", color=0xff0000)
 
         selected_map = random.choice(maps)
         map_embed = MapSelectionUtilityMethods.create_map_embed(selected_map, interaction)
@@ -340,19 +339,10 @@ class MapSelectionUtilityMethods():
     def get_available_gamemodes():
         return MapSelectionUtilityMethods.gamemodes
 
-
-
     @staticmethod
     def random_map_init(interaction: discord.Interaction, game_mode: str):
         """Returns a Discord embed with a random map of the given game mode"""
-        search_mode = game_mode.lower()
-        maps = MapSelectionUtilityMethods.determine_map_list(game_mode=search_mode)
-
-        if not maps:
-            return discord.Embed(title="Error", description=f"No maps found for {game_mode} mode", color=0xff0000)
-            
         return MapSelectionUtilityMethods.create_random_map_embed(
-            selected_map=random.choice(maps),
             map_type=game_mode,
             interaction=interaction
         )
