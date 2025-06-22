@@ -30,11 +30,23 @@ class AppCommandsMapSelection(commands.Cog):
     @group.command(
         name="map",
         description="A Command That Randomizes A Game Map!")
-    @app_commands.choices(game_mode=get_game_mode_choices())
+    @app_commands.choices(game_mode=[
+        Choice(name="1v1", value=1),
+        Choice(name="2v2", value=2),
+        Choice(name="3v3", value=3),
+        Choice(name="4v4", value=4),
+        Choice(name="5v5", value=5),
+        Choice(name="2v2v2", value=6),
+        Choice(name="3v3v3", value=7),        
+        Choice(name="FFA3", value=8),
+        Choice(name="FFA4", value=9),
+        Choice(name="FFA6", value=10),
+        Choice(name="game_night_3v3", value=11)
+    ])
     async def random_map(
         self,
         interaction: discord.Interaction,
-        game_mode: Choice[str]
+        game_mode: Choice[int]
     ):
         game_mode_name = game_mode.name
         
@@ -44,6 +56,7 @@ class AppCommandsMapSelection(commands.Cog):
         
         try:
             maps = MapSelectionUtilityMethods.determine_map_list(game_mode=game_mode_name)
+            print("success for maps")
             if not maps:
                 await interaction.response.send_message(f"No maps found for {game_mode_name} mode. Please select a different mode or contact an administrator.", ephemeral=True)
                 return
@@ -52,12 +65,14 @@ class AppCommandsMapSelection(commands.Cog):
                 interaction=interaction,
                 game_mode=game_mode_name
             )
-            map_embed.remove_field("Available Modes") # its already known. No point in including it.
-            
+            # map_embed.remove_field("Available Modes") # its already known. No point in including it.
+            print("sucicess for map_embed")
             await interaction.response.send_message(
                 embed=map_embed, 
                 view=RerollDropdown()
             )
+
+            print("success for message")
             
         except Exception as e:
             print(f"Error in random_map command: {str(e)}")

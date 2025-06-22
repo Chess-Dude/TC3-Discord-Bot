@@ -328,11 +328,9 @@ class MapSelectionUtilityMethods():
         maps = MapSelectionUtilityMethods.determine_map_list(game_mode=map_type)
         if not maps:
             return discord.Embed(title="Error", description=f"No maps found for {map_type} mode", color=0xff0000)
-
         selected_map = random.choice(maps)
         map_embed = MapSelectionUtilityMethods.create_map_embed(selected_map, interaction)
         map_embed.description = f"Random {map_type} map."
-        
         return map_embed
     
     @staticmethod

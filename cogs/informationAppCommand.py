@@ -198,7 +198,7 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
 
-        map_embed = MapSelectionUtilityMethods.create_map_embed(map_name)
+        map_embed = MapSelectionUtilityMethods.create_map_embed(map_name, interaction)
         await interaction.response.send_message(embed=map_embed)
 
     @map.autocomplete("map_name")
