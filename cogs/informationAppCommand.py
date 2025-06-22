@@ -4,7 +4,7 @@ from discord import app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
 from cogs.informationChannels import InformationEmbeds
-from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUtilityMethods
+from .mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
@@ -191,53 +191,14 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
  
     @info_group.command(
         name="map",
-        description="Get a map radar")
+        description="Get information on a specific map")
     @app_commands.describe(map="Pick a map you would like information on!")
     @app_commands.rename(map="map")    
-    async def map(self, interaction: discord.Interaction,map: str):  
-        map_name = map
+    async def map(self, interaction: discord.Interaction, map_name: str):  
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
-        
-        original_map_name = MapSelectionUtilityMethods.lowercase_map_names.get(map_name.lower(), None)
-        if original_map_name is None:
-            await interaction.response.send_message("Error: That map was not found! Try again or check the wiki.", ephemeral=True)
-            return
 
-        map_data = MapSelectionUtilityMethods.map_data[original_map_name]
-        cost = map_data['max_income']
-        map_size = map_data['map_size']
-        map_image = map_data.get('image', None)
-
-        # Use the original_map_name in the embed
-        map_embed = discord.Embed(
-            title=f"{original_map_name} Map Information:",
-            description=f"{interaction.user.mention}",
-            color=0x00ffff
-        )
-        if map_image != None:
-            map_embed.set_image(url=map_image)
-
-        map_embed.set_author(
-            name=f"{interaction.user.display_name}",
-            icon_url=interaction.user.display_avatar.url
-        )
-
-        map_embed.set_footer(
-            text=f"{map_name} Map Information",
-            icon_url=interaction.guild.icon.url if interaction.guild.icon else None
-        )
-
-        map_embed.timestamp = interaction.created_at
-        map_embed.add_field(name="Max Income:", value=cost, inline=True)
-        map_embed.add_field(name="Map Size:", value=map_size, inline=True)
-        all_types = []
-        for gamemode, types in map_data['gamemode'].items():
-            for type in types:
-                if type not in all_types:
-                    all_types.append(type)
-        map_embed.add_field(name='Playable Gamemodes', value=" / ".join(all_types), inline=False)
-
+        map_embed = MapSelectionUtilityMethods.create_map_embed(map_name)
         await interaction.response.send_message(embed=map_embed)
 
     @map.autocomplete("map")
@@ -248,8 +209,8 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
     ) -> list[app_commands.Choice[str]]:
         return [
         app_commands.Choice(name=map_name, value=map_name) 
-        for map_name in MapSelectionUtilityMethods.map_data.keys() if current.lower() in map_name.lower()][:10]
-
+        for map_name in MapSelectionUtilityMethods.all_map_names 
+        if current.lower() in map_name.lower()][:25] 
     @info_group.command(
         name="user", 
         description="A Command That Allows You To Get Info On A Discord Member!")

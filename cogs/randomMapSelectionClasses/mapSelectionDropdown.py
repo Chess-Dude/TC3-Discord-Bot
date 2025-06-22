@@ -1,5 +1,5 @@
 import discord, random
-from .mapSelectionUtilityMethods import MapSelectionUtilityMethods
+from ..mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 class MapSelectionDropdown(discord.ui.Select):
     def __init__(self):
@@ -26,11 +26,7 @@ class MapSelectionDropdown(discord.ui.Select):
 
         if map_embed_author_name == interaction.user.display_name:
             selected_mode = str(self.values[0])
-            real_name = selected_mode
-            if selected_mode == "1v1":
-                real_name = "FFA2"
-
-            maps = MapSelectionUtilityMethods.determine_map_list(game_mode=real_name)
+            maps = MapSelectionUtilityMethods.determine_map_list(game_mode=selected_mode)
         
             if not maps:
                 await interaction.response.send_message(
