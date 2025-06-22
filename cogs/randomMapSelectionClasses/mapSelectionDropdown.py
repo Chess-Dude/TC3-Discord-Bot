@@ -1,5 +1,5 @@
 import discord, random
-from ..mapSelectionUtilityMethods import MapSelectionUtilityMethods
+from .mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 class MapSelectionDropdown(discord.ui.Select):
     def __init__(self):

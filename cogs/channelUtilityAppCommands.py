@@ -1,7 +1,7 @@
 import discord, typing
 from discord import app_commands
 from discord.ext import commands
-from .mapSelectionUtilityMethods import MapSelectionUtilityMethods
+from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 class ChannelUtilityCommands(commands.Cog):
     def __init__(self, bot):

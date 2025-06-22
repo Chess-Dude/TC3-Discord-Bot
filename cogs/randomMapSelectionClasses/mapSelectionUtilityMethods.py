@@ -354,4 +354,3 @@ class MapSelectionUtilityMethods():
         MapSelectionUtilityMethods.map_data = scrape_map_data()
         MapSelectionUtilityMethods.all_map_names = list(MapSelectionUtilityMethods.map_data.keys())
         MapSelectionUtilityMethods.gamemodes = get_all_gamemodes(MapSelectionUtilityMethods.map_data)
-

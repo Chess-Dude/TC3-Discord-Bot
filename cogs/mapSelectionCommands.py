@@ -3,7 +3,7 @@ from discord import app_commands
 from discord.ext import commands
 from discord.app_commands import Choice
 from .randomMapSelectionClasses.mapSelectionDropdown import RerollDropdown
-from .mapSelectionUtilityMethods import MapSelectionUtilityMethods
+from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 class AppCommandsMapSelection(commands.Cog):
     def __init__(self, bot):
@@ -34,9 +34,9 @@ class AppCommandsMapSelection(commands.Cog):
     async def random_map(
         self,
         interaction: discord.Interaction,
-        game_mode: Choice[int]
+        game_mode: Choice[str]
     ):
-        game_mode_name = game_mode.value
+        game_mode_name = game_mode.name
         
         if interaction.guild and interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             await interaction.response.send_message("Please use the designated channel for map randomization.", ephemeral=True)

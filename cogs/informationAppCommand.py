@@ -4,7 +4,7 @@ from discord import app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
 from cogs.informationChannels import InformationEmbeds
-from .mapSelectionUtilityMethods import MapSelectionUtilityMethods
+from .randomMapSelectionClasses.mapSelectionUtilityMethods import MapSelectionUtilityMethods
 
 scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 
@@ -192,8 +192,8 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
     @info_group.command(
         name="map",
         description="Get information on a specific map")
-    @app_commands.describe(map="Pick a map you would like information on!")
-    @app_commands.rename(map="map")    
+    @app_commands.describe(map_name="Pick a map you would like information on!")
+    @app_commands.rename(map_name="map")    
     async def map(self, interaction: discord.Interaction, map_name: str):  
         if interaction.guild.id == 350068992045744141 and interaction.channel.id != 351057167706619914:
             raise app_commands.errors.CheckFailure
@@ -201,7 +201,7 @@ __🔢 To sign-up for the one-day tournament please follow the steps below:__
         map_embed = MapSelectionUtilityMethods.create_map_embed(map_name)
         await interaction.response.send_message(embed=map_embed)
 
-    @map.autocomplete("map")
+    @map.autocomplete("map_name")
     async def map_autocomplete(
         self,
         interaction: discord.Interaction,
