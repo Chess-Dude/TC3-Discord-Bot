@@ -67,7 +67,7 @@ class ChannelUtilityCommands(commands.Cog):
         await interaction.response.send_message(f"created {new_channel.mention}")
         await new_channel.send(f"{role_1.mention} vs {role_2.mention} Please Join the lobby and create a party. Here is the map you will play:")
         
-        map_embed = MapSelectionUtilityMethods.random_map_init(
+        map_embed = MapSelectionUtilityMethods.create_random_map_embed(
             interaction=interaction,
             game_mode="game_night_3v3"
         )
@@ -115,7 +115,7 @@ class ChannelUtilityCommands(commands.Cog):
         await interaction.response.send_message(f"created {new_channel.mention}")
         await new_channel.send(f"{player_1.mention} vs {player_2.mention} Please Join the lobby and create a party. Here is the map you will play:")
         
-        map_embed = MapSelectionUtilityMethods.random_map_init(
+        map_embed = MapSelectionUtilityMethods.create_random_map_embed(
             interaction=interaction,
             game_mode="1v1"
         )

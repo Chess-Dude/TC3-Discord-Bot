@@ -60,10 +60,12 @@ class AppCommandsMapSelection(commands.Cog):
                 await interaction.response.send_message(f"No maps found for {game_mode_name} mode. Please select a different mode or contact an administrator.", ephemeral=True)
                 return
             
-            map_embed = MapSelectionUtilityMethods.random_map_init(
+            map_embed = MapSelectionUtilityMethods.create_random_map_embed(
                 interaction=interaction,
                 game_mode=game_mode_name
             )
+            # Alliances section
+            map_embed.remove_field(8)
             await interaction.response.send_message(
                 embed=map_embed, 
                 view=RerollDropdown()

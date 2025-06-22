@@ -336,14 +336,6 @@ class MapSelectionUtilityMethods():
     @staticmethod
     def get_available_gamemodes():
         return MapSelectionUtilityMethods.gamemodes
-
-    @staticmethod
-    def random_map_init(interaction: discord.Interaction, game_mode: str):
-        """Returns a Discord embed with a random map of the given game mode"""
-        return MapSelectionUtilityMethods.create_random_map_embed(
-            map_type=game_mode,
-            interaction=interaction
-        )
     
     @staticmethod
     def update_map_data():
