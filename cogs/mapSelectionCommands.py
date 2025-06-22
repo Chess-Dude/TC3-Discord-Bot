@@ -56,7 +56,6 @@ class AppCommandsMapSelection(commands.Cog):
         
         try:
             maps = MapSelectionUtilityMethods.determine_map_list(game_mode=game_mode_name)
-            print("success for maps")
             if not maps:
                 await interaction.response.send_message(f"No maps found for {game_mode_name} mode. Please select a different mode or contact an administrator.", ephemeral=True)
                 return
@@ -65,14 +64,10 @@ class AppCommandsMapSelection(commands.Cog):
                 interaction=interaction,
                 game_mode=game_mode_name
             )
-            # map_embed.remove_field("Available Modes") # its already known. No point in including it.
-            print("sucicess for map_embed")
             await interaction.response.send_message(
                 embed=map_embed, 
                 view=RerollDropdown()
             )
-
-            print("success for message")
             
         except Exception as e:
             print(f"Error in random_map command: {str(e)}")
