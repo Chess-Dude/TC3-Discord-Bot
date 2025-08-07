@@ -15,7 +15,7 @@ from cogs.redeemClasses.RedeemModalReview import RedeemModalReview
 from cogs.chessTournamentClasses.chessTournamentModalReview import ChessTournamentModalReview
 from cogs.chessTournamentForm import ChessTournamentTicketPanel
 from cogs.signUpCommands import TournamentTicketPanel
-from cogs.clanClasses.clanRosterClasses.disbandClans import DisbandClansClass
+from cogs.clanClasses.clanRosterClasses.DisbandClans import DisbandClansClass
 from cogs.signupClasses.skillDivsionDropdown import SkillDivisionDropdownView
 from cogs.tc3BugReport import BugReportTicketPanel
 from cogs.tc3BugClasses.bugModalReview import BugModalReview

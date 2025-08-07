@@ -1,7 +1,7 @@
 import discord
 from discord import app_commands
 from discord.ext import commands
-from .clanClasses.clanRosterClasses.generateClanRoster import GenerateClanRoster
+from .clanClasses.clanRosterClasses.GenerateClanRoster import GenerateClanRoster
 
 class ClanRosterCommands(commands.Cog):
     def __init__(self, bot):

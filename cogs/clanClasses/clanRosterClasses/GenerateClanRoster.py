@@ -1,5 +1,5 @@
 import discord
-from .disbandClans import DisbandClansClass
+from .DisbandClans import DisbandClansClass
 
 class GenerateClanRoster():
     

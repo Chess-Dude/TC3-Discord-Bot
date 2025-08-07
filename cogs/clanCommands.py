@@ -5,7 +5,7 @@ from cogs.teamApplicationClasses.teamCreation import TeamCreation
 from .clanClasses.clanApplicationClasses.clanCreationMethods import ClanCreationMethods
 from .clanClasses.clanApplicationClasses.clanChangeMethods import ClanChangesMethods
 from .clanClasses.clanApplicationClasses.clanDisbandMethods import ClanDisbandMethods
-from .clanClasses.clanRosterClasses.generateClanRoster import GenerateClanRoster
+from .clanClasses.clanRosterClasses.GenerateClanRoster import GenerateClanRoster
 
 class ClanCommands(commands.Cog):
     def __init__(self, bot):
