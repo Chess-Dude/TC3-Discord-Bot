@@ -37,9 +37,9 @@ class MapSelectionDropdown(discord.ui.Select):
                 
             new_map_embed = MapSelectionUtilityMethods.create_map_embed(
                 selected_map=random.choice(maps),
-                map_type=selected_mode,
                 interaction=interaction
             )
+            new_map_embed.description = f"Random {selected_mode} map."
             
             await interaction.response.send_message(
                 embed=new_map_embed, 

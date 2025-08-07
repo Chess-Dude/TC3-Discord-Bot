@@ -323,14 +323,14 @@ class MapSelectionUtilityMethods():
         return map_embed
     
     @staticmethod
-    def create_random_map_embed(map_type: str, interaction: discord.Interaction):
+    def create_random_map_embed(game_mode: str, interaction: discord.Interaction):
         """Creates a Discord embed with map information"""
-        maps = MapSelectionUtilityMethods.determine_map_list(game_mode=map_type)
+        maps = MapSelectionUtilityMethods.determine_map_list(game_mode=game_mode)
         if not maps:
-            return discord.Embed(title="Error", description=f"No maps found for {map_type} mode", color=0xff0000)
+            return discord.Embed(title="Error", description=f"No maps found for {game_mode} mode", color=0xff0000)
         selected_map = random.choice(maps)
         map_embed = MapSelectionUtilityMethods.create_map_embed(selected_map, interaction)
-        map_embed.description = f"Random {map_type} map."
+        map_embed.description = f"Random {game_mode} map."
         return map_embed
     
     @staticmethod
