@@ -262,7 +262,7 @@ class newModerationCommands(commands.Cog):
         name="decay",
         description="Decays user active damage by 0.1, adds it to healed damage, and unbans users past their unban date."
     )
-    @app_commands.checks.has_permissions(administrator=True)
+    @app_commands.checks.has_permissions(ban_members=True)
     async def decay(
         self,
         interaction: discord.Interaction,
@@ -283,12 +283,12 @@ class newModerationCommands(commands.Cog):
 
             # If no users need to be decayed, send a message and return.
             if not users:
-                await interaction.response.send_message("✅ No users to decay. Everyone is already at 0 active damage.", ephemeral=True)
+                await interaction.response.send_message("✅ No users to decay. Everyone is already at 0 active damage.")
                 # Exit immediately to avoid further processing.
 
             else:
                 # Notify that the process has started using followup.
-                await interaction.response.send_message("Loading...", ephemeral=True)
+                await interaction.channel.send("Loading...")
 
                 # Process each user: subtract 0.1 from activeDamage and add 0.1 to healedDamage using Decimal for precision.
                 for user in users:
@@ -334,9 +334,8 @@ class newModerationCommands(commands.Cog):
                     await connection.execute("DELETE FROM ActiveBannedUsers WHERE record = $1", banned["record"])
 
         # Send a final follow-up message summarizing the decay and unban actions.
-        await interaction.followup.send(
-            f"✅ Decay complete. Updated {len(users)} users. Unbanned {unbanned_count} users.",
-            ephemeral=True
+        await interaction.channel.send(
+            f"✅ Decay complete. Updated {len(users)} users. Unbanned {unbanned_count} users."
         )
 
 
