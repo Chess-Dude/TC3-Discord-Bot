@@ -15,12 +15,15 @@ class ClanPointCommands(commands.Cog):
 
     @tasks.loop(hours=0.5)
     async def looped_update_leaderboard(self):
-        self.LEADERBOARD_CHANNEL = self.bot.get_channel(1121947513981779978)
-        await self.LEADERBOARD_CHANNEL.purge(limit=1)
-        embeds_list = await self.clan_point_bot_methods_obj.get_updated_leaderboards(bot=self.bot)
-        await self.LEADERBOARD_CHANNEL.send(
-            embeds=embeds_list
-        )
+        try:
+            self.LEADERBOARD_CHANNEL = self.bot.get_channel(1121947513981779978)
+            await self.LEADERBOARD_CHANNEL.purge(limit=1)
+            embeds_list = await self.clan_point_bot_methods_obj.get_updated_leaderboards(bot=self.bot)
+            await self.LEADERBOARD_CHANNEL.send(
+                embeds=embeds_list
+            )
+        except Exception as e:
+            print(f"Error in leaderboard update: {e}")
 
     @looped_update_leaderboard.before_loop       
     async def before_update_leaderboard_task(self):
@@ -30,62 +33,65 @@ class ClanPointCommands(commands.Cog):
     async def looped_send_clan_point_notif(
         self
     ):
-        TOURNAMENT_INFO_CHANNEL = self.bot.get_channel(1047726075221901383)
-        await TOURNAMENT_INFO_CHANNEL.purge(limit=5)
-        information_embed = discord.Embed(
-            title=f"Tournament Information",
-            description=f"This section will cover everything there is to know about tournaments for The Conquerors 3.",
-            color=0x00ffff
-        )
+        try:
+            TOURNAMENT_INFO_CHANNEL = self.bot.get_channel(1047726075221901383)
+            await TOURNAMENT_INFO_CHANNEL.purge(limit=5)
+            information_embed = discord.Embed(
+                title=f"Tournament Information",
+                description=f"This section will cover everything there is to know about tournaments for The Conquerors 3.",
+                color=0x00ffff
+            )
 
-        information_embed.set_image(
-            url="https://media.discordapp.net/attachments/350068992045744142/1047732656508510299/IMG_3001.png?width=1193&height=671"
-        )
-        
-        await TOURNAMENT_INFO_CHANNEL.send(
-            embed=information_embed, 
-            view=ParentTournamentInformationViews()
-        )
-        # print("running looped_send_clan_point_notif")
-        end_of_round_bonus_results = await self.clan_point_bot_methods_obj.get_end_of_round_bonus(
-            bot=self.bot
-        )
-
-        for end_of_round_bonus_record in end_of_round_bonus_results:
-            endofroundbonusinfo = end_of_round_bonus_record["endofroundbonusstring"]
-            end_of_round_bonus_dict = ast.literal_eval(endofroundbonusinfo)
+            information_embed.set_image(
+                url="https://media.discordapp.net/attachments/350068992045744142/1047732656508510299/IMG_3001.png?width=1193&height=671"
+            )
             
-            if len(end_of_round_bonus_dict) != 0:                
-                total_clan_points = self.clan_point_bot_methods_obj.calculate_total_clan_points(
-                    end_of_round_bonus_dict=end_of_round_bonus_dict
-                )
+            await TOURNAMENT_INFO_CHANNEL.send(
+                embed=information_embed, 
+                view=ParentTournamentInformationViews()
+            )
 
-                user_clan_point_data = await self.clan_point_bot_methods_obj.get_user_clan_point_data(
-                    bot=self.bot,
-                    end_of_round_bonus_dict=end_of_round_bonus_dict
-                )
+            end_of_round_bonus_results = await self.clan_point_bot_methods_obj.get_end_of_round_bonus(
+                bot=self.bot
+            )
 
+            for end_of_round_bonus_record in end_of_round_bonus_results:
                 try:
-                    if ((len(user_clan_point_data) != 0) and 
-                        ((str(user_clan_point_data[0][5])) != "None")):                
-                        await self.clan_point_bot_methods_obj.send_log_embed(
-                            end_of_round_bonus_dict=end_of_round_bonus_dict,
-                            bot=self.bot,
-                            total_clan_points=total_clan_points,
-                            user_clan_point_data=user_clan_point_data,
-                            channel_id=1122622489974034434               
+                    endofroundbonusinfo = end_of_round_bonus_record["endofroundbonusstring"]
+                    end_of_round_bonus_dict = ast.literal_eval(endofroundbonusinfo)
+                    
+                    if len(end_of_round_bonus_dict) != 0:                
+                        total_clan_points = self.clan_point_bot_methods_obj.calculate_total_clan_points(
+                            end_of_round_bonus_dict=end_of_round_bonus_dict
                         )
 
-                    else:
-                        await self.clan_point_bot_methods_obj.send_log_embed(
-                            end_of_round_bonus_dict=end_of_round_bonus_dict,
+                        user_clan_point_data = await self.clan_point_bot_methods_obj.get_user_clan_point_data(
                             bot=self.bot,
-                            total_clan_points=total_clan_points,
-                            user_clan_point_data=user_clan_point_data,
-                            channel_id=1135576322605850684               
+                            end_of_round_bonus_dict=end_of_round_bonus_dict
                         )
-                except Exception as error: 
-                    print(f"ERROR IN SEND CLAN POINT EMBED: {error}")
+
+                        if ((len(user_clan_point_data) != 0) and 
+                            ((str(user_clan_point_data[0][5])) != "None")):                
+                            await self.clan_point_bot_methods_obj.send_log_embed(
+                                end_of_round_bonus_dict=end_of_round_bonus_dict,
+                                bot=self.bot,
+                                total_clan_points=total_clan_points,
+                                user_clan_point_data=user_clan_point_data,
+                                channel_id=1122622489974034434               
+                            )
+                        else:
+                            await self.clan_point_bot_methods_obj.send_log_embed(
+                                end_of_round_bonus_dict=end_of_round_bonus_dict,
+                                bot=self.bot,
+                                total_clan_points=total_clan_points,
+                                user_clan_point_data=user_clan_point_data,
+                                channel_id=1135576322605850684               
+                            )
+                except Exception as error:
+                    print(f"Error processing bonus record: {error}")
+                    continue
+        except Exception as e:
+            print(f"Error in clan point notification: {e}")
 
     @looped_send_clan_point_notif.before_loop       
     async def before_update_clan_point_task(self):
@@ -96,49 +102,49 @@ class ClanPointCommands(commands.Cog):
     async def looped_check_clan_users(
         self
     ):
-        await asyncio.sleep(30)
-        print("running check_clan_users")
-        async with self.bot.pool.acquire() as connection:
-            sql = (
-                "UPDATE ClanPointTracker "
-                "SET currentClanName = 'None', currentClanRoleID = '000000000000000000'"
-            )
-            await connection.execute(sql)
-
-            guild = self.bot.get_guild(350068992045744141)
-            clan_divider_top_role = discord.utils.get(guild.roles, id=1053050572296704000)
-            clan_divider_bottom_role = discord.utils.get(guild.roles, id=1053050637555880027)
-
-            for role_position in range(clan_divider_top_role.position-1, clan_divider_bottom_role.position, -1):
-                clan_role = discord.utils.get(
-                    guild.roles, 
-                    position=role_position
+        try:
+            await asyncio.sleep(30)
+            print("running check_clan_users")
+            async with self.bot.pool.acquire() as connection:
+                sql = (
+                    "UPDATE ClanPointTracker "
+                    "SET currentClanName = 'None', currentClanRoleID = '000000000000000000'"
                 )
-                if clan_role is not None:
-                    # print(f" looping over: {clan_role.name}")
-                    for member in clan_role.members:
-                        if member is not None:
-                            # print(f"member being reviewed: {member.name}")
+                await connection.execute(sql)
 
-                            sql = "SELECT discordUserID FROM ClanpointTracker WHERE discordUserID = $1"
-                            result = await connection.fetchval(sql, member.id)
-                            exists_in_database = result is not None
+                guild = self.bot.get_guild(350068992045744141)
+                clan_divider_top_role = discord.utils.get(guild.roles, id=1053050572296704000)
+                clan_divider_bottom_role = discord.utils.get(guild.roles, id=1053050637555880027)
 
-                            if not exists_in_database:
-                                # print(f"added {member.name} into db")
-                                sql = "INSERT INTO ClanPointTracker (robloxUsername, discordUserID, totalClanPoints, currentClanRoleID, currentClanName) VALUES ($1, $2, $3, $4, $5)"
-                                val = (f"{member.nick}", member.id, 0, clan_role.id, f"{clan_role.name}")
+                for role_position in range(clan_divider_top_role.position-1, clan_divider_bottom_role.position, -1):
+                    clan_role = discord.utils.get(
+                        guild.roles, 
+                        position=role_position
+                    )
+                    if clan_role is not None:
+                        for member in clan_role.members:
+                            if member is not None:
+                                try:
+                                    sql = "SELECT discordUserID FROM ClanpointTracker WHERE discordUserID = $1"
+                                    result = await connection.fetchval(sql, member.id)
+                                    exists_in_database = result is not None
 
-                                inserted_row = await connection.execute(sql, *val)
-                      
-                            else:
-                                # print(f"set{member.name} clan to {clan_role.name}")
-                                sql = (
-                                    "UPDATE ClanPointTracker "
-                                    "SET currentClanName = $1, currentClanRoleID = $2 "
-                                    "WHERE discordUserID = $3"
-                                )
-                                await connection.execute(sql, clan_role.name, clan_role.id, member.id)
+                                    if not exists_in_database:
+                                        sql = "INSERT INTO ClanPointTracker (robloxUsername, discordUserID, totalClanPoints, currentClanRoleID, currentClanName) VALUES ($1, $2, $3, $4, $5)"
+                                        val = (f"{member.nick}", member.id, 0, clan_role.id, f"{clan_role.name}")
+                                        await connection.execute(sql, *val)
+                                    else:
+                                        sql = (
+                                            "UPDATE ClanPointTracker "
+                                            "SET currentClanName = $1, currentClanRoleID = $2 "
+                                            "WHERE discordUserID = $3"
+                                        )
+                                        await connection.execute(sql, clan_role.name, clan_role.id, member.id)
+                                except Exception as e:
+                                    print(f"Error processing member {member.id}: {e}")
+                                    continue
+        except Exception as e:
+            print(f"Error in check clan users: {e}")
 
     @looped_check_clan_users.before_loop       
     async def before_update_clan_members(self):
