@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord.ext.commands import Greedy
 from discord.object import Object 
 from typing import Optional, Literal
+from cogs.mapBingo import BingoCommands
 from cogs.informationEmbeds.welcomeEmbed.parentWelcomeView import ParentWelcomeView
 from cogs.teamApplicationClasses.teamApplicationDropdown import TournamentDropdownView
 from cogs.mapSelectionCommands import RerollDropdown
@@ -66,6 +67,7 @@ class TC3Bot(commands.Bot):
         self.add_view(DisbandClansClass())        
         self.add_view(BugReportTicketPanel())
         self.add_view(BugModalReview())
+        self.add_view(BingoCommands(self))
         print("views loaded successfully")
 
 bot = TC3Bot()
