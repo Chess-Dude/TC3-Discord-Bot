@@ -1,2 +1,2 @@
-from .clanRosterClasses.DisbandClans import DisbandClansClass
+from .clanRosterClasses.disbandClans import DisbandClansClass
 from .clanRosterClasses.GenerateClanRoster import GenerateClanRoster

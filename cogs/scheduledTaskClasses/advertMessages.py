@@ -11,18 +11,18 @@ class AdvertiseMessage():
 
         # Tournament message times (every 4 hours)
         self.tourney_message_time_stamps = [
-            today.replace(hour=h) for h in [0, 4, 8, 12, 16, 20]
+            today.replace(hour=h) for h in [0, 6, 12, 18]
         ]
         self.tourney_message_time_stamps.append(today.replace(hour=10, minute=20, second=35))
 
         # Matchmaking message times
         self.matchmaking_message_time_stamps = [
-            today.replace(hour=h) for h in [1, 5, 9, 13, 17, 21]
-        ]
+            today.replace(hour=h) for h in [2, 8, 14, 20]
+        ]           
 
         # Events message times
         self.events_message_time_stamps = [
-            today.replace(hour=h) for h in [2, 6, 10, 14, 18, 22]
+            today.replace(hour=h) for h in [4, 10, 16, 22]
         ]
 
         # One day tournament times (commented out for now)
